@@ -1,114 +1,107 @@
-from django.conf import settings
-from django.conf.urls import patterns, include, url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic import TemplateView
-from django.views.generic import RedirectView
+from __future__ import unicode_literals
+
+from django.conf.urls import include, url
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
 
 from django.contrib import admin
+from us_ignite.settings import custom_admin
+
+from mezzanine.core.views import direct_to_template
+from mezzanine.conf import settings
+
+
 
 admin.autodiscover()
 
+# Add the urlpatterns for any custom Django applications here.
+# You can also change the ``home`` view to add your own functionality
+# to the project's homepage.
 
-# custom 404 and 500 handlers
-handler404 = 'us_ignite.common.views.custom_404'
-handler500 = 'us_ignite.common.views.custom_500'
-
-urlpatterns = patterns(
-    '',
-    url(r'^$', 'us_ignite.sections.views.home', name='home'),
-    url(r'^dashboard/$', 'us_ignite.people.views.dashboard', name='dashboard'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('us_ignite.profiles.urls')),
-    url(r'^people/', include('us_ignite.people.urls')),
-    url(r'^apps/', include('us_ignite.apps.urls')),
-    url(r'^hub/', include('us_ignite.hubs.urls')),
-    url(r'^testbed/', include('us_ignite.testbeds.urls')),
-    url(r'^event/', include('us_ignite.events.urls')),
-    url(r'^org/', include('us_ignite.organizations.urls')),
-    url(r'^challenges/', include('us_ignite.challenges.urls')),
-    url(r'^contact/', include('us_ignite.relay.urls')),
-    url(r'^resources/', include('us_ignite.resources.urls')),
-    url(r'^blog/', include('us_ignite.blog.urls')),
-    url(r'^search/', include('us_ignite.search.urls')),
-    url(r'^map/', include('us_ignite.maps.urls')),
-    url(r'^news/', include('us_ignite.news.urls')),
-    url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
-    url(r'^overview/', include('us_ignite.visualize.urls')),
-    url(r'^browserid/', include('django_browserid.urls')),
+urlpatterns = i18n_patterns(
+    # Change the admin prefix here to use an alternate URL for the
+    # admin interface, which would be marginally more secure.
+    url("^admin/", include(admin.site.urls)),
 )
 
-# Global city teams:
-urlpatterns += patterns(
-    '',
-    url(r'^globalcityteams/actioncluster/',
-        include('us_ignite.actionclusters.urls')),
-    url(r'^globalcityteams/',
-        include('us_ignite.globalcityteams.urls', namespace='globalcityteams')),
-    url(r'^globalcityteams/participation-guide', TemplateView.as_view(template_name='globalcityteams/participation-guide.html'))
-)
+if settings.USE_MODELTRANSLATION:
+    urlpatterns += [
+        url('^i18n/$', set_language, name='set_language'),
+    ]
 
+urlpatterns += [
+    # We don't want to presume how your homepage works, so here are a
+    # few patterns you can use to set it up.
 
-urlpatterns += patterns(
-    '',
-    url(r'^about/', include('us_ignite.sections.urls')),
-    url(r'^get-involved/', include('us_ignite.sections.urls_get_involved')),
-    url(r'^(?P<section>(about|get-involved))/(?P<slug>[-\w]+)/$',
-        'us_ignite.sections.views.section_page_detail',
-        name='section_page_detail'),
-)
+    # HOMEPAGE AS STATIC TEMPLATE
+    # ---------------------------
+    # This pattern simply loads the index.html template. It isn't
+    # commented out like the others, so it's the default. You only need
+    # one homepage pattern, so if you use a different one, comment this
+    # one out.
 
-urlpatterns += patterns(
-    'us_ignite.common.views',
-    url(r'^404/$', 'custom_404', name='http404'),
-    url(r'^500/$', 'custom_500', name='http500'),
-)
+    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
-# Static templates:
-urlpatterns += patterns(
-    '',
-    url(r'^robots.txt$', TemplateView.as_view(
-        template_name='robots.txt', content_type='text/plain')),
-    url(r'^kit/$', TemplateView.as_view(template_name='kit.html')),
-    url(r'^march2015/$', RedirectView.as_view(url='/smartfuture2015')),
-    url(r'^smartfuture2015/$', TemplateView.as_view(template_name='march2015_2.html')),
-    url(r'^(?i)globalcityteamsexpo/$', TemplateView.as_view(template_name='gctc-expo.html')),
-    url(r'^(?i)gctcexpowebcast/$', TemplateView.as_view(template_name='gctc-expo_webcast.html')),
-    url(r'^(?i)globalcityteamsfestival?/$', RedirectView.as_view(url='http://us-ignite.org/globalcityteamsexpo'), name='global-city-teams-expo'),
-    url(r'^(?i)GCTCstrategyworkshop/$', TemplateView.as_view(template_name='gctc-strategy-workshop.html')),
-    url(r'^(?i)GCTC2016Kickoff/$', TemplateView.as_view(template_name='gctc-2016-kickoff.html'))
+    # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
+    # ---------------------------------------------
+    # This pattern gives us a normal ``Page`` object, so that your
+    # homepage can be managed via the page tree in the admin. If you
+    # use this pattern, you'll need to create a page in the page tree,
+    # and specify its URL (in the Meta Data section) as "/", which
+    # is the value used below in the ``{"slug": "/"}`` part.
+    # Also note that the normal rule of adding a custom
+    # template per page with the template name using the page's slug
+    # doesn't apply here, since we can't have a template called
+    # "/.html" - so for this case, the template "pages/index.html"
+    # should be used if you want to customize the homepage's template.
+    # NOTE: Don't forget to import the view function too!
 
+    # url("^$", mezzanine.pages.views.page, {"slug": "/"}, name="home"),
 
-)
+    # HOMEPAGE FOR A BLOG-ONLY SITE
+    # -----------------------------
+    # This pattern points the homepage to the blog post listing page,
+    # and is useful for sites that are primarily blogs. If you use this
+    # pattern, you'll also need to set BLOG_SLUG = "" in your
+    # ``settings.py`` module, and delete the blog page object from the
+    # page tree in the admin if it was installed.
+    # NOTE: Don't forget to import the view function too!
 
+    # url("^$", mezzanine.blog.views.blog_post_list, name="home"),
 
-# US Ignite legacy redirects:
-urlpatterns += patterns(
-    '',
-    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<slug>[-\w]+)/$',
-        'us_ignite.blog.views.legacy_redirect', name='legacy_post'),
-)
+    # MEZZANINE'S URLS
+    # ----------------
+    # ADD YOUR OWN URLPATTERNS *ABOVE* THE LINE BELOW.
+    # ``mezzanine.urls`` INCLUDES A *CATCH ALL* PATTERN
+    # FOR PAGES, SO URLPATTERNS ADDED BELOW ``mezzanine.urls``
+    # WILL NEVER BE MATCHED!
 
-urlpatterns += patterns(
-    '',
-    url(r'^tiny_mce/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'us_ignite/assets/js/tiny_mce/'})
-)
+    # If you'd like more granular control over the patterns in
+    # ``mezzanine.urls``, go right ahead and take the parts you want
+    # from it, and use them directly below instead of using
+    # ``mezzanine.urls``.
+    url("^", include("mezzanine.urls")),
 
-if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
-        url(r'^screens/$', TemplateView.as_view(template_name='screens.html')),
-    )
+    # MOUNTING MEZZANINE UNDER A PREFIX
+    # ---------------------------------
+    # You can also mount all of Mezzanine's urlpatterns under a
+    # URL prefix if desired. When doing this, you need to define the
+    # ``SITE_PREFIX`` setting, which will contain the prefix. Eg:
+    # SITE_PREFIX = "my/site/prefix"
+    # For convenience, and to avoid repeating the prefix, use the
+    # commented out pattern below (commenting out the one above of course)
+    # which will make use of the ``SITE_PREFIX`` setting. Make sure to
+    # add the import ``from django.conf import settings`` to the top
+    # of this file as well.
+    # Note that for any of the various homepage patterns above, you'll
+    # need to use the ``SITE_PREFIX`` setting as well.
 
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += patterns(
-        '',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT}),
-    )
+    # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
 
-    # Used by the debug toolbar when DEBUG is on:
-    import debug_toolbar
-    urlpatterns += patterns(
-        '',
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    )
+]
+
+# Adds ``STATIC_URL`` to the context of error pages, so that error
+# pages can use JS, CSS and images.
+handler404 = "mezzanine.core.views.page_not_found"
+handler500 = "mezzanine.core.views.server_error"
+

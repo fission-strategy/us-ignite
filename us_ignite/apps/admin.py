@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from us_ignite.apps.models import (Application, ApplicationURL,
-                                   ApplicationMedia, Domain, Feature,
-                                   Page, PageApplication)
+from mezzanine.core.admin import (DisplayableAdmin, OwnableAdmin,
+                                  BaseTranslationModelAdmin)
+from models import *
+# Register your models here.
 
 
 class ApplicationURLInline(admin.TabularInline):
@@ -43,6 +44,6 @@ class PageAdmin(admin.ModelAdmin):
     inlines = [PageApplicationInline]
 
 admin.site.register(Application, ApplicationAdmin)
-admin.site.register(Domain, DomainAdmin)
-admin.site.register(Feature, FeatureAdmin)
-admin.site.register(Page, PageAdmin)
+# admin.site.register(Domain, DomainAdmin)
+# admin.site.register(Feature, FeatureAdmin)
+# admin.site.register(Page, PageAdmin)

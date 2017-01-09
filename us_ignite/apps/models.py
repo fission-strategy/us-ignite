@@ -1,18 +1,21 @@
-import watson
+from __future__ import unicode_literals
 
 from hashlib import md5
 
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
-from geoposition.fields import GeopositionField
-from taggit.managers import TaggableManager
 
-from us_ignite.constants import IMAGE_HELP_TEXT
-from us_ignite.common.fields import AutoUUIDField, URL_HELP_TEXT
-from us_ignite.apps import managers, search
+from mezzanine.core.fields import RichTextField, MultiChoiceField, FileBrowseField
+from mezzanine.core.models import Displayable, Slugged, MetaData, TimeStamped
+
+from us_ignite.common.fields import *
+from . import managers
+from taggit.managers import TaggableManager
+from geoposition.fields import GeopositionField
 
 
 class Feature(models.Model):
@@ -31,8 +34,11 @@ class Domain(models.Model):
         return self.name
 
 
-class ApplicationBase(models.Model):
-    """Abstract model for ``Application`` and ``ApplicationVersion`` fields."""
+class ApplicationBase(Slugged, MetaData, TimeStamped):
+    """
+    Abstract model for ``Application`` and ``ApplicationVersion`` fields.
+    """
+
     IDEA = 1
     PROTOTYPE = 2
     DEVELOPMENT = 3
@@ -45,35 +51,46 @@ class ApplicationBase(models.Model):
         (DEPLOYED, u'Deployed'),
         (COMMERCIALIZED, u'Commercialized'),
     )
-    name = models.CharField(max_length=255, verbose_name=u'application name')
+
+    name = models.CharField(max_length=255, verbose_name=(_("Application Name")))
     stage = models.IntegerField(
-        choices=STAGE_CHOICES, default=IDEA,
-        help_text=u'Please select the option that best reflects your '
-        'current progress')
-    website = models.URLField(max_length=500, blank=True, help_text=URL_HELP_TEXT)
+        _("Status"),
+        choices=STAGE_CHOICES,
+        default=IDEA,
+        help_text=_("Please select the option that best reflects your current progress.")
+    )
+    website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
     image = models.ImageField(
-        blank=True, upload_to='apps', max_length=500,
-        help_text=u'E.g. logo, screenshot, application diagram, photo of demo. %s'
-        % IMAGE_HELP_TEXT)
+        blank=True,
+        upload_to='apps',
+        help_text=(_("E.g. logo, screenshot, application diagram, photo of demo. %s" % IMAGE_HELP_TEXT))
+    )
     summary = models.TextField(
-        blank=True, help_text=u'One sentence (tweet-length) pitch/summary of '
-        'the application')
+        blank=True,
+        help_text=(_("One sentence (tweet-length) pitch/summary of the application"))
+    )
     impact_statement = models.TextField(
-        blank=True, help_text=u'Who benefits and how in one paragraph or less')
+        blank=True,
+        help_text=(_("Who benefits and how in one paragraph or less"))
+    )
     assistance = models.TextField(
-        blank=True, help_text=u'Are you looking for additional help for this'
-        ' project? (e.g. specific technical skills, subject matter experts, '
-        'design help, partners for pilots, etc)')
+        blank=True,
+        help_text=(_("Are you looking for additional help for this project? "
+                     "(e.g. specific technical skills, subject matter experts, design help, partners for pilots, etc)"))
+    )
     team_name = models.CharField(
-        max_length=255, blank=True, help_text=u'Organization/Company name '
-        'of developers')
+        max_length=255,
+        blank=True,
+        help_text=(_("Organization/Company name of developers"))
+    )
     team_description = models.TextField(blank=True)
     acknowledgments = models.TextField(
-        blank=True, help_text=u'Is their anyone you want to acknowledge '
-        'for supporting this application?')
+        blank=True,
+        help_text=_("Is their anyone you want to acknowledge for supporting this application?")
+    )
     notes = models.TextField(blank=True)
-    created = CreationDateTimeField()
-    modified = ModificationDateTimeField()
+    # created = CreationDateTimeField()
+    # modified = ModificationDateTimeField()
 
     class Meta:
         abstract = True
@@ -115,6 +132,7 @@ class Application(ApplicationBase):
 
     Any content related field that needs to be versioned must be
     added to the ``ApplicationBase``"""
+
     PUBLISHED = 1
     DRAFT = 2
     REMOVED = 3
@@ -123,7 +141,8 @@ class Application(ApplicationBase):
         (DRAFT, 'Draft'),
         (REMOVED, 'Removed'),
     )
-    slug = AutoUUIDField(unique=True, editable=True)
+
+    slug = models.URLField(unique=True, editable=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     is_featured = models.BooleanField(default=False)
     owner = models.ForeignKey(
@@ -133,12 +152,13 @@ class Application(ApplicationBase):
         'auth.User', through='apps.ApplicationMembership',
         related_name='membership_set')
     features = models.ManyToManyField(
-        'apps.Feature', blank=True, help_text='Check all that apply')
+        'apps.Feature', blank=True, help_text=_("Check all that apply")
+    )
     features_other = models.CharField(blank=True, max_length=255)
     domain = models.ForeignKey(
         'apps.Domain', blank=True, null=True,
-        help_text='What is the primary public benefit priority area '
-        'served by this application?')
+        help_text=_("What is the primary public benefit priority area served by this application?")
+    )
     awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
     tags = TaggableManager(blank=True)
     position = GeopositionField(blank=True)
@@ -254,17 +274,19 @@ class ApplicationMedia(models.Model):
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 
-    def __unicode__(self):
-        return 'Media: %s' % self.name
-
     class Meta:
         ordering = ('created', )
+
+    def __unicode__(self):
+        return u'Media: %s' % self.name
+
+
 
 
 class ApplicationVersion(ApplicationBase):
     """Version of the ``Application``."""
     application = models.ForeignKey('apps.Application')
-    slug = AutoUUIDField(unique=True, editable=True)
+    slug = models.URLField(unique=True, editable=True)
     # managers:
     objects = managers.ApplicationVersionManager()
 
@@ -323,9 +345,3 @@ class PageApplication(models.Model):
 
     def __unicode__(self):
         return u'%s for page %s' % (self.application, self.page)
-
-# Search
-watson.register(
-    Application.published.all(),
-    search.ApplicationSearchAdapter
-)

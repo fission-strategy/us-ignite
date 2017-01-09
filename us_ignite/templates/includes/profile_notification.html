@@ -1,7 +1,0 @@
-{% if request.user.is_authenticated and not request.user.first_name  %}
-<ul class="messages">
-  <li>
-    Welcome! You have registered but not yet created your profile. <a href="{% url 'user_profile' %}">Click here</a> to add details to your profile.
-  </li>
-</ul>
-{% endif %}

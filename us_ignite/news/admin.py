@@ -1,26 +1,17 @@
-from django import forms
 from django.contrib import admin
+from mezzanine.blog.admin import BlogPostAdmin
+from mezzanine.blog.admin import blogpost_fieldsets
+from models import News
+from copy import deepcopy
+from mezzanine.core.admin import (DisplayableAdmin, OwnableAdmin,
+                                  BaseTranslationModelAdmin)
 
-from us_ignite.news.models import Article
+# Register your models here.
 
+blogpost_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
+blogpost_fieldsets[0][1]["fields"].extend(["excerpt", "content", "allow_comments",])
 
-class ArticleAdminForm(forms.ModelForm):
-    class Meta:
-        fields = ('name', 'status', 'url', 'is_featured')
-        model = Article
+class NewsAdmin(BlogPostAdmin):
+    fieldsets = blogpost_fieldsets
 
-
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'is_featured')
-    search_fields = ('name', 'url')
-    list_filter = ('status', 'is_featured', 'created')
-    date_hierarchy = 'created'
-    form = ArticleAdminForm
-
-    def queryset(self, request):
-        """Return DEFAULT ``News`` only."""
-        return (super(ArticleAdmin, self).queryset(request)
-                .filter(section=self.model.DEFAULT))
-
-
-admin.site.register(Article, ArticleAdmin)
+admin.site.register(News, NewsAdmin)
