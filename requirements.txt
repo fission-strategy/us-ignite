@@ -4,3 +4,4 @@ django-geoposition
 django-extensions
 gunicorn
 dj-database-url
+psycopg2
