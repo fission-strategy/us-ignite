@@ -6,6 +6,13 @@ from django import VERSION as DJANGO_VERSION
 from django.utils.translation import ugettext_lazy as _
 
 
+env = os.getenv
+
+# Make these unique, and don't share it with anybody.
+SECRET_KEY = env('SECRET_KEY')
+NEVERCACHE_KEY = env('NEVERCACHE_KEY')
+
+
 # Full filesystem path to the project.
 PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_APP = 'us_ignite'
