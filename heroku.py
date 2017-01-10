@@ -20,7 +20,7 @@ if __name__ == "__main__":
     from mezzanine.utils.conf import real_project_name
 
     settings_module = "%s.production" % real_project_name("us_ignite.settings")
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "us_ignite.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
