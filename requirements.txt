@@ -3,3 +3,4 @@ django-taggit
 django-geoposition
 django-extensions
 gunicorn
+dj-database-url
