@@ -1,4 +1,5 @@
 Mezzanine==4.2.2
+grappelli-safe
 django-taggit
 django-geoposition
 django-extensions
