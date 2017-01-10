@@ -22,3 +22,4 @@ whitenoise==3.2.3
 dj_database_url
 psycopg2
 gunicorn
+storages
