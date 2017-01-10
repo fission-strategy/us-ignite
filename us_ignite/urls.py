@@ -9,6 +9,7 @@ from us_ignite.settings import custom_admin
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
+from django.views.static import serve
 
 
 
@@ -18,7 +19,11 @@ admin.autodiscover()
 # You can also change the ``home`` view to add your own functionality
 # to the project's homepage.
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT,})
+]
+
+urlpatterns += i18n_patterns(
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     url("^admin/", include(admin.site.urls)),
@@ -98,7 +103,11 @@ urlpatterns += [
 
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
 
+
 ]
+
+# testing static file
+
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
 # pages can use JS, CSS and images.
