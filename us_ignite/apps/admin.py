@@ -5,6 +5,9 @@ from mezzanine.core.admin import (DisplayableAdmin, OwnableAdmin,
 from models import *
 # Register your models here.
 
+from us_ignite.actionclusters.models import ActionCluster
+from us_ignite.actionclusters.admin import ActionClusterAdmin
+
 
 class ApplicationURLInline(admin.TabularInline):
     model = ApplicationURL
@@ -15,16 +18,26 @@ class ApplicationMediaInline(admin.TabularInline):
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'stage', 'status')
+    list_display = ('name', 'sector', 'slug', 'stage', 'status')
     search_fields = ['name', 'slug', 'summary', 'impact_statement',
                      'assistance', 'team_description', 'notes',
                      'acknowledgments']
-    list_filter = ['stage', 'domain__name', 'status', 'created', ]
+    list_filter = ['stage', 'status', 'created', ]
     date_hierarchy = 'created'
     inlines = [ApplicationURLInline, ApplicationMediaInline]
 
 
-class DomainAdmin(admin.ModelAdmin):
+class ActionClusterAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'stage', 'status', 'is_approved')
+    search_fields = ['name', 'slug', 'summary', 'impact_statement',
+                     'assistance', 'team_description', 'notes',
+                     'acknowledgments']
+    list_filter = ['stage', 'status', 'created', 'is_approved', 'community']
+    date_hierarchy = 'created'
+    # inlines = [ActionClusterURLInline, ActionClusterMediaInline]
+
+
+class SectorAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
 
 
@@ -43,7 +56,16 @@ class PageAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     inlines = [PageApplicationInline]
 
+
+class ActionCluster(ActionCluster):
+    class Meta:
+        proxy = True
+        verbose_name = "Actioncluster"
+
+
 admin.site.register(Application, ApplicationAdmin)
-# admin.site.register(Domain, DomainAdmin)
-# admin.site.register(Feature, FeatureAdmin)
-# admin.site.register(Page, PageAdmin)
+admin.site.register(ActionCluster, ActionClusterAdmin)
+
+admin.site.register(Sector, SectorAdmin)
+admin.site.register(Feature, FeatureAdmin)
+admin.site.register(Page, PageAdmin)

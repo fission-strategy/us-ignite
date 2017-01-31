@@ -1,0 +1,39 @@
+{% extends "includes/lists/object_list_base.html" %}
+
+{% block sector_list %}
+    <ul>
+    <h4>Sector</h4>
+    {% for sector in sector_list %}
+        <li>{{ sector }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock sector_list %}
+
+{% block object_list %}
+    <ul>
+    <h4>Objects</h4>
+    {% for object in page.object_list_top %}
+        <li><ul>
+            <li>{{ object.sector }}</li>
+            <li>{{ object.title }}</li>
+            <li>Categories:
+                <ul>
+                {% for category in object.category_tags.all %}
+                    <li>{{ category }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+            <li>Funders:
+                <ul>
+                {% for funder in object.funder_tags.all %}
+                    <li>{{ funder }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        </li>
+
+    {% endfor %}
+    </ul>
+{% endblock object_list %}

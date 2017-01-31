@@ -9,13 +9,13 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
 
-from mezzanine.core.fields import RichTextField, MultiChoiceField, FileBrowseField
+# from mezzanine.core.fields import RichTextField, MultiChoiceField, FileBrowseField
 from mezzanine.core.models import Displayable, Slugged, MetaData, TimeStamped
 
 from us_ignite.common.fields import *
 from . import managers
 from taggit.managers import TaggableManager
-from geoposition.fields import GeopositionField
+from taggit.models import TagBase, GenericTaggedItemBase
 
 
 class Feature(models.Model):
@@ -26,12 +26,26 @@ class Feature(models.Model):
         return self.name
 
 
-class Domain(models.Model):
+class Sector(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
 
     def __unicode__(self):
         return self.name
+
+
+class AppTag(TagBase):
+    class Meta:
+        verbose_name = _("Tag")
+        verbose_name_plural = _("Tags")
+
+#
+class TaggedCategory(GenericTaggedItemBase):
+    tag = models.ForeignKey(AppTag, related_name="category_tag")
+
+
+class TaggedFunder(GenericTaggedItemBase):
+    tag = models.ForeignKey(AppTag, related_name="funder_tag")
 
 
 class ApplicationBase(Slugged, MetaData, TimeStamped):
@@ -54,7 +68,7 @@ class ApplicationBase(Slugged, MetaData, TimeStamped):
 
     name = models.CharField(max_length=255, verbose_name=(_("Application Name")))
     stage = models.IntegerField(
-        _("Status"),
+        _("Stage"),
         choices=STAGE_CHOICES,
         default=IDEA,
         help_text=_("Please select the option that best reflects your current progress.")
@@ -117,7 +131,7 @@ class ApplicationBase(Slugged, MetaData, TimeStamped):
         if self.stage == stage:
             return 'active'
         if self.stage < stage:
-            return 'innactive'
+            return 'inactive'
         return ''
 
     def get_stage_list(self):
@@ -142,30 +156,34 @@ class Application(ApplicationBase):
         (REMOVED, 'Removed'),
     )
 
-    slug = models.URLField(unique=True, editable=True)
+    slug = models.CharField(unique=True, editable=True, max_length=255)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     is_featured = models.BooleanField(default=False)
     owner = models.ForeignKey(
-        'auth.User', related_name='ownership_set', blank=True, null=True,
+        'profiles.User', related_name='ownership_set', blank=True, null=True,
         on_delete=models.SET_NULL)
     members = models.ManyToManyField(
-        'auth.User', through='apps.ApplicationMembership',
+        'profiles.User', through='apps.ApplicationMembership',
         related_name='membership_set')
     features = models.ManyToManyField(
         'apps.Feature', blank=True, help_text=_("Check all that apply")
     )
     features_other = models.CharField(blank=True, max_length=255)
-    domain = models.ForeignKey(
-        'apps.Domain', blank=True, null=True,
+    sector = models.ForeignKey(
+        'apps.Sector', blank=True, null=True,
         help_text=_("What is the primary public benefit priority area served by this application?")
     )
     awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
-    tags = TaggableManager(blank=True)
-    position = GeopositionField(blank=True)
+
+    # using Taggit
+    category_tags = TaggableManager(through=TaggedCategory, blank=True, verbose_name='Categories')
+    category_tags.rel.related_name = "+"
+    funder_tags = TaggableManager(through=TaggedFunder, blank=True, verbose_name='Funders')
+    funder_tags.rel.related_name = "+"
+
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
         help_text=u'If marked this element will be shown in the homepage.')
-
     # managers:
     objects = models.Manager()
     active = managers.ApplicationActiveManager()
@@ -195,9 +213,9 @@ class Application(ApplicationBase):
     def get_hub_membership_url(self):
         return reverse('app_hub_membership', args=[self.slug])
 
-    def get_domain_url(self):
-        if self.domain:
-            return reverse('app_list_domain', args=[self.domain.slug])
+    def get_sector_url(self):
+        if self.sector:
+            return reverse('app_list_sector', args=[self.sector.slug])
         return u''
 
     def get_export_url(self):
@@ -241,7 +259,7 @@ class Application(ApplicationBase):
 
 
 class ApplicationMembership(models.Model):
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey('profiles.User')
     application = models.ForeignKey('apps.Application')
     can_edit = models.BooleanField(default=False)
     created = CreationDateTimeField()

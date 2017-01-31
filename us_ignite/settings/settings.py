@@ -11,6 +11,8 @@ PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_APP = 'us_ignite'
 PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 
+here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -39,6 +41,22 @@ DASHBOARD_TAGS = (
     ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
     ("comment_tags.recent_comments",),
     ("mezzanine_tags.recent_actions",),
+)
+
+US_TIMEZONES = (
+    ('US/Alaska', 'US/Alaska'),
+    ('US/Aleutian', 'US/Aleutian'),
+    ('US/Arizona', 'US/Arizona'),
+    ('US/Central', 'US/Central'),
+    ('US/East-Indiana', 'US/East-Indiana'),
+    ('US/Eastern', 'US/Eastern'),
+    ('US/Hawaii', 'US/Hawaii'),
+    ('US/Indiana-Starke', 'US/Indiana-Starke'),
+    ('US/Michigan', 'US/Michigan'),
+    ('US/Mountain', 'US/Mountain'),
+    ('US/Pacific', 'US/Pacific'),
+    ('US/Pacific-New', 'US/Pacific-New'),
+    ('US/Samoa', 'US/Samoa'),
 )
 
 # A sequence of templates used by the ``page_menu`` template tag. Each
@@ -150,7 +168,9 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
 
+IS_PRODUCTION = True
 
+GOOGLE_ANALYTICS_ID = ''
 #############
 # DATABASES #
 #############
@@ -204,10 +224,12 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
+            here('templates'),
             os.path.join(PROJECT_ROOT, "templates")
         ],
         "APP_DIRS": True,
@@ -223,6 +245,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "mezzanine.conf.context_processors.settings",
                 "mezzanine.pages.context_processors.page",
+                "us_ignite.common.context_processors.settings_available",
             ],
             "builtins": [
                 "mezzanine.template.loader_tags",
@@ -240,6 +263,7 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -248,6 +272,7 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
+
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",
@@ -259,11 +284,21 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
+    'us_ignite.profiles',
     'us_ignite.apps',
+    'us_ignite.actionclusters',
+    'us_ignite.events',
+    'us_ignite.smart_communities',
+    'us_ignite.organizations',
+    'us_ignite.hubs',
+
     'taggit',
     'geoposition',
+    'watson',
 
 )
+
+AUTH_USER_MODEL = 'profiles.User'
 
 # List of middleware classes to use. Order is important; in the request phase,
 # these middleware classes will be applied in the order given, and in the
@@ -298,7 +333,7 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
 
-
+PAGINATOR_PAGE_SIZE = 8
 
 #########################
 # OPTIONAL APPLICATIONS #
