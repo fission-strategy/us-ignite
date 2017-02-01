@@ -10,6 +10,8 @@ from us_ignite.apps.forms import (ApplicationForm, ApplicationLinkFormSet,
                                   MembershipForm, ApplicationMediaFormSet,
                                   ApplicationMembershipFormSet)
 
+from us_ignite.awards.models import *
+
 from us_ignite.actionclusters.models import ActionCluster
 from us_ignite.common import pagination, forms
 from itertools import chain

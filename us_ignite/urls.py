@@ -11,8 +11,6 @@ from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
 
-
-
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.

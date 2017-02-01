@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from us_ignite.common.fields import AutoUUIDField, URL_HELP_TEXT
 
+from django.contrib import admin
+
 
 class User(AbstractUser):
     NO_AVAILABILITY = 0
