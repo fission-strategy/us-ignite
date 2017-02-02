@@ -7,6 +7,8 @@ from django.views.i18n import set_language
 from django.contrib import admin
 from us_ignite.settings import custom_admin
 
+from us_ignite.sections import views as sections
+
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
@@ -24,6 +26,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
+    url(r'^$', sections.home, name='home'),
     url("^admin/", include(admin.site.urls)),
     url("^apps/", include('us_ignite.apps.urls')),
 )
@@ -44,7 +47,7 @@ urlpatterns += [
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    # url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

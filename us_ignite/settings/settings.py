@@ -293,10 +293,12 @@ INSTALLED_APPS = (
     'us_ignite.organizations',
     'us_ignite.hubs',
     'us_ignite.awards',
+    'us_ignite.sections',
 
     'taggit',
     'geoposition',
     'watson',
+    'adminsortable2',
 
 )
 

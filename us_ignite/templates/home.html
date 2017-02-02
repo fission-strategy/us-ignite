@@ -1,0 +1,9 @@
+{% extends BASE_TEMPLATE %}
+
+{{ featured.title }}
+{% block content %}
+    {% for news in news_list %}
+        <p>{{ news.title }}</p>
+        {{ news.content }}
+    {% endfor %}
+{% endblock content %}
