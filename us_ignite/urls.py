@@ -29,6 +29,7 @@ urlpatterns += i18n_patterns(
     url(r'^$', sections.home, name='home'),
     url("^admin/", include(admin.site.urls)),
     url("^apps/", include('us_ignite.apps.urls')),
+    url("^smart-communities/", include('us_ignite.smart_communities.urls'))
 )
 
 if settings.USE_MODELTRANSLATION:

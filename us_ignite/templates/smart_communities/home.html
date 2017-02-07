@@ -1,0 +1,36 @@
+{% load smart_communities_tags %}
+
+<h2>LATEST NEWS</h2>
+<p>{{ latest_news.title }}</p>
+
+<h2>UPCOMING EVENTS</h2>
+<p>{{ upcoming_event.name }}</p>
+<p>{{ upcoming_event.start_datetime }}</p>
+
+
+<h2>COUNTS:</h2>
+<h3>APPS: {{ app_count }}</h3>
+<h3>HUBS: {{ hub_count }}</h3>
+<h3>FUNDERS: {{ funder_count }}</h3>
+<h3>TESTBEDS: {{ testbed_count }}</h3>
+
+<h2>FEATURED APP LIST</h2>
+{#{% for sector in sector_list %}#}
+{#    <h3>{{ sector.name }}</h3>#}
+{#    {% for feature in featured_app_list %}#}
+{#        {% if feature.sector == sector %}#}
+{#            {{ feature.name }}#}
+{#        {% endif %}#}
+{#    {%  endfor %}#}
+{#{% endfor %}#}
+
+{% for sector in sector_list %}
+    <h3>{{ sector.name }}</h3>
+    {% for app in sector|val_to_key:sector.name %}
+        <p>{{ app.id }}: {{ app.title }}</p>
+    {% endfor %}
+{% endfor %}
+
+{#{% for app in app_list %}#}
+{#    {% for %}#}
+{#{% endfor %}#}

@@ -294,6 +294,7 @@ INSTALLED_APPS = (
     'us_ignite.hubs',
     'us_ignite.awards',
     'us_ignite.sections',
+    'us_ignite.testbeds',
 
     'taggit',
     'geoposition',

@@ -1,9 +1,24 @@
 {% extends BASE_TEMPLATE %}
 
-{{ featured.title }}
+
 {% block content %}
+    <h2>FEATURED:</h2>
+    Featured
+{{ featured.title }}
+    END Featured
+    <h2>PROGRAM:</h2>
+    {% for program in program_list %}
+        <p>{{ program.title }}</p>
+        <p>{{ program.subtitle }}</p>
+    {% endfor %}
+    <h2>NEWS:</h2>
     {% for news in news_list %}
         <p>{{ news.title }}</p>
         {{ news.content }}
+    {% endfor %}
+    <h2>APPLICATIONS:</h2>
+    {% for app in application_list %}
+        <p>{{ app.name }}</p>
+        {{ news.summary }}
     {% endfor %}
 {% endblock content %}
