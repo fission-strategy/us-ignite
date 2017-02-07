@@ -21,4 +21,8 @@
         <p>{{ app.name }}</p>
         {{ news.summary }}
     {% endfor %}
+    {% for sponsor in sponsor_list %}
+        <p>{{ sponsor.name }}</p>
+        <a href="{{ sponsor.link }}"><img src="{{ sponsor.image }}" alt=""></a>
+    {% endfor %}
 {% endblock content %}

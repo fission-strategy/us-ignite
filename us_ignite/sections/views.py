@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 
 from us_ignite.apps.models import Application
 from us_ignite.hubs.models import Hub
-from us_ignite.sections.models import HomepageFeaturedItem, HomepageProgram
+from us_ignite.sections.models import HomepageFeaturedItem, HomepageProgram, Sponsor
 from mezzanine.blog.models import BlogPost
 
 # from us_ignite.resources.models import Resource
@@ -22,6 +22,7 @@ def home(request):
         'news_list': BlogPost.objects.published(for_user=request.user).all()[:4],
         'application_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).order_by('-id').all()[:4],
         'hub': Hub.active.get_homepage(),
+        'sponsor_list': Sponsor.objects.filter(status=Sponsor.PUBLISHED).order_by('order').all(),
         # 'resource': Resource.published.get_homepage(),
     }
     return TemplateResponse(request, 'home.html', context)

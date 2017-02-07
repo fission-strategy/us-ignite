@@ -44,3 +44,20 @@ class HomepageProgram(models.Model):
 
     class Meta(object):
         ordering = ('order', )
+
+
+class Sponsor(models.Model):
+    DRAFT = 1
+    PUBLISHED = 2
+    REMOVED = 3
+    STATUS_CHOICES = (
+        (PUBLISHED, 'Published'),
+        (DRAFT, 'Draft'),
+        (REMOVED, 'Removed'),
+    )
+
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='sponsors')
+    link = models.URLField(blank=True, null=True)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
