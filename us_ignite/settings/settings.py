@@ -295,11 +295,13 @@ INSTALLED_APPS = (
     'us_ignite.awards',
     'us_ignite.sections',
     'us_ignite.testbeds',
+    'us_ignite.maps',
 
     'taggit',
     'geoposition',
     'watson',
     'adminsortable2',
+    # 'cities',
 
 )
 
@@ -336,7 +338,9 @@ MIDDLEWARE_CLASSES = (
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
+#todo
+# put this to heroku instead!!
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAvABAO0_NJTlC_nIhKtAU4jKpMb7tmpIk'
 
 PAGINATOR_PAGE_SIZE = 8
 
@@ -392,3 +396,13 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
+
+
+CITIES_CITY_MODEL = 'hubs.CustomCitiesModel'
+
+CITIES_POSTAL_CODES = ['US']
+CITIES_LOCALES = ['US']
+
+# CITIES_PLUGINS = [
+#     'cities.plugin.postal_code_us.Plugin',  # US postal codes need region codes remapped to match geonames
+# ]

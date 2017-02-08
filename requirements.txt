@@ -26,3 +26,4 @@ watson==0.1.05
 shortuuid==0.4.3
 markdown==2.6.8
 django-admin-sortable2==0.6.8
+geopy==1.11.0

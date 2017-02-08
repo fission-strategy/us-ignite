@@ -13,6 +13,9 @@ from us_ignite.hubs.models import Hub, HubRequest, HubMembership
 from us_ignite.hubs import forms, mailer
 from us_ignite.maps.utils import get_location_dict
 
+from geopy.distance import vincenty
+from geopy.geocoders import Nominatim
+
 
 @login_required
 def hub_application(request):
@@ -198,3 +201,29 @@ def hub_locations_json(request, slug):
     item_list += get_organization_list(raw_user_list)
     item_list += get_app_member_list(hub)
     return json_response(item_list, callback='map.render')
+
+
+
+def find_location(request):
+    """
+    Find location by Zip, or city and state
+    and RETURN nearest community (hub)
+    """
+
+    hub_list = Hub.objects.all()
+
+    geolocator = Nominatim()
+    user_location = geolocator.geocode(request.GET.get('address'))
+
+    nearest_hub_distance = 100000
+    nearest_hub = None
+    for hub in hub_list:
+        hub_dict = get_location_dict(hub, 'community')
+        hub_geo = (hub_dict['latitude'], hub_dict['longitude'])
+        hub_distance = vincenty(hub_geo, (user_location.latitude, user_location.longitude)).miles
+
+        if (hub_distance < nearest_hub_distance):
+            nearest_hub_distance = hub_distance
+            nearest_hub = hub_dict
+
+    return json_response(nearest_hub)

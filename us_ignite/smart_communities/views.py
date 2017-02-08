@@ -37,3 +37,5 @@ def home_view(request):
     }
 
     return TemplateResponse(request, 'smart_communities/home.html', context)
+
+

@@ -10,6 +10,7 @@ from geoposition.fields import GeopositionField
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
 from taggit.managers import TaggableManager
+# from cities.models import BaseCountry, BaseCity
 
 
 class HubRequest(models.Model):
@@ -57,6 +58,13 @@ class HubRequest(models.Model):
 
     def is_pending(self):
         return (self.status == self.PENDING) and not self.hub
+
+
+# class CustomCitiesModel(BaseCity, models.Model):
+#     more_data = models.TextField()
+#
+#     class Meta(BaseCity.Meta):
+#         pass
 
 
 class Hub(models.Model):

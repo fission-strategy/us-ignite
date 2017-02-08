@@ -21,8 +21,9 @@ def home(request):
         'program_list': HomepageProgram.objects.filter(status=HomepageProgram.PUBLISHED).order_by('order').all()[:4],
         'news_list': BlogPost.objects.published(for_user=request.user).all()[:4],
         'application_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).order_by('-id').all()[:4],
-        'hub': Hub.active.get_homepage(),
+        'community_list': Hub.active.get_homepage(),
         'sponsor_list': Sponsor.objects.filter(status=Sponsor.PUBLISHED).order_by('order').all(),
+
         # 'resource': Resource.published.get_homepage(),
     }
     return TemplateResponse(request, 'home.html', context)
