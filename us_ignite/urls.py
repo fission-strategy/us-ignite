@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     url("^apps/", include('us_ignite.apps.urls')),
     url("^smart-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
+    url("^news/", include('us_ignite.news.urls')),
 )
 
 if settings.USE_MODELTRANSLATION:

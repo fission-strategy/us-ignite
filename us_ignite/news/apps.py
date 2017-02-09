@@ -3,5 +3,6 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class BlogConfig(AppConfig):
-    name = 'blog'
+class NewsConfig(AppConfig):
+    name = 'us_ignite.news'
+    verbose_name = 'content'

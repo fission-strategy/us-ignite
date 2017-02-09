@@ -26,11 +26,11 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 
 # Controls the ordering and grouping of the admin menu.
 #
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "news.News", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+ADMIN_MENU_ORDER = (
+    ("Content", ("pages.Page", "news.NewsPost", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
+    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Users", ("auth.User", "auth.Group",)),
+)
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
 #
@@ -38,7 +38,7 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 # ADMIN_REMOVAL = ("mezzanine.blog.models.BlogPost",)
 
 DASHBOARD_TAGS = (
-    ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
+    ("mezzanine_tags.app_list",),
     ("comment_tags.recent_comments",),
     ("mezzanine_tags.recent_actions",),
 )
@@ -244,7 +244,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.template.context_processors.tz",
                 "mezzanine.conf.context_processors.settings",
-                # "mezzanine.pages.context_processors.page",
+                "mezzanine.pages.context_processors.page",
                 "us_ignite.common.context_processors.settings_available",
             ],
             "builtins": [
