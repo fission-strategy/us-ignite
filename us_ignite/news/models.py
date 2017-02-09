@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 class NewsPost(BlogPost):
     excerpt = models.TextField(blank=True, null=True)
     image = FileField(_("File"), max_length=255, format="Image",
-        upload_to=upload_to("news.NewsPost.file", "galleries"), null=True, blank=True)
+        upload_to=upload_to("news.NewsPost.image", "galleries"), null=True, blank=True)
     category_tags = TaggableManager(through=TaggedCategory, blank=True, verbose_name='Categories')
 
 

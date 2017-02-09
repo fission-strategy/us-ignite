@@ -11,6 +11,10 @@ from django_extensions.db.fields import (
 
 # from mezzanine.core.fields import RichTextField, MultiChoiceField, FileBrowseField
 from mezzanine.core.models import Displayable, Slugged, MetaData, TimeStamped
+from mezzanine.core.fields import FileField
+from django.utils.translation import ugettext_lazy as _
+from mezzanine.utils.models import upload_to
+
 
 from us_ignite.common.fields import *
 from . import managers
@@ -74,11 +78,13 @@ class ApplicationBase(Slugged, MetaData, TimeStamped):
         help_text=_("Please select the option that best reflects your current progress.")
     )
     website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
-    image = models.ImageField(
-        blank=True,
-        upload_to='apps',
-        help_text=(_("E.g. logo, screenshot, application diagram, photo of demo. %s" % IMAGE_HELP_TEXT))
-    )
+    # image = models.ImageField(
+    #     blank=True,
+    #     upload_to='apps',
+    #     help_text=(_("E.g. logo, screenshot, application diagram, photo of demo. %s" % IMAGE_HELP_TEXT))
+    # )
+    image = FileField(_("File"), max_length=255, format="Image",
+        upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
     summary = models.TextField(
         blank=True,
         help_text=(_("One sentence (tweet-length) pitch/summary of the application"))
@@ -285,8 +291,10 @@ class ApplicationURL(models.Model):
 class ApplicationMedia(models.Model):
     application = models.ForeignKey('apps.Application')
     name = models.CharField(max_length=255, blank=True)
-    image = models.ImageField(upload_to='apps', max_length=500, blank=True,
-                              help_text=IMAGE_HELP_TEXT)
+    # image = models.ImageField(upload_to='apps', max_length=500, blank=True,
+    #                           help_text=IMAGE_HELP_TEXT)
+    image = FileField(_("File"), max_length=255, format="Image",
+        upload_to=upload_to("apps.ApplicationMedia.image", "galleries"), null=True, blank=True)
     url = models.URLField(
         blank=True, verbose_name=u'URL', help_text=URL_HELP_TEXT)
     created = CreationDateTimeField()
