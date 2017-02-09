@@ -6,5 +6,6 @@ from mezzanine.blog.models import BlogPost
 # Create your models here.
 
 
-class News(BlogPost):
-    excerpt = models.TextField(blank=True, default='')
+class NewsPost(BlogPost):
+    excerpt = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, upload_to='blog')

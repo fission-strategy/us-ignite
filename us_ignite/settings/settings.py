@@ -244,7 +244,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.template.context_processors.tz",
                 "mezzanine.conf.context_processors.settings",
-                "mezzanine.pages.context_processors.page",
+                # "mezzanine.pages.context_processors.page",
                 "us_ignite.common.context_processors.settings_available",
             ],
             "builtins": [
@@ -287,6 +287,7 @@ INSTALLED_APPS = (
     # "mezzanine.mobile",
 
     'us_ignite.apps',
+    'us_ignite.news',
     'us_ignite.actionclusters',
     'us_ignite.events',
     'us_ignite.smart_communities',
