@@ -1,12 +1,9 @@
 from django.contrib import admin
-
-from mezzanine.core.admin import (DisplayableAdmin, OwnableAdmin,
-                                  BaseTranslationModelAdmin)
+from copy import deepcopy
 from models import *
-# Register your models here.
-
 from us_ignite.actionclusters.models import ActionCluster
 from us_ignite.actionclusters.admin import ActionClusterAdmin
+
 
 
 class ApplicationURLInline(admin.TabularInline):
@@ -23,7 +20,9 @@ class ApplicationAdmin(admin.ModelAdmin):
                      'assistance', 'team_description', 'notes',
                      'acknowledgments']
     list_filter = ['stage', 'status', 'created', ]
+    exclude = ['keywords',]
     date_hierarchy = 'created'
+
     inlines = [ApplicationURLInline, ApplicationMediaInline]
 
 

@@ -9,12 +9,11 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
 
-# from mezzanine.core.fields import RichTextField, MultiChoiceField, FileBrowseField
 from mezzanine.core.models import Displayable, Slugged, MetaData, TimeStamped
 from mezzanine.core.fields import FileField
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.models import upload_to
-
+from mezzanine.generic.fields import KeywordsField
 
 from us_ignite.common.fields import *
 from . import managers
@@ -85,6 +84,7 @@ class ApplicationBase(Slugged, MetaData, TimeStamped):
     # )
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
+    category_keywords = KeywordsField(verbose_name=_("Categories"))
     summary = models.TextField(
         blank=True,
         help_text=(_("One sentence (tweet-length) pitch/summary of the application"))
@@ -186,6 +186,8 @@ class Application(ApplicationBase):
     category_tags.rel.related_name = "+"
     funder_tags = TaggableManager(through=TaggedFunder, blank=True, verbose_name='Funders')
     funder_tags.rel.related_name = "+"
+
+
 
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',

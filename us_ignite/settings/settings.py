@@ -27,7 +27,7 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 # Controls the ordering and grouping of the admin menu.
 #
 ADMIN_MENU_ORDER = (
-    ("Content", ("pages.Page", "news.NewsPost", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
+    ("Content", ("pages.Page", "news.NewsPost", "news.Link", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
     ("Users", ("auth.User", "auth.Group",)),
 )
@@ -297,6 +297,7 @@ INSTALLED_APPS = (
     'us_ignite.sections',
     'us_ignite.testbeds',
     'us_ignite.maps',
+    'us_ignite.singletons',
 
     'taggit',
     'geoposition',
