@@ -302,10 +302,7 @@ INSTALLED_APPS = (
     'taggit',
     'geoposition',
     'watson',
-    'adminsortable2',
     'adminsortable',
-    # 'cities',
-
 )
 
 AUTH_USER_MODEL = 'profiles.User'
