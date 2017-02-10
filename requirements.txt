@@ -25,7 +25,7 @@ gunicorn==19.6
 watson==0.1.05
 shortuuid==0.4.3
 markdown==2.6.8
-django-admin-sortable2==0.6.8
+django-admin-sortable==2.0.21
 geopy==1.11.0
 easy-thumbnails==2.3
 django_compressor==2.1.1

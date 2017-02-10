@@ -303,6 +303,7 @@ INSTALLED_APPS = (
     'geoposition',
     'watson',
     'adminsortable2',
+    'adminsortable',
     # 'cities',
 
 )
@@ -408,3 +409,5 @@ CITIES_LOCALES = ['US']
 # CITIES_PLUGINS = [
 #     'cities.plugin.postal_code_us.Plugin',  # US postal codes need region codes remapped to match geonames
 # ]
+
+CSRF_COOKIE_HTTPONLY = True

@@ -1,19 +1,19 @@
 from django.contrib import admin
 from us_ignite.sections.models import *
-
-
+from adminsortable.admin import SortableAdmin
 # Register your models here.
 
-class HomepageFeaturedItemAdmin(admin.ModelAdmin):
+
+class HomepageFeaturedItemAdmin(SortableAdmin):
+    list_display = ('title', )
+
+
+class HomepageProgramAdmin(SortableAdmin):
     list_display = ('title',)
 
 
-class HomepageProgramAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-
-
-class SponsorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'status', 'link')
+class SponsorAdmin(SortableAdmin):
+    list_display = ('name', 'link')
 
 
 admin.site.register(HomepageFeaturedItem, HomepageFeaturedItemAdmin)
