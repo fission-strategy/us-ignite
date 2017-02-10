@@ -286,6 +286,9 @@ INSTALLED_APPS = (
     # "mezzanine.accounts",
     # "mezzanine.mobile",
 
+    'easy_thumbnails',
+    'compressor',
+
     'us_ignite.apps',
     'us_ignite.news',
     'us_ignite.actionclusters',

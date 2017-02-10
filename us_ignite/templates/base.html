@@ -1,13 +1,123 @@
-<h1>US Ignite</h1>
-<h2>Base View Here</h2>
-{% block header %}{% endblock header %}
+{% load thumbnail %}
+{% load compress %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>US Ignite</title>
+ 	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script type="text/javascript" src="{{ STATIC_URL }}js/modernizr.js?v=1" defer></script>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/libs.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/app.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/print.css" media="print" />
+	<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
+</head>
+<body class="home">
+	{% comment %}<div id="messages">{% include "includes/messages.html" %}</div> {% endcomment %}
+    <div class="notification"></div>
+	<div class="root-a is-loading">
+	    <div class="wrap">
+	        <header class="top-a" id="top">
+	            <div class="contain">
+	                <figure class="logo"><a href="/" accesskey="h"><img src="{{ STATIC_URL }}img/logo-a.png" height="25" alt="US Ignite"></a></figure>
+	                <nav class="skips-a">
+	                    <ul>
+	                        <li><a href="#nav" accesskey="n">Skip to navigation [n]</a></li>
+	                        <li><a href="#content" accesskey="c">Skip to content [c]</a></li>
+	                        <li><a href="#footer" accesskey="f">Skip to footer [f]</a></li>
+	                    </ul>
+	                </nav>
+	                <h2 class="toggler" data-nav-toggle><span>Menu</span></h2>
+	                <nav class="nav" id="nav">
+	                    <ul>
+	                        <li><a href="./" accesskey="1">About</a>
+	                            <ul>
+	                                <li><a href="./">What is US Ignite?</a></li>
+	                                <li><a href="./">Technologies</a></li>
+	                                <li><a href="./">Staff</a></li>
+	                                <li><a href="./">Board of Directors</a></li>
+	                                <li><a href="./">FAQ</a></li>
+	                                <li><a href="./">Partners</a></li>
+	                                <li><a href="./">Contact Us</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="is-active"><a href="./" accesskey="2">Programs</a></li>
+	                        <li><a href="./" accesskey="3">Applications</a></li>
+	                        <li><a href="./" accesskey="4">Community</a></li>
+	                        <li><a href="./" accesskey="5">News & Events</a></li>
+	                        <li class="login"><a href="./" accesskey="6">Log In</a></li>
+	                        <li class="search"><a href="#" data-search-open><span>Search </span><i class="fa fa-search"></i></a></li>
+	                    </ul>
+	                </nav>
+	            </div>
+	            <div class="search-a">
+	                <p class="close" data-search-close><i class="fa fa-times"></i></p>
+	                <form action="./" method="post" class="wrap contain">
+	                    <p><label for="f-search">Search US ignite<span> for applications, programs, blog posts, etc.</span></label> <input type="text" name="search" id="f-search" placeholder="Enter search term" /></p>
+	                    <p class="action"><button type="submit" class="button-a large">Search <span class="arrow-a"></span></button></p>
+	                    <p class="cancel"><a href="#" class="button-a gray" data-search-close>Cancel</a></p>
+	                </form>
+	            </div>
+	        </header>
+{% endblock header %}
 
 {% block content %}
     {% block featured %}{% endblock %}
 {% endblock content %}
 
-{% block footer %}{% endblock footer %}
+{% block footer %}
 
+		<footer class="footer-a" id="footer">
+            <div class="brand">
+                <figure class="bg-a">
+                    <picture>
+                        <source srcset="{{ STATIC_URL }}img/header-and-footer.png?1280x350 1280w, {{ STATIC_URL }}img/header-and-footer.png?800x515 800w" />
+                        <img src="{{ STATIC_URL }}img/header-and-footer.png?1280x350" alt="" />
+                    </picture>
+                </figure>
+                <div class="contain">
+                    <figure class="logo"><a href="./"><img src="{{ STATIC_URL }}img/logo-a.png" height="40" alt="US Ignite"></a></figure>
+                    <ul class="nav">
+                        <li><a href="./">About</a></li>
+                        <li><a href="./">Programs</a></li>
+                        <li><a href="./">Applications</a></li>
+                        <li><a href="./">Community</a></li>
+                        <li><a href="./">News & Events</a></li>
+                        <li><a href="./">Login</a></li>
+                    </ul>
+                    <form action="./" method="post" class="signup-a">
+                        <p><label for="f-nrb">Sign up for the US Ignite Newsletter</label> <input type="text" name="nrb" id="f-nrb" placeholder="Enter your email address" /> <button type="submit" class="button-a">Sign Up</button></p>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom contain">
+                <div class="contact">
+                    <p class="email">To contact US Ignite, email <span><a href="./">info@us-ignite.org</a></span></p>
+                    <div class="socials-a">
+                        <ul>
+                            <li><a href="./"><i class="fa fa-facebook-square"></i><span> Facebook</span></a></li>
+                            <li><a href="./"><i class="fa fa-twitter-square"></i><span> Twitter</span></a></li>
+                            <li><a href="./"><i class="fa fa-youtube-square"></i><span> Youtube</span></a></li>
+                            <li><a href="./"><i class="fa fa-google-plus-square"></i><span> Google+</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="copys">&copy;Copyright 2017 US Ignite. <span>All Rights Reserved.</span></p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/script.js?v=1" defer></script>
+
+</body>
+</html>
+{% endblock footer %}
 
 
 {#{% block main %}{% endblock main %}#}

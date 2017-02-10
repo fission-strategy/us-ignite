@@ -1,7 +1,9 @@
 {% extends BASE_TEMPLATE %}
+{% load thumbnail %}
 
 
 {% block content %}
+    {% comment %}
     <h2>FEATURED:</h2>
     Featured
 {{ featured.title }}
@@ -25,4 +27,132 @@
         <p>{{ sponsor.name }}</p>
         <a href="{{ sponsor.link }}"><img src="{{ sponsor.image }}" alt=""></a>
     {% endfor %}
+     {% endcomment %}
+
+<section class="content-a" id="content">
+
+    <div class="hero-a">
+        <figure class="bg-a">
+            <picture>
+                <source media="(orientation: landscape)" srcset="{{ STATIC_URL }}img/hero-a-bg-a-large.jpg?1280x650" />
+                <source media="(orientation: portrait)" srcset="{{ STATIC_URL }}img/hero-a-bg-a-small.jpg?800x1120" />
+                <img src="{{ STATIC_URL }}img/hero-a-bg-a-large.jpg?1280x650" alt="" />
+            </picture>
+        </figure>
+        <div class="contain borderless">
+            <h1 class="hxa">{{ featured.title }}</h1>
+            <article class="box">
+                <a href="{{ featured.link }}">
+                    <h3 class="hxb">{{ featured.subtitle }}</h3>
+                    <p>{{ featured.excerpt }}</p>
+                    <p class="action"><span class="arrow-a"></span></p>
+                </a>
+            </article>
+        </div>
+    </div>
+    <!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
+    <div class="contain borderless">
+
+        <div class="featured-a">
+            <div class="wrap">
+                {% for program in program_list %}
+                <article>
+                    <figure class="bg-a">
+                        <picture>
+                            <!-- no need to load that image on mobile -->
+                            <source media="(min-width: 1025px)" srcset="{{ STATIC_URL }}img/featured-a-bg-a.jpg?280x180" />
+                            <img src="{{ STATIC_URL }}img/blank.png" alt="" />
+                        </picture>
+                    </figure>
+                    <a href="{{ program.link }}">
+                        <p class="brow">Program</p>
+                        <h3 class="hx">{{ program.title }}</h3>
+                        <p>{{ program.subtitle }}<span class="arrow-a"></span></p>
+                    </a>
+                </article>
+                {% endfor %}
+               
+            </div>
+        </div>
+
+        <div class="featured-b">
+            <h3 class="hxa">Latest News</h3>
+            <div class="cards">
+                {% for news in news_list %}        
+    
+                <article>
+                    <figure class="bg-a">
+                        <picture>
+                            <!-- no need to load that image on mobile -->
+                            <source media="(min-width: 1025px)" srcset="{{ STATIC_URL }}img/featured-a-bg-a.jpg?280x180" />
+                            <img src="{{ STATIC_URL }}img/blank.png" alt="" />
+                        </picture>
+                    </figure>
+                    <a href="{{ news.get_absolute_url }}">
+                        <h4 class="hx">{{ news.title }}</h4>
+                        <p class="meta"><time>{{ news.publish_date|date:"M d, Y" }}</time></p>
+                    </a>
+                </article>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="places-a">
+            <div class="wrap">
+                <figure class="bg-a">
+                    <picture>
+                        <source media="(orientation: landscape)" srcset="{{ STATIC_URL }}img/places-bg-a-landscape.jpg?940x450" />
+                        <source media="(orientation: portrait)" srcset="{{ STATIC_URL }}img/places-bg-a-portrait.jpg?800x1040" />
+                        <img src="{{ STATIC_URL }}img/places-bg-a-portrait.jpg" alt="" />
+                    </picture>
+                </figure>
+                <div class="contain">
+                    <h3 class="hxa">Our locations</h3>
+                    <h4 class="hxb">Find your nearest US Ignite Community</h4>
+                    <form action="./" method="post" class="fields">
+                        <p><strong>Search by City and State</strong></p>
+                        <p class="half"><input type="text" name="city" id="f-city" placeholder="Search by City" /></p>
+                        <p class="half"><select name="state" id="f-state"><option value="" selected disabled>Select State</option></select></p>
+                        <p><strong>Search by Zip</strong></p>
+                        <p><input type="text" name="zip" id="f-zip" placeholder="Enter Zip Code" /></p>
+                        <p class="action"><button type="submit" class="button-a">Find My Community <span class="arrow-a"></span></button></p>
+                    </form>
+                </div>
+            </div>
+            <div class="mapbox">
+                <!-- map iframe goes here -->
+            </div>
+        </div>
+
+        <div class="featured-b bluish">
+            <h3 class="hxa">Featured Apps</h3>
+            <div class="wrap cards">
+            {% for app in application_list %}
+            <article>
+                <a href="{{ app.get_absolute_url }}">
+                    <h4 class="hx">{{ app.name }}</h4>
+                    <p>{{ app.summary }}</p>
+                </a>
+            </article>
+        
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="featured-b logos">
+            <h3 class="hxa">Our Sponsors</h3>
+            <div class="wrap logos">
+                <ul>
+                    {% for sponsor in sponsor_list %}
+                    <li><a href="{{ sponsor.link }}"><img src="{% thumbnail sponsor.image 90x40 %}" alt="{{ sponsor.name }}" /></a></li>
+                    {% endfor %}
+                 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+        
 {% endblock content %}
