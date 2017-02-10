@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
-# Create your models here.
+from mezzanine.core.fields import FileField
+from mezzanine.utils.models import upload_to
+from django.utils.translation import ugettext_lazy as _
 
 
 class HomepageFeaturedItem(models.Model):
@@ -58,6 +59,7 @@ class Sponsor(models.Model):
 
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='sponsors')
+    image = FileField(_("File"), max_length=255, format="Image",
+        upload_to=upload_to("sections.Sponsor.image", "galleries"))
     link = models.URLField(blank=True, null=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)

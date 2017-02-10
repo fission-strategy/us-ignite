@@ -7,9 +7,6 @@ from us_ignite.hubs.models import Hub
 from us_ignite.sections.models import HomepageFeaturedItem, HomepageProgram, Sponsor
 from mezzanine.blog.models import BlogPost
 
-# from us_ignite.resources.models import Resource
-# from us_ignite.sections.models import SectionPage
-
 
 def home(request):
     """Homepage of the application.
