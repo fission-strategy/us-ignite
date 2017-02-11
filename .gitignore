@@ -5,6 +5,7 @@
 .coverage
 local_settings.py
 /static
+node_modules
 .idea
 venv
 us_ignite/static
