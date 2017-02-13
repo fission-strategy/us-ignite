@@ -52,7 +52,7 @@ def hub_detail(request, slug):
         Hub.objects.select_related('contact'), slug__exact=slug)
     if not instance.is_visible_by(request.user):
         raise Http404
-    membership_list = instance.hubmembership_set.select_related('profile').all()
+    membership_list = instance.hubmembership_set.select_related('user').all()
     member_list = [m.user for m in membership_list]
     app_membership_list = (instance.hubappmembership_set
                            .select_related('application').all())

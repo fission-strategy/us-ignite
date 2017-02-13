@@ -29,7 +29,7 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 ADMIN_MENU_ORDER = (
     ("Content", ("pages.Page", "news.NewsPost", "news.Link", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-    ("Users", ("profile.User", "profile.Group",)),
+    ("Users", ("profile.User", "auth.Group",)),
 )
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
