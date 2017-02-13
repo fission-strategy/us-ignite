@@ -19,9 +19,10 @@ from us_ignite.testbeds.models import Testbed
 def home_view(request):
     sector_list = Sector.objects.all()
     app_list = {}
-    # Application.objects.filter(status=Application.PUBLISHED, sector='Housing').all()[:3]
-    # for sector in sector_list:
-    #     app_list[sector.slug] = Application.objects.filter(status=Application.PUBLISHED, sector=sector).all()[:3]
+    for sector in sector_list:
+        app_list[sector.slug] = Application.objects.filter(status=Application.PUBLISHED,
+                                                           sector__slug=sector.slug,
+                                                           programs__slug='smart-gigabit-communities').all()[:3]
 
     context = {
         'sector_list': Sector.objects.all(),

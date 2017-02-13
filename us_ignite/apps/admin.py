@@ -44,6 +44,10 @@ class FeatureAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
 
 
+class ProgramAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+
+
 class PageApplicationInline(admin.TabularInline):
     raw_id_fields = ('application', )
     model = PageApplication
@@ -67,4 +71,5 @@ admin.site.register(ActionCluster, ActionClusterAdmin)
 
 admin.site.register(Sector, SectorAdmin)
 admin.site.register(Feature, FeatureAdmin)
+admin.site.register(Program, ProgramAdmin)
 admin.site.register(Page, PageAdmin)

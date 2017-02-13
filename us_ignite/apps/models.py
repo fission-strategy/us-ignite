@@ -33,6 +33,14 @@ class Feature(models.Model):
         return self.name
 
 
+class Program(models.Model):
+    name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='name', unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Sector(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -115,6 +123,9 @@ class ApplicationBase(TimeStamped):
     notes = models.TextField(blank=True)
     # created = CreationDateTimeField()
     # modified = ModificationDateTimeField()
+
+    programs = models.ManyToManyField('apps.Program', blank=True,
+                                     help_text=_("Does this application belong to any specific program(s)"))
 
     class Meta:
         abstract = True
