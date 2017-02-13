@@ -1,0 +1,12 @@
+{% load snippets_tags common_markdown %}
+      <h3 class="sidebar__heading">CONTACT</h3>
+
+      <ul class="no-bullet sidebar__list">
+        <li class="sidebar__list__item">
+          {% include "includes/display_name_with_avatar.html" with user=object.owner %}
+        </li>
+      </ul>
+
+      {% if object.owner %}
+      <p><a class="button secondary expand" href="{{ object.owner.profile.get_contact_url }}">CONTACT TO LEARN MORE</a></p>
+      {% endif %}

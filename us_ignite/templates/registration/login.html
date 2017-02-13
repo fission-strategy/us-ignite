@@ -1,0 +1,53 @@
+{% extends "registration/base.html" %}{% load browserid %}
+
+{% block extra_styles %}
+{% browserid_css %}
+{% endblock extra_styles %}
+
+{% block title %}Login - {{ block.super }}{% endblock title %}
+
+{% block section_title %}
+Login
+{% endblock section_title %}
+
+{% block section %}
+<p>{% include "includes/persona.html" %} using Mozilla Persona</p>
+
+<p>Or with a site account:</p>
+
+<form method="post" action=".">
+  <p>{{ form.non_field_errors }}</p>
+
+  {% if form.username.errors %}
+  <p>{{ form.username.errors }}</p>
+  {% endif %}
+
+  <p>
+    <label for="{{ form.username.auto_id }}">Email address:</label>
+    {{ form.username }}
+  </p>
+
+  {% if form.password.errors %}
+  <p>{{ form.password.errors }}</p>
+  {% endif %}
+  <p>
+    {{ form.password.label_tag }}
+    {{ form.password }}
+  </p>
+  <p>
+    {% csrf_token %}
+    <button type="submit">LOGIN</button>
+  </p>
+</form>
+
+<p><a href="{% url 'password_reset' %}">Forgotten password?</a></p>
+
+<p>New User? <a href="{% url 'registration_register' %}">Create an account</a></p>
+
+<p></p>
+{% endblock section %}
+
+{% block extra_scripts %}
+{% browserid_js %}
+{% endblock extra_scripts %}
+

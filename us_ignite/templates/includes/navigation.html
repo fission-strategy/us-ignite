@@ -1,0 +1,51 @@
+<!-- Right Nav Section -->
+<ul class="right">
+
+  <li class="has-dropdown">
+    <a href="{% url 'what-is-us-ignite' %}">ABOUT</a>
+    <ul class="dropdown">
+      {% include "includes/navigation/about.html" %}
+    </ul>
+  </li>
+
+  <li class="has-dropdown">
+    <a href="#">GET INVOLVED</a>
+    <ul class="dropdown">
+      {% include "includes/navigation/get_involved.html" %}
+    </ul>
+  </li>
+
+  <li class="has-dropdown">
+    <a href="{% url 'app_list' %}">APPLICATIONS</a>
+    <ul class="dropdown">
+      {% include "includes/navigation/applications.html" with sub_dropdown=True %}
+    </ul>
+  </li>
+
+  <li class="has-dropdown">
+    <a href="{% url 'hub_list' %}">COMMUNITIES</a>
+    <ul class="dropdown">
+      {% include "includes/navigation/communities.html" %}
+    </ul>
+  </li>
+
+  <li class="has-dropdown">
+    <a href="{%url 'resource_list' %}">RESOURCES</a>
+    <ul class="dropdown">
+      {% include "includes/navigation/resources.html" %}
+    </ul>
+  </li>
+
+  {% block search %}
+  <li class="has-form">
+    <div class="row collapse">
+      <div class="small-12 columns search">
+        {% include "includes/search.html" %}
+      </div>
+    </div>
+  </li>
+  {% endblock search %}
+
+</ul>
+
+

@@ -1,0 +1,26 @@
+{% load thumbnail %}{% with profile=user.profile %}
+{% if profile %}
+<a href="{{ profile.get_absolute_url }}" title="Contact {{ profile.display_name }}" class="sidebar__list__link row collapse">
+
+  <div class="medium-4 large-2 columns">
+    {% if profile.avatar  %}
+    <img src="{% thumbnail profile.avatar 276x276 crop %}" alt="Avatar" class="sidebar__list__image" />
+    {% else %}
+    <img src="{{ profile.get_gravatar_url }}" alt="Avatar" class="sidebar__list__image" />
+    {% endif %}
+  </div>
+
+  <div class="medium-8 large-10 columns">
+    <span class="sidebar__list__desc">
+      {{ profile.display_name }}
+      <span class="sidebar__list__highlight">{{ profile.email }}</span>
+    </span>
+  </div>
+</a>
+
+{% else %}
+<span class="sidebar__list__link">
+  US ignite user
+</span>
+{% endif %}
+{% endwith %}

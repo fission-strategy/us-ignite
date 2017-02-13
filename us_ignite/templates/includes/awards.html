@@ -1,0 +1,16 @@
+{% if award_list %}
+<!-- Awards -->
+<h3 class="sidebar__heading">Awards</h3>
+<ul class="no-bullet sidebar__list award__list">
+  {% for award in award_list %}
+  <li class="sidebar__list__item">
+    {% if award.image %}
+    <img src="{{ award.image.url }}" alt="{{ award.name }}" title="{{ award.name }}" />
+    {% else %}
+    <p class="sidebar__list__link row collapse">{{ award.name }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+<!-- /Awards -->
+{% endif %}

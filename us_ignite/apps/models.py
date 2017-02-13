@@ -5,15 +5,19 @@ from hashlib import md5
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.text import slugify
+
 
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
 
 from mezzanine.core.models import Displayable, Slugged, MetaData, TimeStamped
 from mezzanine.core.fields import FileField
+from mezzanine.utils.models import base_concrete_model
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.models import upload_to
 from mezzanine.generic.fields import KeywordsField
+from mezzanine.utils.urls import admin_url, slugify, unique_slug
 
 from us_ignite.common.fields import *
 from . import managers
@@ -51,7 +55,7 @@ class TaggedFunder(GenericTaggedItemBase):
     tag = models.ForeignKey(AppTag, related_name="funder_tag")
 
 
-class ApplicationBase(Slugged, MetaData, TimeStamped):
+class ApplicationBase(TimeStamped):
     """
     Abstract model for ``Application`` and ``ApplicationVersion`` fields.
     """
@@ -146,6 +150,17 @@ class ApplicationBase(Slugged, MetaData, TimeStamped):
             stages.append((name, self.compare_stage(key)))
         return stages
 
+    def generate_unique_slug(self):
+        """
+        Create a unique slug by passing the result of get_slug() to
+        utils.urls.unique_slug, which appends an index if necessary.
+        """
+        # For custom content types, use the ``Page`` instance for
+        # slug lookup.
+        concrete_model = base_concrete_model(Slugged, self)
+        slug_qs = concrete_model.objects.exclude(id=self.id)
+        return unique_slug(slug_qs, "slug", self.name)
+
 
 class Application(ApplicationBase):
     """``Applications``add core
@@ -162,7 +177,7 @@ class Application(ApplicationBase):
         (REMOVED, 'Removed'),
     )
 
-    slug = models.CharField(unique=True, editable=True, max_length=255)
+    slug = models.SlugField(unique=True, max_length=150)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     is_featured = models.BooleanField(default=False)
     owner = models.ForeignKey(
@@ -205,9 +220,16 @@ class Application(ApplicationBase):
 
     def save(self, *args, **kwargs):
         # Replace any previous homepage application when published:
+
+        if not self.slug:
+            self.slug = self.generate_unique_slug()
+
         if self.is_homepage and self.is_public():
             self.__class__.objects.all().update(is_homepage=False)
+
+
         return super(Application, self).save(*args, **kwargs)
+
 
     def get_absolute_url(self):
         return reverse('app_detail', args=[self.slug])

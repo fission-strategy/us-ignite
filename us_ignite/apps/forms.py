@@ -1,7 +1,7 @@
 from urlparse import urlparse, parse_qs
 
 from django import forms
-from django.contrib.auth.models import User
+from us_ignite.profiles.models import User
 from django.core.validators import validate_email
 from django.forms.models import inlineformset_factory
 from django.utils import html

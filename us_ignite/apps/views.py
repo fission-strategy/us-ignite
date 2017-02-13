@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.http import Http404, HttpResponse
 from django.template.response import TemplateResponse
 from models import *
@@ -101,14 +102,13 @@ def get_hub_list(app):
 def app_detail(request, slug):
     app = get_app_for_user(slug, request.user)
     related_list = Application.active.filter(sector=app.sector).order_by('?')[:3]
-
     context = {
         'object': app,
         'sector': app.sector,
         'url_list': app.applicationurl_set.all(),
         'media_list': app.applicationmedia_set.all(),
         'feature_list': app.features.all(),
-        'member_list': app.members.select_related('profile').all(),
+        'member_list': app.members.all(),
         'hub_list': get_hub_list(app),
         'related_list': related_list,
         'award_list': get_award_list(app),
@@ -168,3 +168,179 @@ def app_edit(request, slug):
         'image_formset': image_formset,
     }
     return TemplateResponse(request, 'apps/object_edit.html', context)
+
+
+
+@require_http_methods(["POST"])
+@login_required
+def app_version_add(request, slug):
+    app = get_object_or_404(Application.active, slug__exact=slug)
+    if not app.is_editable_by(request.user):
+        raise Http404
+    previous = ApplicationVersion.objects.get_latest_version(app)
+    app_signature = app.get_signature()
+    old_signature = previous.get_signature() if previous else None
+    # Apps have the same content.
+    if old_signature == app_signature:
+        messages.success(request, 'Latest changes have been versioned already.')
+    else:
+        ApplicationVersion.objects.create_version(app)
+        messages.success(request, 'Application has been versioned.')
+    return redirect(app.get_absolute_url())
+
+
+def app_version_detail(request, slug, version_slug):
+    app = get_app_for_user(slug, request.user)
+    # Determine if the slug provided is a valid version:
+    version = None
+    version_list = []
+    for version_obj in app.applicationversion_set.all():
+        if version_obj.slug == version_slug:
+            version = version_obj
+        else:
+            version_list.append(version_obj)
+    if not version:
+        raise Http404
+    context = {
+        'object': version,
+        'version_list': version_list,
+        'app': app,
+    }
+    return TemplateResponse(request, 'apps/object_version_detail.html', context)
+
+
+def create_member(app, user):
+    """Create a new member when it is unexistent and return it."""
+    membership, is_new = (ApplicationMembership.objects
+                          .get_or_create(application=app, user=user))
+    return membership if is_new else None
+
+
+@login_required
+def app_membership(request, slug):
+    """Adds collaborators to an application."""
+    app = get_object_or_404(
+        Application.active, slug__exact=slug)
+    if not app.is_owned_by(request.user):
+        raise Http404
+    if request.method == 'POST':
+        form = MembershipForm(request.POST)
+        formset = ApplicationMembershipFormSet(request.POST, instance=app)
+        if form.is_valid() and formset.is_valid():
+            for member in form.cleaned_data['collaborators']:
+                create_member(app, member)
+            formset.save()
+            messages.success(request, 'Membership successfully updated.')
+            return redirect(app.get_membership_url())
+    else:
+        form = MembershipForm()
+        formset = ApplicationMembershipFormSet(instance=app)
+    context = {
+        'object': app,
+        'form': form,
+        'formset': formset,
+    }
+    return TemplateResponse(request, 'apps/object_membership.html', context)
+
+
+def apps_featured(request):
+    """Shows the featured application page."""
+    page = get_object_or_404(Page, status=Page.FEATURED)
+    application_list = [a.application for a in page.pageapplication_set.all()]
+    context = {
+        'object': page,
+        'application_list': application_list,
+    }
+    return TemplateResponse(request, 'apps/featured.html', context)
+
+
+def apps_featured_archive(request, slug):
+    page = get_object_or_404(Page, status=Page.PUBLISHED, slug__exact=slug)
+    application_list = [a.application for a in page.pageapplication_set.all()]
+    context = {
+        'object': page,
+        'application_list': application_list,
+    }
+    return TemplateResponse(request, 'apps/featured.html', context)
+
+
+@login_required
+def app_export(request, slug):
+    """Generates an export of the current status of the application."""
+    app = get_object_or_404(Application.active, slug__exact=slug)
+    if not app.has_member(request.user):
+        raise Http404
+    context = {
+        'object': app,
+        'url_list': app.applicationurl_set.all(),
+        'image_list': app.applicationmedia_set.all(),
+        'feature_list': app.features.all(),
+        'member_list': app.members.select_related('profile').all(),
+
+    }
+    content = render_to_string('apps/export.txt', context)
+    response = HttpResponse(content, content_type='text/plain')
+    filename = '%s-export-%s' % (
+        app.slug, timezone.now().strftime("%Y%m%d-%H%M%S"))
+    response['Content-Disposition'] = (
+        'attachment; filename="%s.txt"' % filename)
+    response['Content-Length'] = len(response.content)
+    return response
+
+
+def _get_membership_form(membership_list):
+    id_list = [m.hub.id for m in membership_list]
+    args = [{'hubs': id_list}] if id_list else []
+    return HubAppMembershipForm(*args)
+
+
+def _update_membership(app, hub_list, membership_list):
+    # Remove any non selected hub membership:
+    for membership in membership_list:
+        if membership.hub not in hub_list:
+            membership.delete()
+    # Add any new Hub membership:
+    new_membership_list = []
+    return [_add_hub_membership(hub, app) for hub in hub_list]
+
+
+def _add_hub_membership(hub, app):
+    """Generates the hub membership."""
+    instance, is_new = HubAppMembership.objects.get_or_create(
+        hub=hub, application=app)
+    # Record the activity for this membership.
+    if is_new:
+        name = ('App %s has been registered as part of this '
+                'community.' % app.name)
+        extra_data = {
+            'url': app.get_absolute_url(),
+            'user': app.owner,
+        }
+        hub.record_activity(name, extra_data=extra_data)
+    return instance
+
+
+@login_required
+def app_hub_membership(request, slug):
+    """View to manage the membership of an app to a hub."""
+    app = get_object_or_404(Application.active, slug__exact=slug)
+    if not app.is_editable_by(request.user):
+        raise Http404
+    # Determine existing membership:
+    app_hubs = app.hubappmembership_set.select_related('hub').all()
+    if request.method == 'POST':
+        form = HubAppMembershipForm(request.POST)
+        if form.is_valid():
+            hubs = form.cleaned_data['hubs']
+            _update_membership(app, hubs, app_hubs)
+            msg = 'Hub membership updated.'
+            messages.success(request, msg)
+            return redirect(app.get_absolute_url())
+    else:
+        form = _get_membership_form(app_hubs)
+    context = {
+        'object': app,
+        'form': form,
+    }
+    return TemplateResponse(
+        request, 'apps/object_hub_membership.html', context)

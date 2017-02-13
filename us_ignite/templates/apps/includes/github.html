@@ -1,0 +1,12 @@
+{% if commit_list %}
+<h3>Latest activity</h3>
+<ul>
+  {% for commit in commit_list %}
+  <li>
+    <a href="{{ commit.html_url }}">{{ commit.committer.login }}</a>:
+    {{ commit.cleaned_commit }}
+  </li>
+  {% endfor%}
+  <li><a href="{{ parsed_url.geturl }}">View more</a></li>
+</ul>
+{% endif %}

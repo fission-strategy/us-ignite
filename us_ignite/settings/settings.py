@@ -29,7 +29,7 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 ADMIN_MENU_ORDER = (
     ("Content", ("pages.Page", "news.NewsPost", "news.Link", "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-    ("Users", ("auth.User", "auth.Group",)),
+    ("Users", ("profile.User", "profile.Group",)),
 )
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -301,6 +301,8 @@ INSTALLED_APPS = (
     'us_ignite.testbeds',
     'us_ignite.maps',
     'us_ignite.singletons',
+    'us_ignite.common',
+    'us_ignite.snippets',
 
     'taggit',
     'geoposition',
