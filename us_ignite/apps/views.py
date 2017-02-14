@@ -105,7 +105,7 @@ def get_hub_list(app):
 
 def app_detail(request, slug):
     app = get_app_for_user(slug, request.user)
-    related_list = Application.active.filter(sector=app.sector).order_by('?')[:3]
+    related_list = Application.objects.filter(status=Application.PUBLISHED, sector=app.sector).order_by('?')[:3]
     context = {
         'object': app,
         'sector': app.sector,
@@ -123,7 +123,7 @@ def app_detail(request, slug):
 
 
 @login_required
-def app_add(request):
+def app_add(request, program=None):
     """View for adding an ``Application``."""
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
@@ -136,7 +136,11 @@ def app_add(request):
                 request, 'The application "%s" has been added.' % instance.name)
             return redirect(instance.get_absolute_url())
     else:
-        form = ApplicationForm()
+        if program:
+            program_obj = get_object_or_404(Program, slug=program)
+            form = ApplicationForm(initial={'program': program_obj, })
+        else:
+            form = ApplicationForm()
     context = {
         'form': form,
     }

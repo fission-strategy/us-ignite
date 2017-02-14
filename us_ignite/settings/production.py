@@ -9,6 +9,11 @@ import dj_database_url
 
 env = os.getenv
 
+DEBUG = True
+
+SITE_URL = "us-ignite-staging.herokuapp.com"
+
+
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = env('SECRET_KEY')
 NEVERCACHE_KEY = env('NEVERCACHE_KEY')
@@ -42,12 +47,6 @@ PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 #
 
 # ADMIN_REMOVAL = ("mezzanine.blog.models.BlogPost",)
-
-DASHBOARD_TAGS = (
-    ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
-    ("comment_tags.recent_comments",),
-    ("mezzanine_tags.recent_actions",),
-)
 
 # A sequence of templates used by the ``page_menu`` template tag. Each
 # item in the sequence is a three item sequence, containing a unique ID

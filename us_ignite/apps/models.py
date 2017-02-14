@@ -6,7 +6,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.utils.text import slugify
-
+from django_extensions.db.fields import AutoSlugField
 
 from django_extensions.db.fields import (
     AutoSlugField, CreationDateTimeField, ModificationDateTimeField)
@@ -189,7 +189,7 @@ class Application(ApplicationBase):
         (REMOVED, 'Removed'),
     )
 
-    slug = models.SlugField(unique=True, max_length=150)
+    slug = AutoSlugField(populate_from='name', unique=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     is_featured = models.BooleanField(default=False)
     owner = models.ForeignKey(
@@ -232,16 +232,11 @@ class Application(ApplicationBase):
 
     def save(self, *args, **kwargs):
         # Replace any previous homepage application when published:
-
-        if not self.slug:
-            self.slug = self.generate_unique_slug()
-
         if self.is_homepage and self.is_public():
             self.__class__.objects.all().update(is_homepage=False)
 
 
         return super(Application, self).save(*args, **kwargs)
-
 
     def get_absolute_url(self):
         return reverse('app_detail', args=[self.slug])

@@ -5,6 +5,7 @@ from us_ignite.profiles.models import User
 from django.core.validators import validate_email
 from django.forms.models import inlineformset_factory
 from django.utils import html
+from django.forms.widgets import HiddenInput
 
 from us_ignite.apps.models import (Application, ApplicationURL,
                                    ApplicationMedia, ApplicationMembership)
@@ -34,9 +35,11 @@ class ApplicationForm(forms.ModelForm):
         fields = ('name', 'summary', 'impact_statement',
                   'image', 'sector', 'features', 'stage',
                   'assistance', 'team_name', 'team_description',
-                  'awards', 'acknowledgments', 'category_tags', 'funder_tags', 'status',)
+                  'awards', 'acknowledgments', 'category_tags', 'funder_tags', 'status','program')
         widgets = {
             'features': forms.CheckboxSelectMultiple(),
+
+            'program': forms.HiddenInput(),
         }
 
     def _strip_tags(self, field):
