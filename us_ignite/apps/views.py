@@ -34,7 +34,7 @@ def get_stage_or_404(stage):
     raise Http404('Invalid stage.')
 
 
-def app_list(request, sector=None, stage=None, filter_name=''):
+def app_list(request, sector=None, stage=None, program=None, filter_name=''):
     """Lists the published ``Applications``"""
     extra_qs = {}
     if sector:
@@ -46,6 +46,10 @@ def app_list(request, sector=None, stage=None, filter_name=''):
         pk, name = get_stage_or_404(stage)
         extra_qs['stage'] = pk
         filter_name = name
+    if program:
+        extra_qs['program'] = get_object_or_404(Program, slug=program)
+        filter_name = extra_qs['program'].name
+
     page_no = pagination.get_page_no(request.GET)
     order_form = forms.OrderForm(
         request.GET, order_choices=APPS_SORTING_CHOICES)

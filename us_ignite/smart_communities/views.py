@@ -23,7 +23,6 @@ def home_view(request):
         app_list[sector.slug] = Application.objects.filter(status=Application.PUBLISHED,
                                                            sector__slug=sector.slug,
                                                            programs__slug='smart-gigabit-communities').all()[:3]
-
     context = {
         'sector_list': Sector.objects.all(),
         # 'featured_app_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).all(),

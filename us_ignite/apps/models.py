@@ -124,8 +124,9 @@ class ApplicationBase(TimeStamped):
     # created = CreationDateTimeField()
     # modified = ModificationDateTimeField()
 
-    programs = models.ManyToManyField('apps.Program', blank=True,
+    program = models.ForeignKey('apps.Program', blank=True, null=True,
                                      help_text=_("Does this application belong to any specific program(s)"))
+
 
     class Meta:
         abstract = True

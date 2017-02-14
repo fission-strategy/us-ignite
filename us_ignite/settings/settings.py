@@ -303,6 +303,7 @@ INSTALLED_APPS = (
     'us_ignite.singletons',
     'us_ignite.common',
     'us_ignite.snippets',
+    'us_ignite.gctc',
 
     'taggit',
     'geoposition',
@@ -413,3 +414,9 @@ CITIES_LOCALES = ['US']
 # ]
 
 CSRF_COOKIE_HTTPONLY = True
+
+
+IGNITE_MANAGERS = [
+    'info@us-ignite.org',
+    'jennifer.mott@us-ignite.org',
+]

@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^news/", include('us_ignite.news.urls')),
     url("^testbeds/", include('us_ignite.testbeds.urls')),
+    url("^global-city-teams/", include('us_ignite.gctc.urls')),
 )
 
 if settings.USE_MODELTRANSLATION:
