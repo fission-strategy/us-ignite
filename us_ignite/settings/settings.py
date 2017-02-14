@@ -291,7 +291,7 @@ INSTALLED_APPS = (
 
     'us_ignite.apps',
     'us_ignite.news',
-    'us_ignite.actionclusters',
+    # 'us_ignite.actionclusters',
     'us_ignite.events',
     'us_ignite.smart_communities',
     'us_ignite.organizations',

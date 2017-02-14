@@ -1,8 +1,8 @@
 from django.contrib import admin
 from copy import deepcopy
 from models import *
-from us_ignite.actionclusters.models import ActionCluster
-from us_ignite.actionclusters.admin import ActionClusterAdmin
+# from us_ignite.actionclusters.models import ActionCluster
+# from us_ignite.actionclusters.admin import ActionClusterAdmin
 
 
 
@@ -26,14 +26,14 @@ class ApplicationAdmin(admin.ModelAdmin):
     inlines = [ApplicationURLInline, ApplicationMediaInline]
 
 
-class ActionClusterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'stage', 'status', 'is_approved')
-    search_fields = ['name', 'slug', 'summary', 'impact_statement',
-                     'assistance', 'team_description', 'notes',
-                     'acknowledgments']
-    list_filter = ['stage', 'status', 'created', 'is_approved', 'community']
-    date_hierarchy = 'created'
-    # inlines = [ActionClusterURLInline, ActionClusterMediaInline]
+# class ActionClusterAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'slug', 'stage', 'status', 'is_approved')
+#     search_fields = ['name', 'slug', 'summary', 'impact_statement',
+#                      'assistance', 'team_description', 'notes',
+#                      'acknowledgments']
+#     list_filter = ['stage', 'status', 'created', 'is_approved', 'community']
+#     date_hierarchy = 'created'
+#     # inlines = [ActionClusterURLInline, ActionClusterMediaInline]
 
 
 class SectorAdmin(admin.ModelAdmin):
@@ -60,14 +60,14 @@ class PageAdmin(admin.ModelAdmin):
     inlines = [PageApplicationInline]
 
 
-class ActionCluster(ActionCluster):
-    class Meta:
-        proxy = True
-        verbose_name = "Actioncluster"
+# class ActionCluster(ActionCluster):
+#     class Meta:
+#         proxy = True
+#         verbose_name = "Actioncluster"
 
 
 admin.site.register(Application, ApplicationAdmin)
-admin.site.register(ActionCluster, ActionClusterAdmin)
+# admin.site.register(ActionCluster, ActionClusterAdmin)
 
 admin.site.register(Sector, SectorAdmin)
 admin.site.register(Feature, FeatureAdmin)

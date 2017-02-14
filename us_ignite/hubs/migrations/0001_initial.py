@@ -18,7 +18,6 @@ class Migration(migrations.Migration):
         ('taggit', '0002_auto_20150616_2121'),
         ('apps', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('actionclusters', '0001_initial'),
     ]
 
     operations = [
@@ -53,7 +52,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_featured', models.BooleanField(default=False)),
                 ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True)),
-                ('actioncluster', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='actionclusters.ActionCluster')),
                 ('hub', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='hubs.Hub')),
             ],
             options={

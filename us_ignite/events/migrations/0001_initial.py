@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('actionclusters', '0002_auto_20170130_2159'),
         ('taggit', '0002_auto_20150616_2121'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('hubs', '0002_auto_20170130_2159'),
@@ -59,7 +58,6 @@ class Migration(migrations.Migration):
                 ('notes', models.TextField(blank=True)),
                 ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True)),
                 ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True)),
-                ('actionclusters', models.ManyToManyField(blank=True, to='actionclusters.ActionCluster', verbose_name='communities')),
                 ('audiences', models.ManyToManyField(blank=True, to='events.Audience')),
                 ('contact', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='organizations.Organization', verbose_name='Organization')),
             ],

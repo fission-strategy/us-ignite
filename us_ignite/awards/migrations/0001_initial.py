@@ -15,20 +15,11 @@ class Migration(migrations.Migration):
     dependencies = [
         ('organizations', '0003_auto_20170130_2159'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('actionclusters', '0002_auto_20170130_2159'),
         ('apps', '0011_auto_20170130_2159'),
         ('hubs', '0002_auto_20170130_2159'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='ActionClusterAward',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True)),
-                ('actioncluster', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='actionclusters.ActionCluster')),
-            ],
-        ),
         migrations.CreateModel(
             name='ApplicationAward',
             fields=[
@@ -76,11 +67,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='applicationaward',
-            name='award',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='awards.Award'),
-        ),
-        migrations.AddField(
-            model_name='actionclusteraward',
             name='award',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='awards.Award'),
         ),
