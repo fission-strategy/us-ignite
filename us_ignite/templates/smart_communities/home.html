@@ -1,6 +1,7 @@
 {% extends BASE_TEMPLATE %}
 {% load thumbnail %}
 {% load smart_communities_tags %}
+{% load keyword_tags %}
 
 {% block content %}
 {% comment %}
@@ -104,6 +105,7 @@
 									<td>
 										<p><big><a href="./">{{ app.title }}</a></big></p>
 										<p>{{ app.summary }}</p>
+                                        {% keywords_for app as cats %}{% if cats %}{% for cat in cats %} {{ cat }}, {% endfor %}{% endif %}
 										<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
 									</td>
 									<td class="hide@small">Transportation and Air Quality, Infrastructure Data and Planning</td>

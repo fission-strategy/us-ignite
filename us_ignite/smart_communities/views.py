@@ -22,7 +22,8 @@ def home_view(request):
     for sector in sector_list:
         app_list[sector.slug] = Application.objects.filter(status=Application.PUBLISHED,
                                                            sector__slug=sector.slug,
-                                                           programs__slug='smart-gigabit-communities').all()[:3]
+                                                           program__slug='smart-gigabit-communities'
+                                                          ).all()[:3]
     context = {
         'sector_list': Sector.objects.all(),
         # 'featured_app_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).all(),
@@ -35,6 +36,8 @@ def home_view(request):
         'funder_count': TaggedFunder.objects.count(),
         'testbed_count': Testbed.objects.filter(status=Testbed.PUBLISHED).count(),
     }
+
+
 
     return TemplateResponse(request, 'smart_communities/home.html', context)
 
