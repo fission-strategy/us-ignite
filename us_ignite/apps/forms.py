@@ -35,7 +35,7 @@ class ApplicationForm(forms.ModelForm):
         fields = ('name', 'summary', 'impact_statement',
                   'image', 'sector', 'features', 'stage',
                   'assistance', 'team_name', 'team_description',
-                  'awards', 'acknowledgments', 'category_tags', 'funder_tags', 'status','program')
+                  'awards', 'acknowledgments', 'status','program')
         widgets = {
             'features': forms.CheckboxSelectMultiple(),
 

@@ -48,6 +48,10 @@ class ProgramAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
 
 
+class YearAdmin(admin.ModelAdmin):
+    list_display = ('year', )
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
 
@@ -77,4 +81,5 @@ admin.site.register(Sector, SectorAdmin)
 admin.site.register(Feature, FeatureAdmin)
 admin.site.register(Program, ProgramAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Year, YearAdmin)
 admin.site.register(Page, PageAdmin)

@@ -61,6 +61,9 @@ class Year(models.Model):
     year = models.CharField(max_length=4, unique=True)
     description = models.TextField(blank=True, default='')
 
+    def __unicode__(self):
+        return self.year
+
 
 class AppTag(TagBase):
     class Meta:
@@ -102,15 +105,11 @@ class ApplicationBase(TimeStamped):
         help_text=_("Please select the option that best reflects your current progress.")
     )
     website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
-    # image = models.ImageField(
-    #     blank=True,
-    #     upload_to='apps',
-    #     help_text=(_("E.g. logo, screenshot, application diagram, photo of demo. %s" % IMAGE_HELP_TEXT))
-    # )
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
     categories = models.ManyToManyField("apps.Category", blank=True, null=True)
     funder_keywords = KeywordsField(verbose_name=_("Funders"), help_text="A comma-separated list of Funders")
+    year = models.ForeignKey('apps.Year', blank=True, null=True)
     summary = models.TextField(
         blank=True,
         help_text=(_("One sentence (tweet-length) pitch/summary of the application"))
@@ -223,10 +222,10 @@ class Application(ApplicationBase):
     awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
 
     # using Taggit
-    category_tags = TaggableManager(through=TaggedCategory, blank=True, verbose_name='Categories')
-    category_tags.rel.related_name = "+"
-    funder_tags = TaggableManager(through=TaggedFunder, blank=True, verbose_name='Funders')
-    funder_tags.rel.related_name = "+"
+    # category_tags = TaggableManager(through=TaggedCategory, blank=True, verbose_name='Categories')
+    # category_tags.rel.related_name = "+"
+    # funder_tags = TaggableManager(through=TaggedFunder, blank=True, verbose_name='Funders')
+    # funder_tags.rel.related_name = "+"
 
 
 
