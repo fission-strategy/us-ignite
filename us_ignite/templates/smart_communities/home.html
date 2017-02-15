@@ -105,7 +105,8 @@
 									<td>
 										<p><big><a href="./">{{ app.title }}</a></big></p>
 										<p>{{ app.summary }}</p>
-                                        {% keywords_for app as cats %}{% if cats %}{% for cat in cats %} {{ cat }}, {% endfor %}{% endif %}
+                                        {% for cat in app.categories.all %}{{ cat.name }}, {% endfor %}
+                                        {% keywords_for app as funders %}{% if funders %}{% for funder in funders %} {{ funder }}, {% endfor %}{% endif %}
 										<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
 									</td>
 									<td class="hide@small">Transportation and Air Quality, Infrastructure Data and Planning</td>

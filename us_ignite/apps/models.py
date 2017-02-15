@@ -49,6 +49,14 @@ class Sector(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='name', unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Year(models.Model):
     year = models.CharField(max_length=4, unique=True)
     description = models.TextField(blank=True, default='')
@@ -101,8 +109,8 @@ class ApplicationBase(TimeStamped):
     # )
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
-    category_keywords = KeywordsField(verbose_name=_("Categories"), help_text="A comma-separated list of Categories")
-    # funder_keywords = KeywordsField(verbose_name=_("Funders"), help_text=="A comma-separated list of Funders")
+    categories = models.ManyToManyField("apps.Category", blank=True, null=True)
+    funder_keywords = KeywordsField(verbose_name=_("Funders"), help_text="A comma-separated list of Funders")
     summary = models.TextField(
         blank=True,
         help_text=(_("One sentence (tweet-length) pitch/summary of the application"))
