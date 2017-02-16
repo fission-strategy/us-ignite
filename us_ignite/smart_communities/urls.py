@@ -3,7 +3,7 @@ from . import views
 from us_ignite.apps import views as apps_views
 from us_ignite.testbeds import views as testbeds_views
 from us_ignite.resources import views as resources_views
-
+from us_ignite.news import views as news_views
 
 urlpatterns = [
     url(r'^$', views.home_view, name='smart_communities_home'),
@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^resources/add/$', resources_views.resource_add, name='sgc_resource_add'),
     url(r'^resources/?(P<slug>[-\w]+)/$', resources_views.resource_detail, name='sgc_resource_detail'),
     url(r'^resources/?(P<slug>[-\w]+)/edit/$', resources_views.resource_edit, name='sgc_resource_edit'),
+
+    url(r'^news/$', news_views.news_post_list, name='sgc_news'),
 ]

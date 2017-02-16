@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='hubactionclustermembership',
-            name='hub',
-        ),
-        migrations.DeleteModel(
-            name='HubActionClusterMembership',
-        ),
+    #     migrations.RemoveField(
+    #         model_name='hubactionclustermembership',
+    #         name='hub',
+    #     ),
+    #     migrations.DeleteModel(
+    #         name='HubActionClusterMembership',
+    #     ),
     ]

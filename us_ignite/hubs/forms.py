@@ -41,15 +41,15 @@ class HubAppMembershipForm(forms.Form):
         'Community or Partner? (e.g. Funding, Development, Piloting, '
         'Testing, etc.)')
 
-
-class HubActionClusterMembershipForm(forms.Form):
-    hubs = forms.ModelMultipleChoiceField(
-        label=u'Communities',
-        queryset=Hub.objects.filter(status=Hub.PUBLISHED),
-        required=False, widget=forms.CheckboxSelectMultiple,
-        help_text=u'Is the Action Cluster Connected to a US Ignite '
-        'Community or Partner? (e.g. Funding, Development, Piloting, '
-        'Testing, etc.)')
+#
+# class HubActionClusterMembershipForm(forms.Form):
+#     hubs = forms.ModelMultipleChoiceField(
+#         label=u'Communities',
+#         queryset=Hub.objects.filter(status=Hub.PUBLISHED),
+#         required=False, widget=forms.CheckboxSelectMultiple,
+#         help_text=u'Is the Action Cluster Connected to a US Ignite '
+#         'Community or Partner? (e.g. Funding, Development, Piloting, '
+#         'Testing, etc.)')
 
 
 class HubApprovalRequestForm(forms.ModelForm):
