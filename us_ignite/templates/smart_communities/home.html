@@ -103,13 +103,16 @@
 
 							    <tr data-app-id="{{ app.id }}">
 									<td>
-										<p><big><a href="./">{{ app.title }}</a></big></p>
+										<p><big><a href="./">{{ app.name }}</a></big></p>
 										<p>{{ app.summary }}</p>
-                                        {% for cat in app.categories.all %}{{ cat.name }}, {% endfor %}
-                                        {% keywords_for app as funders %}{% if funders %}{% for funder in funders %} {{ funder }}, {% endfor %}{% endif %}
+                                        
 										<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
 									</td>
-									<td class="hide@small">Transportation and Air Quality, Infrastructure Data and Planning</td>
+									<td class="hide@small">
+										{% for cat in app.categories.all %}
+											{{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+										{% endfor %}
+									</td>
 									<td class="hide@small">National Science Foundation, Bill and Melinda Gates Foundation, Electronic Frontier Foundation</td>
 									<td>Montgomery County</td>
 								</tr>

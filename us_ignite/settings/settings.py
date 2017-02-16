@@ -288,6 +288,7 @@ INSTALLED_APPS = (
 
     'easy_thumbnails',
     'compressor',
+    'embed_video',
 
     'us_ignite.apps',
     'us_ignite.news',

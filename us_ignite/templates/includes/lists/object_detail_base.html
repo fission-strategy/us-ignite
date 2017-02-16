@@ -3,83 +3,103 @@
 {% block title %}Application {{ object.name }} - {{ block.super }}{% endblock title %}
 
 {% block content %}
-<div class="row collapse">
-  <div class="small-12 columns">
 
-    <div class="row">
-      <div class="small-12 columns">
-        <h2 class="page-title">
-          {% block content_title %}{{ object.name }} {% if object.is_draft %}(Draft){% endif %}{% endblock content_title %}
-        </h2>
-        <span class="listings__listing__tags">
-          {% block tag_list %}{% endblock %}
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+<section class="content-a" id="content">
 
-<div class="row collapse l-listings space-top" data-equalizer>
-  <article class="large-8 medium-9 columns listings" data-equalizer-watch>
-    
-    {% block content_media %}
-    <ul data-orbit>
-      {% if object.image %}
-      <li><img src="{% thumbnail object.image 600x400 crop %}" alt="" title="{{ object.name }}"/></li>
-      {% endif %}
+	<div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">{{ page.title }}</h1>
+		</div>
+	</div>
 
-      {% if media_list %}
-      {% for media in media_list %}
-        {% include "apps/includes/media.html" with object=media %}
-      {% endfor%}
-      {% endif %}
-    </ul>
-    {% endblock content_media %}
+	<!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
 
-    {% if object.summary %}
-    <!-- Summary -->
-    <div class="listings__listing">
-      <div class="row">
-        <div class="small-12 columns">
-          <p>
-            {{ object.summary|linebreaksbr }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- /Summary -->
-    {% endif %}
+	<div class="page-a contain">
+		<div class="main">
+			{{ page.content }}
 
-    {% block detail_content %}
-    <div class="listings__listing">
-      <div class="row">
-        <div class="small-12 columns">
+			<div class="row collapse">
+				<div class="small-12 columns">
 
-          <ul class="no-bullet">
-            {% block intro %}
-            {% endblock intro %}
-          </ul>
-        </div>
-      </div>
-    </div>
-    {% endblock detail_content %}
+					<div class="row">
+						<div class="small-12 columns">
+							<h2 class="page-title">
+								{% block content_title %}{{ object.name }} {% if object.is_draft %}(Draft){% endif %}{% endblock content_title %}
+							</h2>
+							<span class="listings__listing__tags">
+								{% block tag_list %}{% endblock %}
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 
-    {% block related %}{% endblock related %}
+			<div class="row collapse l-listings space-top" data-equalizer>
+				<article class="large-8 medium-9 columns listings" data-equalizer-watch>
+					
+					{% block content_media %}
+					<ul data-orbit>
+						{% if object.image %}
+						<li><img src="{% thumbnail object.image 600x400 crop %}" alt="" title="{{ object.name }}"/></li>
+						{% endif %}
 
-  </article>
+						{% if media_list %}
+						{% for media in media_list %}
+						{% include "apps/includes/media.html" with object=media %}
+						{% endfor%}
+						{% endif %}
+					</ul>
+					{% endblock content_media %}
 
-  {% block sidebar %}
-  <aside class="large-4 medium-3 columns sidebar show-for-medium-up">
-    <div class="row">
-      <div class="large-12 columns" data-equalizer-watch>
+					{% if object.summary %}
+					<!-- Summary -->
+					<div class="listings__listing">
+						<div class="row">
+							<div class="small-12 columns">
+								<p>
+									{{ object.summary|linebreaksbr }}
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- /Summary -->
+					{% endif %}
 
-        {% block sidebar_content %}
-        {% include "includes/lists/sidebar.html" %}
-        {% endblock sidebar_content %}
-      </div>
-    </div>
-  </aside>
-  {% endblock sidebar %}
-</div>
+					{% block detail_content %}
+					<div class="listings__listing">
+						<div class="row">
+							<div class="small-12 columns">
 
+								<ul class="no-bullet">
+									{% block intro %}
+									{% endblock intro %}
+								</ul>
+							</div>
+						</div>
+					</div>
+					{% endblock detail_content %}
+
+					{% block related %}{% endblock related %}
+
+				</article>
+
+				{% block sidebar %}
+				<aside class="large-4 medium-3 columns sidebar show-for-medium-up">
+					<div class="row">
+						<div class="large-12 columns" data-equalizer-watch>
+
+							{% block sidebar_content %}
+							{% include "includes/lists/sidebar.html" %}
+							{% endblock sidebar_content %}
+						</div>
+					</div>
+				</aside>
+				{% endblock sidebar %}
+			</div>
+
+		</div>
+	</div>
+</section>
 {% endblock content %}

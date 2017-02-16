@@ -1,6 +1,27 @@
 {% extends BASE_TEMPLATE %}
 {% load mezzanine_tags keyword_tags %}
 
+{% block content %}
+<section class="content-a" id="content">
+
+	<div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">{{ page.title }}</h1>
+		</div>
+	</div>
+
+	<!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
+
+	<div class="page-a contain">
+		<div class="main">
+		{{ page.content }}
+		</div>
+	</div>
+</section>
+
+{% endblock content %}
 {% block meta_title %}{{ page.meta_title }}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}

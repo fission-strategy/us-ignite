@@ -1,6 +1,76 @@
 {% extends BASE_TEMPLATE %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
+{% block content %}
+
+<section class="content-a" id="content">
+
+    <div class="hero-b">
+        <!-- you can art direct image using <picture> here too if needed -->
+        <figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+        <div class="contain narrow">
+            <h1 class="hx">Blog</h1>
+        </div>
+    </div>
+
+    <div class="page-a contain">
+        <div class="main">
+            {% if featured_list %}
+                {% for featured in featured_list %}
+                   
+                {% endfor%}
+            {% endif %}
+
+            {% for blog_post in blog_posts.object_list %}
+                <div>
+
+                    {% if blog_post.featured_image %}
+                    <a href="{{ blog_post.get_absolute_url }}">
+                        <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 90 90 %}">
+                    </a>
+                    {% endif %}
+
+                    Tagged:
+                    {% with blog_post.categories.all as categories %}
+                    {% if categories %}
+                    {% trans "in" %}
+                    {% for category in category_keywords %}
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    {% editable blog_post.title %}
+                    <h2>
+                        <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                    </h2>
+                    {% endeditable %}
+
+                    {% editable blog_post.publish_date %}
+                        <h6 class="post-meta">
+                            {{ blog_post.publish_date|date:"F d, Y" }} | {% trans "By" %}
+                            {% with blog_post.user as author %}
+                            <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+                            {% endwith %}
+                        </h6>
+                    {% endeditable %}
+
+                    <p>{{ blog_post.content }}</p>
+
+                    <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
+                    <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
+                    <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
+                    <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% pagination_for blog_posts %}
+    </div>
+</section>
+{% endblock content %}
+
+
 {% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}

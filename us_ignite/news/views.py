@@ -57,6 +57,7 @@ def news_post_list(request, tag=None, year=None, month=None, username=None,
                "links": links,}
     context.update(extra_context or {})
     templates.append(template)
+    print_r(blog_posts)
     return TemplateResponse(request, templates, context)
 
 

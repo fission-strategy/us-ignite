@@ -28,3 +28,4 @@ geopy==1.11.0
 easy-thumbnails==2.3
 django_compressor==2.1.1
 twython==3.4.0
+django-embed-video==0.11

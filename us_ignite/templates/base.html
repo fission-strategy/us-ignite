@@ -5,11 +5,13 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>US Ignite</title>
+	<title>{% block title %}US Ignite{% endblock title %}</title>
+	{% block meta %}
  	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	{% endblock meta %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/modernizr.js?v=1" defer></script>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/libs.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/app.css" media="screen" />
@@ -114,6 +116,9 @@
 </div>
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/script.js?v=1" defer></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="//ws.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "433be1f0-4429-4a51-8401-307c2652339c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
 </body>
 </html>
