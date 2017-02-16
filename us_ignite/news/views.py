@@ -21,7 +21,7 @@ User = get_user_model()
 
 def news_post_list(request, tag=None, year=None, month=None, username=None,
                    category=None, template="blog/blog_post_list.html",
-                   extra_context=None):
+                   extra_context=None, program=None):
     templates = []
     blog_posts = BlogPost.objects.published(for_user=request.user)
     if tag is not None:
@@ -40,6 +40,8 @@ def news_post_list(request, tag=None, year=None, month=None, username=None,
         blog_posts = blog_posts.filter(categories=category)
         templates.append(u"blog/blog_post_list_%s.html" %
                           str(category.slug))
+    if program is not None:
+        blog_posts = blog_posts.filter(program__slug=program)
     author = None
     if username is not None:
         author = get_object_or_404(User, username=username)

@@ -262,8 +262,8 @@ def apps_featured(request):
     return TemplateResponse(request, 'apps/featured.html', context)
 
 
-def apps_featured_archive(request, slug):
-    page = get_object_or_404(Page, status=Page.PUBLISHED, slug__exact=slug)
+def apps_featured_archive(request, slug, program=None):
+    page = get_object_or_404(Page, status=Page.PUBLISHED, slug__exact=slug, program__slug=program)
     application_list = [a.application for a in page.pageapplication_set.all()]
     context = {
         'object': page,

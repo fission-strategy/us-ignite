@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^resources/?(P<slug>[-\w]+)/$', resources_views.resource_detail, name='sgc_resource_detail'),
     url(r'^resources/?(P<slug>[-\w]+)/edit/$', resources_views.resource_edit, name='sgc_resource_edit'),
 
-    url(r'^news/$', news_views.news_post_list, name='sgc_news'),
+    url(r'^news/$', news_views.news_post_list, {'program': 'smart-gigabit-communities'}, name='sgc_news'),
 ]
