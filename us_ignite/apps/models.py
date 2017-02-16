@@ -25,6 +25,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
 
 
+
 class Feature(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -107,7 +108,7 @@ class ApplicationBase(TimeStamped):
     website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
-    categories = models.ManyToManyField("apps.Category", blank=True, null=True)
+    categories = models.ManyToManyField("apps.Category", blank=True)
     funder_keywords = KeywordsField(verbose_name=_("Funders"), help_text="A comma-separated list of Funders")
     year = models.ForeignKey('apps.Year', blank=True, null=True)
     summary = models.TextField(
@@ -138,7 +139,7 @@ class ApplicationBase(TimeStamped):
     # modified = ModificationDateTimeField()
 
     program = models.ForeignKey('apps.Program', blank=True, null=True,
-                                     help_text=_("Does this application belong to any specific program(s)"))
+                                     help_text=_("Does this application belong to any specific program"))
 
 
     class Meta:
