@@ -1,22 +1,85 @@
 {% extends BASE_TEMPLATE %}
+
 {% block content %}
-    <h3>Object List Base</h3>
-    {% block sector_list %}{% endblock sector_list %}
-    {% block object_list %}{% endblock object_list %}
-    {% block featured %}
-      {% if featured_list %}
-        <div class="row collapse">
-          <div class="small-12 columns">
-            <div class="row listing-featured">
-              {% for featured in featured_list %}
-              {% include "includes/lists/object_block_featured.html" with object=featured last=forloop.last %}
-              {% endfor%}
-            </div>
-          </div>
-        </div>
-      {% endif %}
-    {% endblock %}
+<section class="content-a" id="content">
+
+	<div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">{% block page_title %}{% endblock page_title %}</h1>
+		</div>
+	</div>
+
+	<!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
+
+	<div class="page-a contain">
+		<div class="main">
+			{% comment %}
+			{% block sector_list %}{% endblock sector_list %}
+			{% block object_list %}{% endblock object_list %}
+			{% block featured %}
+			{% if featured_list %}
+			<div class="row collapse">
+				<div class="small-12 columns">
+					<div class="row listing-featured">
+						{% for featured in featured_list %}
+						{% include "includes/lists/object_block_featured.html" with object=featured last=forloop.last %}
+						{% endfor%}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endblock %}
+			{% endcomment %}
+
+			{% block intro %}{% endblock intro %}
+
+			<p class="hx-b hide show@small"><span>Showing 1-12 Results</span></p>
+			{% if page.object_list_top %}
+				<div class="table-a fold">
+					<div class="wrap">
+						<table>
+							<thead>
+								<tr>
+									<th scope="col">Sector</th>
+									<th scope="col">App Name</th>
+									<th scope="col">Categories</th>
+									<th scope="col">Founders</th>
+									<th scope="col">Community</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							{% for object in page.object_list_top %}
+							<div class="columns large-3{% if forloop.last %} end{% endif %}">
+								{% include "includes/lists/object_block_base.html" with object=object %}
+							</div>
+							<tr>
+								<td>Education and Workforce</td>
+								<td>
+									<p><big><a href="./">Safe Community Awareness and Alerting Network</a></big></p>
+									<p class="hide@small">Connects homes to detect emergency events and alert residents and initiate contacting first responders.</p>
+									<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
+								</td>
+								<td class="hide@small">Transportation and Air Quality, Infrastructure Data and Planning</td>
+								<td class="hide@small">National Science Foundation, Bill and Melinda Gates Foundation, Electronic Frontier Foundation</td>
+								<td>Montgomery County</td>
+							</tr>
+							{% endfor%}
+
+							</tbody>
+						</table>
+					</div>
+				{% include "includes/pagination.html" %}
+				</div>
+			{% else %}
+				<p class="message-a no-results"><strong>No results Found</strong> <br/> Try a different search</p>
+			{% endif %}
+		
+		</div>
+
+
+	</div>
+</section>
 {% endblock content %}
-
-
-<p>end</p>

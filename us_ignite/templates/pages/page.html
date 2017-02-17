@@ -1,6 +1,10 @@
 {% extends BASE_TEMPLATE %}
 {% load mezzanine_tags keyword_tags %}
 
+{% block title %}
+{{ page.title }}
+{% endblock %}
+
 {% block content %}
 <section class="content-a" id="content">
 
@@ -36,9 +40,7 @@
 {{ page.description }}
 {% endmetablock %}{% endblock %}
 
-{% block title %}
-{% editable page.title %}{{ page.title }}{% endeditable %}
-{% endblock %}
+
 
 {% block main %}
 {% endblock %}

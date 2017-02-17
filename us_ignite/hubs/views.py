@@ -141,7 +141,7 @@ def hub_list(request):
     featured_list = Hub.active.filter(is_featured=True)[:3]
     context = {
         'page': page,
-        'featured_list': featured_list,
+        'featured_list': featured_list
     }
     return TemplateResponse(request, 'hubs/object_list.html', context)
 

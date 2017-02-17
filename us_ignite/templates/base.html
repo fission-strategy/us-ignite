@@ -59,11 +59,12 @@
 	            </div>
 	            <div class="search-a">
 	                <p class="close" data-search-close><i class="fa fa-times"></i></p>
-	                <form action="./" method="post" class="wrap contain">
-	                    <p><label for="f-search">Search US ignite<span> for applications, programs, blog posts, etc.</span></label> <input type="text" name="search" id="f-search" placeholder="Enter search term" /></p>
+	                <form method="get" action="{% url 'search' %}" class="wrap contain">
+	                    <p><label for="f-search">Search US ignite<span> for applications, programs, blog posts, etc.</span></label> <input type="text" name="q" id="f-search" placeholder="Enter search term" /></p>
 	                    <p class="action"><button type="submit" class="button-a large">Search <span class="arrow-a"></span></button></p>
 	                    <p class="cancel"><a href="#" class="button-a gray" data-search-close>Cancel</a></p>
 	                </form>
+
 	            </div>
 	        </header>
 {% endblock header %}
