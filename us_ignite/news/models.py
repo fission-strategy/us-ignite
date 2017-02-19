@@ -13,8 +13,10 @@ class NewsPost(BlogPost):
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("news.NewsPost.image", "galleries"), null=True, blank=True)
     categories_new = models.ManyToManyField("apps.Category", blank=True, verbose_name="Categories")
+
     program = models.ForeignKey('apps.Program', blank=True, null=True,
                                      help_text=_("Does this application belong to any specific program"))
+    event = models.BooleanField(default=False, help_text="Is it an event?")
 
 
 class Link(models.Model):

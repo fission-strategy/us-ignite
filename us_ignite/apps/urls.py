@@ -30,6 +30,6 @@ urlpatterns = [
         name='app_hub_membership'),
     url(r'^(?P<slug>[-\w]+)/membership/$', views.app_membership,
         name='app_membership'),
-    url(r'^domain/(?P<domain>[-\w]+)/$', views.app_list, name='app_list_domain'),
+    url(r'^sector/(?P<sector>[-\w]+)/$', views.app_list, name='app_list_sector'),
     url(r'^stage/(?P<stage>[\d]{1})/$', views.app_list, name='app_list_stage'),
 ]

@@ -47,18 +47,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='HubActionClusterMembership',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_featured', models.BooleanField(default=False)),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True)),
-                ('hub', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='hubs.Hub')),
-            ],
-            options={
-                'ordering': ('-created',),
-            },
-        ),
-        migrations.CreateModel(
             name='HubActivity',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
