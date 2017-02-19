@@ -14,7 +14,32 @@
 
 		<a href="{% url 'hub_application'%}" class="button-a">SUBMIT YOUR COMMUNITY</a>{% csrf_token %}
 
-		<div class="spacer" style="height: 70px;"></div>
 	</div>
 </div>
 {% endblock intro %}
+
+{% block object_table %}
+<table>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Summary</th>
+			<th scope="col">Website</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+	{% for object in page.object_list_top %}
+	
+	<tr>
+		<td>
+			<p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
+		</td>
+		<td class="hide@small">{{ object.summary }}</td>
+		<td class="hide@small"><a href="{{ object.website }}" target="_blank">{{ object.website }}</td>
+	</tr>
+	{% endfor%}
+
+	</tbody>
+</table>
+{% endblock object_table %}

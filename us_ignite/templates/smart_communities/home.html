@@ -3,6 +3,8 @@
 {% load smart_communities_tags %}
 {% load keyword_tags %}
 
+{% block title %}Smart Communities{% endblock title %}
+
 {% block content %}
 {% comment %}
 <h2>LATEST NEWS</h2>
@@ -94,7 +96,7 @@
 								<tr>
 									<th scope="col">App Name</th>
 									<th scope="col">Categories</th>
-									<th scope="col">Founders</th>
+									<th scope="col">Funders</th>
 									<th scope="col">Community</th>
 								</tr>
 							</thead>
@@ -103,18 +105,23 @@
 
 							    <tr data-app-id="{{ app.id }}">
 									<td>
-										<p><big><a href="./">{{ app.name }}</a></big></p>
+										<p><big><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></big></p>
 										<p>{{ app.summary }}</p>
                                         
-										<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
+										<p class="hide@small"><strong>{{ app.team_leader }}</strong></p>
 									</td>
 									<td class="hide@small">
 										{% for cat in app.categories.all %}
 											{{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
 										{% endfor %}
+										
 									</td>
-									<td class="hide@small">National Science Foundation, Bill and Melinda Gates Foundation, Electronic Frontier Foundation</td>
-									<td>Montgomery County</td>
+									<td class="hide@small">
+										{% for funder in object.funder_keywords %}
+											{{ funder }}{% if forloop.last %}{% else %}, {% endif %} 
+										{% endfor %}
+									</td>
+									<td>{{ app.community }}</td>
 								</tr>
 							    {% endfor %}
 							
@@ -126,36 +133,15 @@
 			</div>
 			{% endfor %}
 
-			<p class="$mYb"><a href="./" class="button-a block">See All Apps<span class="hide@small"> &amp; Action Clusters </span><span class="arrow-a"></span></a></p>
+			<p class="$mYb"><a href="{% url "app_list" %}" class="button-a block">See All Apps<span class="hide@small"> &amp; Action Clusters </span><span class="arrow-a"></span></a></p>
 
 			<h3 class="hx-a v2@small"><span>Funding Agents</span></h3>
 
 			<div class="logos-a">
 				<ul>
-					<li><a href="./"><img src="images/dot.php?size=90x40xe5cfb1" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
-					<li><a href="./"><img src="images/dot.php?size=90x40xabdee7" alt="Sponsor" /></a></li>
+					{% for sponsor in sponsor_list %}
+                    <li><a href="{{ sponsor.link }}"><img src="{% thumbnail sponsor.image 90x40 %}" alt="{{ sponsor.name }}" /></a></li>
+                    {% endfor %}
 				</ul>
 			</div>
 		</div>
