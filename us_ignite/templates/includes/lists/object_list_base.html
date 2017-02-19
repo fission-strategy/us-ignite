@@ -35,41 +35,13 @@
 
 			{% block intro %}{% endblock intro %}
 
+			{% block filter_object %}{% endblock filter_object %}
+
 			<p class="hx-b hide show@small"><span>Showing 1-12 Results</span></p>
 			{% if page.object_list_top %}
 				<div class="table-a fold">
 					<div class="wrap">
-						<table>
-							<thead>
-								<tr>
-									<th scope="col">Sector</th>
-									<th scope="col">App Name</th>
-									<th scope="col">Categories</th>
-									<th scope="col">Founders</th>
-									<th scope="col">Community</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-							{% for object in page.object_list_top %}
-							<div class="columns large-3{% if forloop.last %} end{% endif %}">
-								{% include "includes/lists/object_block_base.html" with object=object %}
-							</div>
-							<tr>
-								<td>Education and Workforce</td>
-								<td>
-									<p><big><a href="./">Safe Community Awareness and Alerting Network</a></big></p>
-									<p class="hide@small">Connects homes to detect emergency events and alert residents and initiate contacting first responders.</p>
-									<p class="hide@small"><strong>Team lead: Daniel Hoffman, University of Chicago</strong></p>
-								</td>
-								<td class="hide@small">Transportation and Air Quality, Infrastructure Data and Planning</td>
-								<td class="hide@small">National Science Foundation, Bill and Melinda Gates Foundation, Electronic Frontier Foundation</td>
-								<td>Montgomery County</td>
-							</tr>
-							{% endfor%}
-
-							</tbody>
-						</table>
+						{% block object_table %}{% endblock object_table %}
 					</div>
 				{% include "includes/pagination.html" %}
 				</div>

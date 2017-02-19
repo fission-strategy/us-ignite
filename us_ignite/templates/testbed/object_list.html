@@ -2,24 +2,51 @@
 
 {% block title %}Testbeds - {{ block.super }}{% endblock title %}
 
-{% block top_panel %}
-<div class="row panel">
-  <div class="small-12 columns">
-    <h2>Find a testbed</h2>
-    <p>
-      Search the network testbeds to find a potential location to
-      test out or deploy your advanced application.
-    </p>
-    <p>
-      Set the minimum requirements needed to run your application:
-    </p>
-    <form method="get" action=".">
-      {% include "testbed/object_filter_form.html" with form=form %}
-      <p><button type="submit">Search</button></p>
-    </form>
-  </div>
+{% block page_title %}Testbeds {% endblock page_title %}
+
+
+{% block intro %}
+<div class="intro">
+	<div class="wrap contain narrow">
+		<h3 class="hx-a">Find a testbed</h3>
+		<p>Search the network testbeds to find a potential location to
+			test out or deploy your advanced application.</p>
+
+		<h4 class="newsletter__heading"><strong>Set the minimum requirements needed to run your application:</strong></h4>
+
+	</div>
 </div>
+{% endblock intro %}
 
-{% endblock top_panel %}
+{% block filter_object %}
+<form method="get" action="." class="filters-a full-width">
+	{% include "testbed/object_filter_form.html" with form=form %}
+	<p><button type="submit">Search</button></p>
+</form>
+{% endblock filter_object %}
 
-{% block tags %}{% endblock tags %}
+{% block object_table %}
+<table>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Summary</th>
+			<th scope="col">Website</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+	{% for object in page.object_list_top %}
+	
+	<tr>
+		<td>
+			<p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
+		</td>
+		<td class="hide@small">{{ object.summary }}</td>
+		<td class="hide@small"><a href="{{ object.website }}" target="_blank">{{ object.website }}</td>
+	</tr>
+	{% endfor%}
+
+	</tbody>
+</table>
+{% endblock object_table %}

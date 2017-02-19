@@ -1,39 +1,70 @@
 {% extends "includes/lists/object_list_base.html" %}
 
-{% block sector_list %}
-    <ul>
-    <h4>Sector</h4>
-    {% for sector in sector_list %}
-        <li>{{ sector }}</li>
-    {% endfor %}
-    </ul>
+{% block title %}Application list - {{ block.super }}{% endblock title %}
 
-{% endblock sector_list %}
+{% block page_title %}Applications{% if filter_name %}: {{ filter_name }}{% endif %}{% endblock page_title %}
 
-{% block object_list %}
-    <ul>
-    <h4>Objects</h4>
+{% block intro %}
+<div class="intro">
+    <div class="wrap contain narrow">
+        <h3 class="hx-a">Explore Next-Generation Applications</h3>
+        <p>Scroll through and explore these exciting next-generation application in various stages of development. All these applications use next-gen technologies like software-defined networking, local cloud and gigabit to end-user and are transforming how we live, work, learn and play. If you have an application you would like to include in this growing list, please following the instruction below and join the US Ignite community.</p>
+
+        <h4 class="newsletter__heading"><strong>GOT A GREAT IDEA FOR AN APPLICATION?</strong> TELL US ABOUT IT...</h4>
+
+        <a href="{% url 'app_add'%}" class="button-a">SUBMIT YOUR APP</a>{% csrf_token %}
+        <div class="spacer" style="height: 70px;"></div>
+    </div>
+</div>
+{% endblock intro %}
+
+{% block filter_object %}
+<form method="get" action="{% url 'search' %}" class="filters-a" style="margin-top: -130px">
+    <h3 class="hx">Filter Results By...</h3>
+    <div class="wrap">
+        <p><label for="f-fk">Keyword</label> <input type="text" name="q" id="f-fk" placeholder="Search by project name, team name, etc." /></p>
+        <p><label for="f-fs">Sector</label> <select name="fs" id="f-fs"><option value="All" selected>All</option></select></p>
+        <p><label for="f-fr">Sort by</label> <select name="fr" id="f-fr"><option value="Created (oldest first)" selected>Created (Oldest First)</option></select></p>
+        <p class="action"><button type="submit" class="button-a">Search</button></p>
+    </div>
+</form>
+{% endblock filter_object %}
+
+{% block object_table %}
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Sector</th>
+            <th scope="col">App Name</th>
+            <th scope="col">Categories</th>
+            <th scope="col">Founders</th>
+            <th scope="col">Community</th>
+        </tr>
+    </thead>
+    <tbody>
+        
     {% for object in page.object_list_top %}
-        <li><ul>
-            <li>{{ object.sector }}</li>
-            <li>{{ object.title }}</li>
-            <li>Categories:
-                <ul>
-                {% for category in object.category_tags.all %}
-                    <li>{{ category }}</li>
-                {% endfor %}
-                </ul>
-            </li>
-            <li>Funders:
-                <ul>
-                {% for funder in object.funder_tags.all %}
-                    <li>{{ funder }}</li>
-                {% endfor %}
-                </ul>
-            </li>
-        </ul>
-        </li>
+    <tr>
+        <td class="hide@small">{{ object.sector }}</td>
+        <td>
+            <p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
+            <p class="hide@small">{{ object.summary }}</p>
+            <p class="hide@small"><strong>{{ object.team_leader }}</strong></p>
+        </td>
+        <td class="hide@small">
+            {% for cat in object.categories.all %}
+                {{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+            {% endfor %}
+        </td>
+        <td class="hide@small">
+            {% for funder in object.funder_tags.all %}
+                <li>{{ funder }}</li>
+            {% endfor %}
+        </td>
+        <td class="hide@small">{{ object.community }}</td>
+    </tr>
+    {% endfor%}
 
-    {% endfor %}
-    </ul>
-{% endblock object_list %}
+    </tbody>
+</table>
+{% endblock object_table %}
