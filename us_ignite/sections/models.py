@@ -54,7 +54,7 @@ class HomepageProgram(SortableMixin):
         return self.title
 
 
-class Sponsor(SortableMixin):
+class SponsorBase(SortableMixin):
     DRAFT = 1
     PUBLISHED = 2
     REMOVED = 3
@@ -73,6 +73,11 @@ class Sponsor(SortableMixin):
 
     class Meta(object):
         ordering = ('order', )
+        abstract = True
 
     def __unicode__(self):
         return self.name
+
+
+class Sponsor(SponsorBase):
+    pass

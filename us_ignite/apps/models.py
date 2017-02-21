@@ -139,7 +139,9 @@ class ApplicationBase(TimeStamped):
     # modified = ModificationDateTimeField()
 
     program = models.ForeignKey('apps.Program', blank=True, null=True,
-                                     help_text=_("Does this application belong to any specific program"))
+                                     help_text=_("Does this application belong to any specific program?"))
+    hub = models.ForeignKey('hubs.Hub', blank=True, null=True,
+                            help_text=_("Does this application belong to a hub?"))
 
 
     class Meta:
