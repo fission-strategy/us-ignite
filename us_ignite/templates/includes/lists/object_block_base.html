@@ -15,6 +15,8 @@
     </figure>
     {% endcomment %}
     <a href="{{ object.get_absolute_url }}">
+    	<h4 class="hx">{{ object.name }}</h4>
+    	<p class="meta">{{ object.summary }}</p>
         <p class="brow">
         	{% if not hide_tags %}
 				{% with object.tags.all as tag_list %}
@@ -26,10 +28,5 @@
 				{% endwith %}
 			{% endif %}
        	</p>
-        <h3 class="hx">{{ object.name }}</h3>
-        <p>
-        	{% block object_detail %}{{ object.get_summary }}{% endblock object_detail %}
-        	<span class="arrow-a"></span>
-        </p> 
     </a>
 </article>

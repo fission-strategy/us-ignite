@@ -1,24 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row registration">
+<section class="content-a" id="content">
 
-  <div class="small-12 medium-8 large-6 small-centered columns">
+	<div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">{% block page_title %}{% endblock page_title %}</h1>
+		</div>
+	</div>
 
-    <div class="row">
-      <div class="small-12 small-centered registration__header">
-        <h2 class="registration__heading">{% block section_title %}Title{% endblock section_title %}</h2>
-      </div>
-    </div>
+	<!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
 
-    <div class="row">
-      <div class="small-12 small-centered registration__content">
-        {% block section %}{% endblock section %}
-      </div>
-    </div>
+	<div class="page-a contain">
+		<div class="main">
+			{% block section %}{% endblock section %}
 
-  </div>
-
-
-</div>
+		</div>
+	</div>
+</section>
 {% endblock content %}

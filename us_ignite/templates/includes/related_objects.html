@@ -1,9 +1,10 @@
 {% if related_list %}
 <!-- related content -->
 
-<div class="featured-a">
-    <h3 class="hxa">{% if related_title %}{{ related_title }}{% else %}Related{% endif %}</h3>
-    <div class="wrap">
+<div class="featured-b">
+	<h3 class="hxa">{% if related_title %}{{ related_title }}{% else %}Related{% endif %}</h3>
+    
+    <div class="cards">
         {% for object in related_list %}
 			{% include "includes/lists/object_block_base.html" with object=object hide_tags=True %}
 		{% endfor%}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{% trans "Search Results" %}{% endblock %}
+{% block title %}{% trans "Search Results" %}{% endblock %}
+{% block extra_head %}
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block content %}
+
+<section class="content-a" id="content">
+
+    <div class="hero-b">
+        <!-- you can art direct image using <picture> here too if needed -->
+        <figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+        <div class="contain narrow">
+            <h1 class="hx">{% block page_title %}{% trans "Search Results For " %}{% endblock %} "{{ query }}"</h1>
+        </div>
+    </div>
+
+    <div class="page-a contain">
+        <div class="main">
+            <p>
+                {% if results.paginator.count == 0 %}
+                    {% blocktrans %}
+                    No results were found in {{ search_type }} matching your query: {{ query }}
+                    {% endblocktrans %}
+                {% else %}
+                    {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
+                    Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+                    {% endblocktrans %}
+                {% endif %}
+            </p>
+
+            <div id="search-results">
+                {% for result in results.object_list %}
+                {% with result.get_absolute_url as result_url %}
+                    <h5>
+                        {{ forloop.counter0|add:results.start_index }})
+                        {% if result_url %}
+                            <a href="{{ result_url }}">{{ result }}</a>
+                        {% else %}
+                            {{ result }}
+                        {% endif %}
+                    </h5>
+                    {% if result.description != result|stringformat:"s" %}
+                        <p>{{ result.description|truncatewords_html:20|safe }}</p>
+                    {% endif %}
+                    {% if result_url %}
+                        <a class="button-a" href="{{ result_url }}">{% trans "Read More" %}</a>
+                    {% endif %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+
+            {% pagination_for results %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

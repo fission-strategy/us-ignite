@@ -2,26 +2,26 @@
 
 {% block title %}Add app - {{ block.super }}{% endblock title %}
 
-{% block section_title %}
+{% block page_title %}
 Add an App
-{% endblock section_title %}
+{% endblock page_title %}
 
 {% block section %}
 <p>
-  Please fill out the form below to have your application added to our searchable database. Once you have submitted your application and it has been approved, it will be included on our Apps Project page.
+	Please fill out the form below to have your application added to our searchable database. Once you have submitted your application and it has been approved, it will be included on our Apps Project page.
 </p>
 <p>
-  If you need to make changes to your application description it can be accessed via your user profile.
+	If you need to make changes to your application description it can be accessed via your user profile.
 </p>
-<form method="post" action="{% url "app_add" %}" enctype="multipart/form-data">
+<form method="post" action="{% url "app_add" %}" enctype="multipart/form-data" class="wrap validate">
     {% if program %}
     <input type="hidden" name="program" value="{{ program }}">
     {% endif %}
-{% include "apps/object_form.html" with form=form %}
+	{% include "apps/object_form.html" with form=form %}
 
-<p>
-  <button type="submit">CREATE</button>
-</p>
+	<p class="action">
+		<button type="submit" class="button-a">CREATE</button>
+	</p>
 </form>
 {% endblock section %}
 
