@@ -1,6 +1,7 @@
 {% extends BASE_TEMPLATE %}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags %}
 
+{% block body_class %}blog{% endblock body_class %}
 {% block content %}
 
 <section class="content-a" id="content">
@@ -12,7 +13,7 @@
         </div>
     </div>
 
-    <div class="page-a contain">
+    <div class="page-a contain ">
         <div class="main">
 
         {% if blog_post.featured_image %}

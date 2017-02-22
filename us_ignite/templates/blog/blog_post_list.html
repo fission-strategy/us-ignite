@@ -1,6 +1,7 @@
 {% extends BASE_TEMPLATE %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
+{% block body_class %}blog{% endblock body_class %}
 {% block content %}
 
 <section class="content-a" id="content">
@@ -13,56 +14,75 @@
         </div>
     </div>
 
-    <div class="page-a contain">
+    <div class="page-a contain ">
         <div class="main">
-            {% if featured_list %}
-                {% for featured in featured_list %}
-                   
-                {% endfor%}
-            {% endif %}
+            <div class="one list-a">
+                {% if featured_list %}
+                    {% for featured in featured_list %}
+                       
+                    {% endfor%}
+                {% endif %}
 
-            {% for blog_post in blog_posts.object_list %}
-                <div>
+                {% for blog_post in blog_posts.object_list %}
+                    <article>
 
-                    {% if blog_post.featured_image %}
-                    <a href="{{ blog_post.get_absolute_url }}">
-                        <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 90 90 %}">
-                    </a>
-                    {% endif %}
+                        {% if blog_post.image %}
+                        <a href="{{ blog_post.get_absolute_url }}">
+                            <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.image 90 90 %}">
+                        </a>
+                        {% endif %}
 
-                    Tagged:
-                    {% with blog_post.categories.all as categories %}
-                    {% if categories %}
-                    {% trans "in" %}
-                    {% for category in category_keywords %}
-                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
+                        {% if blog_post.categories_new.all %}
+                            {% trans "in" %}
+                            {% for category in blog_post.categories_new.all %}
+                            <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
-                    {% editable blog_post.title %}
-                    <h2>
-                        <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
-                    </h2>
-                    {% endeditable %}
+                        {% editable blog_post.title %}
+                        <h3>
+                            <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                        </h3>
+                        {% endeditable %}
 
-                    {% editable blog_post.publish_date %}
-                        <h6 class="post-meta">
-                            {{ blog_post.publish_date|date:"F d, Y" }} | {% trans "By" %}
-                            {% with blog_post.user as author %}
-                           {{ author.get_full_name|default:author.username }}
-                            {% endwith %}
-                        </h6>
-                    {% endeditable %}
+                        {% editable blog_post.publish_date %}
+                            <h6 class="post-meta">
+                                {{ blog_post.publish_date|date:"F d, Y" }} | {% trans "By" %}
+                                {% with blog_post.user as author %}
+                               {{ author.get_full_name|default:author.username }}
+                                {% endwith %}
+                            </h6>
+                        {% endeditable %}
 
-                    <p>{{ blog_post.content }}</p>
-
-                    <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
-                    <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
-                    <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
-                    <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
+                        <p>{{ blog_post.description }}</p>
+                        {% comment %}
+                        <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
+                        <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
+                        <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
+                        <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
+                        {% endcomment %}
+                    </article>
+                {% endfor %}
+            </div>
+            <div class="two">
+                <div class="sidebar-b">
+                    <div class="section gray">
+                        <h4 class="hx">Stay Informed</h4>
+                        <form action="./" method="post" class="signup-b validate">
+                            <div class="fields">
+                                <p><input type="text" name="ifn" id="f-ifn" required placeholder="First Name *" /></p>
+                                <p><input type="text" name="iln" id="f-iln" required placeholder="Last Name *" /></p>
+                                <p><input type="email" name="iea" id="f-iea" required placeholder="Email Address *" /></p>
+                                <p><input type="text" name="icn" id="f-icn" placeholder="Company/Organization" /></p>
+                                <p class="action"><button type="submit" class="button-a block">Sign Up</button></p>
+                            </div>
+                            <div class="thanks">
+                                <p>Thank you for signing up!</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
 
         {% pagination_for blog_posts %}

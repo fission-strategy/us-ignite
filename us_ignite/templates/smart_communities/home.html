@@ -117,11 +117,11 @@
 										
 									</td>
 									<td class="hide@small">
-										{% for funder in object.funder_keywords %}
+										{% for funder in app.funder_keywords.all %}
 											{{ funder }}{% if forloop.last %}{% else %}, {% endif %} 
 										{% endfor %}
 									</td>
-									<td>{{ app.community }}</td>
+									<td>{{ app.hub }}</td>
 								</tr>
 							    {% endfor %}
 							
@@ -129,7 +129,7 @@
 						</table>
 					</div>
 				</div>
-				<p class="action"><a href="./" class="button-a text">See All {{ sector.name }} Applications <span class="arrow-a"></span></a></p>
+				<p class="action"><a href="{{ SITE_URL }}/apps/sector/{{ sector.slug }}" class="button-a text">See All {{ sector.name }} Applications <span class="arrow-a"></span></a></p>
 			</div>
 			{% endfor %}
 

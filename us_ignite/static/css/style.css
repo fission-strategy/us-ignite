@@ -1,0 +1,104 @@
+/* line 4, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+#messages {
+  display: none; }
+
+/* line 8, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.notification {
+  display: none;
+  position: fixed;
+  z-index: 5;
+  max-width: 200px;
+  background-color: rgba(238, 116, 34, 0.8);
+  color: #fff;
+  padding: 10px;
+  bottom: 15px;
+  right: 15px; }
+
+/* line 20, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+header.top-a {
+  background-color: rgba(0, 0, 0, 0.4); }
+
+/* line 25, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.filters-a.full-width label {
+  width: 100% !important;
+  margin: 0 !important; }
+
+/* line 30, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.filters-a.full-width p {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0; }
+
+/* line 36, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.filters-a.full-width input[type="number"], .filters-a.full-width input[type="text"] {
+  width: 100%;
+  display: block; }
+
+/* line 41, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.filters-a.full-width button {
+  margin-top: 15px; }
+
+/* line 47, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+form ul {
+  list-style: none;
+  padding-left: 0; }
+  /* line 51, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  form ul li:before {
+    display: none; }
+  /* line 55, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  form ul li input[type="checkbox"] {
+    margin-right: 5px; }
+
+/* line 63, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.list-a article {
+  border: 1px #ccc solid;
+  padding: 30px; }
+  /* line 68, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article h3 a {
+    color: #000; }
+    /* line 71, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .list-a article h3 a:hover {
+      color: #eee; }
+
+/* line 79, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.editable-original {
+  margin-bottom: 0 !important; }
+
+/* line 86, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+div.main > .one {
+  width: 66.66%; }
+
+/* line 90, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+div.main > .two {
+  width: 33.33%;
+  padding-left: 100px; }
+  @media screen and (max-width: 1023px) {
+    /* line 90, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    div.main > .two {
+      padding-left: 0; } }
+
+/* line 98, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+div.main > .one, div.main > .two {
+  margin-left: 0;
+  margin-right: 0;
+  float: left; }
+  @media screen and (max-width: 1023px) {
+    /* line 98, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    div.main > .one, div.main > .two {
+      float: none;
+      width: auto; } }
+
+/* line 109, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+div.main:after {
+  clear: both;
+  content: "";
+  display: block;
+  position: relative; }
+
+/* line 117, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+body.blog {
+  background-color: #fff; }
+
+/* line 128, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.sidebar-b .section {
+  border-top: 1px solid #ccc; }

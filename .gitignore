@@ -8,4 +8,4 @@ local_settings.py
 node_modules
 .idea
 venv
-us_ignite/static
+us_ignite/static/media

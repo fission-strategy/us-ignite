@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/print.css" media="print" />
 	<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
 </head>
-<body class="home">
+<body class="home {% block body_class %}{% endblock body_class %}">
 	{% comment %}<div id="messages">{% include "includes/messages.html" %}</div> {% endcomment %}
     <div class="notification"></div>
 	<div class="root-a is-loading">
