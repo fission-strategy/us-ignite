@@ -139,8 +139,8 @@
 
 			<div class="logos-a">
 				<ul>
-					{% for sponsor in sponsor_list %}
-                    <li><a href="{{ sponsor.link }}"><img src="{% thumbnail sponsor.image 90x40 %}" alt="{{ sponsor.name }}" /></a></li>
+					{% for funding_agent in funding_agent_list %}
+                    <li><a href="{{ funding_agent.link }}"><img src="{% thumbnail funding_agent.image 90x40 %}" alt="{{ funding_agent.name }}" /></a></li>
                     {% endfor %}
 				</ul>
 			</div>
