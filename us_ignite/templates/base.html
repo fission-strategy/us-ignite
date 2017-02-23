@@ -1,5 +1,6 @@
 {% load thumbnail %}
 {% load compress %}
+{% load pages_tags %}
 {% block header %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,18 @@
 </head>
 <body class="home {% block body_class %}{% endblock body_class %}">
 	{% comment %}<div id="messages">{% include "includes/messages.html" %}</div> {% endcomment %}
+    <div>{% page_menu "pages/menus/dropdown.html" %}</div>
+    <br>
+    <div>{% page_menu "pages/menus/primary.html" %}</div>
+    <br>
+    <div>{% page_menu "pages/menus/footer_tree.html" %}</div>
+    <br>
+    <div>{% page_menu "pages/menus/mobile.html" %}</div>
+    <br>
+    <div>{% page_menu "pages/menus/tree.html" %}</div>
+    <br>
+    <div>{% page_menu "pages/menus/breadcrumb.html" %}</div>
+    <br>
     <div class="notification"></div>
 	<div class="root-a is-loading">
 	    <div class="wrap">
