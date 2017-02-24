@@ -14,6 +14,7 @@ from us_ignite.apps.models import Application, TaggedFunder, TaggedCategory, Sec
 from us_ignite.hubs.models import Hub
 from us_ignite.events.models import Event
 from us_ignite.testbeds.models import Testbed
+from .models import FundingPartner
 
 
 def home_view(request):
@@ -30,6 +31,7 @@ def home_view(request):
         'app_list': app_list,
         'latest_news': BlogPost.objects.published(for_user=request.user).latest('created'),
         'upcoming_event': Event.objects.filter(start_datetime__gte=datetime.now()).first(),
+        'funding_agent_list': FundingPartner.objects.filter(status=FundingPartner.PUBLISHED).all(),
 
         'app_count': Application.objects.filter(status=Application.PUBLISHED).count(),
         'hub_count': Hub.objects.filter(status=Hub.PUBLISHED).count(),

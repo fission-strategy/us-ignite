@@ -2,15 +2,17 @@
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
 {% block body_class %}blog{% endblock body_class %}
+{% block title %}News{% endblock title %}
+
 {% block content %}
 
-<section class="content-a" id="content">
+<section class="content-a blog-list" id="content">
 
     <div class="hero-b">
         <!-- you can art direct image using <picture> here too if needed -->
         <figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
         <div class="contain narrow">
-            <h1 class="hx">Blog</h1>
+            <h1 class="hx">News</h1>
         </div>
     </div>
 
@@ -18,56 +20,91 @@
         <div class="main">
             <div class="one list-a">
                 {% if featured_list %}
-                    {% for featured in featured_list %}
-                       
+                    {% for blog_post in featured_list %}
+                        <article class="featured">
+                            <figure>
+                                {% if blog_post.image %}
+                                <a href="{{ blog_post.get_absolute_url }}">
+                                    <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail blog_post.image 700 295 %}">
+                                </a>
+                                {% endif %}
+                            </figure>
+                            <div>
+                                <h3>
+                                    <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                                </h3>
+
+                                <h6 class="post-meta">
+                                    {% trans "by" %}
+                                    {% with blog_post.user as author %}
+                                   {{ author.get_full_name|default:author.username }}
+                                    {% endwith %}
+                                    &nbsp;&nbsp;{{ blog_post.publish_date|date:"F d, Y" }}
+                                </h6>
+
+                                <p>{{ blog_post.description }}</p>
+
+                                {% if blog_post.categories_new.all %}
+                                    <p class="cat">
+                                    {% trans "Categories" %}: 
+                                    {% for category in blog_post.categories_new.all %}
+                                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </article>
                     {% endfor%}
                 {% endif %}
 
                 {% for blog_post in blog_posts.object_list %}
                     <article>
+                        <figure>
+                            {% if blog_post.image %}
+                            <a href="{{ blog_post.get_absolute_url }}">
+                                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail blog_post.image 1000 1000 %}">
+                            </a>
+                            {% endif %}
+                        </figure>
+                        <div>
+                            <h3>
+                                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                            </h3>
 
-                        {% if blog_post.image %}
-                        <a href="{{ blog_post.get_absolute_url }}">
-                            <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.image 90 90 %}">
-                        </a>
-                        {% endif %}
-
-                        {% if blog_post.categories_new.all %}
-                            {% trans "in" %}
-                            {% for category in blog_post.categories_new.all %}
-                            <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        {% endif %}
-
-                        {% editable blog_post.title %}
-                        <h3>
-                            <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
-                        </h3>
-                        {% endeditable %}
-
-                        {% editable blog_post.publish_date %}
                             <h6 class="post-meta">
-                                {{ blog_post.publish_date|date:"F d, Y" }} | {% trans "By" %}
+                                {% trans "by" %}
                                 {% with blog_post.user as author %}
                                {{ author.get_full_name|default:author.username }}
                                 {% endwith %}
+                                {{ blog_post.publish_date|date:"F d, Y" }}
                             </h6>
-                        {% endeditable %}
 
-                        <p>{{ blog_post.description }}</p>
-                        {% comment %}
-                        <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
-                        <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
-                        <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
-                        <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
-                        {% endcomment %}
+                            <p>{{ blog_post.description }}</p>
+
+                            {% if blog_post.categories_new.all %}
+                                <p class="cat">
+                                {% trans "Categories" %}: 
+                                {% for category in blog_post.categories_new.all %}
+                                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
                     </article>
                 {% endfor %}
             </div>
             <div class="two">
-                <div class="sidebar-b">
-                    <div class="section gray">
+                <div class="sidebar-b hide@medium hide@small">
+                    <div class="section ">
+                        <h4 class="hx">CATEGORIES</h4>
+                        <h5>Programs</h5>
+                        <ul>
+                            <li><a>Global City Teams Challenge</a></li>
+                        </ul>
+                    </div>
+                    <div class="section ">
                         <h4 class="hx">Stay Informed</h4>
+                        <p>Stay up to date with the latest in the futue of the Internet. Sign up for updates today.</p>
                         <form action="./" method="post" class="signup-b validate">
                             <div class="fields">
                                 <p><input type="text" name="ifn" id="f-ifn" required placeholder="First Name *" /></p>
@@ -90,7 +127,7 @@
 </section>
 {% endblock content %}
 
-
+{% comment %}
 {% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}
@@ -248,3 +285,4 @@
 {% include "blog/includes/filter_panel.html" %}
 
 {% endblock %}
+{% endcomment %}

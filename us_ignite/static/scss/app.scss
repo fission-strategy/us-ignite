@@ -61,18 +61,90 @@ form {
 
 .list-a {
 	article {
-		border: 1px #ccc solid;
-		padding: 30px;
+		border: 1px #e5e5e5 solid;
+		padding: 20px;
+
+		@media screen and (max-width: 1023px) {
+			border-top: none;
+			margin-bottom: 0;
+			padding: 20px 30px;
+		}
 
 		h3 {
+			font-size: 24px;
+			margin-bottom: 15px;
+			font-weight: bold;
+
 			a {
-				color: #000;
+				color: #282828;
 
 				&:hover {
-					color: #eee;
+					color: lighten(#282828, 10%);
 				}
 			}
 		}
+
+		h6 {
+			font-size: 13px;
+			color: #636363;
+			font-weight: 500;
+			text-transform: initial;
+		}
+
+		p {
+			margin-bottom: 20px;
+			&.cat {
+				font-size: 13px;
+				color: #636363;
+				font-weight: 500;
+				text-transform: initial;
+			}
+		}
+
+		>div {
+			width: 66.66%;
+			margin-bottom: 0 !important;
+		}
+
+		>figure {
+			width: 33.33%;
+			padding-left: 40px;
+
+			@media screen and (max-width: 1023px) {
+				padding-left: 0;
+			}
+
+			img {
+				width: 100%;
+			}
+		}
+
+		>div, >figure {
+			float: right;
+
+			@media screen and (max-width: 1023px) {
+				float: none;
+				width: 100%;
+			}
+		}
+
+		&:after {
+			clear: both;
+			content:"";
+			display: block;
+			position: relative;
+		}
+
+		&.featured {
+			figure, div {
+				float: none;
+				padding: 0;
+				width: auto;
+
+			}	
+		}
+
+		
 	}
 }
 
@@ -89,7 +161,7 @@ div.main {
 
 	>.two {
 		width: 33.33%;
-		padding-left: 100px;
+		padding-left: 80px;
 		@media screen and (max-width: 1023px) {
 			padding-left: 0;
 		}
@@ -117,9 +189,55 @@ div.main {
 body.blog {
 	background-color: #fff;
 
-	.contain {
-		@media screen and (max-width: 1023px) {
+	.blog-list {
+		.main {
+			@media screen and (max-width: 1023px) {
+				padding: 0 !important;
+			}
+		}
 
+		.page-a.contain {
+			@media screen and (max-width: 1023px) {
+				border: none;
+			}
+		}
+	}
+
+	.blog-detail {
+		.post-title {
+			font-size: 33px;
+			line-height: 38px;
+			margin-bottom: 15px;
+			font-weight: bold;
+
+			@media screen and (max-width: 1023px) {
+				font-size: 24px;
+			}
+
+			a {
+				color: #282828;
+
+				&:hover {
+					color: lighten(#282828, 10%);
+				}
+			}
+		}
+
+		.post-meta {
+			font-size: 13px;
+			color: #636363;
+			font-weight: 500;
+			text-transform: initial;
+		}
+
+		p {
+			margin-bottom: 20px;
+			&.cat {
+				font-size: 13px;
+				color: #636363;
+				font-weight: 500;
+				text-transform: initial;
+			}
 		}
 	}
 }
@@ -127,5 +245,93 @@ body.blog {
 .sidebar-b {
 	.section {
 		border-top: 1px solid #ccc;
+		padding: 20px 0;
+
+		h5 {
+			color: #636363;
+			font-size: 14px;
+			font-weight: 400;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.root-a .contain.very-narrow {
+    max-width: 850px;
+}
+
+.featured-c {
+	list-style: none;
+	padding-left: 0;
+	margin-left: -5px;
+	margin-right: -5px;
+	margin-bottom: 50px !important;
+
+	&:after {
+		clear: both;
+		content:"";
+		display: block;
+		position: relative;
+	}
+
+	>div {
+		float: left;
+		width: 33.33%;
+		padding-left: 5px;
+		padding-right: 5px;
+
+		@media screen and (max-width: 1023px) {
+			float: none;
+			width: auto;
+
+		}
+
+		article {
+			position: relative;
+			-webkit-box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.44);
+			-moz-box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.44);
+			box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.44);
+			
+			-webkit-transition: box-shadow 0.3s , top 0.3s ;
+			-moz-transition: box-shadow 0.3s, top 0.3s ; 
+			transition: box-shadow 0.3s , top 0.3s ; 
+			top: 0;
+			&:hover {
+				top: -10px;
+				-webkit-box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.44);
+				-moz-box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.44);
+				box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.44);
+			}
+			figure {
+				border-bottom: 1px solid #e5e5e5;
+			}
+
+			p {
+				font-size: 13px;
+				color: #636363;
+				font-weight: 500;
+				text-transform: initial;
+				margin-bottom: 10px !important;
+			}
+			> div {
+				padding: 30px;
+				h2 {
+					font-size: 24px;
+					a {
+						color: #282828;
+
+						&:hover {
+							color: lighten(#282828, 10%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.mapbox {
+	#map {
+		height: 100%;
 	}
 }

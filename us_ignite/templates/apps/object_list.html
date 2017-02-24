@@ -57,11 +57,11 @@
             {% endfor %}
         </td>
         <td class="hide@small">
-            {% for funder in object.funder_tags.all %}
-                <li>{{ funder }}</li>
+            {% for funder in object.funder_keywords.all %}
+                {{ funder }}{% if forloop.last %}{% else %}, {% endif %} 
             {% endfor %}
         </td>
-        <td class="hide@small">{{ object.community }}</td>
+        <td class="hide@small">{{ object.hub }}</td>
     </tr>
     {% endfor%}
 

@@ -108,7 +108,6 @@
 										<p><big><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></big></p>
 										<p>{{ app.summary }}</p>
                                         
-										<p class="hide@small"><strong>{{ app.team_leader }}</strong></p>
 									</td>
 									<td class="hide@small">
 										{% for cat in app.categories.all %}
@@ -139,7 +138,7 @@
 
 			<div class="logos-a">
 				<ul>
-					{% for sponsor in sponsor_list %}
+					{% for sponsor in funding_agent_list %}
                     <li><a href="{{ sponsor.link }}"><img src="{% thumbnail sponsor.image 90x40 %}" alt="{{ sponsor.name }}" /></a></li>
                     {% endfor %}
 				</ul>

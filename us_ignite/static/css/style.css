@@ -51,54 +51,231 @@ form ul {
 
 /* line 63, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .list-a article {
-  border: 1px #ccc solid;
-  padding: 30px; }
-  /* line 68, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
-  .list-a article h3 a {
-    color: #000; }
-    /* line 71, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
-    .list-a article h3 a:hover {
-      color: #eee; }
+  border: 1px #e5e5e5 solid;
+  padding: 20px; }
+  @media screen and (max-width: 1023px) {
+    /* line 63, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .list-a article {
+      border-top: none;
+      margin-bottom: 0;
+      padding: 20px 30px; } }
+  /* line 73, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold; }
+    /* line 78, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .list-a article h3 a {
+      color: #282828; }
+      /* line 81, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .list-a article h3 a:hover {
+        color: #424242; }
+  /* line 87, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article h6 {
+    font-size: 13px;
+    color: #636363;
+    font-weight: 500;
+    text-transform: initial; }
+  /* line 94, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article p {
+    margin-bottom: 20px; }
+    /* line 96, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .list-a article p.cat {
+      font-size: 13px;
+      color: #636363;
+      font-weight: 500;
+      text-transform: initial; }
+  /* line 104, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article > div {
+    width: 66.66%;
+    margin-bottom: 0 !important; }
+  /* line 109, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article > figure {
+    width: 33.33%;
+    padding-left: 40px; }
+    @media screen and (max-width: 1023px) {
+      /* line 109, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .list-a article > figure {
+        padding-left: 0; } }
+    /* line 117, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .list-a article > figure img {
+      width: 100%; }
+  /* line 122, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article > div, .list-a article > figure {
+    float: right; }
+    @media screen and (max-width: 1023px) {
+      /* line 122, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .list-a article > div, .list-a article > figure {
+        float: none;
+        width: 100%; } }
+  /* line 131, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article:after {
+    clear: both;
+    content: "";
+    display: block;
+    position: relative; }
+  /* line 139, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .list-a article.featured figure, .list-a article.featured div {
+    float: none;
+    padding: 0;
+    width: auto; }
 
-/* line 79, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 151, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .editable-original {
   margin-bottom: 0 !important; }
 
-/* line 86, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 158, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 div.main > .one {
   width: 66.66%; }
 
-/* line 90, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 162, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 div.main > .two {
   width: 33.33%;
-  padding-left: 100px; }
+  padding-left: 80px; }
   @media screen and (max-width: 1023px) {
-    /* line 90, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 162, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     div.main > .two {
       padding-left: 0; } }
 
-/* line 98, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 170, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 div.main > .one, div.main > .two {
   margin-left: 0;
   margin-right: 0;
   float: left; }
   @media screen and (max-width: 1023px) {
-    /* line 98, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 170, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     div.main > .one, div.main > .two {
       float: none;
       width: auto; } }
 
-/* line 109, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 181, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 div.main:after {
   clear: both;
   content: "";
   display: block;
   position: relative; }
 
-/* line 117, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 189, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 body.blog {
   background-color: #fff; }
+  @media screen and (max-width: 1023px) {
+    /* line 193, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    body.blog .blog-list .main {
+      padding: 0 !important; } }
+  @media screen and (max-width: 1023px) {
+    /* line 199, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    body.blog .blog-list .page-a.contain {
+      border: none; } }
+  /* line 207, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  body.blog .blog-detail .post-title {
+    font-size: 33px;
+    line-height: 38px;
+    margin-bottom: 15px;
+    font-weight: bold; }
+    @media screen and (max-width: 1023px) {
+      /* line 207, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      body.blog .blog-detail .post-title {
+        font-size: 24px; } }
+    /* line 217, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    body.blog .blog-detail .post-title a {
+      color: #282828; }
+      /* line 220, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      body.blog .blog-detail .post-title a:hover {
+        color: #424242; }
+  /* line 226, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  body.blog .blog-detail .post-meta {
+    font-size: 13px;
+    color: #636363;
+    font-weight: 500;
+    text-transform: initial; }
+  /* line 233, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  body.blog .blog-detail p {
+    margin-bottom: 20px; }
+    /* line 235, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    body.blog .blog-detail p.cat {
+      font-size: 13px;
+      color: #636363;
+      font-weight: 500;
+      text-transform: initial; }
 
-/* line 128, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 246, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .sidebar-b .section {
-  border-top: 1px solid #ccc; }
+  border-top: 1px solid #ccc;
+  padding: 20px 0; }
+  /* line 250, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .sidebar-b .section h5 {
+    color: #636363;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase; }
+
+/* line 259, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.root-a .contain.very-narrow {
+  max-width: 850px; }
+
+/* line 263, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.featured-c {
+  list-style: none;
+  padding-left: 0;
+  margin-left: -5px;
+  margin-right: -5px;
+  margin-bottom: 50px !important; }
+  /* line 270, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .featured-c:after {
+    clear: both;
+    content: "";
+    display: block;
+    position: relative; }
+  /* line 277, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .featured-c > div {
+    float: left;
+    width: 33.33%;
+    padding-left: 5px;
+    padding-right: 5px; }
+    @media screen and (max-width: 1023px) {
+      /* line 277, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .featured-c > div {
+        float: none;
+        width: auto; } }
+    /* line 289, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    .featured-c > div article {
+      position: relative;
+      -webkit-box-shadow: 0px 3px 13px -2px rgba(0, 0, 0, 0.44);
+      -moz-box-shadow: 0px 3px 13px -2px rgba(0, 0, 0, 0.44);
+      box-shadow: 0px 3px 13px -2px rgba(0, 0, 0, 0.44);
+      -webkit-transition: box-shadow 0.3s , top 0.3s;
+      -moz-transition: box-shadow 0.3s, top 0.3s;
+      transition: box-shadow 0.3s , top 0.3s;
+      top: 0; }
+      /* line 299, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .featured-c > div article:hover {
+        top: -10px;
+        -webkit-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.44);
+        -moz-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.44);
+        box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.44); }
+      /* line 305, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .featured-c > div article figure {
+        border-bottom: 1px solid #e5e5e5; }
+      /* line 309, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .featured-c > div article p {
+        font-size: 13px;
+        color: #636363;
+        font-weight: 500;
+        text-transform: initial;
+        margin-bottom: 10px !important; }
+      /* line 316, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      .featured-c > div article > div {
+        padding: 30px; }
+        /* line 318, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+        .featured-c > div article > div h2 {
+          font-size: 24px; }
+          /* line 320, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+          .featured-c > div article > div h2 a {
+            color: #282828; }
+            /* line 323, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+            .featured-c > div article > div h2 a:hover {
+              color: #424242; }
+
+/* line 334, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.mapbox #map {
+  height: 100%; }
