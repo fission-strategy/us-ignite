@@ -1,0 +1,14 @@
+{% load thumbnail %}
+{% if object.image %}
+<img src="{% thumbnail object.image 295x145 crop %}" alt="" />
+{% else %}
+<img src="{{ STATIC_URL }}img/project-default.png" alt="" />
+{% endif %}
+<p>
+  <a href="{{ object.get_absolute_url }}">
+    {{ object.name }} {% if object.is_draft %}(DRAFT){% endif %}
+  </a>
+</p>
+<p>
+  <a href="{{ object.get_absolute_url }}">Details</a>
+</p>

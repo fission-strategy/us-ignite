@@ -8,6 +8,7 @@ from django.contrib import admin
 from us_ignite.settings import custom_admin
 
 from us_ignite.sections import views as sections
+from us_ignite.people import views as people
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
@@ -29,6 +30,7 @@ urlpatterns += i18n_patterns(
     url(r'^$', sections.home, name='home'),
     url("^admin/", include(admin.site.urls)),
     url("^apps/", include('us_ignite.apps.urls')),
+    url("^dashboard/$", people.dashboard, name='dashbpard'),
     url("^smart-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^news/", include('us_ignite.news.urls')),

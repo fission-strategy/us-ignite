@@ -9,6 +9,7 @@ from mezzanine.generic.fields import KeywordsField
 
 
 class NewsPost(BlogPost):
+    is_featured = models.BooleanField(default=False)
     excerpt = models.TextField(blank=True, null=True)
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("news.NewsPost.image", "galleries"), null=True, blank=True)

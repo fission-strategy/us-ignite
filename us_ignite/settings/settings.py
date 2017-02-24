@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import, unicode_literals
 import os
 
@@ -263,7 +262,7 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
-    'us_ignite.profiles',
+
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -290,6 +289,8 @@ INSTALLED_APPS = (
     'compressor',
     'embed_video',
 
+    'us_ignite.profiles',
+    'us_ignite.people',
     'us_ignite.apps',
     'us_ignite.news',
     # 'us_ignite.actionclusters',
