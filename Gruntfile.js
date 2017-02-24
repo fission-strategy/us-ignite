@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       js: {
-        files: 'js/**/*.js',
+        files: 'us_ignite/static/js/**/*.js',
         tasks: ['buildjs']
       }
     }

@@ -1,5 +1,6 @@
 {% load thumbnail %}
 {% load compress %}
+{% load pages_tags %}
 {% block header %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,8 @@
 </head>
 <body class="home {% block body_class %}{% endblock body_class %}">
 	{% comment %}<div id="messages">{% include "includes/messages.html" %}</div> {% endcomment %}
+    
+    <br>
     <div class="notification"></div>
 	<div class="root-a is-loading">
 	    <div class="wrap">
@@ -36,25 +39,8 @@
 	                </nav>
 	                <h2 class="toggler" data-nav-toggle><span>Menu</span></h2>
 	                <nav class="nav" id="nav">
-	                    <ul>
-	                        <li><a href="./" accesskey="1">About</a>
-	                            <ul>
-	                                <li><a href="./">What is US Ignite?</a></li>
-	                                <li><a href="./">Technologies</a></li>
-	                                <li><a href="./">Staff</a></li>
-	                                <li><a href="./">Board of Directors</a></li>
-	                                <li><a href="./">FAQ</a></li>
-	                                <li><a href="./">Partners</a></li>
-	                                <li><a href="./">Contact Us</a></li>
-	                            </ul>
-	                        </li>
-	                        <li class="is-active"><a href="./" accesskey="2">Programs</a></li>
-	                        <li><a href="./" accesskey="3">Applications</a></li>
-	                        <li><a href="./" accesskey="4">Community</a></li>
-	                        <li><a href="./" accesskey="5">News & Events</a></li>
-	                        <li class="login"><a href="./" accesskey="6">Log In</a></li>
-	                        <li class="search"><a href="#" data-search-open><span>Search </span><i class="fa fa-search"></i></a></li>
-	                    </ul>
+	                	{% page_menu "pages/menus/dropdown.html" %}
+	                    
 	                </nav>
 	            </div>
 	            <div class="search-a">
