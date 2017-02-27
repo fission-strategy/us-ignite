@@ -312,6 +312,7 @@ INSTALLED_APPS = (
     'geoposition',
     'watson',
     'adminsortable',
+    'registration',
 )
 
 AUTH_USER_MODEL = 'profiles.User'
@@ -423,3 +424,15 @@ IGNITE_MANAGERS = [
     'info@us-ignite.org',
     'jennifer.mott@us-ignite.org',
 ]
+
+# Account settings:
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL_FAILURE = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Paginator:
+PAGINATOR_PAGE_SIZE = 24
+
+# Uplaoded file restrictions:
+MAX_UPLOAD_SIZE = int(1024 * 1024 * 5)   # 5MB

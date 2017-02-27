@@ -1,9 +1,8 @@
-{% extends "registration/base.html" %}{% load browserid %}
+{% extends "registration/base.html" %}
 
 {% block title %}Registration - {{ block.super }}{% endblock title %}
 
 {% block extra_styles %}
-{% browserid_css %}
 {% endblock extra_styles %}
 
 {% block section_title %}
@@ -11,9 +10,7 @@ Registration
 {% endblock section_title %}
 
 {% block section %}
-<p>Create an account by {% include "includes/persona.html" %} using Mozilla Persona</p>
-
-<p>Or create site account:</p>
+<p>Create an account:</p>
 
 <form method="post" action=".">
   {{ form.as_p }}
@@ -25,6 +22,5 @@ Registration
 {% endblock section %}
 
 {% block extra_scripts %}
-{% browserid_js %}
 {% endblock extra_scripts %}
 

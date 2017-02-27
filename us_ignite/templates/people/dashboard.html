@@ -1,4 +1,6 @@
-{% extends "base.html" %}{% load apps_urls thumbnail common_markdown snippets_tags %}
+{% extends BASE_TEMPLATE %}
+{% load mezzanine_tags apps_urls thumbnail common_markdown snippets_tags i18n keyword_tags rating_tags i18n disqus_tags %}
+{% load snippets_tags news_tags common_markdown %}
 
 {% block title %}Dashboard - {{ block.super }}{% endblock title %}
 

@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     url("^admin/", include(admin.site.urls)),
     url("^apps/", include('us_ignite.apps.urls')),
     url("^dashboard/$", people.dashboard, name='dashbpard'),
+    url("^accounts/", include('us_ignite.profiles.urls')),
     url("^smart-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^news/", include('us_ignite.news.urls')),
