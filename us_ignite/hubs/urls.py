@@ -14,5 +14,4 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w]+)/membership/remove/$', views.hub_membership_remove,
         name='hub_membership_remove'),
     url(r'^(?P<slug>[-\w]+)/edit/$', views.hub_edit, name='hub_edit'),
-
 ]

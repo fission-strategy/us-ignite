@@ -14,6 +14,9 @@ from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
 
+
+
+
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.
@@ -32,11 +35,16 @@ urlpatterns += i18n_patterns(
     url("^apps/", include('us_ignite.apps.urls')),
     url("^dashboard/$", people.dashboard, name='dashbpard'),
     url("^accounts/", include('us_ignite.profiles.urls')),
-    url("^smart-communities/", include('us_ignite.smart_communities.urls')),
+    url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^news/", include('us_ignite.news.urls')),
     url("^testbeds/", include('us_ignite.testbeds.urls')),
     url("^global-city-teams/", include('us_ignite.gctc.urls')),
+)
+
+#for redirects
+urlpatterns += i18n_patterns(
+    url("^hubs/", include('us_ignite.hubs.urls_old')),
 )
 
 if settings.USE_MODELTRANSLATION:
