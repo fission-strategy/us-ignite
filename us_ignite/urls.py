@@ -31,20 +31,26 @@ urlpatterns += i18n_patterns(
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     url(r'^$', sections.home, name='home'),
-    url("^admin/", include(admin.site.urls)),
-    url("^apps/", include('us_ignite.apps.urls')),
     url("^dashboard/$", people.dashboard, name='dashbpard'),
+    url("^admin/", include(admin.site.urls)),
     url("^accounts/", include('us_ignite.profiles.urls')),
+
+    url("^apps/", include('us_ignite.apps.urls')),
+    url("^testbeds/", include('us_ignite.testbeds.urls')),
+    # url("^events/", include('us_ignite.news.urls_events')),
+
     url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^news/", include('us_ignite.news.urls')),
-    url("^testbeds/", include('us_ignite.testbeds.urls')),
+
     url("^global-city-teams/", include('us_ignite.gctc.urls')),
 )
 
+
 #for redirects
 urlpatterns += i18n_patterns(
-    url("^hubs/", include('us_ignite.hubs.urls_old')),
+    url("^hub/", include('us_ignite.hubs.urls_old')),
+    url("^blog/", include('us_ignite.news.urls')),
 )
 
 if settings.USE_MODELTRANSLATION:
@@ -123,6 +129,7 @@ urlpatterns += [
 
 
 ]
+
 
 # testing static file
 

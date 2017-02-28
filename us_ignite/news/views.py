@@ -72,6 +72,8 @@ def news_post_detail(request, slug, year=None, month=None, day=None,
     blog_posts = BlogPost.objects.published(
                                      for_user=request.user).select_related()
     blog_post = get_object_or_404(blog_posts, slug=slug)
+    print blog_post
+    print 'test'
     related_posts = blog_post.related_posts.published(for_user=request.user)
     context = {"blog_post": blog_post, "editable_obj": blog_post,
                "related_posts": related_posts}
@@ -88,3 +90,7 @@ def news_post_feed(request, format, **kwargs):
         return {"rss": PostsRSS, "atom": PostsAtom}[format](**kwargs)(request)
     except KeyError:
         raise Http404()
+
+# #todo EVENT STUFF
+# def event_list():
+#     pass
