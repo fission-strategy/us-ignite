@@ -279,3 +279,15 @@ body.blog {
 /* line 334, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .mapbox #map {
   height: 100%; }
+
+/* line 340, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.dashboard .page-a .main {
+  padding-top: 30px; }
+
+/* line 345, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+ul.nobullet {
+  list-style: none;
+  padding-left: 0; }
+  /* line 350, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  ul.nobullet li:before {
+    display: none; }

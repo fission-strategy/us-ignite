@@ -1,10 +1,9 @@
 {{ form.non_field_errors }}
 {% for field in form.visible_fields %}
-	<p class="fields">
+	<p class="label">
 		{% if field.errors %}{{ field.errors }}{% endif %}
-		<label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required%}<span class="field-required"> *</span>{% endif %}</label>
-		<span class="help-text"><small>{{ field.help_text }}</small></span>
-	</p>
+		<label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required%}<span class="field-required"> *</span>{% endif %} <small>{{ field.help_text }}</small></label>
+]	</p>
 	<p class="fields">
 		{{ field }}
 	</p>

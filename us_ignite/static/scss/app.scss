@@ -335,3 +335,20 @@ body.blog {
 		height: 100%;
 	}
 }
+
+.dashboard {
+	.page-a .main {
+		padding-top: 30px;
+	}
+}
+
+ul.nobullet {
+	list-style: none;
+	padding-left: 0;
+
+	li {
+		&:before {
+			display: none;
+		}
+	}
+}

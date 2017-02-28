@@ -5,44 +5,44 @@
 
 {% block title %}Login - {{ block.super }}{% endblock title %}
 
-{% block section_title %}
-Login
-{% endblock section_title %}
+{% block page_title %}Login{% endblock page_title %}
 
 {% block section %}
 
-<p>Or with a site account:</p>
+<div class="fields-a">
+	<form method="post" action="." class=" validate">
+		<p>{{ form.non_field_errors }}</p>
 
-<form method="post" action=".">
-  <p>{{ form.non_field_errors }}</p>
+		{% if form.username.errors %}
+		<p>{{ form.username.errors }}</p>
+		{% endif %}
 
-  {% if form.username.errors %}
-  <p>{{ form.username.errors }}</p>
-  {% endif %}
+		<p class="label">
+			<label for="{{ form.username.auto_id }}">Email address:</label>
+		</p>
+		<p class="fields">
+			{{ form.username }}
+		</p>
 
-  <p>
-    <label for="{{ form.username.auto_id }}">Email address:</label>
-    {{ form.username }}
-  </p>
+		{% if form.password.errors %}
+		<p>{{ form.password.errors }}</p>
+		{% endif %}
+		<p class="label">
+			{{ form.password.label_tag }}
+		</p>
+		<p class="fields">
+			{{ form.password }}
+		</p>
+		<p class="action">
+			{% csrf_token %}
+			<button type="submit">LOGIN</button>
+		</p>
+	</form>
+	<p><a href="{% url 'password_reset' %}">Forgotten password?</a></p>
 
-  {% if form.password.errors %}
-  <p>{{ form.password.errors }}</p>
-  {% endif %}
-  <p>
-    {{ form.password.label_tag }}
-    {{ form.password }}
-  </p>
-  <p>
-    {% csrf_token %}
-    <button type="submit">LOGIN</button>
-  </p>
-</form>
+	<p>New User? <a href="{% url 'registration_register' %}">Create an account</a></p>
+</div>
 
-<p><a href="{% url 'password_reset' %}">Forgotten password?</a></p>
-
-<p>New User? <a href="{% url 'registration_register' %}">Create an account</a></p>
-
-<p></p>
 {% endblock section %}
 
 {% block extra_scripts %}

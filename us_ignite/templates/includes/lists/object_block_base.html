@@ -1,24 +1,17 @@
+{% load thumbnail %}
 
-<article>
-    {% comment %}
-    <figure class="bg-a">
-    	{% load thumbnail %}
-    	<picture>
-			{% if object.image %}
-				<source media="(min-width: 1025px)" srcset="{% thumbnail object.image 280x180 crop %}" />
-				<img src="{% thumbnail object.image 280x180 crop %}" alt="{{ object.name }}" class="featured__image" />
-			{% else %}
-				<source media="(min-width: 1025px)" srcset="{{ STATIC_URL }}img/blank.png" />
-				<img src="{{ STATIC_URL }}img/blank.png" alt="{{ object.name }}" />
-			{% endif %}
-        </picture>
-    </figure>
-    {% endcomment %}
-    <a href="{{ object.get_absolute_url }}">
-    	<h4 class="hx">{{ object.name }}</h4>
-    	<p class="meta">{{ object.summary }}</p>
-        <p class="brow">
-        	{% if not hide_tags %}
+<div >
+    <article>
+        {% if object.image %}
+        <figure>
+            <a href="{{ object.get_absolute_url }}">
+                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail object.image 800x350 %}">
+            </a>
+        </figure>
+        {% endif %}
+        <div>
+            <p>
+            {% if not hide_tags %}
 				{% with object.tags.all as tag_list %}
 					{% if tag_list %}
 					<p class="featured__tags">
@@ -27,6 +20,8 @@
 					{% endif %}
 				{% endwith %}
 			{% endif %}
-       	</p>
-    </a>
-</article>
+            </p>
+            <h2><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h2>
+        </div>
+    </article>
+</div>

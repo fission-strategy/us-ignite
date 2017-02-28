@@ -25,7 +25,11 @@
     </li>
     {% endif %}
     {% endfor %}
-    <li class="login"><a href="/login" accesskey="6">Log In</a></li>
+    {% if request.user.is_authenticated %}
+        <li class="login"><a href="{% url 'auth_logout' %}" accesskey="6">Logout</a></li>
+    {% else %}
+        <li class="login"><a href="{% url 'auth_login' %}" accesskey="6">Log In</a></li>
+    {% endif %}
     <li class="search"><a href="#" data-search-open><span>Search </span><i class="fa fa-search"></i></a></li>
 </ul>
 

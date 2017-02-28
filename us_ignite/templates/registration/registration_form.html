@@ -5,20 +5,34 @@
 {% block extra_styles %}
 {% endblock extra_styles %}
 
-{% block section_title %}
+{% block page_title %}
 Registration
-{% endblock section_title %}
+{% endblock page_title %}
 
 {% block section %}
-<p>Create an account:</p>
+<h3>Create an account:</h3>
+<br>
+<div class="fields-a">
+	<form method="post" action="." class=" validate">
+		{% for field in form %}
+			<p class="label">
+				{{ field.label_tag }}
+				<small>{{ field.help_text|safe }}</small>
+			</p>
+			<p class="fields">
+	 			{{ field }}
+	 		</p>
 
-<form method="post" action=".">
-  {{ form.as_p }}
-  <p>
-    {% csrf_token %}
-    <button type="submit">REGISTER</button>
-  </p>
-</form>
+	 		{% if field.errors %}
+				<p>{{ field.errors }}</p>
+			{% endif %}
+		{% endfor %}
+		<p class="action">
+			{% csrf_token %}
+			<button type="submit">REGISTER</button>
+		</p>
+	</form>
+</div>
 {% endblock section %}
 
 {% block extra_scripts %}

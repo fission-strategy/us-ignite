@@ -4,60 +4,85 @@
 
 {% block title %}Dashboard - {{ block.super }}{% endblock title %}
 
+{% block body_class %}dashboard{% endblock body_class %}
 {% block content %}
 
-  <div class="row collapse listing-featured">
-    <div class="small-12 medium-4 columns text-center">
-      {% if object.avatar  %}
-      <img src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
-      {% else %}
-      <img src="{{ object.get_gravatar_url }}" alt="Avatar" class="profile__avatar" />
-      {% endif %}
-    </div>
+<section class="content-a" id="content">
 
-    <div class="small-12 medium-8 columns">
-      <blockquote class="profile__quote profile__quote--plain">
-        Welcome{% if object.full_name %} {{ object.full_name }}{% endif %}, <br>
-        {% snippet "profile-welcome" "snippets/profile_welcome.html" %}
-      </blockquote>
-    </div>
-  </div>
+	<div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">
+			{% if object.avatar  %}
+				<img src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
+			{% else %}
+				<img src="{{ object.get_gravatar_url }}" alt="Avatar" class="profile__avatar" />
+			{% endif %}
+			&nbsp;&nbsp;
+			{% block page_title %}Welcome{% if object.first_name %}, {{ object.first_name }} {{ object.last_name }}{% endif %} <br>
+			{% snippet "profile-welcome" "snippets/profile_welcome.html" %}{% endblock page_title %}
+			</h1>
+		</div>
+	</div>
 
-  <!-- APPS -->
-  {% include "people/includes/app_list.html" with object_list=application_list similar_list=similar_applications %}
-  <!-- /APP -->
+	<!--[if IE]><p class="browser-a">Your browser is outdated, it may not render this page properly, please <a href="http://browsehappy.com/" rel="external">upgrade</a>.</p><![endif]-->
 
-  <!-- ACTIONCLUSTERS -->
-  {% include "people/includes/actioncluster_list.html" with object_list=actioncluster_list similar_list=similar_actionclusters %}
-  <!-- /ACTIONCLUSTERS -->
+	<div class="page-a contain narrow">
+		<div class="main">
+			<article>
+				
+				Greetings from US Ignite! This is your personal dashboard with the latest information and news from US Ignite as well as links to manage your content. So take a look around, update your profile and share something with the community! If you have feedback on our new site, send it to info@us-ignite.org - US Ignite Team - See more at: https://www.us-ignite.org/dashboard/#sthash.2Y0vC1pn.dpuf
 
-  <!-- NEWS -->
-  {% include "people/includes/post_list.html" with object_list=post_list %}
-  <!-- /NEWS -->
+			</article>
+		</div>
 
-  <!-- EVENTS -->
-  {% include "people/includes/event_list.html" with object_list=hub_event_list %}
-  <!-- /EVENTS -->
+	</div>
 
-  <!-- COMMUNITIES -->
-  {% include "people/includes/hub_list.html" with object_list=hub_list %}
-  <!-- /COMMUNITIES -->
+	<!-- APPS -->
+	{% include "people/includes/app_list.html" with object_list=application_list similar_list=similar_applications %}
+	<!-- /APP -->
 
-  <!-- RESOURCES -->
-  {% include "people/includes/resource_list.html" with object_list=featured_resource_list %}
-  <!-- /RESOURCES -->
+	<!-- ACTIONCLUSTERS -->
+	{% include "people/includes/actioncluster_list.html" with object_list=actioncluster_list similar_list=similar_actionclusters %}
+	<!-- /ACTIONCLUSTERS -->
 
-  <div class="row collapse listing-featured">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-12 columns">
-          <h4 class="profile__heading profile__heading--light">MANAGE YOUR CONTENT</h4>
-        </div>
-      </div>
+	<!-- NEWS -->
+	{% include "people/includes/post_list.html" with object_list=post_list %}
+	<!-- /NEWS -->
 
-      <div class="row">
-        {% include "people/includes/content_list.html" with object_list=content_list %}
-      </div>
-    </div>
-  </div>
+	<!-- EVENTS -->
+	{% include "people/includes/event_list.html" with object_list=hub_event_list %}
+	<!-- /EVENTS -->
+
+	<!-- COMMUNITIES -->
+	{% include "people/includes/hub_list.html" with object_list=hub_list %}
+	<!-- /COMMUNITIES -->
+
+	<!-- RESOURCES -->
+	{% include "people/includes/resource_list.html" with object_list=featured_resource_list %}
+	<!-- /RESOURCES -->
+
+	
+</section>
 {% endblock content %}
+
+
+
+
+
+
+<div class="row collapse listing-featured">
+	<div class="small-12 columns">
+		<div class="row">
+			<div class="small-12 columns">
+				<h4 class="profile__heading profile__heading--light">MANAGE YOUR CONTENT</h4>
+			</div>
+		</div>
+
+		<div class="row">
+			{% include "people/includes/content_list.html" with object_list=content_list %}
+		</div>
+	</div>
+</div>
+
