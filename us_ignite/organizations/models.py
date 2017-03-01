@@ -25,6 +25,8 @@ class Organization(models.Model):
     slug = models.SlugField(max_length=255)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     bio = models.TextField(blank=True)
+    sector = models.ForeignKey('apps.Sector', blank=True, null=True)
+    categories = models.ManyToManyField('blog.BlogCategory', blank=True)
     image = models.ImageField(
         upload_to="org", blank=True, help_text=IMAGE_HELP_TEXT)
     members = models.ManyToManyField(
@@ -33,8 +35,8 @@ class Organization(models.Model):
         max_length=500, blank=True, help_text=URL_HELP_TEXT)
     interest_ignite = models.TextField(
         blank=True, help_text=u'Why are you here?')
-    # interests = models.ManyToManyField('profiles.Interest', blank=True)
-    # interests_other = models.CharField(blank=True, max_length=255)
+    interests = models.ManyToManyField('profiles.Interest', blank=True)
+    interests_other = models.CharField(blank=True, max_length=255)
     resources_available = models.TextField(
         blank=True, help_text=u'Please list what you have available to '
         'offer to the community and what you are looking for')

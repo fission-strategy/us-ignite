@@ -1,0 +1,62 @@
+{% extends "includes/lists/object_list_base.html" %}
+
+{% block title %}Organizations list - {{ block.super }}{% endblock title %}
+
+{% block page_title %}Organizations{% endblock page_title %}
+
+{% block filter_object %}
+<div class="row panel">
+  <div class="small-12 columns">
+    <h2>Get to Know these Forward-Looking Organizations. </h2>
+    <p>
+      Browse through these forward-looking organizations that are using next-generation technologies to transform everything from healthcare to education. Be sure to click on their profiles to learn more about their work and how you can get involved. 
+    </p>
+  </div>
+</div>
+{% endblock filter_object %}
+
+{% block object_table %}
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Sector</th>
+            <th scope="col">Organization</th>
+            <th scope="col">Interests</th>
+            <th scope="col">Categories</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for object in page.object_list_top %}
+    <tr>
+        <td class="hide@small">{{ object.sector }}</td>
+        <td>
+            <p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
+            <p class="hide@small">{{ object.bio }}</p>
+            <p class="hide@small"><strong>{{ object.team_leader }}</strong></p>
+        </td>
+        <td class="hide@small">
+{#        {% with blog_post.categories.all as categories %}#}
+            {% for int in object.interests.all %}
+                {{ int.name }}{% if forloop.last %}{% else %}, {% endif %}
+            {% endfor %}
+{#        {% endwith %}#}
+        </td>
+        <td class="hide@small">
+        {% with object.categories.all as categories %}
+            {% for cat in categories %}
+                {{ cat }}{% if forloop.last %}{% else %}, {% endif %}
+            {% endfor %}
+        {% endwith %}
+        </td>
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+{% endblock object_table %}
+
+{% block add_to_list %}
+{% endblock add_to_list %}
+
+{% block tags %}
+{% endblock tags %}

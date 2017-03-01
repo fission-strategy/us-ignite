@@ -39,6 +39,7 @@ urlpatterns += i18n_patterns(
     url("^testbeds/", include('us_ignite.testbeds.urls')),
     url(r'^contact/', include('us_ignite.relay.urls')),
     # url("^events/", include('us_ignite.news.urls_events')),
+    url(r'^orgs/', include('us_ignite.organizations.urls')),
 
     url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
@@ -51,6 +52,7 @@ urlpatterns += i18n_patterns(
 #for redirects
 urlpatterns += i18n_patterns(
     url("^hub/", include('us_ignite.hubs.urls_old')),
+    url('^org/', include('us_ignite.organizations.urls_old')),
     url("^blog/", include('us_ignite.news.urls')),
 )
 
