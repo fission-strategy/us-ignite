@@ -36,13 +36,17 @@ urlpatterns += i18n_patterns(
     url("^accounts/", include('us_ignite.profiles.urls')),
     url(r'^people/', include('us_ignite.people.urls')),
     url("^apps/", include('us_ignite.apps.urls')),
+    url("^communities/", include('us_ignite.hubs.urls')),
     url("^testbeds/", include('us_ignite.testbeds.urls')),
-    url(r'^contact/', include('us_ignite.relay.urls')),
-    # url("^events/", include('us_ignite.news.urls_events')),
+    #todo url("^events/", include('us_ignite.news.urls_events')),
     url(r'^orgs/', include('us_ignite.organizations.urls')),
+    # url(r'^challenges/', include('us_ignite.challenges.urls')),
+    url(r'^contact/', include('us_ignite.relay.urls')),
+    url(r'^resources/', include('us_ignite.resources.urls')),
+
 
     url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
-    url("^communities/", include('us_ignite.hubs.urls')),
+
     url("^news/", include('us_ignite.news.urls')),
 
     url("^global-city-teams/", include('us_ignite.gctc.urls')),
