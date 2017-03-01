@@ -8,12 +8,17 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
-from models import NewsPost as BlogPost
-from models import Link
 
 from mezzanine.conf import settings
 from mezzanine.generic.models import Keyword
 from mezzanine.utils.views import paginate
+
+from models import NewsPost as BlogPost
+from models import Link
+from mezzanine.blog.models import BlogCategory
+
+
+
 # Create your views here.
 
 
