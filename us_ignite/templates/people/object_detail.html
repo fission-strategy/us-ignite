@@ -10,7 +10,15 @@
 		<!-- you can art direct image using <picture> here too if needed -->
 		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
 		<div class="contain narrow">
-			<h1 class="hx">{% block page_title %}{{ object.first_name }} {{ object.last_name }}{% endblock page_title %}</h1>
+			<h1 class="hx">
+				{% block page_title %}
+					{% if object.first_name %}
+						 {{ object.first_name }} {{ object.last_name }}
+					{% else %}
+						{{ object.username }}
+					{% endif %}
+				{% endblock page_title %}
+			</h1>
 		</div>
 	</div>
 

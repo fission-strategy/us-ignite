@@ -15,13 +15,22 @@
 		<div class="contain narrow">
 			<h1 class="hx">
 			{% if object.avatar  %}
-				<img src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
+				<img class="avatar" src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
 			{% else %}
-				<img src="{{ object.get_gravatar_url }}" alt="Avatar" height="80" width="80" class="profile__avatar" />
+				<img class="avatar" src="{{ object.get_gravatar_url }}" alt="Avatar" height="80" width="80" class="profile__avatar" />
 			{% endif %}
 			&nbsp;&nbsp;
-			{% block page_title %}Welcome{% if object.first_name %}, {{ object.first_name }} {{ object.last_name }}{% endif %} <br>
-			{% snippet "profile-welcome" "snippets/profile_welcome.html" %}{% endblock page_title %}
+			{% block page_title %}
+			<span>
+				Welcome, 
+				{% if object.first_name %}
+					 {{ object.first_name }} {{ object.last_name }}
+				{% else %}
+					{{ object.username }}
+				{% endif %}
+			</span> <br>
+			{% snippet "profile-welcome" "snippets/profile_welcome.html" %}
+			{% endblock page_title %}
 			</h1>
 		</div>
 	</div>

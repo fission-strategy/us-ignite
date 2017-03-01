@@ -60,9 +60,6 @@ class User(AbstractUser):
     objects = models.Manager()
     active = managers.ProfileActiveManager()
 
-    def __unicode__(self):
-        return u'Profile for %s' % self.username
-
     def get_absolute_url(self):
         return reverse('profile_detail', args=[self.slug])
 
