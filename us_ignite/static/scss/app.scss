@@ -356,13 +356,24 @@ body.blog {
 	}
 }
 
-ul.nobullet {
-	list-style: none;
-	padding-left: 0;
+ul {
 
-	li {
-		&:before {
-			display: none;
+	&.nobullet {
+		list-style: none;
+		padding-left: 0;
+
+		li {
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+	&.cat-list {
+		margin-bottom: 30px !important;
+
+		&:last-child {
+			margin-bottom: 10px !important;
 		}
 	}
 }

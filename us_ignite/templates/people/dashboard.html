@@ -17,7 +17,7 @@
 			{% if object.avatar  %}
 				<img src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
 			{% else %}
-				<img src="{{ object.get_gravatar_url }}" alt="Avatar" class="profile__avatar" />
+				<img src="{{ object.get_gravatar_url }}" alt="Avatar" height="80" width="80" class="profile__avatar" />
 			{% endif %}
 			&nbsp;&nbsp;
 			{% block page_title %}Welcome{% if object.first_name %}, {{ object.first_name }} {{ object.last_name }}{% endif %} <br>

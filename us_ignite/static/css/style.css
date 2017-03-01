@@ -300,67 +300,74 @@ body.blog {
     margin: 0;
     padding-left: 0; }
 
-/* line 359, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 361, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 ul.nobullet {
   list-style: none;
   padding-left: 0; }
-  /* line 364, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 366, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   ul.nobullet li:before {
     display: none; }
 
-/* line 370, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 372, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+ul.cat-list {
+  margin-bottom: 30px !important; }
+  /* line 375, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  ul.cat-list:last-child {
+    margin-bottom: 10px !important; }
+
+/* line 381, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .featured-d {
   margin-left: -10px;
   margin-right: -10px;
   margin-bottom: 30px !important; }
-  /* line 375, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 386, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .featured-d:after {
     clear: both;
     content: "";
     display: block;
     position: relative; }
-  /* line 382, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 393, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .featured-d > div {
     float: left;
     width: 33.33%;
     padding-left: 10px;
     padding-right: 10px; }
     @media screen and (max-width: 1023px) {
-      /* line 382, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      /* line 393, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
       .featured-d > div {
         float: none;
         width: auto; } }
-    /* line 394, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 405, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .featured-d > div article figure {
       margin-bottom: 10px; }
-      /* line 397, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      /* line 408, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
       .featured-d > div article figure img {
         width: 100%; }
-    /* line 402, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 413, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .featured-d > div article h4 {
       margin-bottom: 0px; }
 
-/* line 413, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 424, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .stButton .stBubble_count {
   padding-top: 5px !important; }
 
-/* line 417, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 428, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .sidebar-list-link {
   display: block; }
-  /* line 420, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 431, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .sidebar-list-link:after {
     clear: both;
     content: "";
     display: block;
     position: relative; }
-  /* line 427, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 438, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .sidebar-list-link > div {
     float: left;
     padding-left: 10px;
     padding-right: 10px; }
-    /* line 432, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 443, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .sidebar-list-link > div.thumb {
       width: 20%; }
-    /* line 436, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 447, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .sidebar-list-link > div.text {
       width: 80%; }
