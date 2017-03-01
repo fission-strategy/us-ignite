@@ -64,17 +64,21 @@ def news_post_list(request, tag=None, year=None, month=None, username=None,
 
 def news_post_detail(request, slug, year=None, month=None, day=None,
                      template="blog/blog_post_detail.html",
-                     extra_context=None):
+                     extra_context=None,
+                     ):
     """. Custom templates are checked for using the name
     ``blog/blog_post_detail_XXX.html`` where ``XXX`` is the blog
     posts's slug.
     """
     blog_posts = BlogPost.objects.published(
                                      for_user=request.user).select_related()
+
     blog_post = get_object_or_404(blog_posts, slug=slug)
-    print blog_post
-    print 'test'
-    related_posts = blog_post.related_posts.published(for_user=request.user)
+    # related_posts = blog_post.related_posts.published(for_user=request.user)[:3]
+    query_kwargs = {'categories_new__in': blog_post.categories_new.all(),
+                    }
+    related_posts = BlogPost.objects.published().select_related('user').filter(is_featured=True, **query_kwargs).distinct().order_by('user', '-publish_date', 'program')[:3]
+
     context = {"blog_post": blog_post, "editable_obj": blog_post,
                "related_posts": related_posts}
     context.update(extra_context or {})
