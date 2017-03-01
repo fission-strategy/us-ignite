@@ -90,11 +90,11 @@ def get_hub_owned_list(contact, viewer=None):
         qs_kwargs.update({'status': Hub.PUBLISHED})
     return Hub.objects.filter(**qs_kwargs)
 
-def get_actioncluster_owned_list(contact, viewer=None):
-    qs_kwargs = {'contact': contact}
-    if not contact or not contact == viewer:
-        qs_kwargs.update({'status': ActionCluster.PUBLISHED})
-    return ActionCluster.objects.filter(**qs_kwargs)
+# def get_actioncluster_owned_list(contact, viewer=None):
+#     qs_kwargs = {'contact': contact}
+#     if not contact or not contact == viewer:
+#         qs_kwargs.update({'status': ActionCluster.PUBLISHED})
+#     return ActionCluster.objects.filter(**qs_kwargs)
 
 def get_organization_list(user, viewer=None):
     qs_kwargs = {'user': user}
@@ -148,24 +148,23 @@ def get_featured_events(limit=2):
 def profile_detail(request, slug):
     """Public profile of a user."""
     profile = get_object_or_404(
-        Profile.active.select_related('user'), slug__exact=slug)
-    user = profile.user
-    is_owner = profile.user == request.user
+        Profile.active, slug__exact=slug)
+    # is_owner = profile.user == request.user
     # Content available when the ``User`` owns this ``Profile``:
-    hub_request_list = HubRequest.objects.filter(user=user) if is_owner else []
-    actioncluster_list = list(get_actioncluster_list(user, viewer=request.user))
-    get_hub_list(user, viewer=request.user)
+    hub_request_list = HubRequest.objects.filter(user=profile) if profile else []
+    # actioncluster_list = list(get_actioncluster_list(user, viewer=request.user))
+    get_hub_list(profile, viewer=request.user)
     context = {
         'object': profile,
-        'is_owner': is_owner,
-        'application_list': get_application_list(user, viewer=request.user),
-        'event_list': get_event_list(user, viewer=request.user),
-        'resource_list': get_resource_list(user, viewer=request.user),
-        'hub_list': get_hub_list(user, viewer=request.user),
+        'is_owner': profile,
+        'application_list': get_application_list(profile, viewer=request.user),
+        'event_list': get_event_list(profile, viewer=request.user),
+        'resource_list': get_resource_list(profile, viewer=request.user),
+        'hub_list': get_hub_list(profile, viewer=request.user),
         'hub_request_list': hub_request_list,
-        'organization_list': get_organization_list(user, viewer=request.user),
-        'award_list': get_award_list(user, viewer=request.user),
-        'actioncluster_list': actioncluster_list[:3],
+        'organization_list': get_organization_list(profile, viewer=request.user),
+        'award_list': get_award_list(profile, viewer=request.user),
+        # 'actioncluster_list': actioncluster_list[:3],
     }
     return TemplateResponse(request, 'people/object_detail.html', context)
 

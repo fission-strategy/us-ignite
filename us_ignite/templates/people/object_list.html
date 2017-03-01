@@ -10,7 +10,7 @@
 {% block top_panel %}
 {% endblock top_panel %}
 
-{% block object_list %}
+{% block filter_object %}
 <div class="row">
 {% for object in page.object_list_top %}
   <div class="columns large-3{% if forloop.last %} end{% endif %}">
@@ -18,7 +18,7 @@
   </div>
 {% endfor%}
 </div>
-{% endblock object_list %}
+{% endblock filter_object %}
 
 {% block add_to_list %}
 {% endblock add_to_list %}

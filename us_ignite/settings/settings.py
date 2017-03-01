@@ -307,6 +307,7 @@ INSTALLED_APPS = (
     'us_ignite.snippets',
     'us_ignite.gctc',
     'us_ignite.resources',
+    'us_ignite.relay',
 
     'taggit',
     'geoposition',
