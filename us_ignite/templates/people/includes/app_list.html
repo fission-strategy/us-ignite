@@ -1,33 +1,30 @@
 {% load snippets_tags news_tags common_markdown %}
 <div class="page-a contain narrow">
-	<div class="main">
-		<h2>MY APPS</h2>
+	<div class="main" data-mh="my-group">
+		<h3>MY APPS</h3>
 		{% if object_list %}
+			<div class="featured-d">
 			{% for object in object_list %}
 				{% if forloop.counter <= 3 %}
-					<div>
-					{% include "includes/lists/object_block_base.html" with object=object %}
-					</div>
+					{% include "includes/lists/object_block_dashboard_base.html" with object=object %}
 				{% endif %}
 			{% endfor %}
+			</div>
 		{% else %}
 			<div>
 				<p>You haven't created an app yet.</p>
 				<a class="button primary expand space-top" href="{% url 'app_add' %}">CREATE APPLICATION</a>
 			</div>
 		{% endif %}
+
 	</div>
-	<div class="side sidebar-a hide show@large">
+	<div class="side sidebar-a hide show@large" data-mh="my-group">
 		<div class="section">
 			<h4 class="hx">YOU MAY ALSO LIKE THESE APPS</h4>
 			<ul class="nobullet sidebar__list">
-	          <li class="sidebar__list__item">
-
 	            {% for object in similar_list %}
 	              {% include "people/includes/object_headline_mini.html" with object=object %}
 	            {% endfor %}
-
-	          </li>
 	        </ul>
 		</div>
 	</div>

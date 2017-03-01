@@ -1,0 +1,35 @@
+{% load thumbnail %}
+
+<div>
+	<article>
+	   	{% if object.image %}
+        <figure>
+            <a href="{{ object.get_absolute_url }}">
+                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail object.image 800x400 %}">
+            </a>
+        </figure>
+        {% else %}
+        <figure>
+            <a href="{{ object.get_absolute_url }}">
+                <img class="img-thumbnail " src="http://placehold.it/800x400">
+            </a>
+        </figure>
+        {% endif %}
+	    <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>
+	    <div>
+	        {% if not hide_tags %}
+				{% with object.tags.all as tag_list %}
+					{% if tag_list %}
+					<p class="featured__tags">
+						<small>
+						{% for cat in object.categories.all %}
+							{{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+						{% endfor %}
+						</small>
+					</p>
+					{% endif %}
+				{% endwith %}
+			{% endif %}
+	    </div>
+	</article>
+</div>

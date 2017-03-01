@@ -1,41 +1,59 @@
-<!-- FULL ROW -->
+{% load snippets_tags news_tags common_markdown thumbnail %}
+<div class="page-a contain narrow">
+	<div class="main" data-mh="my-group2">
+		<h3>LATEST NEWS</h3>
+		{% if object_list %}
+		<div class="featured-d">
+			{% for object in object_list %}
+			{% if forloop.counter <= 3 %}
 
-<div class="row collapse l-listings l-listings--full">
-  <article class="large-8 medium-9 small-12 columns listings profile">
-    <div class="row">
-      <div class="small-12 columns">
-        <h4 class="listings__listing__heading listings__listing__heading--plain">LATEST NEWS</h4>
+			<div>
+				<article>
+				   	{% if object.image %}
+			        <figure>
+			            <a href="{{ object.get_absolute_url }}">
+			                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail object.image 800x400 %}">
+			            </a>
+			        </figure>
+			        {% else %}
+			        <figure>
+			            <a href="{{ object.get_absolute_url }}">
+			                <img class="img-thumbnail " src="http://placehold.it/800x400">
+			            </a>
+			        </figure>
+			        {% endif %}
+				    <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
+				    <div>
+						{% if object.categories_new.all %}
+			                <p class="cat">
+			                <small>
+			                Categories:
+			                {% for category in object.categories_new.all %}
+			                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+			                {% endfor %}
+			                </small>
+			                </p>
+			            {% endif %}
+				    </div>
+				</article>
+			</div>
 
-        {% for object in object_list %}
-        {% if forloop.counter <= 2 %}
-          {% include "blog/object_block.html" with object=object %}
-        {% endif %}
-        {% endfor %}
-       
-      </div>
-    </div>
-  </article>
+			{% endif %}
+			{% endfor %}
+		</div>
+		{% endif %}
 
-  <aside class="large-4 medium-3 show-for-medium-up columns sidebar">{% load snippets_tags news_tags common_markdown %}
-    <div class="row">
-      <div class="large-12 columns">
-        <h3 class="sidebar__heading">IN CASE YOU MISSED THIS NEWS</h3>
-
-        
-        <ul class="no-bullet sidebar__list">
-          <li class="sidebar__list__item">
-            
-            {% for object in object_list %}
-            {% if forloop.counter > 2 %}
-              {% include "people/includes/object_headline_mini.html" with object=object %}
-            {% endif %}
-            {% endfor %}
-
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </aside>
+	</div>
+	<div class="side sidebar-a hide show@large" data-mh="my-group2">
+		<div class="section">
+			<h4 class="hx">IN CASE YOU MISSED THIS NEWS</h4>
+			<ul class="nobullet sidebar__list">
+				{% for object in object_list %}
+				{% if forloop.counter > 2 %}
+				{% include "people/includes/object_headline_mini.html" with object=object %}
+				{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 </div>
-<!-- /FULL ROW -->
