@@ -31,7 +31,7 @@ urlpatterns += i18n_patterns(
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     url(r'^$', sections.home, name='home'),
-    url("^dashboard/$", people.dashboard, name='dashbpard'),
+    url("^dashboard/$", people.dashboard, name='dashboard'),
     url("^admin/", include(admin.site.urls)),
     url("^accounts/", include('us_ignite.profiles.urls')),
     url(r'^people/', include('us_ignite.people.urls')),

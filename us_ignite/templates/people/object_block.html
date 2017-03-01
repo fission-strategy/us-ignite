@@ -1,18 +1,44 @@
-{% load thumbnail %}<a class="row collapse featured featured--fixed-height featured__link" href="{{ object.get_absolute_url }}" title="{{ object.display_name }}">
-  <div class="featured__image-container hide-on-hover show-for-medium-up medium-4 large-12 columns">
-    {% if object.avatar  %}
-    <img src="{% thumbnail object.avatar 100x100 crop %}" alt="" />
-    {% else %}
-    <img src="{{ object.get_gravatar_url }}" alt="{{ object.display_name }}" class="featured__image" />
-    {% endif %}
-  </div>
+{% load thumbnail %}
+{% comment %}
+<a class="row collapse featured featured--fixed-height featured__link" href="{{ object.get_absolute_url }}" title="{{ object.display_name }}">
+<div class="featured__image-container hide-on-hover show-for-medium-up medium-4 large-12 columns">
+	{% if object.avatar  %}
+	<img src="{% thumbnail object.avatar 100x100 crop %}" alt="" />
+	{% else %}
+	<img src="{{ object.get_gravatar_url }}" alt="{{ object.display_name }}" class="featured__image" />
+	{% endif %}
+</div>
 
-  <div class="small-10 medium-8 large-12 columns">
-    <h4 class="featured__title">{{ object.display_name }}</h4>
-    <p class="featured__desc show-only-on-hover">{{ object.bio|truncatewords:30 }}</p>
-    <div class="alert button small show-only-on-hover featured__cta">VIEW DETAILS</div>
-  </div>
+<div class="small-10 medium-8 large-12 columns">
+	<h4 class="featured__title">{{ object.display_name }}</h4>
+	<p class="featured__desc show-only-on-hover">{{ object.bio|truncatewords:30 }}</p>
+	<div class="alert button small show-only-on-hover featured__cta">VIEW DETAILS</div>
+</div>
 
-  <div class="small-1 small-offset-1 show-for-small-only columns block-arrow-right"></div>
+<div class="small-1 small-offset-1 show-for-small-only columns block-arrow-right"></div>
 
 </a>
+{% endcomment %}
+
+<div>
+	<article>
+		{% if object.avatar  %}
+		<figure>
+			<a href="{{ object.get_absolute_url }}">
+				<img src="{% thumbnail object.avatar 300x300 crop %}" alt="{{ object.display_name }}" />
+			</a>
+		</figure>
+		{% else %}
+		<figure>
+			<a href="{{ object.get_absolute_url }}">
+				<img src="{{ object.get_gravatar_url }}" alt="{{ object.display_name }}" />
+			</a>
+		</figure>
+		{% endif %}
+		
+		<h4><a href="{{ object.get_absolute_url }}">{{ object.display_name }}</a></h4>
+		<div>
+			{# <a class="button-a" href="{{ object.get_absolute_url }}">View Details</a> #}
+		</div>
+	</article>
+</div>

@@ -15,23 +15,6 @@
 
 	<div class="page-a contain">
 		<div class="main">
-			{% comment %}
-			{% block sector_list %}{% endblock sector_list %}
-			{% block object_list %}{% endblock object_list %}
-			{% block featured %}
-			{% if featured_list %}
-			<div class="row collapse">
-				<div class="small-12 columns">
-					<div class="row listing-featured">
-						{% for featured in featured_list %}
-						{% include "includes/lists/object_block_featured.html" with object=featured last=forloop.last %}
-						{% endfor%}
-					</div>
-				</div>
-			</div>
-			{% endif %}
-			{% endblock %}
-			{% endcomment %}
 
 			{% block intro %}{% endblock intro %}
 
