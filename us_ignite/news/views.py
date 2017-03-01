@@ -74,10 +74,13 @@ def news_post_detail(request, slug, year=None, month=None, day=None,
                                      for_user=request.user).select_related()
 
     blog_post = get_object_or_404(blog_posts, slug=slug)
-    # related_posts = blog_post.related_posts.published(for_user=request.user)[:3]
-    query_kwargs = {'categories_new__in': blog_post.categories_new.all(),
-                    }
-    related_posts = BlogPost.objects.published().select_related('user').filter(is_featured=True, **query_kwargs).distinct().order_by('user', '-publish_date', 'program')[:3]
+    related_posts = blog_post.related_posts.published(for_user=request.user)[:3]
+    if not related_posts:
+        query_kwargs = {'categories__in': blog_post.categories.all()}
+        related_posts = (BlogPost.objects.published().select_related('user')
+                         .filter(is_featured=True, **query_kwargs)
+                         .distinct()
+                         .order_by('user', '-publish_date', 'program')[:3])
 
     context = {"blog_post": blog_post, "editable_obj": blog_post,
                "related_posts": related_posts}

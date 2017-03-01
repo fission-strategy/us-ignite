@@ -108,7 +108,9 @@ class ApplicationBase(TimeStamped):
     website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
-    categories = models.ManyToManyField("apps.Category", blank=True)
+    categories = models.ManyToManyField("blog.BlogCategory",
+                                        verbose_name=_("Categories"),
+                                        blank=True)
     funder_keywords = KeywordsField(verbose_name=_("Funders"), help_text="A comma-separated list of Funders")
     year = models.ForeignKey('apps.Year', blank=True, null=True)
     summary = models.TextField(

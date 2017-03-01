@@ -43,19 +43,23 @@
 
             {{ blog_post.content|richtext_filters|safe }}
 
+
+
+            {% if blog_post.categories.all %}
+                <p class="cat">
+                {% trans "Categories" %}:
+                {% with blog_post.categories.all as categories %}
+                {% for category in categories %}
+                <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                {% endwith %}
+                </p>
+            {% endif %}
+
             <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
             <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
             <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
             <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
-
-            {% if blog_post.categories_new.all %}
-                <p class="cat">
-                {% trans "Categories" %}: 
-                {% for category in blog_post.categories_new.all %}
-                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-                </p>
-            {% endif %}
 
             
         </div>

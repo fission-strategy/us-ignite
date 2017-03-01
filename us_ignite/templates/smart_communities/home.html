@@ -110,9 +110,11 @@
                                         
 									</td>
 									<td class="hide@small">
-										{% for cat in app.categories.all %}
-											{{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+                                        {% with app.categories.all as categories %}
+										{% for cat in categories %}
+											{{ cat }}{% if forloop.last %}{% else %}, {% endif %}
 										{% endfor %}
+                                        {% endwith %}
 										
 									</td>
 									<td class="hide@small">

@@ -52,9 +52,11 @@
             <p class="hide@small"><strong>{{ object.team_leader }}</strong></p>
         </td>
         <td class="hide@small">
-            {% for cat in object.categories.all %}
-                {{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+        {% with blog_post.categories.all as categories %}
+            {% for cat in categories %}
+                {{ cat }}{% if forloop.last %}{% else %}, {% endif %}
             {% endfor %}
+        {% endwith %}
         </td>
         <td class="hide@small">
             {% for funder in object.funder_keywords.all %}

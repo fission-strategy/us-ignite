@@ -68,12 +68,14 @@
 
                             <p>{{ blog_post.description }}</p>
 
-                            {% if blog_post.categories_new.all %}
+                            {% if blog_post.categories.all %}
                                 <p class="cat">
                                 {% trans "Categories" %}:
-                                {% for category in blog_post.categories_new.all %}
-                                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                                {% with app.categories.all as categories %}
+                                {% for category in categories %}
+                                <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
                                 {% endfor %}
+                                {% endwith %}
                                 </p>
                             {% endif %}
                         </div>

@@ -22,6 +22,7 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_filter = ['stage', 'status', 'created', ]
     exclude = ['keywords',]
     date_hierarchy = 'created'
+    filter_horizontal = ("categories", "features")
 
     inlines = [ApplicationURLInline, ApplicationMediaInline]
 

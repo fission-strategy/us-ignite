@@ -19,7 +19,7 @@ from .models import FundingPartner
 
 def home_view(request):
     sector_list = Sector.objects.all()
-
+    app_list = {}
     for sector in sector_list:
         app_list[sector.slug] = Application.objects.filter(status=Application.PUBLISHED,
                                                            sector__slug=sector.slug,
