@@ -12,26 +12,21 @@ from django.utils.translation import ugettext_lazy as _
 from mezzanine.conf import settings
 from mezzanine.generic.models import Keyword
 from mezzanine.utils.views import paginate
+from mezzanine.blog.models import BlogCategory
 
 from models import NewsPost as BlogPost
 from models import Link
-from mezzanine.blog.models import BlogCategory
 
-
-
-# Create your views here.
+from us_ignite.apps.models import Sector, Program
 
 
 User = get_user_model()
 
-def news_post_list(request, tag=None, year=None, month=None, username=None,
+def news_post_list(request, year=None, month=None, username=None,
                    category=None, template="blog/blog_post_list.html",
                    extra_context=None, program=None):
     templates = []
     blog_posts = BlogPost.objects.published(for_user=request.user)
-    if tag is not None:
-        tag = get_object_or_404(Keyword, slug=tag)
-        blog_posts = blog_posts.filter(keywords__keyword=tag)
     if year is not None:
         blog_posts = blog_posts.filter(publish_date__year=year)
         if month is not None:
@@ -53,6 +48,13 @@ def news_post_list(request, tag=None, year=None, month=None, username=None,
         blog_posts = blog_posts.filter(user=author)
         templates.append(u"blog/blog_post_list_%s.html" % username)
 
+    sidebar_lists = {
+        'categories': BlogCategory.objects.all(),
+        'sectors':  Sector.objects.all(),
+        'programs': Program.objects.all(),
+    }
+
+
     prefetch = ("categories", "keywords__keyword")
     blog_posts = blog_posts.select_related("user").prefetch_related(*prefetch)
     blog_posts = paginate(blog_posts, request.GET.get("page", 1),
@@ -60,8 +62,8 @@ def news_post_list(request, tag=None, year=None, month=None, username=None,
                           settings.MAX_PAGING_LINKS)
     links = Link.objects.filter(status=Link.PUBLISHED).all()[:3]
     context = {"blog_posts": blog_posts, "year": year, "month": month,
-               "tag": tag, "category": category, "author": author,
-               "links": links,}
+               "category": category, "author": author,
+               "links": links, "sidebar_lists": sidebar_lists}
     context.update(extra_context or {})
     templates.append(template)
     return TemplateResponse(request, templates, context)

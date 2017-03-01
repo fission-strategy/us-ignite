@@ -101,10 +101,14 @@
                 <div class="sidebar-b hide@medium hide@small">
                     <div class="section ">
                         <h4 class="hx">CATEGORIES</h4>
-                        <h5>Programs</h5>
+                        {% for title_key, title_val in sidebar_lists.items %}
+                        <h5>{{ title_key }}</h5>
                         <ul>
-                            <li><a>Global City Teams Challenge</a></li>
+                        {% for slv in title_val %}
+                            <li><a href="{{ slv.slug }}">{{ slv }}</a></li>
+                        {% endfor %}
                         </ul>
+                        {% endfor %}
                     </div>
                     <div class="section ">
                         <h4 class="hx">Stay Informed</h4>
