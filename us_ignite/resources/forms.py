@@ -42,4 +42,4 @@ class ResourceForm(forms.ModelForm):
         model = Resource
         fields = ('name', 'status', 'description', 'url', 'asset',
                   'resource_type', 'sector', 'author', 'organization',
-                  'image', 'resource_date', 'tags')
+                  'image', 'resource_date', 'categories')

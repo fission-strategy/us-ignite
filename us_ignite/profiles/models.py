@@ -40,9 +40,9 @@ class User(AbstractUser):
 
     category = models.ForeignKey(
         'blog.BlogCategory', blank=True, null=True,
-        verbose_name=u'I associate most with',
+        verbose_name=u'Category I associate the most with',
         related_name='provile_category')
-    category_other = models.ManyToManyField('blog.BlogCategory', blank=True,
+    categories_other = models.ManyToManyField('blog.BlogCategory', blank=True,
                                             verbose_name=u'Other categories I associate with',
                                             related_name='profile_category_other')
     is_public = models.BooleanField(default=False,
@@ -61,7 +61,7 @@ class User(AbstractUser):
     active = managers.ProfileActiveManager()
 
     def __unicode__(self):
-        return u'Profile for %s' % self.user
+        return u'Profile for %s' % self.username
 
     def get_absolute_url(self):
         return reverse('profile_detail', args=[self.slug])

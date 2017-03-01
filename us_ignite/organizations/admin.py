@@ -8,6 +8,9 @@ class OrganizationMembershipInline(admin.TabularInline):
     model = OrganizationMember
 
 
+
+
+
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'status', 'created')
     search_fields = ('name', 'slug', 'bio')
@@ -15,6 +18,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     inlines = [OrganizationMembershipInline]
     prepopulated_fields = {"slug": ("name",)}
+    filter_horizontal = ("interests", "categories")
 
 
 admin.site.register(Organization, OrganizationAdmin)

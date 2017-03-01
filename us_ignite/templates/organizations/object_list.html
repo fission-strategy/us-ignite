@@ -1,28 +1,16 @@
 {% extends "includes/lists/object_list_base.html" %}
 
-{% block title %}Resources - {{ block.super }}{% endblock title %}
+{% block title %}Organizations list - {{ block.super }}{% endblock title %}
 
-{% block page_title %}Resources{% endblock page_title %}
+{% block page_title %}Organizations{% endblock page_title %}
 
 {% block filter_object %}
 <div class="row panel">
   <div class="small-12 columns">
-    <h2>Browse our Resource Library</h2>
+    <h2>Get to Know these Forward-Looking Organizations. </h2>
     <p>
-      Looking for resources on next-generation technologies? If so, you’ve come
-      to the right place! Take some time and browse these top-notch presentations,
-      articles, white papers, community fiber plans and more. We also strongly
-      encourage you to add your own resources to the library so they can be
-      shared with our entire community!
+      Browse through these forward-looking organizations that are using next-generation technologies to transform everything from healthcare to education. Be sure to click on their profiles to learn more about their work and how you can get involved. 
     </p>
-  </div>
-</div>
-<div class="row newsletter newsletter--primary">
-  <div class="small-12 medium-8 columns newsletter__column">
-    <h4 class="newsletter__heading"><strong>GOT A GREAT IDEA FOR A RESOURCE?</strong> TELL US ABOUT IT...</h4>
-  </div>
-  <div class="small-12 medium-4 columns newsletter__column">
-    <a href="{% url 'resource_add' %}" class="button alert postfix">SUBMIT YOUR RESOURCE</a>{% csrf_token %}
   </div>
 </div>
 {% endblock filter_object %}
@@ -44,10 +32,9 @@
         <td class="hide@small">{{ object.sector }}</td>
         <td>
             <p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
-            <p class="hide@small">{{ object.description }}</p>
+            <p class="hide@small">{{ object.bio }}</p>
             <p class="hide@small"><strong>{{ object.team_leader }}</strong></p>
         </td>
-        <td class="hide@small">{{ object.organization }}</td>
         <td class="hide@small">
 {#        {% with blog_post.categories.all as categories %}#}
             {% for int in object.interests.all %}
@@ -68,8 +55,8 @@
 </table>
 {% endblock object_table %}
 
-{% block domain_list %}
-{% include "includes/domain_list.html" with domain_all_link='resource_list' domain_link='resource_list_domain' %}
-{% endblock domain_list %}
+{% block add_to_list %}
+{% endblock add_to_list %}
 
-{% block tags %}{% endblock tags %}
+{% block tags %}
+{% endblock tags %}

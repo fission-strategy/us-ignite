@@ -56,7 +56,8 @@ class Resource(models.Model):
         'resources.ResourceType', blank=True, null=True,
         on_delete=models.SET_NULL)
     sector = models.ForeignKey(
-        'resources.Sector', blank=True, null=True, on_delete=models.SET_NULL)
+        'apps.Sector', blank=True, null=True, on_delete=models.SET_NULL)
+    categories = models.ManyToManyField('blog.BlogCategory', blank=True)
     contact = models.ForeignKey(
         'profiles.User', blank=True, null=True, on_delete=models.SET_NULL,
         related_name='resource_contact_set')
@@ -75,7 +76,6 @@ class Resource(models.Model):
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
         help_text=u'If marked this element will be shown in the homepage.')
-    tags = TaggableManager(blank=True)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 

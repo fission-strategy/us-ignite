@@ -9,6 +9,8 @@ class ResourceAdmin(admin.ModelAdmin):
     list_filter = ('is_featured', 'created')
     date_hierarchy = 'created'
     raw_id_fields = ['contact']
+    filter_horizontal = ("categories",)
+
 
 
 class ResourceTypeAdmin(admin.ModelAdmin):

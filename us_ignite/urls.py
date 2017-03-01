@@ -36,13 +36,22 @@ urlpatterns += i18n_patterns(
     url("^accounts/", include('us_ignite.profiles.urls')),
     url(r'^people/', include('us_ignite.people.urls')),
     url("^apps/", include('us_ignite.apps.urls')),
+    url("^communities/", include('us_ignite.hubs.urls')),
     url("^testbeds/", include('us_ignite.testbeds.urls')),
+    #todo url("^events/", include('us_ignite.news.urls_events')),
+    url(r'^orgs/', include('us_ignite.organizations.urls')),
+    # url(r'^challenges/', include('us_ignite.challenges.urls')),
     url(r'^contact/', include('us_ignite.relay.urls')),
-    # url("^events/", include('us_ignite.news.urls_events')),
+    url(r'^resources/', include('us_ignite.resources.urls')),
+    url("^news/", include('us_ignite.news.urls')),
+    #todo url(r'^search/', include('us_ignite.search.urls')),
+    #todo url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
+    #todo url(r'^overview/', include('us_ignite.visualize.urls')),
+
 
     url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
-    url("^communities/", include('us_ignite.hubs.urls')),
-    url("^news/", include('us_ignite.news.urls')),
+
+
 
     url("^global-city-teams/", include('us_ignite.gctc.urls')),
 )
@@ -51,6 +60,7 @@ urlpatterns += i18n_patterns(
 #for redirects
 urlpatterns += i18n_patterns(
     url("^hub/", include('us_ignite.hubs.urls_old')),
+    url('^org/', include('us_ignite.organizations.urls_old')),
     url("^blog/", include('us_ignite.news.urls')),
 )
 
