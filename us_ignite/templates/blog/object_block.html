@@ -44,38 +44,38 @@
 {#</div>#}
 {% load thumbnail %}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags %}
-                {% for blog_post in blog_posts.object_list %}
-                    <article>
-                        <figure>
-                            {% if blog_post.image %}
-                            <a href="{{ blog_post.get_absolute_url }}">
-                                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail blog_post.image 1000 1000 %}">
-                            </a>
-                            {% endif %}
-                        </figure>
-                        <div>
-                            <h3>
-                                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
-                            </h3>
+{% for blog_post in blog_posts.object_list %}
+    <article>
+        <figure>
+            {% if blog_post.image %}
+            <a href="{{ blog_post.get_absolute_url }}">
+                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail blog_post.image 1000 1000 %}">
+            </a>
+            {% endif %}
+        </figure>
+        <div>
+            <h3>
+                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+            </h3>
 
-                            <h6 class="post-meta">
-                                {% trans "by" %}
-                                {% with blog_post.user as author %}
-                               {{ author.get_full_name|default:author.username }}
-                                {% endwith %}
-                                {{ blog_post.publish_date|date:"F d, Y" }}
-                            </h6>
+            <h6 class="post-meta">
+                {% trans "by" %}
+                {% with blog_post.user as author %}
+               {{ author.get_full_name|default:author.username }}
+                {% endwith %}
+                {{ blog_post.publish_date|date:"F d, Y" }}
+            </h6>
 
-                            <p>{{ blog_post.description }}</p>
+            <p>{{ blog_post.description }}</p>
 
-                            {% if blog_post.categories_new.all %}
-                                <p class="cat">
-                                {% trans "Categories" %}:
-                                {% for category in blog_post.categories_new.all %}
-                                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
-                                {% endfor %}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </article>
+            {% if blog_post.categories_new.all %}
+                <p class="cat">
+                {% trans "Categories" %}:
+                {% for category in blog_post.categories_new.all %}
+                <a href="{% url "blog_post_list_category" category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
                 {% endfor %}
+                </p>
+            {% endif %}
+        </div>
+    </article>
+{% endfor %}

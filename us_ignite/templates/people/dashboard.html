@@ -32,7 +32,10 @@
 		<div class="main">
 			<article>
 				
+				<p>
 				Greetings from US Ignite! This is your personal dashboard with the latest information and news from US Ignite as well as links to manage your content. So take a look around, update your profile and share something with the community! If you have feedback on our new site, send it to info@us-ignite.org - US Ignite Team - See more at: https://www.us-ignite.org/dashboard/#sthash.2Y0vC1pn.dpuf
+				<br><br>
+				</p>
 
 			</article>
 		</div>
@@ -63,26 +66,6 @@
 	{% include "people/includes/resource_list.html" with object_list=featured_resource_list %}
 	<!-- /RESOURCES -->
 
-	
+	{% include "people/includes/content_list.html" with object_list=content_list %}
 </section>
 {% endblock content %}
-
-
-
-
-
-
-<div class="row collapse listing-featured">
-	<div class="small-12 columns">
-		<div class="row">
-			<div class="small-12 columns">
-				<h4 class="profile__heading profile__heading--light">MANAGE YOUR CONTENT</h4>
-			</div>
-		</div>
-
-		<div class="row">
-			{% include "people/includes/content_list.html" with object_list=content_list %}
-		</div>
-	</div>
-</div>
-

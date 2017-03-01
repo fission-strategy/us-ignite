@@ -8,6 +8,12 @@
                 <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail object.image 800x350 %}">
             </a>
         </figure>
+        {% else %}
+        <figure>
+            <a href="{{ object.get_absolute_url }}">
+                <img class="img-thumbnail " src="http://placehold.it/800x350">
+            </a>
+        </figure>
         {% endif %}
         <div>
             <p>
@@ -15,7 +21,9 @@
 				{% with object.tags.all as tag_list %}
 					{% if tag_list %}
 					<p class="featured__tags">
-						{% for tag in tag_list %}{{ tag|upper }}{% if not forloop.last %},{% endif%} {% endfor%}
+					{% for cat in object.categories.all %}
+						{{ cat.name }}{% if forloop.last %}{% else %}, {% endif %} 
+					{% endfor %}
 					</p>
 					{% endif %}
 				{% endwith %}

@@ -1,7 +1,17 @@
-{% for object in object_list %}
-  <div class="columns large-4{% if forloop.last %} end{% endif %}">
-    {% include "includes/lists/object_block_base.html" with object=object %}
-  </div>
-{% endfor%}
+
+{% load snippets_tags news_tags common_markdown %}
+<div class="page-a contain narrow">
+	<div class="main" >
+		<h3>MANAGE YOUR CONTENT</h3>
+		<div class="featured-d">
+		{% for object in object_list %}
+			{% if forloop.counter <= 3 %}
+				{% include "includes/lists/object_block_dashboard_base.html" with object=object %}
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+</div>
+
 
 
