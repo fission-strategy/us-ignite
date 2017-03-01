@@ -11,12 +11,10 @@
 {% endblock top_panel %}
 
 {% block filter_object %}
-<div class="row">
-{% for object in page.object_list_top %}
-  <div class="columns large-3{% if forloop.last %} end{% endif %}">
-    {% include "people/object_block.html" with object=object %}
-  </div>
-{% endfor%}
+<div class="featured-d">
+	{% for object in page.object_list_top %}
+		{% include "people/object_block.html" with object=object %}
+	{% endfor%}
 </div>
 {% endblock filter_object %}
 
