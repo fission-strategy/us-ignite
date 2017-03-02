@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from datetime import datetime, timedelta, time
 
-from mezzanine.blog.models import BlogPost
+from us_ignite.news.models import NewsPost as BlogPost
 
 from us_ignite.apps.models import Application, TaggedFunder, TaggedCategory, Sector
 from us_ignite.hubs.models import Hub
@@ -29,8 +29,8 @@ def home_view(request):
         'sector_list': Sector.objects.all(),
         # 'featured_app_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).all(),
         'app_list': app_list,
-        'latest_news': BlogPost.objects.published(for_user=request.user).latest('created'),
-        'upcoming_event': Event.objects.filter(start_datetime__gte=datetime.now()).first(),
+        'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False).latest('created'),
+        'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).latest('created'),
         'funding_agent_list': FundingPartner.objects.filter(status=FundingPartner.PUBLISHED).all(),
 
         'app_count': Application.objects.filter(status=Application.PUBLISHED).count(),

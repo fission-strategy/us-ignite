@@ -163,8 +163,8 @@
 			<div class="section">
 				<h4 class="hx">Upcoming Events</h4>
 				<ul class="lx-a">
-					<li><a href="{# {{ upcoming_event.get_absolute_url }} #}">{{ upcoming_event.name }}</a> 
-					<time>{{ upcoming_event.start_datetime|date:"M d, Y" }}</time></li>
+					<li><a href="{{ upcoming_event.get_absolute_url }} ">{{ upcoming_event.title }}</a>
+					<time>{{ upcoming_event.excerpt }}</time></li>
 				</ul>
 				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
