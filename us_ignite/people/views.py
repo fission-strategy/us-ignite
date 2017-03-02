@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404
 
-from us_ignite.apps.models import Application
+from us_ignite.apps.models import Application, Program
 from us_ignite.awards.models import UserAward
 from us_ignite.news.models import NewsPost as Post
 from us_ignite.common import pagination, forms
@@ -39,9 +39,11 @@ def profile_list(request):
     return TemplateResponse(request, 'people/object_list.html', context)
 
 
-def get_application_list(owner, viewer=None):
+def get_application_list(owner, viewer=None, program=None):
     """Returns visible ``Applications`` from the given ``viewer``."""
     qs_kwargs = {'owner': owner}
+    if program:
+        qs_kwargs.update({'program': program})
     if not viewer or not owner == viewer:
         qs_kwargs.update({'status': Application.PUBLISHED})
     return Application.active.filter(**qs_kwargs)
@@ -174,7 +176,10 @@ def dashboard(request):
     profile, is_new = Profile.objects.get_or_create(username=request.user)
     user = profile.id
     application_list = list(get_application_list(user, viewer=request.user))
-    # actioncluster_list = list(get_actioncluster_list(user, viewer=request.user))
+    programs = Program.objects.all()
+    program_app_list = {}
+    for program in programs:
+        program_app_list.update({program: list(get_application_list(user, viewer=request.user, program=program))})
     similar_applications = get_similar_applications(application_list)
     event_list = {}
     resource_list = get_resource_list(user, viewer=request.user)
@@ -184,7 +189,7 @@ def dashboard(request):
     context = {
         'object': profile,
         'application_list': application_list[:3],
-        # 'actioncluster_list': application_list[:3],
+        'program_app_list': program_app_list,
         'similar_applications': similar_applications,
         'post_list': get_post_list(),
         'hub_list': hub_list[:7],
