@@ -45,8 +45,7 @@ def news_post_list(request, year=None, month=None, username=None,
         templates.append(u"blog/blog_post_list_%s.html" % str(program.slug))
     if events_only:
         blog_posts = blog_posts.filter(event=True)
-    if program is not None:
-        blog_posts = blog_posts.filter(program__slug=program)
+
     author = None
     if username is not None:
         author = get_object_or_404(User, username=username)
@@ -55,12 +54,10 @@ def news_post_list(request, year=None, month=None, username=None,
 
     sidebar_lists = {
         'categories': BlogCategory.objects.all(),
-        'sectors':  Sector.objects.all(),
         'programs': Program.objects.all(),
     }
 
-
-    prefetch = ("categories", "keywords__keyword")
+    prefetch = ("categories", "program",)
     blog_posts = blog_posts.select_related("user").prefetch_related(*prefetch)
     blog_posts = paginate(blog_posts, request.GET.get("page", 1),
                           settings.BLOG_POST_PER_PAGE,
@@ -71,7 +68,6 @@ def news_post_list(request, year=None, month=None, username=None,
                "links": links, "sidebar_lists": sidebar_lists}
     context.update(extra_context or {})
     templates.append(template)
-    print templates
     return TemplateResponse(request, templates, context)
 
 
