@@ -14,7 +14,7 @@
 							   	{% if object.image %}
 						        <figure>
 						            <a href="{{ object.get_absolute_url }}">
-						                <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail object.image 800x400 %}">
+						                <img class="img-thumbnail " src="{% thumbnail object.image 800x400 %}">
 						            </a>
 						        </figure>
 						        {% else %}
@@ -24,7 +24,7 @@
 						            </a>
 						        </figure>
 						        {% endif %}
-							    <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
+							    <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>
 							    <div>
 									{% if object.categories_new.all %}
 						                <p class="cat">
