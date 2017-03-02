@@ -38,7 +38,7 @@ urlpatterns += i18n_patterns(
     url("^apps/", include('us_ignite.apps.urls')),
     url("^communities/", include('us_ignite.hubs.urls')),
     url("^testbeds/", include('us_ignite.testbeds.urls')),
-    #todo url("^events/", include('us_ignite.news.urls_events')),
+    url("^events/", include('us_ignite.news.urls_events')),
     url(r'^orgs/', include('us_ignite.organizations.urls')),
     # url(r'^challenges/', include('us_ignite.challenges.urls')),
     url(r'^contact/', include('us_ignite.relay.urls')),

@@ -13,10 +13,22 @@ urlpatterns = [
         views.news_post_feed, name="news_post_feed_tag"),
     url("^tag/(?P<tag>.*)%s$" % _slash,
         views.news_post_list, name="news_post_list_tag"),
+
     url("^category/(?P<category>.*)/feeds/(?P<format>.*)%s$" % _slash,
         views.news_post_feed, name="news_post_feed_category"),
     url("^category/(?P<category>.*)%s$" % _slash,
         views.news_post_list, name="news_post_list_category"),
+
+    url("^program/(?P<program>.*)/feeds/(?P<format>.*)%s$" % _slash,
+        views.news_post_feed, name="news_post_feed_program"),
+    url("^program/(?P<program>.*)%s$" % _slash,
+        views.news_post_list, name="news_post_list_program"),
+
+    url("^sector/(?P<sector>.*)/feeds/(?P<format>.*)%s$" % _slash,
+        views.news_post_feed, name="news_post_feed_sector"),
+    url("^sector/(?P<sector>.*)%s$" % _slash,
+        views.news_post_list, name="news_post_list_sector"),
+
     url("^author/(?P<username>.*)/feeds/(?P<format>.*)%s$" % _slash,
         views.news_post_feed, name="news_post_feed_author"),
     url("^author/(?P<username>.*)%s$" % _slash,
