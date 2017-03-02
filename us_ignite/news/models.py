@@ -19,6 +19,9 @@ class NewsPost(BlogPost):
                                      help_text=_("Does this application belong to any specific program"))
     event = models.BooleanField(default=False, help_text="Is it an event?")
 
+    def is_blog_post(self):
+        return True
+
 
 class Link(models.Model):
     PUBLISHED = 1

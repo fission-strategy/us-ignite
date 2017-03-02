@@ -27,7 +27,11 @@
 	    <div class="wrap">
 	        <header class="top-a" id="top">
 	            <div class="contain">
-	                <figure class="logo"><a href="/" accesskey="h"><img src="{{ STATIC_URL }}img/logo-a.png" height="25" alt="US Ignite"></a></figure>
+	                <figure class="logo">
+	                	<a href="{% if request.user.is_authenticated %}/dashboard{% else %}/{% endif %}" accesskey="h">
+	                		<img src="{{ STATIC_URL }}img/logo-a.png" height="25" alt="US Ignite">
+	                	</a>
+	                </figure>
 	                <nav class="skips-a">
 	                    <ul>
 	                        <li><a href="#nav" accesskey="n">Skip to navigation [n]</a></li>

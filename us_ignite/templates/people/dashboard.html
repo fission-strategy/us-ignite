@@ -1,6 +1,5 @@
 {% extends BASE_TEMPLATE %}
-{% load mezzanine_tags apps_urls thumbnail common_markdown snippets_tags i18n keyword_tags rating_tags i18n disqus_tags %}
-{% load snippets_tags news_tags common_markdown %}
+{% load mezzanine_tags apps_urls thumbnail common_markdown snippets_tags i18n keyword_tags rating_tags i18n disqus_tags news_tags %}
 
 {% block title %}Dashboard - {{ block.super }}{% endblock title %}
 
@@ -9,7 +8,7 @@
 
 <section class="content-a" id="content">
 
-	<div class="hero-b">
+	<div class="hero-b with-avatar">
 		<!-- you can art direct image using <picture> here too if needed -->
 		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
 		<div class="contain narrow">
@@ -42,7 +41,10 @@
 			<article>
 				
 				<p>
-				Greetings from US Ignite! This is your personal dashboard with the latest information and news from US Ignite as well as links to manage your content. So take a look around, update your profile and share something with the community! If you have feedback on our new site, send it to info@us-ignite.org - US Ignite Team - See more at: https://www.us-ignite.org/dashboard/#sthash.2Y0vC1pn.dpuf
+				
+        Greetings from US Ignite! This is your personal dashboard with the latest information and news from US Ignite as well as links to manage your content. So take a look around, update your profile and share something with the community! If you have feedback on our new site, send it to info@us-ignite.org - US Ignite Team
+
+      
 				<br><br>
 				</p>
 
