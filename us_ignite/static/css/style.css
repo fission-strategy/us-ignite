@@ -292,7 +292,7 @@ body.blog {
   @media screen and (max-width: 1023px) {
     /* line 342, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .dashboard .page-a .main {
-      padding: 40px 0 0; } }
+      padding: 40px 0 20px 0; } }
   /* line 354, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .dashboard .page-a .main:last-child {
     float: none;
@@ -300,81 +300,81 @@ body.blog {
     margin: 0;
     padding-left: 0; }
 
-/* line 359, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
-.dashboard .hero-b h1 {
-  margin-top: 30px; }
-  /* line 361, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
-  .dashboard .hero-b h1 > * {
-    vertical-align: middle; }
-
-/* line 370, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 362, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 ul.nobullet {
   list-style: none;
   padding-left: 0; }
-  /* line 375, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 367, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   ul.nobullet li:before {
     display: none; }
 
-/* line 381, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 373, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 ul.cat-list {
   margin-bottom: 30px !important; }
-  /* line 384, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 376, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   ul.cat-list:last-child {
     margin-bottom: 10px !important; }
 
-/* line 390, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 382, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .featured-d {
   margin-left: -10px;
   margin-right: -10px;
   margin-bottom: 30px !important; }
-  /* line 395, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 387, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .featured-d:after {
     clear: both;
     content: "";
     display: block;
     position: relative; }
-  /* line 402, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 394, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .featured-d > div {
     float: left;
     width: 33.33%;
     padding-left: 10px;
     padding-right: 10px; }
     @media screen and (max-width: 1023px) {
-      /* line 402, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      /* line 394, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
       .featured-d > div {
         float: none;
         width: auto; } }
-    /* line 414, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 406, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .featured-d > div article figure {
       margin-bottom: 10px; }
-      /* line 417, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+      /* line 409, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
       .featured-d > div article figure img {
         width: 100%; }
-    /* line 422, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 414, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .featured-d > div article h4 {
       margin-bottom: 0px; }
 
-/* line 433, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 425, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .stButton .stBubble_count {
   padding-top: 5px !important; }
 
-/* line 437, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+/* line 429, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
 .sidebar-list-link {
   display: block; }
-  /* line 440, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 432, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .sidebar-list-link:after {
     clear: both;
     content: "";
     display: block;
     position: relative; }
-  /* line 447, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  /* line 439, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
   .sidebar-list-link > div {
     float: left;
     padding-left: 10px;
     padding-right: 10px; }
-    /* line 452, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 444, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .sidebar-list-link > div.thumb {
       width: 20%; }
-    /* line 456, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+    /* line 448, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
     .sidebar-list-link > div.text {
       width: 80%; }
+
+/* line 455, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+.hero-b.with-avatar h1 {
+  margin-top: 30px; }
+  /* line 457, /Users/gholme4/Documents/us-ignite-new/us_ignite/static/scss/app.scss */
+  .hero-b.with-avatar h1 > * {
+    vertical-align: middle; }

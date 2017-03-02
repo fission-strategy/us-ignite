@@ -6,7 +6,7 @@ from us_ignite.apps.models import Application
 from us_ignite.awards.models import UserAward
 from us_ignite.news.models import NewsPost as Post
 from us_ignite.common import pagination, forms
-from us_ignite.events.models import Event
+# from us_ignite.events.models import Event
 from us_ignite.hubs.models import Hub, HubMembership, HubRequest
 from us_ignite.organizations.models import Organization, OrganizationMember
 from us_ignite.profiles.models import User as Profile
@@ -69,12 +69,12 @@ def get_similar_applications(application_list, total=4):
     return object_list.order_by('?')[:total]
 
 
-def get_event_list(user, viewer=None):
-    """Returns visible ``Events`` from the given ``viewer``."""
-    qs_kwargs = {'user': user}
-    if not viewer or not user == viewer:
-        qs_kwargs.update({'status': Event.PUBLISHED})
-    return Event.objects.filter(**qs_kwargs)
+# def get_event_list(user, viewer=None):
+#     """Returns visible ``Events`` from the given ``viewer``."""
+#     qs_kwargs = {'user': user}
+#     if not viewer or not user == viewer:
+#         qs_kwargs.update({'status': Event.PUBLISHED})
+#     return Event.objects.filter(**qs_kwargs)
 
 
 def get_resource_list(contact, viewer=None):
@@ -139,9 +139,9 @@ def get_post_list(limit=7):
 def get_featured_resources(limit=2):
     return Resource.published.filter(is_featured=True)[:limit]
 
-def get_featured_events(limit=2):
-    return (Event.published.filter(is_featured=True)
-            .order_by('?')[:limit])
+# def get_featured_events(limit=2):
+#     return (Event.published.filter(is_featured=True)
+#             .order_by('?')[:limit])
 
 
 @login_required
@@ -158,7 +158,7 @@ def profile_detail(request, slug):
         'object': profile,
         'is_owner': profile,
         'application_list': get_application_list(profile, viewer=request.user),
-        'event_list': get_event_list(profile, viewer=request.user),
+        'event_list': {},
         'resource_list': get_resource_list(profile, viewer=request.user),
         'hub_list': get_hub_list(profile, viewer=request.user),
         'hub_request_list': hub_request_list,
@@ -176,7 +176,7 @@ def dashboard(request):
     application_list = list(get_application_list(user, viewer=request.user))
     # actioncluster_list = list(get_actioncluster_list(user, viewer=request.user))
     similar_applications = get_similar_applications(application_list)
-    event_list = get_event_list(user, viewer=request.user)
+    event_list = {}
     resource_list = get_resource_list(user, viewer=request.user)
     content_list = (list(event_list) + list(resource_list))
     hub_list = get_hub_list(user, viewer=request.user)
@@ -188,8 +188,8 @@ def dashboard(request):
         'similar_applications': similar_applications,
         'post_list': get_post_list(),
         'hub_list': hub_list[:7],
-        'hub_event_list': Event.published.get_for_hubs(hub_id_list)[:6],
-        'featured_event_list': get_featured_events(),
+        'hub_event_list': {},
+        'featured_event_list': {},
         'featured_hub_list': get_featured_hub_list(),
         'featured_resource_list': get_featured_resources(),
         'content_list': content_list,

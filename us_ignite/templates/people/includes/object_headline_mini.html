@@ -11,7 +11,11 @@
 
 	<div class="text">
 		<span class="sidebar__list__desc">
-			{{ object.name }}
+			{% if object.is_blog_post %}
+				{{ object.title }}
+			{% else %}
+				{{ object.name }}
+			{% endif %}
 		</span>
 	</div>
 </a>

@@ -348,21 +348,13 @@ body.blog {
 		}
 
 		@media screen and (max-width: 1023px) {
-			padding: 40px 0 0; 
+			padding: 40px 0 20px 0; 
 		}
 
 		&:last-child { float: none; width: 100%; margin: 0; padding-left: 0; }
 
 	}
-
-	.hero-b {
-		h1 {
-			margin-top: 30px;
-			>* {
-				vertical-align: middle;
-			}
-		}
-	}
+	
 }
 
 ul {
@@ -455,6 +447,15 @@ ul {
 
 		&.text {
 			width: 80%;
+		}
+	}
+}
+
+.hero-b.with-avatar {
+	h1 {
+		margin-top: 30px;
+		>* {
+			vertical-align: middle;
 		}
 	}
 }

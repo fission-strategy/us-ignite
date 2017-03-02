@@ -2,22 +2,33 @@
 
 {% block title %}Profile for {{ object.full_name }} - {{ block.super }}{% endblock title %}
 
+{% block body_class %}profile{% endblock body_class %}
 {% block content %}
 
 <section class="content-a" id="content">
 
-	<div class="hero-b">
+	<div class="hero-b with-avatar">
 		<!-- you can art direct image using <picture> here too if needed -->
 		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
 		<div class="contain narrow">
+			
 			<h1 class="hx">
-				{% block page_title %}
-					{% if object.first_name %}
-						 {{ object.first_name }} {{ object.last_name }}
-					{% else %}
-						{{ object.username }}
-					{% endif %}
-				{% endblock page_title %}
+			{% if object.avatar  %}
+				<img class="avatar" src="{% thumbnail object.avatar 330x330 crop %}" alt="" />
+			{% else %}
+				<img class="avatar" src="{{ object.get_gravatar_url }}" alt="Avatar" height="80" width="80" class="profile__avatar" />
+			{% endif %}
+			&nbsp;&nbsp;
+			{% block page_title %}
+			<span>
+				{% if object.first_name %}
+					 {{ object.first_name }} {{ object.last_name }}
+				{% else %}
+					{{ object.username }}
+				{% endif %}
+			</span> <br>
+			{% snippet "profile-welcome" "snippets/profile_welcome.html" %}
+			{% endblock page_title %}
 			</h1>
 		</div>
 	</div>
@@ -28,21 +39,10 @@
 		<div class="main">
 			{% include "includes/tag_list.html" with tag_list=object.tags.all %}
 
-			<div class="listings__listing listing-featured listing--collapse">
-				<div class="row">
-					<div class="small-12 medium-4 columns text-center">
-						{% if object.avatar  %}
-						<img src="{% thumbnail object.avatar 276x276 crop %}" alt="Avatar" class="profile__avatar" />
-						{% else %}
-						<img src="{{ object.get_gravatar_url }}" alt="Avatar" class="profile__avatar" />
-						{% endif %}
-					</div> 
-
-					<div class="small-12 medium-8 columns">
-						<blockquote class="profile__quote">{{ object.quote }} </blockquote>
-					</div>
-
-				</div>
+			<div>
+					
+				<blockquote class="profile__quote">{{ object.quote }} </blockquote>
+					
 			</div>
 
 			<!-- ABOUT -->
