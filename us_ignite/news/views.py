@@ -71,6 +71,7 @@ def news_post_list(request, year=None, month=None, username=None,
                "links": links, "sidebar_lists": sidebar_lists}
     context.update(extra_context or {})
     templates.append(template)
+    print templates
     return TemplateResponse(request, templates, context)
 
 

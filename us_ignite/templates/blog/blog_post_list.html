@@ -102,12 +102,12 @@
                     <div class="section ">
                         <h4 class="hx">CATEGORIES</h4>
                         {% for title_key, title_val in sidebar_lists.items %}
-                        <h5>{{ title_key }}</h5>
-                        <ul>
-                        {% for slv in title_val %}
-                            <li><a href="{{ slv.slug }}">{{ slv }}</a></li>
-                        {% endfor %}
-                        </ul>
+                            <h5>{{ title_key }}</h5>
+                            <ul class="cat-list">
+                            {% for slv in title_val %}
+                                <li><a href="{{ slv.slug }}">{{ slv }}</a></li>
+                            {% endfor %}
+                            </ul>
                         {% endfor %}
                     </div>
                     <div class="section ">

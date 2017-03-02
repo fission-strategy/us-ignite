@@ -113,7 +113,7 @@
                     <form action="{% url "find_location" %}" method="get" class="fields" id="community-search-form">
                         <p><strong>Search by City and State</strong></p>
                         <p class="half"><input type="text" name="city" id="f-city" placeholder="Search by City" /></p>
-                        <p class="half"><select name="state" id="f-state"><option value="" selected disabled>Select State</option></select></p>
+                        <p class="half"><select name="state" id="f-state"><option value="" selected disabled>Select State</option>{% include 'includes/states_options.html' %}</select></p>
                         <p><strong>Search by Zip</strong></p>
                         <p><input type="text" name="zip" id="f-zip" placeholder="Enter Zip Code" /></p>
                         <p class="action"><button type="submit" class="button-a">Find My Community <span class="arrow-a"></span></button></p>
