@@ -24,7 +24,7 @@ User = get_user_model()
 
 def news_post_list(request, year=None, month=None, username=None,
                    category=None, template="blog/blog_post_list.html",
-                   extra_context=None, program=None):
+                   extra_context=None, program=None, events_only=False):
     templates = []
     blog_posts = BlogPost.objects.published(for_user=request.user)
     if year is not None:
@@ -38,10 +38,14 @@ def news_post_list(request, year=None, month=None, username=None,
     if category is not None:
         category = get_object_or_404(BlogCategory, slug=category)
         blog_posts = blog_posts.filter(categories=category)
-        templates.append(u"blog/blog_post_list_%s.html" %
-                          str(category.slug))
+        templates.append(u"blog/blog_post_list_%s.html" % str(category.slug))
     if program is not None:
-        blog_posts = blog_posts.filter(program__slug=program)
+        program = get_object_or_404(Program, slug=program)
+        blog_posts = blog_posts.filter(program=program)
+        templates.append(u"blog/blog_post_list_%s.html" % str(program.slug))
+    if events_only:
+        blog_posts = blog_posts.filter(event=True)
+
     author = None
     if username is not None:
         author = get_object_or_404(User, username=username)
@@ -50,12 +54,10 @@ def news_post_list(request, year=None, month=None, username=None,
 
     sidebar_lists = {
         'categories': BlogCategory.objects.all(),
-        'sectors':  Sector.objects.all(),
         'programs': Program.objects.all(),
     }
 
-
-    prefetch = ("categories", "keywords__keyword")
+    prefetch = ("categories", "program",)
     blog_posts = blog_posts.select_related("user").prefetch_related(*prefetch)
     blog_posts = paginate(blog_posts, request.GET.get("page", 1),
                           settings.BLOG_POST_PER_PAGE,

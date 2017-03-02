@@ -100,15 +100,19 @@
             <div class="two">
                 <div class="sidebar-b hide@medium hide@small">
                     <div class="section ">
-                        <h4 class="hx">CATEGORIES</h4>
-                        {% for title_key, title_val in sidebar_lists.items %}
-                            <h5>{{ title_key }}</h5>
-                            <ul class="cat-list">
-                            {% for slv in title_val %}
-                                <li><a href="{{ slv.slug }}">{{ slv }}</a></li>
-                            {% endfor %}
-                            </ul>
+                    {% for title_key, title_val in sidebar_lists.items %}
+                        <h4 class="hx">{{ title_key }}</h4>
+                        <ul class="cat-list">
+                        {% for slv in title_val %}
+                            {{ title_Key }}
+                            {% if title_key == 'categories' %}
+                            <li><a href="{% url "news_post_list_category" slv.slug %}">{{ slv }}</a></li>
+                            {% elif title_key == 'programs' %}
+                            <li><a href="{% url "news_post_list_program" slv.slug %}">{{ slv }}</a></li>
+                            {% endif %}
                         {% endfor %}
+                        </ul>
+                    {% endfor %}
                     </div>
                     <div class="section ">
                         <h4 class="hx">Stay Informed</h4>
