@@ -69,6 +69,8 @@ STATIC_URL = "/static/"
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
 
+STATIC_FILES_VERSION = 'v2'
+
 # Extra places for collectstatic to find static files.
 # STATICFILES_DIRS = (
 #     here('us_ignite/static/mezzanine/'),
