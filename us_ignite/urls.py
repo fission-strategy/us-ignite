@@ -45,11 +45,12 @@ urlpatterns += i18n_patterns(
     url(r'^resources/', include('us_ignite.resources.urls')),
     url("^news/", include('us_ignite.news.urls')),
     url(r'^search/', include('us_ignite.search.urls')),
+    url(r'^program/', include('us_ignite.programs.urls')),
     #todo url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
     #todo url(r'^overview/', include('us_ignite.visualize.urls')),
 
 
-    url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
+    # url("^smart-gigabit-communities/", include('us_ignite.smart_communities.urls')),
 
 
 

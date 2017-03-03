@@ -13,11 +13,13 @@ class NewsPost(BlogPost):
     excerpt = models.TextField(blank=True, null=True)
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("news.NewsPost.image", "galleries"), null=True, blank=True)
-    categories_new = models.ManyToManyField("apps.Category", blank=True, verbose_name="Categories")
-
-    program = models.ForeignKey('apps.Program', blank=True, null=True,
+    program = models.ForeignKey('programs.Program', blank=True, null=True,
                                      help_text=_("Does this application belong to any specific program"))
     event = models.BooleanField(default=False, help_text="Is it an event?")
+
+    event_date = models.DateTimeField(_("Event date"),
+                                        help_text=_("Event date"),
+                                        blank=True, null=True, db_index=True)
 
     def is_blog_post(self):
         return True

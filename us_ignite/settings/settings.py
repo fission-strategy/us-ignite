@@ -295,7 +295,7 @@ INSTALLED_APPS = (
     'us_ignite.news',
     # 'us_ignite.actionclusters',
     'us_ignite.events',
-    'us_ignite.smart_communities',
+    # 'us_ignite.smart_communities',
     'us_ignite.organizations',
     'us_ignite.hubs',
     'us_ignite.awards',
@@ -308,6 +308,7 @@ INSTALLED_APPS = (
     'us_ignite.gctc',
     'us_ignite.resources',
     'us_ignite.relay',
+    'us_ignite.programs',
 
     'taggit',
     'geoposition',

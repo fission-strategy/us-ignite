@@ -47,7 +47,7 @@ class Resource(models.Model):
     name = models.CharField(max_length=255, verbose_name='name of resource')
     slug = AutoUUIDField(unique=True, editable=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
-    program = models.ForeignKey('apps.Program', blank=True, null=True,
+    program = models.ForeignKey('programs.Program', blank=True, null=True,
                                 help_text=_("Does this resource belong to any specific program"))
     url = models.URLField(
         max_length=500, blank=True, help_text=URL_HELP_TEXT, verbose_name=u'URL')

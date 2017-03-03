@@ -86,8 +86,10 @@ class Hub(models.Model):
     website = models.URLField(
         max_length=500, blank=True, help_text=URL_HELP_TEXT)
     features = models.ManyToManyField(
-        'apps.Feature', blank=True, help_text=u'Existing NextGen features in '
-        'this community.')
+        'apps.Feature', blank=True, help_text=u'Existing NextGen features in this community.')
+    programs = models.ManyToManyField(
+        'programs.Program', blank=True, help_text=u'Does this community belongs to any programs?'
+    )
     position = GeopositionField(blank=True)
     tags = TaggableManager(blank=True)
     notes = models.TextField(blank=True)

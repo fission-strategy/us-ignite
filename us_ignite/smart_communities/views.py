@@ -12,7 +12,6 @@ from us_ignite.news.models import NewsPost as BlogPost
 
 from us_ignite.apps.models import Application, TaggedFunder, TaggedCategory, Sector
 from us_ignite.hubs.models import Hub
-from us_ignite.events.models import Event
 from us_ignite.testbeds.models import Testbed
 from .models import FundingPartner
 

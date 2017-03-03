@@ -17,7 +17,8 @@ from mezzanine.blog.models import BlogCategory
 from models import NewsPost as BlogPost
 from models import Link
 
-from us_ignite.apps.models import Sector, Program
+from us_ignite.apps.models import Sector
+from us_ignite.programs.models import Program
 
 
 User = get_user_model()

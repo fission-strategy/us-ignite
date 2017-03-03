@@ -67,6 +67,7 @@ class Testbed(models.Model):
     applications = models.ManyToManyField(
         'apps.Application', blank=True, verbose_name=u'Applications being '
         'piloted')
+    programs = models.ManyToManyField('programs.Program', blank=True, help_text=u'Does this testbed belong to any program(s)?')
     features = models.ManyToManyField(
         'apps.Feature', blank=True, help_text=u'Existing NextGen features in '
         'this community.')

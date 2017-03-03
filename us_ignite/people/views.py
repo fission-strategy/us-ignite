@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404
 
-from us_ignite.apps.models import Application, Program
+from us_ignite.apps.models import Application
+from us_ignite.programs.models import Program
 from us_ignite.awards.models import UserAward
 from us_ignite.news.models import NewsPost as Post
 from us_ignite.common import pagination, forms

@@ -1,6 +1,5 @@
 {% extends BASE_TEMPLATE %}
 {% load thumbnail %}
-{% load smart_communities_tags %}
 {% load keyword_tags %}
 
 {% block title %}Smart Communities{% endblock title %}
@@ -58,9 +57,8 @@
 		<div class="main">
 			<div class="intro">
 				<div class="wrap">
-					<h3 class="hx-a">Welcome To The Smart Gigabit Communities Page</h3>
-					<p>The Smart Gigabit Community Program will leverage gigabit infrastructures for economic advantage in multiple local economies. The program 125 different Smart City Applications. Groups all over the world – from Montgomery County to Genoa, Italy – are creating the future of smart cites. </p>
-					<p>The program is supported by the National Science Foundation, Hewlett Packard Enterprises, Juniper, Mozilla, and others. </p>
+					<h3 class="hx-a">Welcome To {{ program.name }} Page</h3>
+					{{ program.intro_desc|safe }}
 					<div class="spacer" style="height: 70px;"></div>
 				</div>
 			</div>
@@ -85,29 +83,34 @@
 
 			<h3 class="hx-a"><span>Featured Applications</span></h3>
 
-			{% for sector in sector_list %}
+			{% for sector_key, sector_val in app_list.items %}
 			    
 			<div class="data-a">
-				<h3 class="hx-a">{{ sector.name }} applications</h3>
+				<h3 class="hx-a">{{ sector_key }} applications</h3>
 				<div class="table-a fold">
 					<div class="wrap">
 						<table>
 							<thead>
 								<tr>
 									<th scope="col">App Name</th>
+                                    <th scope="col">Program</th>
 									<th scope="col">Categories</th>
-									<th scope="col">Funders</th>
+                                    <th scope="col">Funders</th>
 									<th scope="col">Community</th>
 								</tr>
 							</thead>
 							<tbody>
-								{% for app in sector|val_to_key:sector.name %}
+								{% for app in sector_val %}
 
 							    <tr data-app-id="{{ app.id }}">
 									<td>
 										<p><big><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></big></p>
 										<p>{{ app.summary }}</p>
                                         
+									</td>
+									<td class="hide@small">
+										{{ app.program }}
+
 									</td>
 									<td class="hide@small">
                                         {% with app.categories.all as categories %}
@@ -117,6 +120,7 @@
                                         {% endwith %}
 										
 									</td>
+
 									<td class="hide@small">
 										{% for funder in app.funder_keywords.all %}
 											{{ funder }}{% if forloop.last %}{% else %}, {% endif %} 
@@ -149,9 +153,7 @@
 		<div class="side sidebar-a">
 			<div class="section hide show@large">
 				<h4 class="hx">About</h4>
-				<p>Welcome to the Smart Gigabit Communities Page! This page is managed by John Doe.</p>
-				<p>We believe that Smart Gigabit Communities can change the world.</p>
-				<p>Feel free to message me at <a href="./">johndoe@email.com</a> with any questions.</p>
+				{{ program.about_desc|safe }}
 			</div>
 			<div class="section">
 				<h4 class="hx">Latest News</h4>
@@ -171,9 +173,9 @@
 			<div class="section">
 				<h4 class="hx">Links &amp; Resources</h4>
 				<ul class="lx-a">
-					<li><a href="./">What is a Smart Gigabit Community?</a></li>
-					<li><a href="./">Application Form for SGC</a></li>
-					<li><a href="./">Another Resource</a></li>
+                {% for link in link_list %}
+                    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+                {% endfor %}
 				</ul>
 				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>

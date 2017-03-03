@@ -15,11 +15,11 @@ class ApplicationMediaInline(admin.TabularInline):
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'sector', 'slug', 'stage', 'status')
+    list_display = ('name', 'sector', 'program', 'slug', 'stage', 'status')
     search_fields = ['name', 'slug', 'summary', 'impact_statement',
                      'assistance', 'team_description', 'notes',
                      'acknowledgments']
-    list_filter = ['stage', 'status', 'created', ]
+    list_filter = ['stage', 'status', 'created', 'categories', 'sector', 'program']
     exclude = ['keywords',]
     date_hierarchy = 'created'
     filter_horizontal = ("categories", "features")
@@ -45,8 +45,8 @@ class FeatureAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
 
 
-class ProgramAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+# class ProgramAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'slug')
 
 
 class YearAdmin(admin.ModelAdmin):
@@ -80,7 +80,6 @@ admin.site.register(Application, ApplicationAdmin)
 
 admin.site.register(Sector, SectorAdmin)
 admin.site.register(Feature, FeatureAdmin)
-admin.site.register(Program, ProgramAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Year, YearAdmin)
 admin.site.register(Page, PageAdmin)
