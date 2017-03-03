@@ -31,7 +31,7 @@ twython==3.4.0
 django-embed-video==1.1.0
 django-registration==2.2
 django-storages-redux==1.3.2
-boto == 2.23.0
+boto == 2.46.1
 
 ## Heroku
 psycopg2
