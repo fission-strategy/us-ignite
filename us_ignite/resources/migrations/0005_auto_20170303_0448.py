@@ -9,14 +9,11 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('programs', '0001_initial'),
         ('resources', '0004_auto_20170301_0937'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='newspost',
-            name='program',
-        ),
         migrations.AlterField(
             model_name='resource',
             name='program',
