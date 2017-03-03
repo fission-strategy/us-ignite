@@ -5,6 +5,7 @@
 # have to be manually restarted because changes will not be noticed
 # immediately.
 from us_ignite.settings.settings import *
+import dj-database-url
 
 
 DEBUG = True
