@@ -13,6 +13,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RemoveField(
+            model_name='newspost',
+            name='program',
+        ),
         migrations.AlterField(
             model_name='resource',
             name='program',
