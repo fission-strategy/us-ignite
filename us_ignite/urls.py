@@ -62,7 +62,7 @@ urlpatterns += i18n_patterns(
 urlpatterns += i18n_patterns(
     url("^hub/", include('us_ignite.hubs.urls_old')),
     url('^org/', include('us_ignite.organizations.urls_old')),
-    url("^blog/", include('us_ignite.news.urls')),
+    # url("^blog/", ),
 )
 
 if settings.USE_MODELTRANSLATION:

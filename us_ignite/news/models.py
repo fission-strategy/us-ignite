@@ -6,6 +6,8 @@ from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.generic.fields import KeywordsField
+from mezzanine.conf import settings
+from django.core.urlresolvers import reverse
 
 
 class NewsPost(BlogPost):
@@ -23,6 +25,11 @@ class NewsPost(BlogPost):
 
     def is_blog_post(self):
         return True
+
+    def get_absolute_url(self):
+        url_name = "news_post_detail"
+        kwargs = {"slug": self.slug}
+        return reverse(url_name, kwargs=kwargs)
 
 
 class Link(models.Model):
