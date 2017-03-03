@@ -99,11 +99,29 @@ AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_BUCKET_NAME')
 
-MEDIAFILES_LOCATION = 'media'
 # MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
+AWS_HEADERS = {
+                     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+                     'Cache-Control': 'max-age=94608000',
+                     }
+
+# Used to make sure that only changed files are uploaded with collectstatic
+AWS_PRELOAD_METADATA = True
+
+#http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html
+# allows authenticating with creds in querystring for temp access to a resource
+# Setting to False if not needed helps get rid of uwanted qstrings in compressed
+# output
+AWS_QUERYSTRING_AUTH = False
 # GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
 
+
+# Media storage
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+# MEDIA_URL = "https://%s/%s/" % (CLOUDFRONT_DOMAIN, MEDIAFILES_LOCATION)
+MEDIA_ROOT = ''
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'

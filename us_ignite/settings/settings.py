@@ -315,6 +315,7 @@ INSTALLED_APPS = (
     'watson',
     'adminsortable',
     'registration',
+    'storages',
 )
 
 AUTH_USER_MODEL = 'profiles.User'
