@@ -70,11 +70,11 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    here('us_ignite/static/mezzanine/'),
-    os.path.join(BASE_DIR, "static"),
-    'us_ignite/static/',
-)
+# STATICFILES_DIRS = (
+#     here('us_ignite/static/mezzanine/'),
+#     os.path.join(BASE_DIR, "static"),
+#     'us_ignite/static/',
+# )
 
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
