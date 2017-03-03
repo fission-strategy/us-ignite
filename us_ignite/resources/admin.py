@@ -23,4 +23,4 @@ class SectorAdmin(admin.ModelAdmin):
 
 admin.site.register(Resource, ResourceAdmin)
 admin.site.register(ResourceType, ResourceTypeAdmin)
-admin.site.register(Sector, SectorAdmin)
+# admin.site.register(Sector, SectorAdmin)

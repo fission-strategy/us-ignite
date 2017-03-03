@@ -18,14 +18,10 @@ class HubForm(forms.ModelForm):
         queryset=Feature.objects.all(), required=False,
         widget=forms.CheckboxSelectMultiple)
 
-    def clean_tags(self):
-        if 'tags' in self.cleaned_data:
-            return output.prepare_tags(self.cleaned_data['tags'])
-
     class Meta:
         model = Hub
         fields = ('name', 'website', 'summary', 'description', 'image',
-                  'features', 'tags')
+                  'features', )
 
 
 HubURLFormSet = inlineformset_factory(

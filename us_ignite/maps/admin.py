@@ -14,5 +14,5 @@ class LocationAdmin(admin.ModelAdmin):
     list_filter = ('status', 'category__name')
     date_hierarchy = 'created'
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Location, LocationAdmin)
+# admin.site.register(Category, CategoryAdmin)
+# admin.site.register(Location, LocationAdmin)

@@ -42,14 +42,6 @@ class Sector(models.Model):
         return self.name
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='name', unique=True)
-
-    def __unicode__(self):
-        return self.name
-
-
 class Year(models.Model):
     year = models.CharField(max_length=4, unique=True)
     description = models.TextField(blank=True, default='')

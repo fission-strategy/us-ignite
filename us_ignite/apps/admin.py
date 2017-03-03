@@ -53,10 +53,6 @@ class YearAdmin(admin.ModelAdmin):
     list_display = ('year', )
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-
-
 class PageApplicationInline(admin.TabularInline):
     raw_id_fields = ('application', )
     model = PageApplication
@@ -80,6 +76,5 @@ admin.site.register(Application, ApplicationAdmin)
 
 admin.site.register(Sector, SectorAdmin)
 admin.site.register(Feature, FeatureAdmin)
-admin.site.register(Category, CategoryAdmin)
 admin.site.register(Year, YearAdmin)
 admin.site.register(Page, PageAdmin)

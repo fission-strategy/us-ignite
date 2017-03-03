@@ -26,6 +26,7 @@ newspost_fieldsets[0][1]['fields'].insert(8, 'is_featured')
 
 newspost_fieldsets[0][1]['fields'].remove("allow_comments")
 newspost_fieldsets[2][1]['fields'].remove("keywords")
+newspost_fieldsets[2][1]['fields'].remove('slug')
 newspost_fieldsets[1][1]['classes'] = ("collapse-open",)
 newspost_fieldsets[2][1]['classes'] = ("collapse-open",)
 

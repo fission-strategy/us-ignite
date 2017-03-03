@@ -20,4 +20,4 @@ class SnippetAdmin(admin.ModelAdmin):
         }),
     )
 
-admin.site.register(Snippet, SnippetAdmin)
+# admin.site.register(Snippet, SnippetAdmin)

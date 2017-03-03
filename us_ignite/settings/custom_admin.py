@@ -2,20 +2,24 @@ from copy import deepcopy
 
 from django.contrib import admin
 
-from mezzanine.blog.admin import BlogPostAdmin
+from mezzanine.pages.admin import PageAdmin
+from mezzanine.pages.models import RichTextPage
 from mezzanine.blog.models import BlogPost
+from mezzanine.generic.models import ThreadedComment
 
-from django.contrib.auth.models import Group
-from us_ignite.profiles.models import User
+from taggit.models import Tag
 
 
-# form_fieldsets = deepcopy(BlogPostAdmin.fieldsets)
-# form_fieldsets[0][1]['fields'].insert(1, 'slug')
-# form_fieldsets[0][1]['fields'].insert(2, 'user')
-# form_fieldsets[0][1]['fields'].insert(4, 'image')
-# form_fieldsets[0][1]['fields'].insert(3, 'excerpt')
-# # form_fieldsets[2][1]['fields'].remove('slug')
-# BlogPostAdmin.fieldsets = form_fieldsets
+form_fieldsets = deepcopy(PageAdmin.fieldsets)
+form_fieldsets[0][1]['fields'].insert(1, 'slug')
+form_fieldsets[1][1]['fields'].remove('slug')
+form_fieldsets[1][1]['fields'].remove('keywords')
+PageAdmin.fieldsets = form_fieldsets
 
+# remove standard "BlogPost" since we are using the extended version called "NewsPost"
 admin.site.unregister(BlogPost)
-# admin.site.register(BlogPost, BlogPostAdmin)
+admin.site.unregister(ThreadedComment)
+
+admin.site.unregister(RichTextPage)
+admin.site.unregister(Tag)
+admin.site.register(RichTextPage, PageAdmin)
