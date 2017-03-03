@@ -13,7 +13,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='newspost',
+            name='program',
+        ),
+        migrations.AddField(
             model_name='newspost',
             name='program',
             field=models.ForeignKey(blank=True, help_text='Does this application belong to any specific program', null=True, on_delete=django.db.models.deletion.CASCADE, to='programs.Program'),
