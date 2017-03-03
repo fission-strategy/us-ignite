@@ -74,12 +74,16 @@
                 <div class="contain">
                     <figure class="logo"><a href="./"><img src="{{ STATIC_URL }}img/logo-a.png" height="40" alt="US Ignite"></a></figure>
                     <ul class="nav">
-                        <li><a href="./">About</a></li>
-                        <li><a href="./">Programs</a></li>
-                        <li><a href="./">Applications</a></li>
-                        <li><a href="./">Community</a></li>
-                        <li><a href="./">News & Events</a></li>
-                        <li><a href="./">Login</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/">Programs</a></li>
+                        <li><a href="/apps">Applications</a></li>
+                        <li><a href="/smart-gigabit-communities">Community</a></li>
+                        <li><a href="/blog">News & Events</a></li>
+                        {% if request.user.is_authenticated %}
+					        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+					    {% else %}
+					        <li <a href="{% url 'auth_login' %}">Log In</a></li>
+					    {% endif %}
                     </ul>
                     <form action="./" method="post" class="signup-a">
                         <p><label for="f-nrb">Sign up for the US Ignite Newsletter</label> <input type="text" name="nrb" id="f-nrb" placeholder="Enter your email address" /> <button type="submit" class="button-a">Sign Up</button></p>
