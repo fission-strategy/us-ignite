@@ -9,6 +9,7 @@ from us_ignite.settings.settings import *
 
 DEBUG = True
 
+env = os.getenv
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = env('SECRET_KEY')
 NEVERCACHE_KEY = env('NEVERCACHE_KEY')
