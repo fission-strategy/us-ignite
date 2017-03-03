@@ -14,7 +14,7 @@
     <li class="{% if page.has_children_in_menu %}dropdown{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
         id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}"
+        <a href="{% if page.slug == "#" %} {{ page.slug }}  {% else %}  {{ page.get_absolute_url }} {% endif %}"
         {% if page.has_children_in_menu %}
         class="dropdown-toggle disabled" data-toggle="dropdown"
         {% endif %}>
@@ -40,7 +40,7 @@
     <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
         id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        <a href="{% if page.slug == "#" %} {{ page.slug }}  {% else %}  {{ page.get_absolute_url }} {% endif %}">{{ page.title }}</a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
     </li>
     {% endif %}
