@@ -91,5 +91,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
 
 
+
 # GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
 
