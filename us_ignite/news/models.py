@@ -14,7 +14,7 @@ class NewsPost(BlogPost):
     is_featured = models.BooleanField(default=False)
     excerpt = models.TextField(blank=True, null=True)
     image = FileField(_("File"), max_length=255, format="Image",
-        upload_to=upload_to("news.NewsPost.image", "galleries"), null=True, blank=True)
+        upload_to=upload_to("news.NewsPost.image", "blog"), null=True, blank=True)
     program = models.ForeignKey('programs.Program', blank=True, null=True,
                                      help_text=_("Does this application belong to any specific program"))
     event = models.BooleanField(default=False, help_text="Is it an event?")

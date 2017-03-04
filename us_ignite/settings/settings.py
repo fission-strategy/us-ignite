@@ -439,3 +439,12 @@ PAGINATOR_PAGE_SIZE = 24
 
 # Uplaoded file restrictions:
 MAX_UPLOAD_SIZE = int(1024 * 1024 * 5)   # 5MB
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)

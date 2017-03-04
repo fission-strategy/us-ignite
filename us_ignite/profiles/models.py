@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
 from us_ignite.common.fields import URL_HELP_TEXT
 from django_extensions.db.fields import AutoSlugField
@@ -57,8 +58,9 @@ class User(AbstractUser):
     # birth_date = models.DateField(null=True, blank=True)
 
     # managers
-    objects = models.Manager()
+    objects = UserManager()
     active = managers.ProfileActiveManager()
+
 
     def get_absolute_url(self):
         return reverse('profile_detail', args=[self.slug])
