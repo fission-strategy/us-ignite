@@ -86,7 +86,7 @@ STATIC_FILES_VERSION = 'v2'
 
 DEFAULT_FILE_STORAGE = 'us_ignite.common.storage.MediaS3Storage'
 
-MEDIA_URL = "/"
+MEDIA_URL = "/media/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -120,8 +120,8 @@ AWS_QUERYSTRING_AUTH = False
 
 
 # Media storage
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+# MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/" % (AWS_S3_CUSTOM_DOMAIN,)
 # MEDIA_URL = "https://%s/%s/" % (CLOUDFRONT_DOMAIN, MEDIAFILES_LOCATION)
 MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
