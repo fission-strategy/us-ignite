@@ -91,7 +91,7 @@ class ApplicationBase(TimeStamped):
     )
     website = models.URLField(max_length=500, blank=True, null=True, help_text=URL_HELP_TEXT)
     image = FileField(_("File"), max_length=255, format="Image",
-        upload_to=upload_to("apps.Application.image", "galleries"), null=True, blank=True)
+        upload_to=upload_to("apps.Application.image", "apps"), null=True, blank=True)
     categories = models.ManyToManyField("blog.BlogCategory",
                                         verbose_name=_("Categories"),
                                         blank=True)

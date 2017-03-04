@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import User, ProfileLink, Interest
+from models import User, ProfileLink, Interest, UserCategory
 
 
 class ProfileLinkInline(admin.TabularInline):
@@ -16,5 +16,10 @@ class InterestAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
+class UserCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Interest, InterestAdmin)
+admin.site.register(UserCategory, UserCategoryAdmin)

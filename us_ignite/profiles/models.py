@@ -40,10 +40,10 @@ class User(AbstractUser):
     interests_other = models.CharField(blank=True, max_length=255)
 
     category = models.ForeignKey(
-        'blog.BlogCategory', blank=True, null=True,
+        'profiles.UserCategory', blank=True, null=True,
         verbose_name=u'Category I associate the most with',
         related_name='provile_category')
-    categories_other = models.ManyToManyField('blog.BlogCategory', blank=True,
+    categories_other = models.ManyToManyField('profiles.UserCategory', blank=True,
                                             verbose_name=u'Other categories I associate with',
                                             related_name='profile_category_other')
     is_public = models.BooleanField(default=False,
@@ -125,3 +125,14 @@ class ProfileLink(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return self.url
+
+
+class UserCategory(models.Model):
+    name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='name', unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name', )
