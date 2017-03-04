@@ -1,14 +1,12 @@
 # EXTRA_MODEL_FIELDS = (
 #     (
-#         "mezzanine.blog.models.BlogPost.excerpt",
-#         "TextField",
-#         ("Excerpt",),
+#         "mezzanine.pages.models.RichTextPage.about_desc",
+#         "mezzanine.core.fields.RichTextField",
+#         ("About description",),
 #         {"blank": True, "null": True}
 #     ),
-#     (
-#         "mezzanine.blog.models.BlogPost.image",
-#         "ImageField",
-#         ("Featured Image",),
-#         {'blank': True, 'null': True, 'upload_to': 'blog'}
-#     ),
 # )
+
+# MIGRATION_MODULES = {
+#     "pages": "us_ignite.custom_pages.models",
+# }
