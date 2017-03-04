@@ -86,7 +86,7 @@ STATIC_FILES_VERSION = 'v2'
 
 DEFAULT_FILE_STORAGE = 'us_ignite.common.storage.MediaS3Storage'
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
