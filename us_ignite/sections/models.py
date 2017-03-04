@@ -67,7 +67,7 @@ class SponsorBase(SortableMixin):
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     name = models.CharField(max_length=255)
     image = FileField(_("File"), max_length=255, format="Image",
-        upload_to=upload_to("sections.Sponsor.image", "galleries"))
+        upload_to=upload_to("sections.Sponsor.image", "sponsor"))
     link = models.URLField(blank=True, null=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
 
