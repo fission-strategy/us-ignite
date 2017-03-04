@@ -101,7 +101,7 @@ AWS_STORAGE_BUCKET_NAME = env('AWS_BUCKET_NAME')
 
 # MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = 's3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 
 AWS_HEADERS = {
                      'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
