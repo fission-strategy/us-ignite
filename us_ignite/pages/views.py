@@ -62,8 +62,8 @@ def page(request, slug, template=u"pages/page.html", extra_context={}):
     templates.append(template)
 
     extra_context.update({
-        'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False).latest('created') or {},
-        'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).latest('created') or {},
-        'link_list': Link.objects.filter(page=request.page).filter(status=Link.PUBLISHED).all() or {},
+        'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False).order_by('-created').first(),
+        'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).order_by('-created').first(),
+        'link_list': Link.objects.filter(page=request.page).filter(status=Link.PUBLISHED).all(),
     })
     return TemplateResponse(request, templates, extra_context)
