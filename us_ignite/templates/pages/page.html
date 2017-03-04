@@ -31,15 +31,19 @@
 			<div class="section">
 				<h4 class="hx">Latest News</h4>
 				<ul class="lx-a">
-					<li><a href="{{ latest_news.get_absolute_url }}">{{ latest_news.title }}</a> <time>{{ latest_news.publish_date|date:"M d, Y" }}</time></li>
-				</ul>
+                    {% if upcoming_event %}
+					    <li><a href="{{ latest_news.get_absolute_url }}">{{ latest_news.title }}</a> <time>{{ latest_news.publish_date|date:"M d, Y" }}</time></li>
+                    {% endif %}
+                </ul>
 				<p class="action"><a href="{% url 'news_post_list' %}" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
 			<div class="section">
 				<h4 class="hx">Upcoming Events</h4>
 				<ul class="lx-a">
+                    {% if upcoming_event %}
 					<li><a href="{{ upcoming_event.get_absolute_url }} ">{{ upcoming_event.title }}</a>
 					<time>{{ upcoming_event.event_date|date:"M d, Y" }}</time></li>
+                    {% endif %}
 				</ul>
 				<p class="action"><a href="{% url 'news_post_list' %}" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>

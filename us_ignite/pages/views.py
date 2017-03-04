@@ -66,4 +66,4 @@ def page(request, slug, template=u"pages/page.html", extra_context={}):
         'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).latest('created') or {},
         'link_list': Link.objects.filter(page=request.page).filter(status=Link.PUBLISHED).all() or {},
     })
-    return TemplateResponse(request, templates, extra_context or {})
+    return TemplateResponse(request, templates, extra_context)
