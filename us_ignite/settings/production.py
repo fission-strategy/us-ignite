@@ -120,8 +120,8 @@ AWS_QUERYSTRING_AUTH = False
 
 
 # Media storage
-# MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/" % (AWS_S3_CUSTOM_DOMAIN,)
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 # MEDIA_URL = "https://%s/%s/" % (CLOUDFRONT_DOMAIN, MEDIAFILES_LOCATION)
 MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
