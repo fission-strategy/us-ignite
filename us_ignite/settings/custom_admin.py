@@ -6,10 +6,15 @@ from mezzanine.pages.admin import PageAdmin, PageAdminForm
 from mezzanine.pages.models import RichTextPage
 from mezzanine.blog.models import BlogPost
 from mezzanine.generic.models import ThreadedComment
-from us_ignite.common.models import PageAboutDescription
 from mezzanine.core.forms import TinyMceWidget
 
+from us_ignite.common.models import Link
+
 from taggit.models import Tag
+
+
+class LinkInline(admin.StackedInline):
+    model = Link
 
 
 class RichTextPageForm(PageAdminForm):
@@ -29,6 +34,7 @@ form_fieldsets[1][1]['fields'].remove('keywords')
 #remove description from metadata box
 form_fieldsets[1][1]['fields'].pop(1)
 
+PageAdmin.inlines = [LinkInline, ]
 PageAdmin.form = RichTextPageForm
 PageAdmin.fieldsets = form_fieldsets
 

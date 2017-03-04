@@ -26,30 +26,29 @@
 		<div class="side sidebar-a hide show@large">
 			<div class="section">
 				<h4 class="hx">About</h4>
-				<p>Welcome to the Smart Gigabit Communities Page! This page is managed by John Doe.</p>
-				<p>We believe that Smart Gigabit Communities can change the world.</p>
-				<p>Feel free to message me at <a href="./">johndoe@email.com</a> with any questions.</p>
+				{{ page.description|safe }}
 			</div>
 			<div class="section">
 				<h4 class="hx">Latest News</h4>
 				<ul class="lx-a">
-					<li><a href="./">Four Major Cities Join The Smart Gigabit Communities Program</a> <time>Oct 31, 2016</time></li>
+					<li><a href="{{ latest_news.get_absolute_url }}">{{ latest_news.title }}</a> <time>{{ latest_news.publish_date|date:"M d, Y" }}</time></li>
 				</ul>
-				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
+				<p class="action"><a href="{% url 'news_post_list' %}" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
 			<div class="section">
 				<h4 class="hx">Upcoming Events</h4>
 				<ul class="lx-a">
-					<li><a href="./">Africa Trade and Investment Summit (ATIGS) 2018</a> <time>Oct 31, 2016</time></li>
+					<li><a href="{{ upcoming_event.get_absolute_url }} ">{{ upcoming_event.title }}</a>
+					<time>{{ upcoming_event.event_date|date:"M d, Y" }}</time></li>
 				</ul>
-				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
+				<p class="action"><a href="{% url 'news_post_list' %}" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
 			<div class="section">
 				<h4 class="hx">Links &amp; Resources</h4>
 				<ul class="lx-a">
-					<li><a href="./">What is a Smart Gigabit Community?</a></li>
-					<li><a href="./">Application Form for SGC</a></li>
-					<li><a href="./">Another Resource</a></li>
+                {% for link in link_list %}
+                    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+                {% endfor %}
 				</ul>
 				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>

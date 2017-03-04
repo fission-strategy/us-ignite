@@ -9,6 +9,7 @@ from us_ignite.settings import custom_admin
 
 from us_ignite.sections import views as sections
 from us_ignite.people import views as people
+from us_ignite.pages import views as pages
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
@@ -121,7 +122,7 @@ urlpatterns += [
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
-    url("^", include("mezzanine.urls")),
+    url("^", include("us_ignite.common.urls")),
 
     # MOUNTING MEZZANINE UNDER A PREFIX
     # ---------------------------------
