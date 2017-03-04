@@ -7,7 +7,7 @@ from django.template.response import TemplateResponse
 
 from mezzanine.utils.urls import home_slug
 from us_ignite.news.models import NewsPost as BlogPost
-from us_ignite.common.models import Link
+from us_ignite.common.models import LinkResource
 
 
 def page(request, slug, template=u"pages/page.html", extra_context={}):
@@ -64,6 +64,6 @@ def page(request, slug, template=u"pages/page.html", extra_context={}):
     extra_context.update({
         'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False).order_by('-created').first(),
         'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).order_by('-created').first(),
-        'link_list': Link.objects.filter(page=request.page).filter(status=Link.PUBLISHED).all(),
+        'link_list': LinkResource.objects.filter(page=request.page).filter(status=LinkResource.PUBLISHED).all(),
     })
     return TemplateResponse(request, templates, extra_context)

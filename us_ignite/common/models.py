@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.fields import RichTextField
 
 
-class Link(models.Model):
+class LinkResource(models.Model):
     DRAFT = 1
     PUBLISHED = 2
     REMOVED = 3
