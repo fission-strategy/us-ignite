@@ -5,7 +5,7 @@ from storages.backends.s3boto import S3BotoStorage
 # from filebrowser_safe.storage import S3BotoStorageMixin
 
 
-class CachedS3BotoStorage(S3BotoStorage, S3BotoStorageMixin):
+class CachedS3BotoStorage(S3BotoStorage):
 
 
     def __init__(self, *args, **kwargs):
@@ -19,7 +19,7 @@ class CachedS3BotoStorage(S3BotoStorage, S3BotoStorageMixin):
         return name
 
 
-class MediaStorage(S3BotoStorage, S3BotoStorageMixin):
+class MediaStorage(S3BotoStorage):
     location = settings.MEDIAFILES_LOCATION
 
 # StaticStorage = lambda: CachedS3BotoStorage(location=settings.STATICFILES_LOCATION)
