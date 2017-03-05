@@ -47,7 +47,6 @@ urlpatterns += i18n_patterns(
     # url(r'^search/', include('us_ignite.search.urls')),
     url(r'^programs/', include('us_ignite.programs.urls')),
     # url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^s3direct/', include('s3direct.urls')),
     #todo url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
     #todo url(r'^overview/', include('us_ignite.visualize.urls')),
 
