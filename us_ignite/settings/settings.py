@@ -21,7 +21,7 @@ here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['us-ignite-staging.herokuapp.com',
                  'us-ignite.org',
-                 'www.us-ignite.org',]
+                 'www.us-ignite.org', ]
 
 
 ######################
