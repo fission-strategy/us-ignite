@@ -3,7 +3,6 @@ from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.core.admin import DisplayableAdminForm
 # from mezzanine.blog.admin import blogpost_fieldsets
 # from mezzanine.utils.static import static_lazy as static
-from s3direct.widgets import S3DirectWidget
 
 from mezzanine.blog.models import BlogPost
 from models import NewsPost, Link
@@ -40,27 +39,8 @@ newspost_fieldsets[2][1]['classes'] = ("collapse-open",)
 hidden_field_defaults = ("status", "gen_description", "allow_comments")
 
 
-class NewsAdminForm(DisplayableAdminForm):
-    image = forms.URLField(widget=S3DirectWidget(dest='media/uploads/'))
-    class Meta:
-        model = BlogPost
-        # widgets = {
-        #     'image': S3DirectWidget(dest='media/uploads'),
-        # }
-        fields = ("title", "content") + hidden_field_defaults
-
-
 class NewsAdmin(BlogPostAdmin):
-    form = NewsAdminForm
     fieldsets = newspost_fieldsets
-
-
-
-
-    # class Media:
-    #     css = {"all": (static("mezzanine/css/admin/gallery.css"),)}
-
-    # inlines = (GalleryImageInline,)
 
 
 class LinkAdmin(admin.ModelAdmin):
