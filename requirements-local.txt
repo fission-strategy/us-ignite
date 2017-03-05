@@ -6,7 +6,6 @@ django-contrib-comments==1.7.3
 django-extensions==1.7.5
 django-geoposition==0.3.0
 django-taggit==0.21.3
-filebrowser-safe==0.4.6
 future==0.16.0
 grappelli-safe==0.4.5
 html5lib==0.9999999
