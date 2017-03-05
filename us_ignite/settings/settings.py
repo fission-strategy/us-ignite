@@ -317,6 +317,8 @@ INSTALLED_APPS = (
     'adminsortable',
     'registration',
     'storages',
+    'tinymce',
+    'filebrowser',
 )
 
 AUTH_USER_MODEL = 'profiles.User'
@@ -368,7 +370,7 @@ OPTIONAL_APPS = (
     "django_extensions",
     "compressor",
     # disable FILEBROWSER because of S3 slowness
-    # PACKAGE_NAME_FILEBROWSER,
+    PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
 
@@ -460,3 +462,26 @@ CACHES = {
 
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
+
+# from mezzanine.conf import register_setting
+#
+# register_setting(
+#     name="AUTHORS_BOOKS_PER_PAGE",
+#     label="Authors books per page",
+#     description="The number of books to show per author page.",
+#     editable=True,
+#     default=10,
+# )
+
+import tinymce
+RICHTEXT_WIDGET_CLASS = 'tinymce.widgets.TinyMCE'
+# TINYMCE_FILEBROWSER = False
+
+# TINYMCE_SETUP_JS = 'tiny_mce/tiny_mce.js'
+# TINYMCE_SETUP_JS = 'mezzanine/js/tinymce_setup1.js'
+
+TINYMCE_DEFAULT_CONFIG = {
+    # 'file_browser_callback': 'mce_filebrowser',
+    'theme': "advanced",
+    # 'skin': 'default',
+}

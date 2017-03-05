@@ -6,7 +6,8 @@ from mezzanine.pages.admin import PageAdmin, PageAdminForm, LinkAdmin
 from mezzanine.pages.models import RichTextPage, Link
 from mezzanine.blog.models import BlogPost
 from mezzanine.generic.models import ThreadedComment
-from mezzanine.core.forms import TinyMceWidget
+# from mezzanine.core.forms import TinyMceWidget
+from tinymce.widgets import TinyMCE as TinyMceWidget
 
 from us_ignite.common.models import LinkResource
 
@@ -21,7 +22,7 @@ class RichTextPageForm(PageAdminForm):
     class Meta:
         model = RichTextPage
         widgets = {
-            'description': TinyMceWidget(),
+            'description': TinyMceWidget(attrs={'cols': 20, 'rows': 30}),
         }
         fields = '__all__'
 

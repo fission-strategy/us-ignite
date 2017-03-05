@@ -31,11 +31,13 @@ twython==3.4.0
 django-embed-video==1.1.0
 django-registration==2.2
 django-storages-redux==1.3.2
-boto == 2.46.1
 py-bcrypt==0.4
+django-tinymce==2.6.0
+django-filebrowser-no-grappelli==3.7.0
 
 ## Heroku
 psycopg2
 dj_database_url==0.4.2
 redis==2.10.5
 gunicorn==19.6
+boto == 2.46.1
