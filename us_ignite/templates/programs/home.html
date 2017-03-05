@@ -103,7 +103,7 @@
 			{% endfor %}
 
 			<p class="$mYb"><a href="{% url "app_list" %}" class="button-a block">See All {{ program.application_terminology }}{{ program|length|pluralize }}<span class="arrow-a"></span></a></p>
-
+            {% if funding_agent_list %}
 			<h3 class="hx-a v2@small"><span>Funding Agents</span></h3>
 
 			<div class="logos-a">
@@ -117,6 +117,7 @@
                     {% endfor %}
 				</ul>
 			</div>
+            {% endif %}
 		</div>
 		<div class="side sidebar-a">
 			<div class="section hide show@large">
@@ -138,6 +139,7 @@
 				</ul>
 				<p class="action"><a href="{% url 'news_post_list_program' program=program.slug %}?events_only=1" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
+            {% if link_list %}
 			<div class="section">
 				<h4 class="hx">Links &amp; Resources</h4>
 				<ul class="lx-a">
@@ -147,6 +149,7 @@
 				</ul>
 				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
 			</div>
+            {% endif %}
 			<div class="section gray hide show@large">
 				<h4 class="hx">Stay Informed</h4>
 				<form action="./" method="post" class="signup-b validate">
