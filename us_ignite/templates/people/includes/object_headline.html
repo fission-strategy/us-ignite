@@ -1,6 +1,8 @@
 {% load thumbnail %}
 {% if object.image %}
-<img src="{% thumbnail object.image 295x145 crop %}" alt="" />
+{% thumbnail object.image '295x145' crop='center' as im %}
+<img src="{{ img.url }}" alt="" />
+{% endthumbnail %}
 {% else %}
 <img src="{{ STATIC_URL }}img/project-default.png" alt="" />
 {% endif %}

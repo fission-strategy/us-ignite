@@ -1,6 +1,8 @@
 {% load thumbnail embed_video_tags %}
 {% if object.image %}
-	<div><img src="{% thumbnail object.image 500x500 %}" alt="{{ object.name }}" title="{{ object.name }}"/></div>
+    {% thumbnail object.image "500x500" crop="center" as im %}
+	<div><img src="{{ im.url }}" alt="{{ object.name }}" title="{{ object.name }}"/></div>
+    {% endthumbnail %}
 {% else %}
 	<div>{% video object.url '915x686' %}</div>
 {% endif %}

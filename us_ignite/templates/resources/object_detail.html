@@ -11,7 +11,9 @@
   {% if object.image %}
   <li>
     <a target="_blank" href="{{ object.get_resource_url }}">
-      <img src="{% thumbnail object.image 500x500 %}" alt="" title="{{ object.name }}"/>
+    {% thumbnail object.image '500x500' crop='center' as im %}
+      <img src="{{ im.url }}" alt="" title="{{ object.name }}"/>
+    {% endthumbnail %}
     </a>
   </li>
   {% endif %}

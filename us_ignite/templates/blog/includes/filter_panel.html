@@ -1,4 +1,4 @@
-{% load blog_tags keyword_tags mezzanine_tags i18n %}
+{% load blog_tags keyword_tags mezzanine_tags i18n thumbnail %}
 
 {% block blog_recent_posts %}
 {% blog_recent_posts 5 as recent_posts %}
@@ -10,7 +10,9 @@
     {% spaceless %}
     <a href="{{ recent_post.get_absolute_url }}">
         {% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
-        <img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 24 24 %}">
+        {% thumbnail recent_post.featured_image "24x24" crop="center" as im %}
+        <img src="{{ im.url }}">
+        {% endthumbnail %}
         {% endif %}
     {{ recent_post.title }}
     </a>

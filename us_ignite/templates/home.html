@@ -157,7 +157,13 @@
             <div class="wrap logos">
                 <ul>
                     {% for sponsor in sponsor_list %}
-                    <li><a href="{{ sponsor.link }}"><img src="{% thumbnail sponsor.image 90x40 %}" alt="{{ sponsor.name }}" /></a></li>
+
+                    <li>
+                        {% thumbnail sponsor.image "90x40" crop="center" as im %}
+                        <a href="{{ sponsor.link }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ sponsor.name }}" /></a>
+                        {% endthumbnail %}
+                    </li>
+
                     {% endfor %}
                  
                 </ul>

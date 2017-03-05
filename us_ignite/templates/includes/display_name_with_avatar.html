@@ -4,7 +4,9 @@
 
   <div class="medium-4 large-2 columns">
     {% if profile.avatar  %}
-    <img src="{% thumbnail profile.avatar 276x276 crop %}" alt="Avatar" class="sidebar__list__image" />
+    {% thumbnail provile.avatar "276x276" crop="center" as im %}
+    <img src="{{ im.url }}" alt="Avatar" class="sidebar__list__image" />
+    {% endthumbnail %}
     {% else %}
     <img src="{{ profile.get_gravatar_url }}" alt="Avatar" class="sidebar__list__image" />
     {% endif %}

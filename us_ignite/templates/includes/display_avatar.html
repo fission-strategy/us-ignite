@@ -2,7 +2,9 @@
 {% if profile %}
 <a href="{{ profile.get_absolute_url }}" title="Contact {{ profile.display_name }}">
   {% if profile.avatar  %}
-  <img src="{% thumbnail profile.avatar 100x100 crop %}" alt="" />
+  {% thumbnail profile.avatar "100x100" crop="center" as im %}
+  <img src="{{ img.url }}" alt="" />
+  {% endthumbnail %}
   {% else %}
   <img src="{{ profile.get_gravatar_url }}" alt="{{ profile.display_name }}" />
   {% endif %}

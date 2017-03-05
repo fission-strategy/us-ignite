@@ -5,7 +5,9 @@
         {% if object.image %}
         <figure>
             <a href="{{ object.get_absolute_url }}">
-                <img class="img-thumbnail " src="{% thumbnail object.image 800x350 %}">
+                {% thumbnail object.image '800x350' crop='center' as im %}
+                <img class="img-thumbnail " src="{{ im.url }}">
+                {% endthumbnail %}
             </a>
         </figure>
         {% else %}

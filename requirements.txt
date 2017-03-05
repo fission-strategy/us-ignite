@@ -19,13 +19,13 @@ requests-oauthlib==0.7.0
 six==1.10.0
 tzlocal==1.3
 whitenoise==3.2.3
-gunicorn==19.6
 django-watson==1.3.0
 shortuuid==0.4.3
 markdown==2.6.8
 django-admin-sortable==2.0.21
 geopy==1.11.0
 easy-thumbnails==2.3
+sorl-thumbnail==12.3
 django_compressor==2.1.1
 twython==3.4.0
 django-embed-video==1.1.0
@@ -37,3 +37,5 @@ py-bcrypt==0.4
 ## Heroku
 psycopg2
 dj_database_url==0.4.2
+redis==2.10.5
+gunicorn==19.6

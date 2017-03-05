@@ -285,9 +285,10 @@ INSTALLED_APPS = (
     # "mezzanine.accounts",
     # "mezzanine.mobile",
 
-    'easy_thumbnails',
+    # 'easy_thumbnails',
     'compressor',
     'embed_video',
+    'sorl.thumbnail',
 
     'us_ignite.profiles',
     'us_ignite.people',
@@ -448,3 +449,13 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+
+THUMBNAIL_DEBUG = True
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'

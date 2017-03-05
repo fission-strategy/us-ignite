@@ -3,7 +3,9 @@
 
 	<div class="thumb">
 		{% if object.image %}
-		<img src="{% thumbnail object.image 50x50 crop %}" alt="{{ object.name }}" class="sidebar__list__image">
+        {% thumbnail object.image '50x50' crop='center' as im %}
+		<img src="{{ im.url }}" alt="{{ object.name }}" class="sidebar__list__image">
+        {% endthumbnail %}
 		{% else %}
 		<img src="http://placehold.it/50x50" alt="{{ object.name }}" class="sidebar__list__image">
 		{% endif %}

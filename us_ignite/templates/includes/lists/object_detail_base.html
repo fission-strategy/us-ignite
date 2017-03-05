@@ -28,7 +28,9 @@
 			<article>
 				{% block content_media %}
 					{% if object.image %}
-						<div><img src="{% thumbnail object.image 800x600 crop %}" alt="" title="{{ object.name }}"/></div>
+                        {% thumbnail object.image '800x600' crop='center' as im %}
+						<div><img src="{{ im.url }}" alt="" title="{{ object.name }}"/></div>
+                        {% endthumbnail %}
 					{% endif %}
 
 					{% if media_list %}

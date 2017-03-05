@@ -1,6 +1,6 @@
 {% extends BASE_TEMPLATE %}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags %}
-
+{% load thumbnail %}
 
 {% block title %}
 {{ blog_post.title }}
@@ -36,7 +36,9 @@
             {% if blog_post.image %}
             <figure>
                 <a href="{{ blog_post.get_absolute_url }}">
-                    <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail blog_post.image 900 600 %}">
+                    {% thumbnail blog_post.image "900x600" crop="center" as im %}
+                    <img class="img-thumbnail " src="{{ im.url }}">
+                    {% endthumbnail %}
                 </a>
             </figure>
             {% endif %}
@@ -74,7 +76,9 @@
                     {% if post.image %}
                     <figure>
                         <a href="{{ post.get_absolute_url }}">
-                            <img class="img-thumbnail " src="{{ MEDIA_URL }}{% thumbnail post.image 800 350 %}">
+                            {% thumbnail post.image "800x350" crop="center" as im %}
+                            <img class="img-thumbnail " src="{{ im.url }}">
+                            {% endthumbnail %}
                         </a>
                     </figure>
                     {% endif %}

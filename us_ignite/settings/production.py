@@ -6,6 +6,7 @@
 # immediately.
 from us_ignite.settings.settings import *
 import dj_database_url
+import urlparse
 
 
 DEBUG = True
@@ -125,3 +126,17 @@ MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 # MEDIA_URL = "https://%s/%s/" % (CLOUDFRONT_DOMAIN, MEDIAFILES_LOCATION)
 MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
+
+THUMBNAIL_DEBUG = True
+redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
+        }
+    }
+}

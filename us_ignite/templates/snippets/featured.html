@@ -1,7 +1,11 @@
 {% load thumbnail %}{% if object %}
 <div class="row" data-equalizer-watch>
   <div class="small-12 columns">
-    {% if object.image %}<img src="{% thumbnail object.image 80x78 crop %}" alt="{{ object.name }}">{% endif %}
+    {% if object.image %}
+        {% thumbnail object.image '80x78' crop='center' as im %}
+        <img src="{{ im.url }}" alt="{{ object.name }}">
+        {% endthumbnail %}
+    {% endif %}
     <h4 class="homepage-grid__heading homepage-grid__heading__plain">{{ object.name }}</h4>
     {{ object.body|safe }}
   </div>
