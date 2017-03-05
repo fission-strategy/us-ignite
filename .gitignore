@@ -9,3 +9,4 @@ node_modules
 .idea
 venv
 us_ignite/static/media
+thumbnail_kvstore.lock
