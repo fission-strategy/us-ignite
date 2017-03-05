@@ -317,8 +317,8 @@ INSTALLED_APPS = (
     'adminsortable',
     'registration',
     'storages',
-    'tinymce',
-    'filebrowser',
+    # 'tinymce',
+    # 'filebrowser',
 )
 
 AUTH_USER_MODEL = 'profiles.User'
@@ -474,14 +474,14 @@ THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
 # )
 
 import tinymce
-RICHTEXT_WIDGET_CLASS = 'tinymce.widgets.TinyMCE'
+# RICHTEXT_WIDGET_CLASS = 'tinymce.widgets.TinyMCE'
 # TINYMCE_FILEBROWSER = False
 
 # TINYMCE_SETUP_JS = 'tiny_mce/tiny_mce.js'
 # TINYMCE_SETUP_JS = 'mezzanine/js/tinymce_setup1.js'
 
-TINYMCE_DEFAULT_CONFIG = {
-    # 'file_browser_callback': 'mce_filebrowser',
-    'theme': "advanced",
-    # 'skin': 'default',
-}
+# TINYMCE_DEFAULT_CONFIG = {
+#     # 'file_browser_callback': 'mce_filebrowser',
+#     'theme': "advanced",
+#     # 'skin': 'default',
+# }
