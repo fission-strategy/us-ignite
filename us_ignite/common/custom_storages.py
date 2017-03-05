@@ -2,7 +2,7 @@
 from django.core.files.storage import get_storage_class
 from django.conf import settings
 from storages.backends.s3boto import S3BotoStorage
-from filebrowser_safe.storage import S3BotoStorageMixin
+# from filebrowser_safe.storage import S3BotoStorageMixin
 
 
 class CachedS3BotoStorage(S3BotoStorage, S3BotoStorageMixin):
