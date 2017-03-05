@@ -22,4 +22,4 @@ class CachedS3BotoStorage(S3BotoStorage):
 class MediaStorage(S3BotoStorage):
     location = settings.MEDIAFILES_LOCATION
 
-# StaticStorage = lambda: CachedS3BotoStorage(location=settings.STATICFILES_LOCATION)
+StaticStorage = lambda: CachedS3BotoStorage(location=settings.STATICFILES_LOCATION)
