@@ -12,6 +12,18 @@ PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 
 here = lambda *x: os.path.join(PROJECT_ROOT, '..', *x)
 
+
+########################
+# DEPLOY SETTINGS #
+########################
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['us-ignite-staging.herokuapp.com',
+                 'us-ignite.org',
+                 'www.us-ignite.org',]
+
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
