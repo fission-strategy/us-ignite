@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 from mezzanine.generic.fields import KeywordsField
 from mezzanine.conf import settings
 from django.core.urlresolvers import reverse
-from s3direct.fields import S3DirectField
 
 
 class NewsPost(BlogPost):
