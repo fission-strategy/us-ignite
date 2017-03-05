@@ -473,7 +473,7 @@ THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
 #     default=10,
 # )
 
-import tinymce
+# import tinymce
 # RICHTEXT_WIDGET_CLASS = 'tinymce.widgets.TinyMCE'
 # TINYMCE_FILEBROWSER = False
 
