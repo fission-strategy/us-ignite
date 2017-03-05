@@ -15,7 +15,7 @@ from django.http import HttpResponse
 from mezzanine.conf import settings
 from mezzanine.core.sitemaps import DisplayableSitemap
 
-from us_ignite.pages.views import page as cust_page
+from us_ignite.pages_ext.views import page as cust_page
 
 
 urlpatterns = []

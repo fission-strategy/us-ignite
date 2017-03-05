@@ -4,9 +4,8 @@
 .DS_Store
 .coverage
 local_settings.py
-/static
+/us_ignite/static
 node_modules
 .idea
 venv
-us_ignite/static/media
 thumbnail_kvstore.lock

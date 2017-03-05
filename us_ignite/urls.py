@@ -9,12 +9,11 @@ from us_ignite.settings import custom_admin
 
 from us_ignite.sections import views as sections
 from us_ignite.people import views as people
-from us_ignite.pages import views as pages
+from us_ignite.pages_ext import views as pages
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
-# from filebrowser.sites import site
 
 
 
@@ -33,7 +32,6 @@ urlpatterns += i18n_patterns(
     # admin interface, which would be marginally more secure.
     url(r'^$', sections.home, name='home'),
     url("^dashboard/$", people.dashboard, name='dashboard'),
-    # url(r'^admin/filebrowser/', include(site.urls)),
     url("^admin/", include(admin.site.urls)),
     url("^accounts/", include('us_ignite.profiles.urls')),
     url(r'^people/', include('us_ignite.people.urls')),
@@ -49,7 +47,7 @@ urlpatterns += i18n_patterns(
     # url(r'^search/', include('us_ignite.search.urls')),
     url(r'^programs/', include('us_ignite.programs.urls')),
     # url(r'^tinymce/', include('tinymce.urls')),
-
+    url(r'^s3direct/', include('s3direct.urls')),
     #todo url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
     #todo url(r'^overview/', include('us_ignite.visualize.urls')),
 

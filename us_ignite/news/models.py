@@ -8,12 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 from mezzanine.generic.fields import KeywordsField
 from mezzanine.conf import settings
 from django.core.urlresolvers import reverse
+from s3direct.fields import S3DirectField
 
 
 class NewsPost(BlogPost):
     is_featured = models.BooleanField(default=False)
     excerpt = models.TextField(blank=True, null=True)
-    image = FileField(_("File"), max_length=255, format="Image",
+    image = FileField(_("Image"), max_length=255, format="Image",
         upload_to=upload_to("news.NewsPost.image", "blog"), null=True, blank=True)
     program = models.ForeignKey('programs.Program', blank=True, null=True,
                                      help_text=_("Does this application belong to any specific program"))
@@ -22,6 +23,7 @@ class NewsPost(BlogPost):
     event_date = models.DateTimeField(_("Event date"),
                                         help_text=_("Event date"),
                                         blank=True, null=True, db_index=True)
+    # s3 = S3DirectField(dest='example_destination')
 
     def is_blog_post(self):
         return True

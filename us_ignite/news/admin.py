@@ -1,10 +1,16 @@
 from django.contrib import admin
 from mezzanine.blog.admin import BlogPostAdmin
+from mezzanine.core.admin import DisplayableAdminForm
 # from mezzanine.blog.admin import blogpost_fieldsets
 # from mezzanine.utils.static import static_lazy as static
+from s3direct.widgets import S3DirectWidget
 
+from mezzanine.blog.models import BlogPost
 from models import NewsPost, Link
 from copy import deepcopy
+from django import forms
+from mezzanine.core.models import CONTENT_STATUS_DRAFT
+
 # from mezzanine.core.admin import (DisplayableAdmin, OwnableAdmin,
 #                                   BaseTranslationModelAdmin)
 # from mezzanine.galleries.models import Gallery
@@ -23,6 +29,7 @@ newspost_fieldsets[0][1]['fields'].insert(5, 'event')
 newspost_fieldsets[0][1]['fields'].insert(6, 'event_date')
 newspost_fieldsets[0][1]['fields'].insert(7, 'image')
 newspost_fieldsets[0][1]['fields'].insert(8, 'is_featured')
+# newspost_fieldsets[0][1]['fields'].insert(9, 's3')
 
 newspost_fieldsets[0][1]['fields'].remove("allow_comments")
 newspost_fieldsets[2][1]['fields'].remove("keywords")
@@ -30,9 +37,25 @@ newspost_fieldsets[2][1]['fields'].remove('slug')
 newspost_fieldsets[1][1]['classes'] = ("collapse-open",)
 newspost_fieldsets[2][1]['classes'] = ("collapse-open",)
 
+hidden_field_defaults = ("status", "gen_description", "allow_comments")
+
+
+class NewsAdminForm(DisplayableAdminForm):
+    image = forms.URLField(widget=S3DirectWidget(dest='media/uploads/'))
+    class Meta:
+        model = BlogPost
+        # widgets = {
+        #     'image': S3DirectWidget(dest='media/uploads'),
+        # }
+        fields = ("title", "content") + hidden_field_defaults
+
 
 class NewsAdmin(BlogPostAdmin):
+    form = NewsAdminForm
     fieldsets = newspost_fieldsets
+
+
+
 
     # class Media:
     #     css = {"all": (static("mezzanine/css/admin/gallery.css"),)}
@@ -46,3 +69,4 @@ class LinkAdmin(admin.ModelAdmin):
 
 admin.site.register(NewsPost, NewsAdmin)
 admin.site.register(Link, LinkAdmin)
+
