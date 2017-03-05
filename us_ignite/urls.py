@@ -14,7 +14,7 @@ from us_ignite.pages import views as pages
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
-from filebrowser.sites import site
+# from filebrowser.sites import site
 
 
 
