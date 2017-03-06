@@ -210,7 +210,9 @@ class Application(ApplicationBase):
     )
     awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
 
-    programs = models.ManyToManyField('programs.Program', blank=True, verbose_name="Programs", related_name='program_list')
+    programs = models.ManyToManyField('programs.Program', blank=True,
+                                      related_name='program_list',
+                                      verbose_name="Does this application belong to any specific program(s)?")
 
     # using Taggit
     # category_tags = TaggableManager(through=TaggedCategory, blank=True, verbose_name='Categories')

@@ -20,7 +20,7 @@ class ApplicationAdmin(admin.ModelAdmin):
                      'assistance', 'team_description', 'notes',
                      'acknowledgments']
     list_filter = ['stage', 'status', 'created', 'categories', 'sector', 'program']
-    exclude = ['keywords',]
+    exclude = ['keywords', 'program']
     date_hierarchy = 'created'
     filter_horizontal = ("categories", "features", "programs")
 
