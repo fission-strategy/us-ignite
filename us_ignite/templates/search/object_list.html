@@ -7,7 +7,11 @@
 {% block top_panel %}
 <div class="row">
   <div class="large-4 medium-6 small-12 columns">
+  {% if slug == 'default' %}
   <form method="get" action="{% url 'search' %}">
+  {% elif slug == 'apps' %}
+  <form method="get" action="{% url 'search_apps' %}">
+  {% endif %}
     {{ form }}
     <input type="submit" value="Submit" />
   </form>
