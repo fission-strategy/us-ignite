@@ -56,7 +56,7 @@
         <td class="hide@small">{{ object.sector }}</td>
         <td>
             <p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
-            <p class="hide@small">{{ object.summary }}</p>
+            <p class="hide@small">{{ object.summary|truncatewords_html:35 }}</p>
             <p class="hide@small"><strong>{{ object.team_leader }}</strong></p>
         </td>
         <td class="hide@small">

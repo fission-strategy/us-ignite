@@ -39,22 +39,22 @@
                 {% with result.get_absolute_url as result_url %}
                     <div>
                         <h5>
-                            
+
                             {% if result_url %}
                                 <a href="{{ result_url }}">{{ result }}</a>
                             {% else %}
                                 {{ result }}
                             {% endif %}
                         </h5>
-                        {% if result.description != result|stringformat:"s" %}
-                            <p>{{ result.description|truncatewords_html:20|safe }}</p>
+                        {% if result.content != result|stringformat:"s" %}
+                            <p>{{ result.content|truncatewords_html:20|safe }}</p>
                             {% if result_url %}
                                 <p><a class="button-a" href="{{ result_url }}">{% trans "Read More" %}</a></p>
                             {% endif %}
                         {% endif %}
                     </div>
                     {% if not forloop.last %}<hr>{% endif %}
-                    
+
                 {% endwith %}
                 {% endfor %}
             </div>

@@ -35,7 +35,7 @@
 		<td>
 			<p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
 		</td>
-		<td class="hide@small">{{ object.summary }}</td>
+		<td class="hide@small">{{ object.summary|truncatewords_html:25 }}</td>
 		<td class="hide@small"><a href="{{ object.website }}" target="_blank">{{ object.website }}</td>
 	</tr>
 	{% endfor%}

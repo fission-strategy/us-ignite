@@ -1,13 +1,22 @@
-{% if page.paginator.num_pages %}
-<nav class="paging-a">
-	<ul>
-	  {% if page.has_previous %}
-	  <li class="step prev"><a href="?page={{ page.previous_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}">«</a></li>
-	  {% endif %}
-	  <li class="current">Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
-	  {% if page.has_next %}
-	  <li class="step next"><a href="?page={{ page.next_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}">»</a></li>
-	  {% endif %}
-	</ul>
-</nav>
+{% load i18n %}
+
+{% if current_page.has_previous or current_page.has_next %}
+<ul class="pagination">
+
+<li class="page-info">
+    <span>{% trans "Page" %} {{ current_page.number }} {% trans "of" %} {{ current_page.paginator.num_pages }}</span>
+</li>
+<li class="prev previous{% if not current_page.has_previous %} disabled{% endif %}">
+    <a{% if current_page.has_previous %} href="?{{ page_var }}={{ current_page.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"{% endif %}>&larr;</a>
+</li>
+{% for page in current_page.visible_page_range %}
+<li{% if page == current_page.number %} class="active"{% endif %}>
+    <a href="?{{ page_var }}={{ page }}{% if querystring %}&{{ querystring }}{% endif %}">{{ page }}</a>
+</li>
+{% endfor %}
+<li class="next{% if not current_page.has_next %} disabled{% endif %}">
+    <a{% if current_page.has_next %} href="?{{ page_var }}={{ current_page.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"{% endif %}>&rarr;</a>
+</li>
+
+</ul>
 {% endif %}

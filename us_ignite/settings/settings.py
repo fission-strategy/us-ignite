@@ -371,7 +371,7 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 # put this to heroku instead!!
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAvABAO0_NJTlC_nIhKtAU4jKpMb7tmpIk'
 
-PAGINATOR_PAGE_SIZE = 8
+PAGINATOR_PAGE_SIZE = 10
 
 #########################
 # OPTIONAL APPLICATIONS #

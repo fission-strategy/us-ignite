@@ -1,6 +1,6 @@
 {% extends BASE_TEMPLATE %}
 {% load thumbnail %}
-{% load keyword_tags %}
+{% load keyword_tags  %}
 
 {% block title %}Smart Communities{% endblock title %}
 
@@ -69,7 +69,7 @@
 							    <tr data-app-id="{{ app.id }}">
 									<td>
 										<p><big><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></big></p>
-										<p>{{ app.summary }}</p>
+										<p>{{ app.summary|truncatewords_html:35 }}</p>
                                         
 									</td>
 									<td class="hide@small">

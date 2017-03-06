@@ -1,24 +1,28 @@
 {% extends "includes/lists/object_list_base.html" %}
 
-{% block title %}Seach Results - {{ block.super }}{% endblock title %}
+{% block page_title %}Search Results for "{{ query }}"{% endblock page_title %}
 
-{% block page_title %}Search Results{% endblock page_title %}
+<div id="search-results">
 
-{% block top_panel %}
-<div class="row">
-  <div class="large-4 medium-6 small-12 columns">
-  {% if slug == 'default' %}
-  <form method="get" action="{% url 'search' %}">
-  {% elif slug == 'apps' %}
-  <form method="get" action="{% url 'search_apps' %}">
-  {% endif %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-  </form>
-  </div>
+{% block object_table %}
+
+{% for result in results.object_list_top %}
+    {% with result.get_absolute_url as result_url %}
+        <h5>
+        {{ forloop.counter0|add:results.start_index }})
+        {% if result_url %}
+            <a href="{{ result_url }}">{{ result }}</a>
+        {% else %}
+            {{ result }}
+        {% endif %}
+    </h5>
+    {% if result.description != result|stringformat:"s" %}
+        <p>{{ result.description|truncatewords_html:20|safe }}</p>
+    {% endif %}
+    {% endwith %}
+{% endfor %}
 </div>
-{% endblock top_panel %}
-
+{% endblock object_table %}
 {% block tags %}
 {% endblock tags %}
 

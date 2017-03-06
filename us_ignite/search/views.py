@@ -11,7 +11,8 @@ from filters import tag_search
 
 from us_ignite.apps.models import Application, Sector
 from us_ignite.common import pagination
-
+from mezzanine.conf import settings
+from mezzanine.utils.views import paginate
 
 
 
@@ -39,32 +40,53 @@ def search(request, slug='default'):
     form = SearchForm(request.GET) if 'q' in request.GET else SearchForm()
     page_no = pagination.get_page_no(request.GET)
 
+    query = request.GET.get("q", "")
+    page = request.GET.get("page", 1)
+    per_page = settings.SEARCH_PER_PAGE
+    max_paging_links = settings.MAX_PAGING_LINKS
     if form.is_valid():
-        # if slug == 'apps':
-        #     if form.cleaned_data['q'] == '':
-        #         object_list = Application.objects.
-        object_list = get_search_results(form.cleaned_data['q'], slug)
-
+        object_list = list(watson.search(form.cleaned_data['q'], SEARCH_PARAMS['default']))
         pagination_qs = '&%s' % urlencode({'q': form.cleaned_data['q']})
     else:
         object_list = []
         pagination_qs = ''
-    page = pagination.get_page(object_list, page_no)
-    page.object_list_top = [o.object for o in page.object_list_top]
-    page.object_list_bottom = [o.object for o in page.object_list_bottom]
-    context = {
-        'form': form,
-        'page': page,
-        'pagination_qs': pagination_qs,
-        'slug': slug
-    }
-    if slug == 'apps':
-        context.update ({
-            'sector_list': Sector.objects.all()
-        })
-        return TemplateResponse(request, 'apps/object_list.html', context)
-    return TemplateResponse(request, 'search/object_list.html', context)
 
+    results = object_list
+    # page.object_list_top = [o.object for o in page.object_list_top]
+    # page.object_list_bottom = [o.object for o in page.object_list_bottom]\
+
+    paginated = paginate(results, page, per_page, max_paging_links)
+    context = {
+        'query': form.cleaned_data['q'],
+        # 'form': form,
+        'results': paginated,
+        'search_type': "Everything"
+        # 'pagination_qs': pagination_qs,
+        # 'slug': slug
+    }
+
+    # query = request.GET.get("q", "")
+    # page = request.GET.get("page", 1)
+    # per_page = settings.SEARCH_PER_PAGE
+    # max_paging_links = settings.MAX_PAGING_LINKS
+    # try:
+    #     parts = request.GET.get("type", "").split(".", 1)
+    #     search_model = apps.get_model(*parts)
+    #     search_model.objects.search  # Attribute check
+    # except (ValueError, TypeError, LookupError, AttributeError):
+    #     search_model = Displayable
+    #     search_type = _("Everything")
+    # else:
+    #     search_type = search_model._meta.verbose_name_plural.capitalize()
+    # results = search_model.objects.search(query, for_user=request.user)
+    # paginated = paginate(results, page, per_page, max_paging_links)
+    # context = {"query": query, "results": paginated,
+    #            "search_type": search_type}
+    # context.update(extra_context or {})
+    # return TemplateResponse(request, template, context)
+
+    # return TemplateResponse(request, 'search/object_list.html', context)
+    return TemplateResponse(request, 'search_results.html', context)
 
 @csrf_exempt
 def search_apps(request):
