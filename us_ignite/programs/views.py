@@ -15,7 +15,7 @@ def program_home(request, slug):
     for sector in sector_list:
         apps = list([Application.objects.filter(status=Application.PUBLISHED,
                                                 sector=sector,
-                                                program=program).all()[:3], sector.slug])
+                                                programs__in=[program, ]).all()[:3], sector.slug])
         app_list.update({sector: apps})
 
     context = {
