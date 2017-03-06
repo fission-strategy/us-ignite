@@ -104,18 +104,18 @@
 
 	{% include "includes/sidebar/contact.html" with contact=object.contact %}
 
-	{% if member_list %}
-	<div class="section">
-		<h4 class="hx">SUPPORTERS</h4>
-		<ul class="no-bullet sidebar__list">
-			{% for member in member_list %}
-			<li class="sidebar__list__item">
-				{% include "includes/display_name_with_avatar.html" with user=member %}
-			</li>
-			{% endfor%}
-		</ul>
-	</div>
-	{% endif %}
+{#	{% if member_list %}#}
+{#	<div class="section">#}
+{#		<h4 class="hx">SUPPORTERS</h4>#}
+{#		<ul class="no-bullet sidebar__list">#}
+{#			{% for member in member_list %}#}
+{#			<li class="sidebar__list__item">#}
+{#				{% include "includes/display_name_with_avatar.html" with user=member %}#}
+{#			</li>#}
+{#			{% endfor%}#}
+{#		</ul>#}
+{#	</div>#}
+{#	{% endif %}#}
 
 	{% if application_list %}
 	<div class="section">
