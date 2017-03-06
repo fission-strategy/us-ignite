@@ -476,6 +476,8 @@ CACHES = {
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
 
+THUMBNAIL_PRESERVE_FORMAT=True
+
 # from mezzanine.conf import register_setting
 #
 # register_setting(
