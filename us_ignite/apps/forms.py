@@ -10,6 +10,7 @@ from django.forms.widgets import HiddenInput
 from us_ignite.apps.models import (Application, ApplicationURL,
                                    ApplicationMedia, ApplicationMembership)
 from us_ignite.common import output
+from us_ignite.programs.models import Program
 
 
 def _get_status_choices():
@@ -29,17 +30,22 @@ class ApplicationForm(forms.ModelForm):
     summary = forms.CharField(
         max_length=140, widget=forms.Textarea,
         help_text='Tweet-length pitch / summary of project.')
+    # programs = forms.MultipleChoiceField(
+    #     initial=[3,]
+    # )
 
     class Meta:
         model = Application
         fields = ('name', 'summary', 'impact_statement',
                   'image', 'sector', 'features', 'stage',
                   'assistance', 'team_name', 'team_description',
-                  'awards', 'acknowledgments', 'status','program')
+                  'awards', 'acknowledgments', 'status', 'programs')
         widgets = {
             'features': forms.CheckboxSelectMultiple(),
 
             'program': forms.HiddenInput(),
+
+            'programs': forms.HiddenInput(),
         }
 
     def _strip_tags(self, field):
