@@ -3,7 +3,7 @@
 	<p class="label">
 		{% if field.errors %}{{ field.errors }}{% endif %}
 		<label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required%}<span class="field-required"> *</span>{% endif %} <small>{{ field.help_text }}</small></label>
-]	</p>
+	</p>
 	<p class="fields">
 		{{ field }}
 	</p>
