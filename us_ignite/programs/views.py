@@ -17,7 +17,7 @@ def program_home(request, slug):
                                                 sector=sector,
                                                 program=program).all()[:3], sector.slug])
         app_list.update({sector: apps})
-
+    print program.accent_color
     context = {
         'program': program,
         'app_list': app_list,

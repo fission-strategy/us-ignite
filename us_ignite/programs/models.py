@@ -4,10 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from mezzanine.utils.models import upload_to
-from mezzanine.core.fields import FileField
-from mezzanine.core.fields import RichTextField
-
-from django_extensions.db.fields import AutoSlugField
+from mezzanine.core.fields import FileField, RichTextField
 
 
 class FundingPartner(models.Model):
@@ -65,6 +62,7 @@ class Program(models.Model):
     about_desc = RichTextField(_("About description"), blank=True, null=True)
     intro_desc = RichTextField(_("Intro description"), blank=True, null=True)
     application_terminology = models.CharField(max_length=255, default='application')
+    accent_color = models.CharField(max_length=7, default='#EE7422')
 
     def __unicode__(self):
         return self.name
