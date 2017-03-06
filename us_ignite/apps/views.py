@@ -6,6 +6,7 @@ from django.views.decorators.http import require_http_methods
 from django.http import Http404, HttpResponse
 from django.template.response import TemplateResponse
 from models import Application, ApplicationMembership, ApplicationVersion, Page, Sector
+from us_ignite.programs.models import Program
 
 from us_ignite.apps.forms import (ApplicationForm, ApplicationLinkFormSet,
                                   MembershipForm, ApplicationMediaFormSet,
@@ -51,11 +52,10 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
         filter_name = extra_qs['program'].name
     else:
         extra_qs['program'] = None
-
     page_no = pagination.get_page_no(request.GET)
     order_form = forms.OrderForm(
         request.GET, order_choices=APPS_SORTING_CHOICES)
-    order_value = order_form.cleaned_data['order'] if order_form.is_valid() else ''
+    order_value = order_fdrm.cleaned_data['order'] if order_form.is_valid() else ''
     object_list = Application.objects.select_related('sector').filter(
         status=Application.PUBLISHED, **extra_qs)
     # object_list_ac = ActionCluster.objects.select_related('domain').filter(

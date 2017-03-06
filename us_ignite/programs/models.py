@@ -64,6 +64,7 @@ class Program(models.Model):
     application_terminology = models.CharField(max_length=255, default='application')
     accent_color = models.CharField(max_length=7, default='#EE7422')
 
+
     def __unicode__(self):
         return self.name
 
