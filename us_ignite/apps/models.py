@@ -37,6 +37,8 @@ class Feature(models.Model):
 class Sector(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
+    default_image = FileField(_("Default Image"), max_length=255, format="Image",
+        upload_to=upload_to("apps.Application.image", "apps"), null=True, blank=True)
 
     def __unicode__(self):
         return self.name

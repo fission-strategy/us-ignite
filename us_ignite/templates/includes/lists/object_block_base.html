@@ -12,9 +12,17 @@
         </figure>
         {% else %}
         <figure>
+        {% if object.sector %}
+            <a href="{{ object.get_absolute_url }}">
+            {% thumbnail object.sector.default_image '800x350' crop='center' as im %}
+                <img class="img-thumbnail " src="{{ im.url }}">
+            {% endthumbnail %}
+            </a>
+        {% else %}
             <a href="{{ object.get_absolute_url }}">
                 <img class="img-thumbnail " src="http://placehold.it/800x350">
             </a>
+        {% endif %}
         </figure>
         {% endif %}
         <div>
