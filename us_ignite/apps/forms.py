@@ -69,7 +69,10 @@ class ApplicationForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super(ApplicationForm, self).save(commit=False)
-        instance.program = Program.objects.filter(default=True).get()
+        try:
+            instance.program = Program.objects.filter(default=True).get()
+        except Program.DoesNotExist:
+            instance.program = None
         if commit:
             instance.save()
         return instance
