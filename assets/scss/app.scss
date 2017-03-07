@@ -486,8 +486,14 @@ ul {
   background-image: url(/static/img/stage-active.png);
 }
 
-.app__stage--innactive {
+.app__stage--inactive {
   background-image: url(/static/img/stage-innactive.png);
+}
+
+.app__stage__label {
+	font-size: 0.6875rem;
+	display: block;
+	text-align: center;
 }
 
 @media screen and (min-width: 1024px) {
