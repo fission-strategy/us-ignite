@@ -602,7 +602,18 @@ new function(settings) {
 
 				e.preventDefault();
 				
-				var address = $form.find("#f-city").val() + "%20" + $form.find("#f-state").val() + "%20" + $form.find("#f-zip").val();
+				var address = "";
+
+				if ($.trim($form.find("#f-city").val()) !== "")
+					address = address + $form.find("#f-city").val() + ",";
+
+
+				if ($.trim($form.find("#f-state").val()) !== "")
+					address = address + $form.find("#f-state").val() + ",";
+
+				if ($.trim($form.find("#f-zip").val()) !== "")
+					address = address + $form.find("#f-zip").val();
+
 
 				$.ajax({
 					url: url,
