@@ -406,17 +406,23 @@ ul.cat-list {
   background-image: url(/static/img/stage-active.png); }
 
 /* line 489, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
-.app__stage--innactive {
+.app__stage--inactive {
   background-image: url(/static/img/stage-innactive.png); }
 
+/* line 493, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+.app__stage__label {
+  font-size: 0.6875rem;
+  display: block;
+  text-align: center; }
+
 @media screen and (min-width: 1024px) {
-  /* line 495, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+  /* line 501, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
   .top-a .nav li ul {
     padding: 0; }
-  /* line 499, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+  /* line 505, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
   .top-a .nav .dropdown li {
     border-bottom: rgba(255, 255, 255, 0.3) solid 1px;
     padding: 15px; }
-    /* line 503, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+    /* line 509, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
     .top-a .nav .dropdown li:last-child {
       border-bottom: 0; } }
