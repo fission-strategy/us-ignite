@@ -217,13 +217,14 @@ def find_location(request):
 
     nearest_hub_distance = 100000
     nearest_hub = {}
-    for hub in hub_list:
-        hub_dict = get_location_dict(hub, 'community')
-        hub_geo = (hub_dict['latitude'], hub_dict['longitude'])
-        hub_distance = vincenty(hub_geo, (user_location.latitude, user_location.longitude)).miles
+    if user_location:
+        for hub in hub_list:
+            hub_dict = get_location_dict(hub, 'community')
+            hub_geo = (hub_dict['latitude'], hub_dict['longitude'])
+            hub_distance = vincenty(hub_geo, (user_location.latitude, user_location.longitude)).miles
 
-        if (hub_distance < nearest_hub_distance):
-            nearest_hub_distance = hub_distance
-            nearest_hub = hub_dict
+            if (hub_distance < nearest_hub_distance):
+                nearest_hub_distance = hub_distance
+                nearest_hub = hub_dict
 
     return json_response(nearest_hub)
