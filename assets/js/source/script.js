@@ -4,6 +4,7 @@
 		init: function () {
 			this.initNotifications();
 			this.initCommunityMapSearch();
+			this.initAppSearch();
 		},
 		// Display flash notifications
 		initNotifications: function () {
@@ -136,9 +137,20 @@
      			infoWindow.setContent(this.content);
      			infoWindow.open(map, this);
      		});
+		},
+		initAppSearch: function () {
+			if ($('#app-search-form').length < 1)
+				return;
+
+			var q = $.query.get('q');
+			var sector = $.query.get('sector');
+			var order = $.query.get('order');
+
+			$('#app-search-form').find("[name='q']").val(q);
+			$('#app-search-form').find("[name='sector']").val(sector).removeClass("placeholder");
+			$('#app-search-form').find("[name='order']").val(order);
 		}
 	}
 
 	window.USI.init();
-
 })(jQuery);

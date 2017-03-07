@@ -13,7 +13,11 @@
         {% else %}
         <figure>
             <a href="{{ object.get_absolute_url }}">
-                <img class="img-thumbnail " src="http://placehold.it/800x400">
+                {% with SITE_URL|add:STATIC_URL|add:'/img/hero-b-bg-a.jpg' as path %}
+					{% thumbnail path '800x400' crop='center' as im %}
+					<img src="{{ im.url }}" alt="{{ object.name }}" class="sidebar__list__image">
+		        	{% endthumbnail %}
+		        {% endwith %}
             </a>
         </figure>
         {% endif %}

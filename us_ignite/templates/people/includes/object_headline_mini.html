@@ -7,7 +7,11 @@
 		<img src="{{ im.url }}" alt="{{ object.name }}" class="sidebar__list__image">
         {% endthumbnail %}
 		{% else %}
-		<img src="http://placehold.it/50x50" alt="{{ object.name }}" class="sidebar__list__image">
+		{% with SITE_URL|add:STATIC_URL|add:'/img/hero-b-bg-a.jpg' as path %}
+			{% thumbnail path '50x50' crop='center' as im %}
+			<img src="{{ im.url }}" alt="{{ object.name }}" class="sidebar__list__image">
+        	{% endthumbnail %}
+        {% endwith %}
 		{% endif %}
 	</div>
 

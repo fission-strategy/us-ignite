@@ -4,5 +4,9 @@
     "foundation": "zurb/bower-foundation",
     "jquery-1.9.1": "http://code.jquery.com/jquery-1.9.1.min.js",
     "selectivizr": "*"
+  },
+  "devDependencies": {
+    "urijs": "~1.18.9",
+    "jquery-query-object": "~2.2.3"
   }
 }

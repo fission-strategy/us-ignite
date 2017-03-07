@@ -8,10 +8,11 @@ module.exports = function(grunt) {
       },
       all: {
         files: {
-          'us_ignite/static/js/script.js': [
-            'us_ignite/static/js/source/libs.js',
-            'us_ignite/static/js/source/app.js',
-            'us_ignite/static/js/source/script.js'
+          'assets/js/script.js': [
+            'assets/js/source/libs.js',
+            'bower_components/jquery-query-object/jquery.query-object.js',
+            'assets/js/source/app.js',
+            'assets/js/source/script.js'
           ]
         }
       }
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
       },
       all: {
         files: {
-          'us_ignite/static/js/script.min.js': 'us_ignite/static/js/script.js'
+          'assets/js/script.min.js': 'assets/js/script.js'
         }
       }
     },
@@ -40,7 +41,7 @@ module.exports = function(grunt) {
           sourceComments: true
         },
         files: {
-          'us_ignite/static/css/style.css': 'us_ignite/static/scss/app.scss',
+          'assets/css/style.css': 'assets/scss/app.scss',
         }
       }
     },
@@ -51,11 +52,11 @@ module.exports = function(grunt) {
       grunt: { files: ['Gruntfile.js'] },
 
       sass: {
-        files: 'us_ignite/static/scss/**/*.scss',
+        files: 'assets/scss/**/*.scss',
         tasks: ['sass']
       },
       js: {
-        files: 'us_ignite/static/js/**/*.js',
+        files: 'assets/js/**/*.js',
         tasks: ['buildjs']
       }
     }
