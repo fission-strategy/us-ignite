@@ -10,4 +10,4 @@ class AppsConfig(AppConfig):
     def ready(self):
         Application = self.get_model("Application")
         watson.register(Application.objects.filter(status=Application.PUBLISHED),
-                        store=('sector__name', 'sector__slug', 'program__name', 'program__slug', 'created', 'categories', 'funder_keywords'))
+                        store=('sector__name', 'sector__slug', 'programs', 'program__name', 'program__slug', 'created', 'categories', 'funder_keywords'))

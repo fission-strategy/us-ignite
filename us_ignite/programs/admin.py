@@ -11,7 +11,7 @@ class FundingPartnerInline(admin.StackedInline):
 
 
 class ProgramAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+    list_display = ('name', 'slug', 'default')
     inlines = [LinkInline, FundingPartnerInline]
     prepopulated_fields = {'slug': ('name',)}
 

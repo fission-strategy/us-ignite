@@ -13,8 +13,7 @@ from us_ignite.apps.models import Application, Sector
 from us_ignite.common import pagination
 from mezzanine.conf import settings
 from mezzanine.utils.views import paginate
-
-
+from us_ignite.programs.models import Program
 
 
 SEARCH_PARAMS = {
@@ -94,16 +93,26 @@ def search_apps(request):
     page_no = pagination.get_page_no(request.GET)
 
     if form.is_valid():
+        extra_params = {}
         if form.cleaned_data['sector'] != '':
-            if form.cleaned_data['q'] != '':
-                object_list = watson.filter(Application.objects.filter(sector__slug=form.cleaned_data['sector']), form.cleaned_data['q'])
-            else:
-                object_list = Application.objects.filter(status=Application.PUBLISHED, sector__slug=form.cleaned_data['sector'])
+            extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
+        if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
+            extra_params.update({'program__slug': form.cleaned_data['program'], }, )
+            app_terminalogy = (Program.objects.get(slug=form.cleaned_data['program'])).application_terminology
+        if 'q' in form.cleaned_data and form.cleaned_data['q'] != '':
+            object_list = watson.filter(Application.objects.filter(**extra_params),
+                                        form.cleaned_data['q'])
         else:
-            if form.cleaned_data['q'] != '':
-                object_list = watson.filter(Application, form.cleaned_data['q'])
-            else:
-                object_list = Application.objects.filter(status=Application.PUBLISHED)
+            object_list = Application.objects.filter(status=Application.PUBLISHED, **extra_params)
+
+        #     if form.cleaned_data['q'] != '':
+        #         object_list = watson.filter(Application.objects.filter(sector__slug=form.cleaned_data['sector']), form.cleaned_data['q'])
+        #     else:
+        # else:
+        #     if form.cleaned_data['q'] != '':
+        #         object_list = watson.filter(Application, form.cleaned_data['q'])
+        #     else:
+        #         object_list = Application.objects.filter(status=Application.PUBLISHED)
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
         elif form.cleaned_data['order'] == 'desc':
@@ -113,8 +122,7 @@ def search_apps(request):
     else:
         object_list = []
         pagination_qs = ''
-    for obj in object_list:
-        print obj.categories.all()
+
     page = pagination.get_page(object_list, page_no)
     page.object_list_top = [o for o in page.object_list_top]
     page.object_list_bottom = [o for o in page.object_list_bottom]
@@ -124,4 +132,6 @@ def search_apps(request):
         'pagination_qs': pagination_qs,
         'sector_list': Sector.objects.all(),
     }
+    if app_terminalogy:
+        context.update({'app_terminalogy': app_terminalogy},)
     return TemplateResponse(request, 'apps/object_list.html', context)

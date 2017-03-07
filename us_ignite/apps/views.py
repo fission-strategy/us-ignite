@@ -49,13 +49,13 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
         filter_name = name
     if program:
         extra_qs['program'] = get_object_or_404(Program, slug=program)
-        filter_name = extra_qs['programs__inpym'].name
+        filter_name = extra_qs['program'].name
     else:
         extra_qs['program'] = None
     page_no = pagination.get_page_no(request.GET)
     order_form = forms.OrderForm(
         request.GET, order_choices=APPS_SORTING_CHOICES)
-    order_value = order_fdrm.cleaned_data['order'] if order_form.is_valid() else ''
+    order_value = order_form.cleaned_data['order'] if order_form.is_valid() else ''
     object_list = Application.objects.select_related('sector').filter(
         status=Application.PUBLISHED, **extra_qs)
     # object_list_ac = ActionCluster.objects.select_related('domain').filter(
@@ -79,7 +79,9 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
         'filter_name': filter_name,
         'current_sector': sector,
         'current_stage': int(stage) if stage else None,
+        'app_terminology': 'application',
     }
+
     return TemplateResponse(request, 'apps/object_list.html', context)
 
 

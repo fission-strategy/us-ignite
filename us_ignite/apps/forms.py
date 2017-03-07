@@ -30,20 +30,28 @@ class ApplicationForm(forms.ModelForm):
     summary = forms.CharField(
         max_length=140, widget=forms.Textarea,
         help_text='Tweet-length pitch / summary of project.')
-    # programs = forms.MultipleChoiceField(
-    #     initial=[3,]
-    # )
+
+    program_choices = ((x.id, x.name) for x in Program.objects.order_by('id').all())
+    try:
+        program = forms.ChoiceField(
+            choices=program_choices,
+            initial=(Program.objects.filter(default=True).get()).id
+        )
+    except Program.DoesNotExist:
+        program = forms.ChoiceField(
+            choices=program_choices,
+        )
 
     class Meta:
         model = Application
         fields = ('name', 'summary', 'impact_statement',
                   'image', 'sector', 'features', 'stage',
                   'assistance', 'team_name', 'team_description',
-                  'awards', 'acknowledgments', 'status', 'programs')
+                  'awards', 'acknowledgments', 'status', 'program')
         widgets = {
             'features': forms.CheckboxSelectMultiple(),
 
-            'program': forms.HiddenInput(),
+            # 'program': forms.HiddenInput(),
 
             'programs': forms.HiddenInput(),
         }
