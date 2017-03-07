@@ -10,6 +10,7 @@ import urlparse
 
 
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 env = os.getenv
 # Make these unique, and don't share it with anybody.
