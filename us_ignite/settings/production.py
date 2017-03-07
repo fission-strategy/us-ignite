@@ -9,7 +9,7 @@ import dj_database_url
 import urlparse
 
 
-DEBUG = False
+DEBUG = True
 
 env = os.getenv
 # Make these unique, and don't share it with anybody.
