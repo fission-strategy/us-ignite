@@ -20,9 +20,9 @@ class ApplicationAdmin(admin.ModelAdmin):
                      'assistance', 'team_description', 'notes',
                      'acknowledgments']
     list_filter = ['stage', 'status', 'created', 'categories', 'sector', 'program']
-    exclude = ['keywords', 'program']
+    exclude = ['keywords', 'programs']
     date_hierarchy = 'created'
-    filter_horizontal = ("categories", "features", "programs")
+    filter_horizontal = ("categories", "features")
 
     inlines = [ApplicationURLInline, ApplicationMediaInline]
 
