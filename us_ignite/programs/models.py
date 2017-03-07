@@ -63,8 +63,18 @@ class Program(models.Model):
     intro_desc = RichTextField(_("Intro description"), blank=True, null=True)
     application_terminology = models.CharField(max_length=255, default='application')
     accent_color = models.CharField(max_length=7, default='#EE7422')
-
+    default = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if self.default:
+            try:
+                temp = Program.objects.get(default=True)
+                if self != temp:
+                    temp.default = False
+                    temp.save()
+            except Program.DoesNotExist:
+                pass
+        super(Program, self).save(*args, **kwargs)

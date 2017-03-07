@@ -144,7 +144,8 @@
             <article>
                 <a href="{{ app.get_absolute_url }}">
                     <h4 class="hx">{{ app.name }}</h4>
-                    <p> {{ app.summary|truncatewords_html:35 }} </p>
+
+                    <p>{{ app.summary|truncatewords_html:28 }}</p>
                 </a>
             </article>
         
