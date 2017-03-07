@@ -12,6 +12,13 @@
         </figure>
         {% else %}
         <figure>
+        {% if object.sector %}
+            <a href="{{ object.get_absolute_url }}">
+            {% thumbnail object.sector.default_image '800x350' crop='center' as im %}
+                <img class="img-thumbnail " src="{{ im.url }}">
+            {% endthumbnail %}
+            </a>
+        {% else %}
             <a href="{{ object.get_absolute_url }}">
                 {% with SITE_URL|add:STATIC_URL|add:'/img/hero-b-bg-a.jpg' as path %}
                     {% thumbnail path '800x350' crop='center' as im %}
@@ -19,6 +26,7 @@
                     {% endthumbnail %}
                 {% endwith %}
             </a>
+        {% endif %}
         </figure>
         {% endif %}
         <div>
