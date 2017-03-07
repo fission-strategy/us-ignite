@@ -10,14 +10,13 @@ import urlparse
 
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 env = os.getenv
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = env('SECRET_KEY')
 NEVERCACHE_KEY = env('NEVERCACHE_KEY')
 
-SITE_URL = "https://us-ignite-v2.herokuapp.com"
+SITE_URL = "https://us-ignite-staging.herokuapp.com"
 
 ########################
 # DEPLOY SETTINGS #
@@ -25,7 +24,7 @@ SITE_URL = "https://us-ignite-v2.herokuapp.com"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['us-ignite-v2.herokuapp.com',
+ALLOWED_HOSTS = ['us-ignite-staging.herokuapp.com',
                  'us-ignite.org',
                  'www.us-ignite.org', ]
 
@@ -137,7 +136,7 @@ MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
 
-THUMBNAIL_DEBUG = False
+THUMBNAIL_DEBUG = True
 redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
 
 CACHES = {
