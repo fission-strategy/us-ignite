@@ -19,7 +19,7 @@
 {% endblock intro %}
 
 {% block filter_object %}
-<form method="get" action="{% url 'search_apps' %}" class="filters-a" style="margin-top: -130px">
+<form method="get" action="{% url 'search_apps' %}" class="filters-a" id="app-search-form" style="margin-top: -130px">
     <h3 class="hx">Filter Results By...</h3>
     <div class="wrap">
         <p><label for="f-fk">Keyword</label> <input type="text" name="q" id="f-fk" placeholder="Search by project name, team name, etc." /></p>
