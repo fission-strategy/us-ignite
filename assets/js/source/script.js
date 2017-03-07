@@ -145,10 +145,21 @@
 			var q = $.query.get('q');
 			var sector = $.query.get('sector');
 			var order = $.query.get('order');
+			
+			if (typeof q == "string")
+				$('#app-search-form').find("[name='q']").val(q);
+			if (typeof sector == "string")
+				$('#app-search-form').find("[name='sector']").val(sector).removeClass("placeholder");
+			if ($.trim(order) != "")
+			{
 
-			$('#app-search-form').find("[name='q']").val(q);
-			$('#app-search-form').find("[name='sector']").val(sector).removeClass("placeholder");
-			$('#app-search-form').find("[name='order']").val(order);
+				$('#app-search-form').find("[name='order']").val(order);
+			}
+			else
+			{
+				$('#app-search-form').find("[name='order']").val("desc");
+			}
+
 		}
 	}
 
