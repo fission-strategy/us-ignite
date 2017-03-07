@@ -79,6 +79,7 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
         'filter_name': filter_name,
         'current_sector': sector,
         'current_stage': int(stage) if stage else None,
+        'app_terminology': 'application',
     }
     return TemplateResponse(request, 'apps/object_list.html', context)
 
