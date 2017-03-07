@@ -56,6 +56,9 @@
 						$form.find(".loading").show();
 					}
 				})
+				.fail(function () {
+					self.renderMap([]);
+				})
 				.always(function () {
 					$form.find(".button-a").show();
 					$form.find(".loading").hide();

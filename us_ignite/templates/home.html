@@ -33,8 +33,7 @@
 
     <div class="hero-a">
         <figure class="bg-a">
-            <video loop muted autoplay poster="{{ STATIC_URL }}img/featured-a-bg-a.jpg">
-                <source src="{{ STATIC_URL }}media/Web_640x360.mp4" type="video/mp4">
+            <video preload="true" loop muted autoplay src="{{ STATIC_URL }}media/Web_640x360.mp4" type="video/mp4">
             </video>
             <picture>
                 <source media="(orientation: landscape)" srcset="{{ STATIC_URL }}img/hero-a-bg-a-large.jpg?1280x650" />
