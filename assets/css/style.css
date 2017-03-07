@@ -404,3 +404,15 @@ ul.cat-list {
 /* line 485, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
 .app__stage--innactive {
   background-image: url(/static/img/stage-innactive.png); }
+
+@media screen and (min-width: 1024px) {
+  /* line 491, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+  .top-a .nav li ul {
+    padding: 0; }
+  /* line 495, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+  .top-a .nav .dropdown li {
+    border-bottom: rgba(255, 255, 255, 0.3) solid 1px;
+    padding: 15px; }
+    /* line 499, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+    .top-a .nav .dropdown li:last-child {
+      border-bottom: 0; } }

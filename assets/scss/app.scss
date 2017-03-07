@@ -485,3 +485,19 @@ ul {
 .app__stage--innactive {
   background-image: url(/static/img/stage-innactive.png);
 }
+
+@media screen and (min-width: 1024px) {
+
+	.top-a .nav li ul {
+		padding: 0;
+	}
+
+	.top-a .nav .dropdown li {
+
+		border-bottom: transparentize(#fff, 0.7) solid 1px;
+		padding: 15px ;
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+}
