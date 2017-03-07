@@ -2,11 +2,11 @@
 <nav class="paging-a">
 	<ul>
 	  {% if page.has_previous %}
-	  <li class="step prev"><a href="?page={{ page.previous_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}">«</a></li>
+	  <li class="step prev"><a href="?page={{ page.previous_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}"><span>&laquo;</span></a></li>
 	  {% endif %}
-	  <li class="current">Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
+	  <li class="current"><span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span></li>
 	  {% if page.has_next %}
-	  <li class="step next"><a href="?page={{ page.next_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}">»</a></li>
+	  <li class="step next"><a href="?page={{ page.next_page_number }}{% if order %}&order={{ order|urlencode }}{% endif %}{% if pagination_qs %}{{ pagination_qs }}{% endif %}">&raquo;</a></li>
 	  {% endif %}
 	</ul>
 </nav>
