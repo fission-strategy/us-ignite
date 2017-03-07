@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.hub_list, name='hub_list'),
     url(r'^apply/$', views.hub_application, name='hub_application'),
-    url(r'^test/$', views.find_location, name='find_location'),
+    url(r'^json/$', views.find_location, name='find_location'),
     url(r'^(?P<slug>[-\w]+)/$', views.hub_detail, name='hub_detail'),
     url(r'^(?P<slug>[-\w]+)/locations.json$', views.hub_locations_json,
         name='hub_locations_json'),
