@@ -1,14 +1,14 @@
 {% extends "includes/lists/object_list_base.html" %}
 
-{% block title %}{% if app_terminology != '' %}{{ app_terminalogy|capfirst }}{% else %}Applications{% endif %} list - {{ block.super }}{% endblock title %}
+{% block title %}{% if app_terminology != '' %}{{ app_terminalogy|title }}{% else %}Applications{% endif %} list - {{ block.super }}{% endblock title %}
 
-{% block page_title %}{% if app_terminology != '' %}{{ app_terminalogy|capfirst }}{{ page.object_list_top|pluralize }}{% else %}Applications{% endif %}{% if filter_name %}: {{ filter_name }}{% endif %}{% endblock page_title %}
+{% block page_title %}{% if app_terminology != '' %}{{ app_terminalogy|title }}s{% else %}Applications{% endif %}{% if filter_name %}: {{ filter_name }}{% endif %}{% endblock page_title %}
 
 {% block intro %}
 <div class="intro">
     <div class="wrap contain narrow">
-        <h3 class="hx-a">Explore Next-Generation {% if app_terminology != '' %}{{ app_terminalogy|upper }}{{ page.object_list_top|pluralize }}{% else %}Applications{% endif %}</h3>
-        <p>Scroll through and explore these exciting next-generation application in various stages of development. All these {% if app_terminology != '' %}{{ app_terminalogy }}{{ page.object_list_top|pluralize }}{% else %}Applications{% endif %} use next-gen technologies like software-defined networking, local cloud and gigabit to end-user and are transforming how we live, work, learn and play. If you have an {% if app_terminology != '' %}{{ app_terminalogy }}{{ page.object_list_top|pluralize }}{% else %}Applications{% endif %} you would like to include in this growing list, please following the instruction below and join the US Ignite community.</p>
+        <h3 class="hx-a">Explore Next-Generation {% if app_terminology != '' %}{{ app_terminalogy|upper }}s{% else %}Applications{% endif %}</h3>
+        <p>Scroll through and explore these exciting next-generation application in various stages of development. All these {% if app_terminology != '' %}{{ app_terminalogy }}s{% else %}Applications{% endif %} use next-gen technologies like software-defined networking, local cloud and gigabit to end-user and are transforming how we live, work, learn and play. If you have an {% if app_terminology != '' %}{{ app_terminalogy }}s{% else %}Applications{% endif %} you would like to include in this growing list, please following the instruction below and join the US Ignite community.</p>
 
         <h4 class="newsletter__heading"><strong>GOT A GREAT IDEA FOR AN {% if app_terminology != '' %}{{ app_terminalogy|upper }}{% endif %}?</strong> TELL US ABOUT IT...</h4>
 
