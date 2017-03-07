@@ -31,16 +31,18 @@ class ApplicationForm(forms.ModelForm):
         max_length=140, widget=forms.Textarea,
         help_text='Tweet-length pitch / summary of project.')
 
-    program_choices = ((x.id, x.name) for x in Program.objects.order_by('id').all())
-    try:
-        program = forms.ChoiceField(
-            choices=program_choices,
-            initial=(Program.objects.filter(default=True).get()).id
-        )
-    except Program.DoesNotExist:
-        program = forms.ChoiceField(
-            choices=program_choices,
-        )
+    # program_choices = ((x.id, x.name) for x in Program.objects.order_by('id').all())
+    # try:
+    #     program = forms.ChoiceField(
+    #         choices=program_choices,
+    #         initial=Program.objects.filter(default=True).get().id,
+    #         label='Program'
+    #     )
+    # except Program.DoesNotExist:
+    #     program = forms.ChoiceField(
+    #         choices=program_choices,
+    #         label='Program'
+    #     )
 
     class Meta:
         model = Application
@@ -50,9 +52,7 @@ class ApplicationForm(forms.ModelForm):
                   'awards', 'acknowledgments', 'status', 'program')
         widgets = {
             'features': forms.CheckboxSelectMultiple(),
-
-            # 'program': forms.HiddenInput(),
-
+            'program': forms.HiddenInput(),
             'programs': forms.HiddenInput(),
         }
 
@@ -66,6 +66,16 @@ class ApplicationForm(forms.ModelForm):
     def clean_tags(self):
         if 'tags' in self.cleaned_data:
             return output.prepare_tags(self.cleaned_data['tags'])
+
+    def save(self, commit=True):
+        instance = super(ApplicationForm, self).save(commit=False)
+        try:
+            instance.program = Program.objects.filter(default=True).get()
+        except Program.DoesNotExist:
+            instance.program = None
+        if commit:
+            instance.save()
+        return instance
 
 
 ApplicationLinkFormSet = inlineformset_factory(

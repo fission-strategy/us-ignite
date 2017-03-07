@@ -478,6 +478,12 @@ THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
 
 THUMBNAIL_PRESERVE_FORMAT=True
 
+# Email settings:
+EMAIL_SUBJECT_PREFIX = '[US Ignite] '
+DEFAULT_FROM_EMAIL = 'info@us-ignite.org'
+SERVER_EMAIL = 'info@us-ignite.org'
+
+
 # from mezzanine.conf import register_setting
 #
 # register_setting(

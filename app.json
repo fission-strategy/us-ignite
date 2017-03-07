@@ -1,0 +1,85 @@
+{
+  "name": "us-ignite",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_BUCKET_NAME": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "CLEAN_VIRTUALENV": {
+      "required": true
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "required": true
+    },
+    "EMAIL_HOST": {
+      "required": true
+    },
+    "EMAIL_HOST_PASSWORD": {
+      "required": true
+    },
+    "EMAIL_HOST_USER": {
+      "required": true
+    },
+    "EMAIL_PORT": {
+      "required": true
+    },
+    "HEROKU_POSTGRESQL_YELLOW_URL": {
+      "required": true
+    },
+    "MAILCHIMP_API_KEY": {
+      "required": true
+    },
+    "MAILCHIMP_LIST": {
+      "required": true
+    },
+    "NEVERCACHE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LOG": {
+      "required": true
+    },
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    },
+    "REDISTOGO_URL": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    },
+    "TWITTER_API_KEY": {
+      "required": true
+    },
+    "TWITTER_API_SECRET": {
+      "required": true
+    },
+    "WWWHISPER_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "papertrail",
+    "redistogo",
+    "newrelic",
+    "scheduler",
+    "heroku-postgresql",
+    "wwwhisper"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/fission-strategy/heroku_python_buildpack_no_filebrowser-safe.git"
+    }
+  ]
+}
