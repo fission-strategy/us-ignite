@@ -26,11 +26,31 @@
 		// Initialize community map search widget on homepage
 		initCommunityMapSearch: function () {
 			var self = this;
+
+			window.Parsley.addValidator("requiredIf", {
+			   validateString : function(value, requirement) {
+			      if (jQuery(requirement).val()){
+			         return !!value;
+			      } 
+
+			      return true;
+			   },
+			   priority: 33
+			});
+
+
+
+
+			//city *is* required if search by city and state
 			$("#community-search-form").on("submit", function(e) {
+				e.preventDefault();
+				if ( !$(this).parsley().isValid() )
+					return;
+
 				var $form = $(this);
 				var url = $form.attr("action");
 
-				e.preventDefault();
+				
 				
 				var address = "";
 
