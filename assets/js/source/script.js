@@ -116,7 +116,7 @@
 
 	     	// If coordinate data is one community/object
 	     	if (coordinates.constructor === Object) {
-	     		this.createGoogleMapMarker(coordinates, map, infoWindow);
+	     		this.createGoogleMapMarker(coordinates, map, infoWindow, true);
 	     		
 	     	}
 	     	// If coordinate data is a list communities/objects
@@ -130,7 +130,7 @@
 
 		},
 		// Add marker on Google map
-		createGoogleMapMarker: function(coordinate, map, infoWindow) {
+		createGoogleMapMarker: function(coordinate, map, infoWindow, center) {
 			var m = coordinate;
 			var place = new google.maps.LatLng(m.latitude, m.longitude);
 
@@ -146,6 +146,9 @@
      			position: place,
      			content: content
      		});
+
+     		if (center == true && m.hasOwnProperty("name"))
+     			map.setCenter(marker.getPosition());
 
      		google.maps.event.addListener(marker, "click", function() {
      			infoWindow.setContent(this.content);

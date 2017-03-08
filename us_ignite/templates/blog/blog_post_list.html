@@ -104,6 +104,7 @@
             </div>
             <div class="two">
                 <div class="sidebar-b hide@medium hide@small">
+                    {% comment %}
                     <div class="section ">
                     {% for title_key, title_val in sidebar_lists.items %}
                         <h4 class="hx">{{ title_key }}</h4>
@@ -119,6 +120,7 @@
                         </ul>
                     {% endfor %}
                     </div>
+                    {% endcomment %}
                     <div class="section ">
                         <h4 class="hx">Stay Informed</h4>
                         <p>Stay up to date with the latest in the futue of the Internet. Sign up for updates today.</p>
@@ -134,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            
+
             {% pagination_for blog_posts %}
         </div>
 
