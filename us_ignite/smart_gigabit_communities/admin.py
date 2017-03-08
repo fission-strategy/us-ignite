@@ -1,7 +1,7 @@
 from django.contrib import admin
 from us_ignite.smart_gigabit_communities.models import Pitch
 from adminsortable.admin import SortableAdmin
-from tinymce.widgets import TinyMCE
+from mezzanine.core.forms import TinyMceWidget as TinyMCE
 from django import forms
 
 
