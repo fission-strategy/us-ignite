@@ -47,6 +47,7 @@ urlpatterns += i18n_patterns(
     url(r'^search/', include('us_ignite.search.urls')),
     url(r'^programs/', include('us_ignite.programs.urls')),
     url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
+    url(r'^smart-gigabit-communities/', include('us_ignite.smart_gigabit_communities.urls')),
     url(r'^robots.txt$', TemplateView.as_view(
         template_name='robots.txt', content_type='text/plain')),
     # url(r'^tinymce/', include('tinymce.urls')),

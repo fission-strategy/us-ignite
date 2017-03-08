@@ -1,0 +1,388 @@
+{% load snippets_tags thumbnail %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Gigabit Communities - US Ignite</title>
+
+    <meta name="description" content="Developing Gigabit-ready digital experiences and applications. Developing Gigabit-ready digital experiences and applications.">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" />
+
+    <script type="text/javascript">__SITEURL__ = "{{ SITE_URL }}";</script>
+    <script src="{{ STATIC_URL }}bower_components/modernizr/modernizr.js"></script>
+
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/ie.css" />
+<![endif]-->
+<!--[if (gte IE 9) | (!IE)]><!-->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/sgc.css?v={{ random_int }}"/>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Roboto:400,500,700,900" rel="stylesheet">
+<!--<![endif]-->
+
+</head>
+<body class="sgc-body">
+    <div id="messages">{% include "includes/messages.html" %}</div>
+    <div class="notification"></div>
+    <div class="header-bar" style="background-image: url({{ STATIC_URL }}img/Smart-Gigabit-Communities.jpg);">
+        <div id="menu-button" class="menu-button hide-for-medium">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="row">
+            <div class="columns medium-3">
+                <div class="logo">
+                    <img alt="" src="{{ STATIC_URL }}img/sgc-logo.png" />
+                </div>
+            </div>
+            <div class="columns medium-5 large-6">
+                <div class="jump-to-container ">
+                    <div class="row collapse">
+                        <div class="columns medium-3">
+                             <label>Jump to:</label> 
+                        </div>
+                        <div class="columns medium-9">
+                            <select id="jump-to-pitch">
+                                <option value>Select pitch...</option>
+                                {% for pitch in pitch_list %}
+                                    <option value="pitch{{ pitch.id }}">{{ pitch.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns medium-4 large-3">
+                <div class="social-bar ">
+                 <h4>Share This</h4>
+                    <ul class="show-for-medium-up">
+                       
+                        <li class="">
+                            <a href="https://www.facebook.com/USIgnite" class="s" target="_blank">
+                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="https://twitter.com/US_Ignite" class="" target="_blank">
+                            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="https://plus.google.com/115026873083967953743/posts" class="" target="_blank">
+                                <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="h" class="" target="_blank">
+                                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="h" class="" target="_blank">
+                                <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                 <!-- end .social-bar -->
+            </div>
+        </div>
+    </div>
+       
+    <main>
+        <section>
+            <div class="row">
+                <div class="columns medium-6">
+
+                    <h3>{{ intro }}</h3>
+                   
+                </div>
+                <div class="columns medium-6">
+                    <div class="content">
+                        <p>{{ desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% for pitch in pitch_list %}
+            
+            <section class="pitch" id="pitch{{ pitch.id }}">
+                <div class="row collapse" data-equalizer data-equalize-on="medium">
+                    {% if forloop.counter|divisibleby:"2" %} {# is even #}
+                        <div class="columns medium-6 medium-push-6 bar-column" data-equalizer-watch>
+                            <div class="content"> 
+                                {% if pitch.logo %}                              
+                                <div class="logo">
+                                {% thumbnail pitch.logo '150x150' crop='center' as im %}
+                                    <img src="{{ im.url }}" alt="{{ pitch.title }}">
+                                {% endthumbnail %}
+                                </div>
+                                {% endif %}
+                                <h3>{{ pitch.title }}</h3>
+                                <p class="lead">{{ pitch.subtitle }}</p>
+
+                                <p class="description">{{ pitch.content|safe }}</p>
+                                
+                                <div class="row">
+                                    <div class="columns small-5">
+                                        <p><a href="{% if pitch.link != '' and pitch.link != None %}{{ pitch.link }}{% else %}mailto:{{ pitch.email }}{% endif %}">{{ pitch.link_text }} <i class="show-for-medium fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
+                                    </div>
+                                    <div class="columns small-7">
+                                        <ul class="socials text-right">
+                                            {% if pitch.facebook %}
+                                            <li class="">
+                                                <a href="{{ pitch.facebook }}" class="s" target="_blank">
+                                                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.twitter %}
+                                            <li class="">
+                                                <a href="{{ pitch.twitter }}" class="" target="_blank">
+                                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.youtube %}
+                                            <li class="">
+                                                <a href="{{ pitch.youtube }}" class="" target="_blank">
+                                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.google %}
+                                            <li class="">
+                                                <a href="{{ pitch.google }}" class="" target="_blank">
+                                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                        <!-- /.socials -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.content -->        
+                        </div>
+                        <div class="columns medium-6 medium-pull-6" data-equalizer-watch>
+                            <div class="media">
+                                {% if pitch.pitch_video %}
+                                    <div class="video">
+                                        <iframe  src="{{ pitch.pitch_video }}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                {% else %}
+                                    {% thumbnail pitch.pitch.image '600x600' crop='center' as im %}
+                                    <img alt="{{ pitch.title }}" src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                    {
+                                {% endif %}
+                            </div>           
+                        </div>
+                    {% else %}
+                        <div class="columns medium-6 bar-column" data-equalizer-watch>
+                            <div class="content">                               
+                                {% if pitch.logo %}                              
+                                <div class="logo">
+                                    {% thumbnail pitch.logo '150x150' crop='center' as im %}
+                                    <img src="{{ im.url }}" alt="{{ pitch.title }}">
+                                    {% endthumbnail %}
+                                </div>
+                                {% endif %}
+                                <h3>{{ pitch.title }}</h3>
+                                <p class="lead">{{ pitch.subtitle }}</p>
+
+                                <p class="description">{{ pitch.content|safe }}</p>
+                                
+                                <div class="row">
+                                    <div class="columns small-5">
+                                        <p><a href="{% if pitch.link != '' and pitch.link != None %}{{ pitch.link }}{% else %}mailto:{{ pitch.email }}{% endif %}">{{ pitch.link_text }} <i class="show-for-medium fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
+                                    </div>
+                                    <div class="columns small-7">
+                                        <ul class="socials text-right">
+                                            {% if pitch.facebook %}
+                                            <li class="">
+                                                <a href="{{ pitch.facebook }}" class="s" target="_blank">
+                                                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.twitter %}
+                                            <li class="">
+                                                <a href="{{ pitch.twitter }}" class="" target="_blank">
+                                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.youtube %}
+                                            <li class="">
+                                                <a href="{{ pitch.youtube }}" class="" target="_blank">
+                                                    <i class="fa fa-youtube-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if pitch.google %}
+                                            <li class="">
+                                                <a href="{{ pitch.google }}" class="" target="_blank">
+                                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                        <!-- /.socials -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.content -->      
+                        </div>
+                        <div class="columns medium-6" data-equalizer-watch>
+                            <div class="media">
+                                {% if pitch.pitch_video %}
+                                    <div class="video">
+                                        <iframe  src="{{ pitch.pitch_video }}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                {% else %}
+                                    {% thumbnail pitch.pitch.image '600x600' crop='center' as im %}
+                                    <img alt="{{ pitch.title }}" src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </section>
+               
+            
+        {% endfor %}
+        <div class="back-to-top hide-for-medium" id="back-to-top">
+            <div class="row">
+                <div class="columns">
+                    <span> BACK TO TOP </span>
+                </div>
+            </div>
+        </div>
+    </main>
+       
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="cta" id="footer-cta">
+            <div class="row">
+                <div class="columns">
+                    <h2 id="footer-cta-content"><span>See what the Smart Gigabit Communities are doing!</span> &nbsp;&nbsp; 
+                        <a class="button" href="http://eepurl.com/cBnwAv">
+                            <span>GET STARTED
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+         <!-- /.cta -->
+
+        <div class="main" style="background-image: url({{ STATIC_URL }}img/Header-and-Footer.jpg);">
+            <div class="row">
+                <div class="columns medium-2">
+                    <img alt="" src="{{ STATIC_URL }}img/usignite-white.png" />
+                    <br><br>
+                </div>
+                <div class="columns medium-4">
+                    <p><strong>Smart Gigabit Communities (SGCs) leverage next-generation internet technologies to develop transformative gigabit applications, and create a sustainable gigabit applications ecosystem for smart cities.</strong></p>
+                </div>
+                <div class="columns medium-6">
+                    <h5><strong>Sign up for the US Ignite Newsletter</strong></h5>
+                    <form id="signup-form" action="{% url 'mailing_subscribe' %}" method="post">
+                        <div class="row">
+                            <div class="columns medium-9">
+                                 <input type="text" name="email" placeholder="Enter your email address" required />
+                            </div>
+                            <div class="columns medium-3">
+                                 <button class="button">SIGN UP</button>{% csrf_token %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <!-- /.main -->
+        <div class="copy">
+            <div class="row">
+                <div class="columns medium-6 medium-push-6">
+                    <div class="contact">
+                        <p class="contact text-right">To contact US Ignite, email info@us-ignite.org</p>
+
+                        <ul class="socials">
+                            <li class="">
+                                <a href="https://www.facebook.com/USIgnite" class="s" target="_blank">
+                                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://twitter.com/US_Ignite" class="" target="_blank">
+                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://plus.google.com/115026873083967953743/posts" class="" target="_blank">
+                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="h" class="" target="_blank">
+                                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="h" class="" target="_blank">
+                                    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.socials -->
+                    </div>
+                </div>
+                <div class="columns medium-6 medium-pull-6">
+                    <p class="copyright">© Copyright {% now "Y" %} US Ignite. All Rights Reserved. </p>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <!-- /.copy -->
+    </footer>
+    <!-- /footer -->
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<!--<script type="text/javascript" src="//ws.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "433be1f0-4429-4a51-8401-307c2652339c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script> -->
+
+    <!--[if (gte IE 9) | (!IE)]><!-->
+    <script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}bower_components/fastclick/lib/fastclick.js"></script>
+    <!--<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="{{ STATIC_URL }}bower_components/jquery-1.9.1/index.js"></script>
+
+<script src="{{ STATIC_URL }}js/vendor/html5shiv.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/nwmatcher-1.2.5-min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/selectivizr-1.0.3b.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<script src="{{ STATIC_URL }}js/vendor/jquery-ui-1.10.4.custom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+<script src="{{ STATIC_URL }}js/sgc.js"></script>
+
+
+{% include "includes/google_analytics.html" %}
+</body>
+</html>

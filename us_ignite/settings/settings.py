@@ -323,6 +323,7 @@ INSTALLED_APPS = (
     'us_ignite.relay',
     'us_ignite.programs',
 
+    'us_ignite.smart_gigabit_communities',
     'taggit',
     'geoposition',
     'watson',
