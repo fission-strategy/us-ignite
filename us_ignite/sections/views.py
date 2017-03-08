@@ -6,7 +6,6 @@ from us_ignite.apps.models import Application
 from us_ignite.hubs.models import Hub
 from us_ignite.sections.models import HomepageFeaturedItem, HomepageProgram, Sponsor
 from mezzanine.blog.models import BlogPost
-import re
 
 
 def home(request):

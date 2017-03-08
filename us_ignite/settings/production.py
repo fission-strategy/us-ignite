@@ -17,7 +17,7 @@ env = os.getenv
 SECRET_KEY = env('SECRET_KEY')
 NEVERCACHE_KEY = env('NEVERCACHE_KEY')
 
-SITE_URL = "https://us-ignite-v2.herokuapp.com"
+SITE_URL = "https://www.us-ignite.org"
 
 ########################
 # DEPLOY SETTINGS #
