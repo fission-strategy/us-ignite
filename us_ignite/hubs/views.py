@@ -216,7 +216,7 @@ def find_location(request):
     user_location = geolocator.geocode(request.GET.get('address'))
 
     nearest_hub_distance = 100000
-    nearest_hub = {}
+    nearest_hub = []
     if user_location:
         for hub in hub_list:
             hub_dict = get_location_dict(hub, 'community')
