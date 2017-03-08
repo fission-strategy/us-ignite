@@ -124,13 +124,10 @@
                     <div class="section ">
                         <h4 class="hx">Stay Informed</h4>
                         <p>Stay up to date with the latest in the futue of the Internet. Sign up for updates today.</p>
-                        <form action="./" method="post" class="signup-b validate">
+                        <form action="{% url 'mailing_subscribe' %}" method="post" class="signup-b validate">
                             <div class="fields">
-                                <p><input type="text" name="ifn" id="f-ifn" required placeholder="First Name *" /></p>
-                                <p><input type="text" name="iln" id="f-iln" required placeholder="Last Name *" /></p>
-                                <p><input type="email" name="iea" id="f-iea" required placeholder="Email Address *" /></p>
-                                <p><input type="text" name="icn" id="f-icn" placeholder="Company/Organization" /></p>
-                                <p class="action"><button type="submit" class="button-a block">Sign Up</button></p>
+                                <p><input type="email" name="email" id="f-iea" required placeholder="Email Address *" /></p>
+                                <p class="action"><button type="submit" class="button-a block">Sign Up</button>{% csrf_token %}</p>
                             </div>
                             <div class="thanks">
                                 <p>Thank you for signing up!</p>
