@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<section class="content-a" id="content">
+    <div class="hero-b">
+		<!-- you can art direct image using <picture> here too if needed -->
+		<figure class="bg-a"><img src="{{ STATIC_URL }}img/hero-b-bg-a.jpg?1280x200" alt="" /></figure>
+		<div class="contain narrow">
+			<h1 class="hx">500 Server Error</h1>
+		</div>
+	</div>
+    <div class="page-a contain very-narrow">
+        <div class="main ">
+            <p>Something went wrong. The page you're looking for can't be found or the server failed.</p>
+        </div>
+    </div>
+
+</section>
+
+{% endblock content %}
