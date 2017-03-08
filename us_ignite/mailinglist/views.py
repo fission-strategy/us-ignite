@@ -12,14 +12,14 @@ from us_ignite.singletons.models import MailChimp
 
 logger = logging.getLogger('us_ignite.mailinglist.views')
 
-settings = MailChimp.objects.get()
-
-MAILING_LISTS = {
-    'default': settings.main_list,
-}
-
 
 def subscribe_email(form_data, slug):
+    settings = MailChimp.objects.get()
+
+    MAILING_LISTS = {
+        'default': settings.main_list,
+    }
+
     if not slug in MAILING_LISTS:
         raise mailchimp.ValidationError('Error while subscribing.')
 
