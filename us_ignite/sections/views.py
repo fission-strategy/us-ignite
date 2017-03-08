@@ -16,9 +16,9 @@ def home(request):
     """
     browser_agent_re = re.compile(r".*(safari)", re.IGNORECASE)
     if browser_agent_re.match(request.META['HTTP_USER_AGENT']):
-        is_safari = True
+        not_safari = False
     else:
-        is_safari = False
+        not_safari = True
 
     context = {
         'featured': HomepageFeaturedItem.objects.filter(status=HomepageFeaturedItem.PUBLISHED).order_by('order').first(),
@@ -27,7 +27,7 @@ def home(request):
         'application_list': Application.objects.filter(status=Application.PUBLISHED, is_featured=True).order_by('-id').all()[:4],
         'community_list': Hub.objects.filter(status=Hub.PUBLISHED).all(),
         'sponsor_list': Sponsor.objects.filter(status=Sponsor.PUBLISHED).order_by('order').all(),
-        'is_safari': is_safari,
+        'not_safari': not_safari,
 
         # 'resource': Resource.published.get_homepage(),
     }

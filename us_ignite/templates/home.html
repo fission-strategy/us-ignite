@@ -33,7 +33,7 @@
 
     <div class="hero-a">
         <figure class="bg-a">
-            {% if is_safari == false %}
+            {% if not_safari %}
             <video preload="true" loop muted autoplay src="{{ STATIC_URL }}media/Web_640x360.mp4" type="video/mp4">
             </video>
             {% endif %}
