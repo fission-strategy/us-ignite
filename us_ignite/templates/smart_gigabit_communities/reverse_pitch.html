@@ -173,10 +173,9 @@
                                         <iframe  src="{{ pitch.pitch_video }}" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 {% else %}
-                                    {% thumbnail pitch.pitch.image '600x600' crop='center' as im %}
+                                    {% thumbnail pitch.pitch_image '600x600' crop='center' as im %}
                                     <img alt="{{ pitch.title }}" src="{{ im.url }}">
                                     {% endthumbnail %}
-                                    {
                                 {% endif %}
                             </div>           
                         </div>
@@ -243,7 +242,7 @@
                                         <iframe  src="{{ pitch.pitch_video }}" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 {% else %}
-                                    {% thumbnail pitch.pitch.image '600x600' crop='center' as im %}
+                                    {% thumbnail pitch.pitch_image '600x600' crop='center' as im %}
                                     <img alt="{{ pitch.title }}" src="{{ im.url }}">
                                     {% endthumbnail %}
                                 {% endif %}
