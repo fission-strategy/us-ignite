@@ -75,10 +75,10 @@
                     <figure class="logo"><a href="./"><img src="{{ STATIC_URL }}img/logo-a.png" height="40" alt="US Ignite"></a></figure>
                     <ul class="nav">
                         <li><a href="/about">About</a></li>
-                        <li><a href="/">Programs</a></li>
+                        <li><a href="/programs">Programs</a></li>
                         <li><a href="/apps">Applications</a></li>
-                        <li><a href="/smart-gigabit-communities">Community</a></li>
-                        <li><a href="/blog">News & Events</a></li>
+                        <li><a href="/communities">Communities</a></li>
+                        <li><a href="/news">News & Events</a></li>
                         {% if request.user.is_authenticated %}
 					        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
 					    {% else %}
@@ -108,7 +108,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/script.js?v=1.13" defer></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/script.js?v=1.14" defer></script>
 <script type="text/javascript">var switchTo5x=true;</script>
 
 
