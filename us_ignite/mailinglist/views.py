@@ -3,19 +3,19 @@ import logging
 import mailchimp
 
 from django.contrib import messages
-from django.conf import settings
+# from django.conf import settings
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 
 from us_ignite.mailinglist.forms import EmailForm
+from us_ignite.singletons.models import MailChimp
 
 logger = logging.getLogger('us_ignite.mailinglist.views')
 
+settings = MailChimp.objects.get()
 
 MAILING_LISTS = {
-    'default': settings.MAILCHIMP_LIST,
-    'globalcityteams': settings.MAILCHIMP_GCTC_LIST,
-    'sgc_launch': settings.MAILCHIMP_SGC_LIST,
+    'default': settings.main_list,
 }
 
 
@@ -23,7 +23,7 @@ def subscribe_email(form_data, slug):
     if not slug in MAILING_LISTS:
         raise mailchimp.ValidationError('Error while subscribing.')
 
-    master = mailchimp.Mailchimp(settings.MAILCHIMP_API_KEY)
+    master = mailchimp.Mailchimp(settings.api_key)
 
     mailing_list = mailchimp.Lists(master)
     uid = hashlib.md5(form_data['email']).hexdigest()
@@ -32,15 +32,10 @@ def subscribe_email(form_data, slug):
         'euid': uid,
         'leid': uid,
     }
-    if slug == 'globalcityteams':
-        return mailing_list.subscribe(settings.MAILCHIMP_GCTC_LIST, email_data)
-    elif slug == 'sgc_launch':
-        return mailing_list.subscribe(settings.MAILCHIMP_SGC_LIST, email_data)
-    else:
-        return mailing_list.subscribe(settings.MAILCHIMP_LIST, email_data)
+    return mailing_list.subscribe(settings.main_list, email_data)
+
 
 def mailing_subscribe(request, slug='default'):
-    print slug
     """Handles MailChimp email registration."""
     if request.method == 'POST':
         form = EmailForm(request.POST)
@@ -48,12 +43,7 @@ def mailing_subscribe(request, slug='default'):
             try:
                 subscribe_email(form.cleaned_data, slug)
                 messages.success(request, 'Successfully subscribed.')
-                if slug == 'globalcityteams':
-                    redirect_to = 'https://www.us-ignite.org/globalcityteams/'
-                elif slug == 'sgc_launch':
-                    redirect_to = 'smart_gigabit_communities_reverse_pitch'
-                else:
-                    redirect_to = 'home'
+                redirect_to = 'home'
             except mailchimp.ListAlreadySubscribedError:
                 messages.error(request, 'Already subscribed.')
                 redirect_to = 'mailing_subscribe'

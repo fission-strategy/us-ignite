@@ -85,8 +85,8 @@
 					        <li <a href="{% url 'auth_login' %}">Log In</a></li>
 					    {% endif %}
                     </ul>
-                    <form action="./" method="post" class="signup-a">
-                        <p><label for="f-nrb">Sign up for the US Ignite Newsletter</label> <input type="text" name="nrb" id="f-nrb" placeholder="Enter your email address" /> <button type="submit" class="button-a">Sign Up</button></p>
+                    <form action="{% url 'mailing_subscribe' %}" method="post" class="signup-a">
+                        <p><label for="f-nrb">Sign up for the US Ignite Newsletter</label> <input type="text" name="email" id="f-nrb" placeholder="Enter your email address" /> <button type="submit" class="button-a">Sign Up</button>{% csrf_token %}</p>
                     </form>
                 </div>
             </div>
