@@ -9,7 +9,7 @@ import dj_database_url
 import urlparse
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 env = os.getenv
