@@ -21,8 +21,10 @@ def program_home(request, slug):
     context = {
         'program': program,
         'app_list': app_list,
-        'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False).order_by('-created').first(),
-        'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True).order_by('-created').first(),
+        'latest_news': BlogPost.objects.published(for_user=request.user).filter(event=False, program=program).order_by('-created').first(),
+        'latest_news_count': BlogPost.objects.published(for_user=request.user).filter(event=False, program=program).count(),
+        'upcoming_event': BlogPost.objects.published(for_user=request.user).filter(event=True, program=program).order_by('-created').first(),
+        # 'upcoming_event_count': BlogPost.objects.published(for_user=request.user).filter(event=True, program=program).count(),
         'funding_agent_list': program.program_funding_partner_set.all(),
         'link_list': program.program_link_set.filter(status=Link.PUBLISHED).all()[:3],
         'app_count': Application.objects.filter(status=Application.PUBLISHED, program=program).count(),
