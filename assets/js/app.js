@@ -213,9 +213,9 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
  */
 (function(){
 	$('.signup-b').on('submit', function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		// ajax goes here
-		$(this).css('min-height', $(this).height()).toggleClass('is-sent');
+		//$(this).css('min-height', $(this).height()).toggleClass('is-sent');
 	});
 })();
 

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       js: {
-        files: 'assets/js/**/*.js',
+        files: 'assets/js/source/**/*.js',
         tasks: ['buildjs']
       }
     }
