@@ -70,7 +70,7 @@ class ActivationView(BaseActivationView):
         activated_user = RegistrationProfile.objects.activate_user(activation_key)
         return activated_user
 
-    def get_success_url(self, request, user):
+    def get_success_url(self, user):
         return 'registration_activation_complete', (), {}
 
 
