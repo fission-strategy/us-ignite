@@ -524,3 +524,4 @@ SERVER_EMAIL = 'info@us-ignite.org'
 #     }
 # }
 
+GOOGLE_ANALYTICS_ID = 'UA-40470323-1'

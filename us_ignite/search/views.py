@@ -91,9 +91,10 @@ def search(request, slug='default'):
 def search_apps(request):
     form = SearchForm(request.GET) if 'q' in request.GET else SearchForm()
     page_no = pagination.get_page_no(request.GET)
-
+    app_terminalogy = None
     if form.is_valid():
         extra_params = {}
+
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':

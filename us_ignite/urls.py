@@ -14,7 +14,7 @@ from us_ignite.pages_ext import views as pages
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from django.views.static import serve
-
+from django.views.generic import TemplateView
 
 
 admin.autodiscover()
@@ -47,6 +47,8 @@ urlpatterns += i18n_patterns(
     url(r'^search/', include('us_ignite.search.urls')),
     url(r'^programs/', include('us_ignite.programs.urls')),
     url(r'^subscribe/', include('us_ignite.mailinglist.urls')),
+    url(r'^robots.txt$', TemplateView.as_view(
+        template_name='robots.txt', content_type='text/plain')),
     # url(r'^tinymce/', include('tinymce.urls')),
     #todo url(r'^overview/', include('us_ignite.visualize.urls')),
 
