@@ -29,3 +29,7 @@ class Pitch(models.Model):
         ordering = ('order', )
         verbose_name_plural = "Pitches"
 
+    def __unicode__(self):
+        return self.title
+
+
