@@ -1,1 +1,1 @@
-default_hub_config = 'us_ignite.hubs.apps.HubsConfig'
+default_app_config = 'us_ignite.hubs.apps.HubsConfig'
