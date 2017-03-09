@@ -1,0 +1,1 @@
+default_app_config = 'us_ignite.smart_gigabit_communities.apps.ReversePitchConfig'

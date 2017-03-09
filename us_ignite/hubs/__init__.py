@@ -1,0 +1,1 @@
+default_hub_config = 'us_ignite.hubs.apps.HubsConfig'
