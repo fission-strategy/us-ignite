@@ -172,7 +172,7 @@
                     {% for sponsor in sponsor_list %}
 
                     <li>
-                        {% thumbnail sponsor.image "90x40" crop="center" as im %}
+                        {% thumbnail sponsor.image "90x40"  as im %}
                         <a href="{{ sponsor.link }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ sponsor.name }}" /></a>
                         {% endthumbnail %}
                     </li>
