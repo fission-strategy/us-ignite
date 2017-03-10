@@ -372,7 +372,6 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 # put this to heroku instead!!
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAvABAO0_NJTlC_nIhKtAU4jKpMb7tmpIk'
 
-PAGINATOR_PAGE_SIZE = 10
 
 #########################
 # OPTIONAL APPLICATIONS #
@@ -453,7 +452,7 @@ LOGIN_REDIRECT_URL_FAILURE = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Paginator:
-PAGINATOR_PAGE_SIZE = 24
+PAGINATOR_PAGE_SIZE = 12
 
 # Uplaoded file restrictions:
 MAX_UPLOAD_SIZE = int(1024 * 1024 * 5)   # 5MB
@@ -526,3 +525,5 @@ SERVER_EMAIL = 'info@us-ignite.org'
 # }
 
 GOOGLE_ANALYTICS_ID = 'UA-40470323-1'
+
+ROBOTS_USE_SITEMAP = False
