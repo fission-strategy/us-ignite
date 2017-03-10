@@ -50,8 +50,6 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
     if program:
         extra_qs['program'] = get_object_or_404(Program, slug=program)
         filter_name = extra_qs['program'].name
-    else:
-        extra_qs['program'] = None
     page_no = pagination.get_page_no(request.GET)
     order_form = forms.OrderForm(
         request.GET, order_choices=APPS_SORTING_CHOICES)
