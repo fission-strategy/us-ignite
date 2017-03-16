@@ -138,10 +138,10 @@ def search_hubs(request):
     if form.is_valid():
         extra_params = {}
 
-        if form.cleaned_data['feature'] != '':
+        if 'feature' in form.cleaned_data and form.cleaned_data['feature'] != '':
             extra_params.update({'features__slug__in': [form.cleaned_data['feature'], ]}, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
-            extra_params.update({'program__slug': form.cleaned_data['program'], }, )
+            extra_params.update({'programs__slug__in': [form.cleaned_data['program'], ]}, )
         if 'q' in form.cleaned_data and form.cleaned_data['q'] != '':
             object_list = watson.filter(Hub.objects.filter(**extra_params),
                                         form.cleaned_data['q'])
@@ -165,6 +165,7 @@ def search_hubs(request):
         'form': form,
         'page': page,
         'pagination_qs': pagination_qs,
-        'feature_list': Feature.objects.all(),
+        # 'feature_list': Feature.objects.all(),
+        'program_list': Program.objects.all(),
     }
     return TemplateResponse(request, 'hubs/object_list.html', context)

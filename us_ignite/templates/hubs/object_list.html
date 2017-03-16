@@ -23,10 +23,16 @@
     <h3 class="hx">Filter Results By...</h3>
     <div class="wrap">
         <p><label for="f-fk">Keyword</label> <input type="text" name="q" id="f-fk" placeholder="Search by city, communitiy name, etc." /></p>
-        <p><label for="f-fs">Feature</label> <select name="feature" id="f-fs">
+{#        <p><label for="f-fs">Feature</label> <select name="feature" id="f-fs">#}
+{#            <option value="" selected>---</option>#}
+{#            {% for feature in feature_list %}#}
+{#            <option value="{{ feature.slug }}">{{ feature.name }}</option>#}
+{#            {% endfor %}#}
+{#        </select></p>#}
+        <p><label for="f-fs">Program</label> <select name="program" id="f-fs">
             <option value="" selected>---</option>
-            {% for feature in feature_list %}
-            <option value="{{ feature.slug }}">{{ feature.name }}</option>
+            {% for program in program_list %}
+            <option value="{{ program.slug }}">{{ program.name }}</option>
             {% endfor %}
         </select></p>
         <p><label for="f-fr">Sort by</label> <select name="order" id="f-fr">
@@ -43,6 +49,7 @@
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
+            <th scope="col">Programs</th>
 			<th scope="col">Summary</th>
 			<th scope="col">Website</th>
 		</tr>
@@ -55,6 +62,13 @@
 		<td>
 			<p><big><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></big></p>
 		</td>
+        <td class="hide@small">
+            {% with object.programs.all as programs %}
+                {% for program in programs %}
+                    {{ program }}{% if forloop.last %}{% else %}, {% endif %}
+                {% endfor %}
+            {% endwith %}
+        </td>
 		<td class="hide@small">{{ object.summary|truncatewords_html:25 }}</td>
 		<td class="hide@small"><a href="{{ object.website }}" target="_blank">{{ object.website }}</td>
 	</tr>
