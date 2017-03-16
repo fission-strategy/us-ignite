@@ -9,7 +9,8 @@ from watson import search as watson
 from forms import SearchForm
 from filters import tag_search
 
-from us_ignite.apps.models import Application, Sector
+from us_ignite.apps.models import Application, Sector, Feature
+from us_ignite.hubs.models import Hub
 from us_ignite.common import pagination
 from mezzanine.conf import settings
 from mezzanine.utils.views import paginate
@@ -106,14 +107,6 @@ def search_apps(request):
         else:
             object_list = Application.objects.filter(status=Application.PUBLISHED, **extra_params)
 
-        #     if form.cleaned_data['q'] != '':
-        #         object_list = watson.filter(Application.objects.filter(sector__slug=form.cleaned_data['sector']), form.cleaned_data['q'])
-        #     else:
-        # else:
-        #     if form.cleaned_data['q'] != '':
-        #         object_list = watson.filter(Application, form.cleaned_data['q'])
-        #     else:
-        #         object_list = Application.objects.filter(status=Application.PUBLISHED)
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
         elif form.cleaned_data['order'] == 'desc':
@@ -136,3 +129,42 @@ def search_apps(request):
     if app_terminalogy:
         context.update({'app_terminalogy': app_terminalogy},)
     return TemplateResponse(request, 'apps/object_list.html', context)
+
+
+@csrf_exempt
+def search_hubs(request):
+    form = SearchForm(request.GET) if 'q' in request.GET else SearchForm()
+    page_no = pagination.get_page_no(request.GET)
+    if form.is_valid():
+        extra_params = {}
+
+        if form.cleaned_data['feature'] != '':
+            extra_params.update({'features__slug__in': [form.cleaned_data['feature'], ]}, )
+        if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
+            extra_params.update({'program__slug': form.cleaned_data['program'], }, )
+        if 'q' in form.cleaned_data and form.cleaned_data['q'] != '':
+            object_list = watson.filter(Hub.objects.filter(**extra_params),
+                                        form.cleaned_data['q'])
+        else:
+            object_list = Hub.objects.filter(status=Application.PUBLISHED, **extra_params)
+
+        if form.cleaned_data['order'] == 'asc':
+            object_list = object_list.order_by('created')
+        elif form.cleaned_data['order'] == 'desc':
+            object_list = object_list.order_by('-created')
+
+        pagination_qs = '&%s' % urlencode({'q': form.cleaned_data['q']})
+    else:
+        object_list = []
+        pagination_qs = ''
+
+    page = pagination.get_page(object_list, page_no)
+    page.object_list_top = [o for o in page.object_list_top]
+    page.object_list_bottom = [o for o in page.object_list_bottom]
+    context = {
+        'form': form,
+        'page': page,
+        'pagination_qs': pagination_qs,
+        'feature_list': Feature.objects.all(),
+    }
+    return TemplateResponse(request, 'hubs/object_list.html', context)
