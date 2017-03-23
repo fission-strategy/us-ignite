@@ -1,1 +1,1 @@
-web: NEW_RELIC_CONFIG_FILE=newrelic.ini newrelic-admin run-program gunicorn heroku -b 0.0.0.0:$PORT -w 4 -t 60
+web: newrelic-admin run-program gunicorn heroku -b 0.0.0.0:$PORT -w 4 -t 60
