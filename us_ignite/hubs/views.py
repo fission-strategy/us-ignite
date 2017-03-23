@@ -12,7 +12,7 @@ from us_ignite.events.models import Event
 from us_ignite.hubs.models import Hub, HubRequest, HubMembership
 from us_ignite.hubs import forms, mailer
 from us_ignite.maps.utils import get_location_dict
-from us_ignite.apps.models import Feature
+# from us_ignite.apps.models import Feature
 from us_ignite.programs.models import Program
 
 from geopy.distance import vincenty
