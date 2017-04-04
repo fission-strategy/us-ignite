@@ -2,12 +2,17 @@ from __future__ import unicode_literals
 from future.builtins import str
 
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.template.response import TemplateResponse
+from django.views.decorators.csrf import requires_csrf_token
+from django.template.loader import get_template
+from django.utils import six
 
 from mezzanine.utils.urls import home_slug
+from mezzanine.conf import settings
 from us_ignite.news.models import NewsPost as BlogPost
 from us_ignite.common.models import LinkResource
+
 
 
 def page(request, slug, template=u"pages/page.html", extra_context={}):
@@ -67,3 +72,28 @@ def page(request, slug, template=u"pages/page.html", extra_context={}):
         'link_list': LinkResource.objects.filter(page=request.page).filter(status=LinkResource.PUBLISHED).all(),
     })
     return TemplateResponse(request, templates, extra_context)
+
+
+@requires_csrf_token
+def page_not_found(request, exception, template_name="errors/404.html"):
+    """
+    Mimics Django's 404 handler but with a different template path.
+    """
+    exception_repr = exception.__class__.__name__
+    # Try to get an "interesting" exception message, if any (and not the ugly
+    # Resolver404 dictionary)
+    try:
+        message = exception.args[0]
+    except (AttributeError, IndexError):
+        pass
+    else:
+        if isinstance(message, six.text_type):
+            exception_repr = message
+
+    context = {
+        "STATIC_URL": settings.STATIC_URL,
+        "request_path": request.path,
+        "exception": exception_repr,
+    }
+    t = get_template(template_name)
+    return HttpResponseNotFound(t.render(context, request))
