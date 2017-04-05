@@ -86,6 +86,9 @@
     "test": {
       "env": {
         "PHOTON_TORPEDOES": "online"
+      },
+      "scripts": {
+        "test": "python manage.py test"
       }
     }
   }
