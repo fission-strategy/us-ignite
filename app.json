@@ -81,5 +81,12 @@
     {
       "url": "https://github.com/fission-strategy/heroku_python_buildpack_no_filebrowser-safe.git"
     }
-  ]
+  ],
+  "environments": {
+    "test": {
+      "env": {
+        "PHOTON_TORPEDOES": "online"
+      }
+    }
+  }
 }
