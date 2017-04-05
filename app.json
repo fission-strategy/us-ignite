@@ -88,7 +88,7 @@
         "PHOTON_TORPEDOES": "online"
       },
       "scripts": {
-        "test": "python manage.py test"
+        "test": "python manage.py test --settings=us_ignite.settings.staging"
       }
     }
   }
