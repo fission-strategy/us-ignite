@@ -154,18 +154,18 @@ MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
 
 THUMBNAIL_DEBUG = True
-redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
-
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
-        'OPTIONS': {
-            'DB': 0,
-            'PASSWORD': redis_url.password,
-        }
-    }
-}
+# redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+#         'OPTIONS': {
+#             'DB': 0,
+#             'PASSWORD': redis_url.password,
+#         }
+#     }
+# }
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
