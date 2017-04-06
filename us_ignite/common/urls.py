@@ -54,7 +54,7 @@ if getattr(settings, "DEBUG", False):
 # Miscellanous Mezzanine patterns.
 urlpatterns += [
     url("^", include("mezzanine.core.urls")),
-    url("^", include("mezzanine.generic.urls")),
+    url("^", include("mezzanine.core.urls")),
 ]
 
 # Mezzanine's Accounts app
