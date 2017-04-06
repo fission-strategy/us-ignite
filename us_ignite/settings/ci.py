@@ -24,9 +24,7 @@ SITE_URL = "https://us-ignite-staging.herokuapp.com"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['us-ignite-staging.herokuapp.com',
-                 'us-ignite.org',
-                 'www.us-ignite.org', ]
+ALLOWED_HOSTS = ['*', ]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
