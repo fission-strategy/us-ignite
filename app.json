@@ -30,9 +30,6 @@
     "EMAIL_PORT": {
       "required": true
     },
-    "HEROKU_POSTGRESQL_YELLOW_URL": {
-      "required": true
-    },
     "MAILCHIMP_API_KEY": {
       "required": true
     },
