@@ -24,9 +24,7 @@ SITE_URL = "https://us-ignite-staging.herokuapp.com"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['.herokuapp.com',
-                 'us-ignite.org',
-                 'www.us-ignite.org', ]
+ALLOWED_HOSTS = ['*', ]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -50,8 +48,25 @@ SITE_ID = 1
 # DATABASES #
 #############
 
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
-
+DATABASES = {
+    "default": {
+        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.sqlite3",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "./dev2.db",
+        # Not used with sqlite3.
+        "USER": "",
+        # Not used with sqlite3.
+        "PASSWORD": "",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "",
+        "TEST": {
+            'ENGINE': "django.db.backends.sqlite3",
+        }
+    }
+}
 
 #########
 # PATHS #
@@ -137,18 +152,18 @@ MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
 
 THUMBNAIL_DEBUG = True
-redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
-
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
-        'OPTIONS': {
-            'DB': 0,
-            'PASSWORD': redis_url.password,
-        }
-    }
-}
+# redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+#         'OPTIONS': {
+#             'DB': 0,
+#             'PASSWORD': redis_url.password,
+#         }
+#     }
+# }
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

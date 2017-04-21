@@ -1,1 +1,1 @@
-web: gunicorn heroku -b 0.0.0.0:$PORT -w 4 -t 60
+web: newrelic-admin run-program gunicorn heroku -b 0.0.0.0:$PORT -w 4 -t 60

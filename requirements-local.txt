@@ -33,3 +33,4 @@ django-registration==2.2
 django-storages-redux==1.3.2
 py-bcrypt==0.4
 mailchimp==2.0.9
+newrelic==2.82.0.62

@@ -354,7 +354,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     "mezzanine.core.request.CurrentRequestMiddleware",
-    "mezzanine.core.middleware.RedirectFallbackMiddleware",
+    # "mezzanine.core.middleware.RedirectFallbackMiddleware",
+    "us_ignite.common.middleware.CustomRedirectFallbackMiddleware",
     "mezzanine.core.middleware.TemplateForDeviceMiddleware",
     "mezzanine.core.middleware.TemplateForHostMiddleware",
     "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
@@ -529,3 +530,5 @@ GOOGLE_ANALYTICS_ID = 'UA-40470323-1'
 RICHTEXT_FILTER_LEVEL = 2
 # ROBOTS_USE_SITEMAP = False
 
+ACCOUNTS_VERIFICATION_REQUIRED = False
+ACCOUNTS_APPROVAL_REQUIRED = False

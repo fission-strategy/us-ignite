@@ -9,7 +9,6 @@ from us_ignite.settings import custom_admin
 
 from us_ignite.sections import views as sections
 from us_ignite.people import views as people
-from us_ignite.pages_ext import views as pages
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
@@ -152,6 +151,6 @@ urlpatterns += [
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
 # pages can use JS, CSS and images.
-handler404 = "mezzanine.core.views.page_not_found"
+handler404 = "us_ignite.pages_ext.views.page_not_found"
 handler500 = "mezzanine.core.views.server_error"
 

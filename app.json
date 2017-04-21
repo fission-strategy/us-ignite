@@ -30,9 +30,6 @@
     "EMAIL_PORT": {
       "required": true
     },
-    "HEROKU_POSTGRESQL_YELLOW_URL": {
-      "required": true
-    },
     "MAILCHIMP_API_KEY": {
       "required": true
     },
@@ -81,5 +78,12 @@
     {
       "url": "https://github.com/fission-strategy/heroku_python_buildpack_no_filebrowser-safe.git"
     }
-  ]
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "python manage.py test --settings=us_ignite.settings.ci"
+      }
+    }
+  }
 }
