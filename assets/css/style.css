@@ -436,3 +436,7 @@ ul.cat-list {
   /* line 523, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
   .paging-a {
     margin-top: 30px; } }
+
+/* line 528, /Users/gholme4/Documents/us-ignite-new/assets/scss/app.scss */
+.stButton .stBubble {
+  display: none !important; }
