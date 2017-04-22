@@ -98,6 +98,8 @@ def search_apps(request):
 
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
+        if form.cleaned_data['community'] != '':
+            extra_params.update({'hub__slug': form.cleaned_data['community'], }, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
             extra_params.update({'program__slug': form.cleaned_data['program'], }, )
             app_terminalogy = (Program.objects.get(slug=form.cleaned_data['program'])).application_terminology
@@ -125,6 +127,7 @@ def search_apps(request):
         'page': page,
         'pagination_qs': pagination_qs,
         'sector_list': Sector.objects.all(),
+        'community_list': Hub.objects.filter(status=Hub.PUBLISHED),
     }
     if app_terminalogy:
         context.update({'app_terminalogy': app_terminalogy},)

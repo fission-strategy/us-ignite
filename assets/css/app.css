@@ -281,10 +281,12 @@ body > :not(.root-a), body > :not(.root-a) div, body > :not(.root-a) form { marg
  .filters-a .wrap { margin: -15px -15px 0; font-size: 0; letter-spacing: -1em; }
   .filters-a .wrap p { display: inline-block; width: 100%; margin: 0; padding: 0 0 0 100px; border: 1px solid transparent; border-width: 15px 15px 0; font-size: 16px; font-size: 1rem; letter-spacing: 0; vertical-align: top; }
    .filters-a .wrap p label { float: left; width: 95px; margin: 0 0 0 -100px; line-height: 40px; vertical-align: top; }
-  .filters-a .wrap p:nth-child(2) { width: 47.49%; }
-  .filters-a .wrap p:nth-child(3) { width: 37.49%; }
-  .filters-a .wrap p:nth-child(4) { width: 14.99%; padding-left: 0; }
-   .filters-a .wrap p:nth-child(4) .button-a { display: block; width: 100%; }
+  .filters-a .wrap p:nth-child(1) { width: 70.49%; }
+  .filters-a .wrap p:nth-child(2) { width: 29.49%; }
+  .filters-a .wrap p:nth-child(3) { width: 47.49%; }
+  .filters-a .wrap p:nth-child(4) { width: 37.49%; }
+  .filters-a .wrap p:nth-child(5) { width: 14.99%; padding-left: 0; }
+   .filters-a .wrap p:nth-child(5) .button-a { display: block; width: 100%; }
 
 @media screen and (max-width: 1023px) {
 .filters-a { margin-left: -30px; margin-right: -30px; box-shadow: none; }
