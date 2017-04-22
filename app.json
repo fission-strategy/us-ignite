@@ -1,7 +1,5 @@
 {
   "name": "us-ignite",
-  "scripts": {
-  },
   "env": {
     "AWS_ACCESS_KEY_ID": {
       "required": true
@@ -79,14 +77,14 @@
       "url": "https://github.com/fission-strategy/heroku_python_buildpack_no_filebrowser-safe.git"
     }
   ],
+  "scripts": {
+    "postdeploy": "python manage.py migrate --settings=us_ignite.settings.staging --noinput"
+  },
   "environments": {
     "test": {
       "scripts": {
         "test": "python manage.py test --settings=us_ignite.settings.ci"
       }
     }
-  },
-  "scripts": {
-    "postdeploy": "python manage.py migrate --settings=us_ignite.settings.staging --noinput"
   }
 }
