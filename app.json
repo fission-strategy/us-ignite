@@ -84,9 +84,9 @@
       "scripts": {
         "test": "python manage.py test --settings=us_ignite.settings.ci"
       }
-    },
-    "scripts": {
-      "migrate": "django-admin.py migrate --settings=us_ignite.settings.staging"
     }
+  },
+  "scripts": {
+    "postdeploy": "python manage.py migrate --settings=us_ignite.settings.staging --noinput"
   }
 }
