@@ -1,3 +1,4 @@
+from itertools import chain
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
@@ -72,13 +73,18 @@ def app_list(request, sector=None, stage=None, program=None, community=None, fil
     # #     status=ActionCluster.PUBLISHED, is_featured=True, **extra_qs)[:3]
     # featured_list = list(chain(featured_list_app, featured_list_ac))[:3]
     page = pagination.get_page(object_list, page_no)
+    community_list_sgc = Hub.objects.filter(status=Hub.PUBLISHED,
+                                        programs__slug__in=['smart-gigabit-communities', ])
+    community_list_other = Hub.objects.filter(status=Hub.PUBLISHED).exclude(
+                                         programs__slug__in=['smart-gigabit-communities', ])
     context = {
         'featured_list': featured_list,
         'page': page,
         'order': order_value,
         'order_form': order_form,
         'sector_list': Sector.objects.all(),
-        'community_list': Hub.objects.filter(status=Hub.PUBLISHED),
+        'community_list_sgc': community_list_sgc,
+        'community_list_other': community_list_other,
         'stage_list': Application.STAGE_CHOICES,
         'filter_name': filter_name,
         'current_sector': sector,

@@ -35,7 +35,13 @@
         </select></p>
         <p><label for="f-fv">Community</label> <select name="community" id="f-fv">
             <option value="" selected>---</option>
-            {% for community in community_list %}
+            <option value="" disabled>- Smart Gigabit Communities -</option>
+            {% for community in community_list_sgc %}
+            <option value="{{ community.slug }}">{{ community.name }}</option>
+            {% endfor %}
+            <option value="" disabled></option>
+            <option value="" disabled >- Others -</option>
+            {% for community in community_list_other %}
             <option value="{{ community.slug }}">{{ community.name }}</option>
             {% endfor %}
         </select></p>
