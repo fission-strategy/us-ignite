@@ -74,9 +74,9 @@ def app_list(request, sector=None, stage=None, program=None, community=None, fil
     # featured_list = list(chain(featured_list_app, featured_list_ac))[:3]
     page = pagination.get_page(object_list, page_no)
     community_list_sgc = Hub.objects.filter(status=Hub.PUBLISHED,
-                                        programs__slug__in=['smart-gigabit-communities', ])
+                                        programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     community_list_other = Hub.objects.filter(status=Hub.PUBLISHED).exclude(
-                                         programs__slug__in=['smart-gigabit-communities', ])
+                                         programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     context = {
         'featured_list': featured_list,
         'page': page,
