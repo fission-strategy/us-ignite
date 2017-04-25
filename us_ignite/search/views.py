@@ -123,9 +123,9 @@ def search_apps(request):
     page.object_list_top = [o for o in page.object_list_top]
     page.object_list_bottom = [o for o in page.object_list_bottom]
     community_list_sgc = Hub.objects.filter(status=Hub.PUBLISHED,
-                                        programs__slug__in=['smart-gigabit-communities', ])
+                                        programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     community_list_other = Hub.objects.filter(status=Hub.PUBLISHED).exclude(
-                                         programs__slug__in=['smart-gigabit-communities', ])
+                                         programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     context = {
         'form': form,
         'page': page,
