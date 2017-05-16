@@ -1,3 +1,4 @@
+from itertools import chain
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
@@ -13,6 +14,7 @@ from us_ignite.apps.forms import (ApplicationForm, ApplicationLinkFormSet,
                                   ApplicationMembershipFormSet)
 
 from us_ignite.awards.models import *
+from us_ignite.hubs.models import Hub
 
 # from us_ignite.actionclusters.models import ActionCluster
 from us_ignite.common import pagination, forms
@@ -35,15 +37,19 @@ def get_stage_or_404(stage):
     raise Http404('Invalid stage.')
 
 
-def app_list(request, sector=None, stage=None, program=None, filter_name=''):
+def app_list(request, sector=None, stage=None, program=None, community=None, filter_name=''):
     """Lists the published ``Applications``"""
     extra_qs = {}
     if sector:
         # Validate sector is valid if provided:
         extra_qs['sector'] = get_object_or_404(Sector, slug=sector)
         filter_name = extra_qs['sector'].name
+    if community:
+        # Validate community is valid if provided:
+        extra_qs['community'] = get_object_or_404(Hub, slug=community)
+        filter_name = extra_qs['community'].name
     if stage:
-        # Validate stage is valid if provided:
+        # Validate stage isyea valid if provided:
         pk, name = get_stage_or_404(stage)
         extra_qs['stage'] = pk
         filter_name = name
@@ -67,15 +73,22 @@ def app_list(request, sector=None, stage=None, program=None, filter_name=''):
     # #     status=ActionCluster.PUBLISHED, is_featured=True, **extra_qs)[:3]
     # featured_list = list(chain(featured_list_app, featured_list_ac))[:3]
     page = pagination.get_page(object_list, page_no)
+    community_list_sgc = Hub.objects.filter(status=Hub.PUBLISHED,
+                                        programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
+    community_list_other = Hub.objects.filter(status=Hub.PUBLISHED).exclude(
+                                         programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     context = {
         'featured_list': featured_list,
         'page': page,
         'order': order_value,
         'order_form': order_form,
         'sector_list': Sector.objects.all(),
+        'community_list_sgc': community_list_sgc,
+        'community_list_other': community_list_other,
         'stage_list': Application.STAGE_CHOICES,
         'filter_name': filter_name,
         'current_sector': sector,
+        'current_community': community,
         'current_stage': int(stage) if stage else None,
         'app_terminology': 'application',
     }

@@ -98,6 +98,8 @@ def search_apps(request):
 
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
+        if form.cleaned_data['community'] != '':
+            extra_params.update({'hub__slug': form.cleaned_data['community'], }, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
             extra_params.update({'program__slug': form.cleaned_data['program'], }, )
             app_terminalogy = (Program.objects.get(slug=form.cleaned_data['program'])).application_terminology
@@ -120,11 +122,17 @@ def search_apps(request):
     page = pagination.get_page(object_list, page_no)
     page.object_list_top = [o for o in page.object_list_top]
     page.object_list_bottom = [o for o in page.object_list_bottom]
+    community_list_sgc = Hub.objects.filter(status=Hub.PUBLISHED,
+                                        programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
+    community_list_other = Hub.objects.filter(status=Hub.PUBLISHED).exclude(
+                                         programs__slug__in=['smart-gigabit-communities', ]).order_by('name')
     context = {
         'form': form,
         'page': page,
         'pagination_qs': pagination_qs,
         'sector_list': Sector.objects.all(),
+        'community_list_sgc': community_list_sgc,
+        'community_list_other': community_list_other,
     }
     if app_terminalogy:
         context.update({'app_terminalogy': app_terminalogy},)

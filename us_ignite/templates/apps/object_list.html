@@ -23,15 +23,27 @@
     <h3 class="hx">Filter Results By...</h3>
     <div class="wrap">
         <p><label for="f-fk">Keyword</label> <input type="text" name="q" id="f-fk" placeholder="Search by project name, team name, etc." /></p>
+        <p><label for="f-fr">Sort by</label> <select name="order" id="f-fr">
+            <option value="desc" selected>Newest First</option>
+            <option value="asc">Oldest First</option>
+        </select></p>
         <p><label for="f-fs">Sector</label> <select name="sector" id="f-fs">
             <option value="" selected>---</option>
             {% for sector in sector_list %}
             <option value="{{ sector.slug }}">{{ sector.name }}</option>
             {% endfor %}
         </select></p>
-        <p><label for="f-fr">Sort by</label> <select name="order" id="f-fr">
-            <option value="desc" selected>Newest First</option>
-            <option value="asc">Oldest First</option>
+        <p><label for="f-fv">Community</label> <select name="community" id="f-fv">
+            <option value="" selected>---</option>
+            <option value="" disabled>- Smart Gigabit Communities -</option>
+            {% for community in community_list_sgc %}
+            <option value="{{ community.slug }}">{{ community.name }}</option>
+            {% endfor %}
+            <option value="" disabled></option>
+            <option value="" disabled >- Others -</option>
+            {% for community in community_list_other %}
+            <option value="{{ community.slug }}">{{ community.name }}</option>
+            {% endfor %}
         </select></p>
         <p class="action"><button type="submit" class="button-a">Search</button></p>
     </div>

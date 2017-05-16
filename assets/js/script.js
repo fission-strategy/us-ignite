@@ -751,12 +751,15 @@ new function(settings) {
 
 			var q = $.query.get('q');
 			var sector = $.query.get('sector');
+			var community = $.query.get('community');
 			var order = $.query.get('order');
 			
 			if (typeof q == "string")
 				$('#app-search-form').find("[name='q']").val(q);
 			if (typeof sector == "string")
 				$('#app-search-form').find("[name='sector']").val(sector).removeClass("placeholder");
+            if (typeof community == "string")
+				$('#app-search-form').find("[name='community']").val(community).removeClass("placeholder");
 			if ($.trim(order) != "")
 			{
 
