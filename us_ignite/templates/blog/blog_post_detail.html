@@ -27,7 +27,7 @@
 
             <h6 class="post-meta">
                 {% trans "by" %}
-                {% with blog_post.user as author %} 
+                {% with blog_post.user as author %}
                 {{ author.get_full_name|default:author.username }}
                 {% endwith %}
                 &nbsp;&nbsp;{{ blog_post.publish_date|date:"F d, Y" }}
@@ -58,14 +58,14 @@
                 </p>
             {% endif %}
 
-           
-            <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}"  displayText='Facebook'></span>
-            <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Tweet'></span>
-            <span class='st_linkedin_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='LinkedIn'></span>
-            <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Google +'></span>
-            <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ object.get_absolute_url }}" st_title="{{ object.name }}" displayText='Email'></span>
 
-            
+            <span class='st_facebook_vcount' st_url="{{ SITE_URL }}{{ blog_post.get_absolute_url }}" st_title="{{ blog_post.name }}"  displayText='Facebook'></span>
+            <span class='st_twitter_vcount' st_url="{{ SITE_URL }}{{ blog_post.get_absolute_url }}" st_title="{{ blog_post.name }}" displayText='Tweet'></span>
+            <span class='st_linkedin_vcount' st_url="{{ SITE_URL }}{{ blog_post.get_absolute_url }}" st_title="{{ blog_post.name }}" displayText='LinkedIn'></span>
+            <span class='st_googleplus_vcount' st_url="{{ SITE_URL }}{{ blog_post.get_absolute_url }}" st_title="{{ blog_post.name }}" displayText='Google +'></span>
+            <span class='st_email_vcount' st_url="{{ SITE_URL }}{{ blog_post.get_absolute_url }}" st_title="{{ blog_post.name }}" displayText='Email'></span>
+
+
         </div>
     </div>
 
@@ -94,7 +94,7 @@
         </div>
     </div>
     {% endif %}
-    
+
 </section>
 {% endblock content %}
 
