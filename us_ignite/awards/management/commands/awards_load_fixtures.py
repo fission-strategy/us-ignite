@@ -17,5 +17,5 @@ class Command(BaseCommand):
         for award_name in AWARD_LIST:
             award, is_new = Award.objects.get_or_create(name=award_name)
             if is_new:
-                print "Imported award: %s" % award_name
-        print "Done!"
+                print("Imported award: %s" % award_name)
+        print("Done!")

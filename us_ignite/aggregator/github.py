@@ -11,7 +11,7 @@ def clean_commit(commit):
     commit = strip_tags(commit)
     # Lines with meaningful values:
     lines = [line for line in commit.splitlines() if line.strip()]
-    return lines[0] if lines else u'Missing commit message.'
+    return lines[0] if lines else 'Missing commit message.'
 
 
 def get_commits(user, project, total=5):
@@ -19,7 +19,7 @@ def get_commits(user, project, total=5):
     url = ('https://api.github.com/repos/%s/%s/commits' % (user, project))
     try:
         response = requests.get(url)
-    except Exception, e:
+    except Exception as e:
         logger.exception(e)
         return []
     if not response.status_code == 200:

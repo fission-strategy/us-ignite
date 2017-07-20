@@ -19,7 +19,7 @@ class SnippetsNode(template.Node):
         try:
             snippet = Snippet.published.get(slug=key)
         except Snippet.DoesNotExist:
-            return u''
+            return ''
         template_context = {'object': snippet}
         return render_to_string(template_name, template_context)
 

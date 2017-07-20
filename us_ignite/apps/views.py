@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.http import Http404, HttpResponse
 from django.template.response import TemplateResponse
-from models import Application, ApplicationMembership, ApplicationVersion, Page, Sector
+from .models import Application, ApplicationMembership, ApplicationVersion, Page, Sector
 from us_ignite.programs.models import Program
 
 from us_ignite.apps.forms import (ApplicationForm, ApplicationLinkFormSet,

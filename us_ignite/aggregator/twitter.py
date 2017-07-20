@@ -27,7 +27,7 @@ def get_timeline(username, total=5):
     twitter = twython.Twython(TWITTER_KEY, access_token=token)
     try:
         timeline = twitter.get_user_timeline(screen_name=username, count=total)
-    except Exception, e:
+    except Exception as e:
         logger.exception(e)
         return []
     return timeline[:total]

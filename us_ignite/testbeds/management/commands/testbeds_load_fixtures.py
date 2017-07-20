@@ -17,5 +17,5 @@ class Command(BaseCommand):
             speed, is_new = (NetworkSpeed.objects
                              .get_or_create(name=name))
             if is_new:
-                print u"Imported speed: %s" % speed
-        print "Done!"
+                print("Imported speed: %s" % speed)
+        print("Done!")

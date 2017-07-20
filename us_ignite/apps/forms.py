@@ -1,4 +1,4 @@
-from urlparse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs
 
 from django import forms
 from us_ignite.profiles.models import User
@@ -20,7 +20,7 @@ def _get_status_choices():
         Application.DRAFT,
     ]
     is_valid_status = lambda x: x[0] in available_status
-    return filter(is_valid_status, Application.STATUS_CHOICES)
+    return list(filter(is_valid_status, Application.STATUS_CHOICES))
 
 
 class ApplicationForm(forms.ModelForm):
@@ -134,8 +134,8 @@ def validate_member(email):
 class MembershipForm(forms.Form):
     """Form to validate the collaborators."""
     collaborators = forms.CharField(
-        label=u'Team Members',
-        widget=forms.Textarea, help_text=u'Add registered users as '
+        label='Team Members',
+        widget=forms.Textarea, help_text='Add registered users as '
         'collaborators for this app. One email per line.', required=False)
 
     def clean_collaborators(self):

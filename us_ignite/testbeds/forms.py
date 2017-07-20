@@ -2,7 +2,7 @@ from django import forms
 
 from us_ignite.testbeds.models import Testbed, NetworkSpeed
 
-EMPTY_LABEL = u'- Select one -'
+EMPTY_LABEL = '- Select one -'
 
 
 def get_experimentation_choices():
@@ -22,5 +22,5 @@ class TestbedFilterForm(forms.Form):
     def clean(self):
         """Make sure at least one of the values is selected."""
         if not any(self.cleaned_data.values()):
-            raise forms.ValidationError(u'Select at least one of the fields.')
+            raise forms.ValidationError('Select at least one of the fields.')
         return self.cleaned_data

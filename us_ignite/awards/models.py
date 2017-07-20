@@ -20,7 +20,7 @@ class ApplicationAward(models.Model):
     created = CreationDateTimeField()
 
     def __unicode__(self):
-        return u'Award %s for %s' % (self.award, self.application)
+        return 'Award %s for %s' % (self.award, self.application)
 
 
 # class ActionClusterAward(models.Model):
@@ -40,7 +40,7 @@ class HubAward(models.Model):
     created = CreationDateTimeField()
 
     def __unicode__(self):
-        return u'Award %s for %s' % (self.award, self.hub)
+        return 'Award %s for %s' % (self.award, self.hub)
 
 
 class UserAward(models.Model):
@@ -49,7 +49,7 @@ class UserAward(models.Model):
     created = CreationDateTimeField()
 
     def __unicode__(self):
-        return u'Award %s for %s' % (self.award, self.user)
+        return 'Award %s for %s' % (self.award, self.user)
 
 
 class OrganizationAward(models.Model):
@@ -58,4 +58,4 @@ class OrganizationAward(models.Model):
     created = CreationDateTimeField()
 
     def __unicode__(self):
-        return u'Award %s for %s' % (self.award, self.organization)
+        return 'Award %s for %s' % (self.award, self.organization)

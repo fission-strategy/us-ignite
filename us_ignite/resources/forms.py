@@ -13,7 +13,7 @@ def _get_status_choices():
         Resource.DRAFT,
     ]
     is_valid_status = lambda x: x[0] in available_status
-    return filter(is_valid_status, Resource.STATUS_CHOICES)
+    return list(filter(is_valid_status, Resource.STATUS_CHOICES))
 
 
 def _validate_email(email):

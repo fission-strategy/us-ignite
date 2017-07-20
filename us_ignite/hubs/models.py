@@ -39,7 +39,7 @@ class HubRequest(models.Model):
     modified = ModificationDateTimeField()
 
     def __unicode__(self):
-        return u'%s by %s' % (self.name, self.user)
+        return '%s by %s' % (self.name, self.user)
 
     class Meta:
         ordering = ('-created', )
@@ -72,8 +72,8 @@ class Hub(models.Model):
     PUBLISHED = 1
     DRAFT = 2
     STATUS_CHOICES = (
-        (PUBLISHED, u'Published'),
-        (DRAFT, u'Draft'),
+        (PUBLISHED, 'Published'),
+        (DRAFT, 'Draft'),
     )
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -86,9 +86,9 @@ class Hub(models.Model):
     website = models.URLField(
         max_length=500, blank=True, help_text=URL_HELP_TEXT)
     features = models.ManyToManyField(
-        'apps.Feature', blank=True, help_text=u'Existing NextGen features in this community.')
+        'apps.Feature', blank=True, help_text='Existing NextGen features in this community.')
     programs = models.ManyToManyField(
-        'programs.Program', blank=True, help_text=u'Does this community belongs to any programs?'
+        'programs.Program', blank=True, help_text='Does this community belongs to any programs?'
     )
     position = GeopositionField(blank=True)
     tags = TaggableManager(blank=True)
@@ -96,7 +96,7 @@ class Hub(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
-        help_text=u'If marked this element will be shown in the homepage.')
+        help_text='If marked this element will be shown in the homepage.')
     is_featured = models.BooleanField(default=False)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
@@ -159,7 +159,7 @@ class HubURL(models.Model):
     hub = models.ForeignKey('hubs.Hub')
     name = models.CharField(max_length=255, blank=True)
     url = models.URLField(
-        max_length=500, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        max_length=500, verbose_name='URL', help_text=URL_HELP_TEXT)
 
     def __unicode__(self):
         return self.url
@@ -170,7 +170,7 @@ class HubActivity(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     url = models.URLField(
-        max_length=500, blank=True, verbose_name=u'URL',
+        max_length=500, blank=True, verbose_name='URL',
         help_text=URL_HELP_TEXT)
     user = models.ForeignKey('profiles.User', blank=True, null=True)
     created = CreationDateTimeField()

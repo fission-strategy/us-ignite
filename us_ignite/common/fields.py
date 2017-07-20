@@ -1,11 +1,11 @@
 import shortuuid
 
 from django.db import models
-from django.utils.encoding import force_unicode
+
 
 # from south.modelsinspector import add_introspection_rules
 
-URL_HELP_TEXT = u'Please enter a URL starting with http or https'
+URL_HELP_TEXT = 'Please enter a URL starting with http or https'
 IMAGE_HELP_TEXT = 'Image suggested ratio: 3:2'
 
 
@@ -22,7 +22,7 @@ class AutoUUIDField(models.SlugField):
         return shortuuid.uuid()
 
     def get_queryset(self, model_cls, slug_field):
-        print model_cls
+        print(model_cls)
         # for field, model in model_cls._meta.get_fields_with_model():
         #     if model and field == slug_field:
         #         return model._default_manager.all()
@@ -46,7 +46,7 @@ class AutoUUIDField(models.SlugField):
         # Get value from the current instance:
         value = getattr(model_instance, self.attname)
         if not value:
-            value = force_unicode(self.create_slug(model_instance, add))
+            value = self.create_slug(model_instance, add)
         setattr(model_instance, self.attname, value)
         return value
 

@@ -1,7 +1,7 @@
 beautifulsoup4==4.5.1
 bleach==1.5.0
 chardet==2.3.0
-Django==1.10.5
+Django==1.10.7
 django-contrib-comments==1.7.3
 django-extensions==1.7.5
 django-geoposition==0.3.0
@@ -10,7 +10,7 @@ django-taggit==0.21.3
 future==0.16.0
 grappelli-safe==0.4.5
 html5lib==0.9999999
-Mezzanine==4.2.2
+Mezzanine==4.2.3
 oauthlib==2.0.1
 Pillow==3.4.2
 pytz==2016.10
@@ -28,7 +28,7 @@ easy-thumbnails==2.3
 sorl-thumbnail==12.3
 django_compressor==2.1.1
 twython==3.4.0
-django-embed-video==1.1.0
+django-embed-video==1.1.2
 django-registration==2.2
 django-storages-redux==1.3.2
 py-bcrypt==0.4

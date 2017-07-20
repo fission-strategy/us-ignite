@@ -50,7 +50,7 @@ class Resource(models.Model):
     program = models.ForeignKey('programs.Program', blank=True, null=True,
                                 help_text=_("Does this resource belong to any specific program"))
     url = models.URLField(
-        max_length=500, blank=True, help_text=URL_HELP_TEXT, verbose_name=u'URL')
+        max_length=500, blank=True, help_text=URL_HELP_TEXT, verbose_name='URL')
     description = models.TextField()
     resource_type = models.ForeignKey(
         'resources.ResourceType', blank=True, null=True,
@@ -62,7 +62,7 @@ class Resource(models.Model):
         'profiles.User', blank=True, null=True, on_delete=models.SET_NULL,
         related_name='resource_contact_set')
     author = models.TextField(
-        blank=True, help_text=u'Primary Author/Presenter (if different '
+        blank=True, help_text='Primary Author/Presenter (if different '
         'from contact)')
     organization = models.ForeignKey(
         'organizations.Organization', blank=True, null=True,
@@ -71,11 +71,11 @@ class Resource(models.Model):
         upload_to="resource", blank=True, help_text=IMAGE_HELP_TEXT)
     asset = models.FileField(upload_to="resource", blank=True)
     resource_date = models.DateField(
-        blank=True, null=True, help_text=u'Format: YYYY-MM-DD')
+        blank=True, null=True, help_text='Format: YYYY-MM-DD')
     is_featured = models.BooleanField(default=False)
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
-        help_text=u'If marked this element will be shown in the homepage.')
+        help_text='If marked this element will be shown in the homepage.')
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 
@@ -109,7 +109,7 @@ class Resource(models.Model):
             return self.asset.url
         if self.url:
             return self.url
-        return u''
+        return ''
 
     def is_visible_by(self, user):
         return self.is_published() or self.is_editable_by(user)

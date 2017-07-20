@@ -30,8 +30,8 @@ class Command(BaseCommand):
             resource, is_new = (ResourceType.objects
                                 .get_or_create(name=resource_name))
             if is_new:
-                print "Imported resource type: %s" % resource_name
+                print("Imported resource type: %s" % resource_name)
         for sector_name in SECTOR_LIST:
             sector, is_new = Sector.objects.get_or_create(name=sector_name)
             if is_new:
-                print "Imported sector: %s" % sector_name
+                print("Imported sector: %s" % sector_name)

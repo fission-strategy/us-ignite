@@ -23,18 +23,18 @@ class Testbed(models.Model):
     MEDIUM = 2
     HIGH = 3
     EXPERIMENTATION_CHOICES = (
-        (LOW, u'Low'),
-        (MEDIUM, u'Medium'),
-        (HIGH, u'High'),
+        (LOW, 'Low'),
+        (MEDIUM, 'Medium'),
+        (HIGH, 'High'),
     )
     PUBLISHED = 1
     DRAFT = 2
     STATUS_CHOICES = (
-        (PUBLISHED, u'Published'),
-        (DRAFT, u'Draft'),
+        (PUBLISHED, 'Published'),
+        (DRAFT, 'Draft'),
     )
     name = models.CharField(
-        max_length=255, verbose_name=u'Name of the Testbed')
+        max_length=255, verbose_name='Name of the Testbed')
     slug = AutoSlugField(populate_from='name', unique=True)
     summary = models.TextField(blank=True)
     description = models.TextField()
@@ -50,26 +50,26 @@ class Testbed(models.Model):
         'testbeds.NetworkSpeed', blank=True, null=True,
         on_delete=models.SET_NULL)
     connections = models.TextField(
-        blank=True, verbose_name=u'Connections to other networks')
+        blank=True, verbose_name='Connections to other networks')
     experimentation = models.IntegerField(
         choices=EXPERIMENTATION_CHOICES, default=MEDIUM,
-        verbose_name=u'Willingness to experiment')
+        verbose_name='Willingness to experiment')
     passes_homes = models.PositiveIntegerField(
-        default=0, verbose_name=u'Estimated passes # homes')
+        default=0, verbose_name='Estimated passes # homes')
     passes_business = models.PositiveIntegerField(
-        default=0, verbose_name=u'Estimated passes # business')
+        default=0, verbose_name='Estimated passes # business')
     passes_anchor = models.PositiveIntegerField(
-        default=0, verbose_name=u'Estimated passes # community anchor')
+        default=0, verbose_name='Estimated passes # community anchor')
     is_advanced = models.BooleanField(
-        default=False, help_text=u'Does it have advanced characteristics?')
+        default=False, help_text='Does it have advanced characteristics?')
     hubs = models.ManyToManyField(
-        'hubs.Hub', blank=True, verbose_name=u'Communities')
+        'hubs.Hub', blank=True, verbose_name='Communities')
     applications = models.ManyToManyField(
-        'apps.Application', blank=True, verbose_name=u'Applications being '
+        'apps.Application', blank=True, verbose_name='Applications being '
         'piloted')
-    programs = models.ManyToManyField('programs.Program', blank=True, help_text=u'Does this testbed belong to any program(s)?')
+    programs = models.ManyToManyField('programs.Program', blank=True, help_text='Does this testbed belong to any program(s)?')
     features = models.ManyToManyField(
-        'apps.Feature', blank=True, help_text=u'Existing NextGen features in '
+        'apps.Feature', blank=True, help_text='Existing NextGen features in '
         'this community.')
     position = GeopositionField(blank=True)
     tags = TaggableManager(blank=True)

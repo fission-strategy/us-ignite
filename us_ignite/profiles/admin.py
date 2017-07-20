@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import User, ProfileLink, Interest, UserCategory
+from .models import User, ProfileLink, Interest, UserCategory
 from mezzanine.accounts.admin import UserProfileAdmin
 from copy import deepcopy
 

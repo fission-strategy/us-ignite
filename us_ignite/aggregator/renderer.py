@@ -1,6 +1,6 @@
 import hashlib
 
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from django.core.cache import cache
 from django.template.loader import render_to_string
@@ -13,7 +13,7 @@ def render_github(parsed_url):
     try:
         username = path_bits.pop(1)
     except IndexError:
-        return u''
+        return ''
     try:
         project = path_bits.pop(1)
     except IndexError:
@@ -34,7 +34,7 @@ def render_twitter(parsed_url):
     try:
         username = path_bits.pop(1)
     except IndexError:
-        return u''
+        return ''
     tweet_list = twitter.get_timeline(username)
     context = {
         'parsed_url': parsed_url,

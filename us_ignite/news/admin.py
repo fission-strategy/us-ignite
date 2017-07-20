@@ -5,7 +5,7 @@ from mezzanine.core.admin import DisplayableAdminForm
 # from mezzanine.utils.static import static_lazy as static
 
 from mezzanine.blog.models import BlogPost
-from models import NewsPost, Link
+from .models import NewsPost, Link
 from copy import deepcopy
 from django import forms
 from mezzanine.core.models import CONTENT_STATUS_DRAFT

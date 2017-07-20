@@ -47,7 +47,7 @@ def mailing_subscribe(request, slug='default'):
             except mailchimp.ListAlreadySubscribedError:
                 messages.error(request, 'Already subscribed.')
                 redirect_to = 'mailing_subscribe'
-            except mailchimp.ValidationError, e:
+            except mailchimp.ValidationError as e:
                 messages.error(request, 'ERROR: %s' % e.args[0])
                 redirect_to = 'mailing_subscribe'
             return redirect(redirect_to)

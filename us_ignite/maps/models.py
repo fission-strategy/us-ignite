@@ -49,4 +49,4 @@ class Location(models.Model):
             return self.image.url
         if self.category.image:
             return self.category.image.url
-        return u''
+        return ''

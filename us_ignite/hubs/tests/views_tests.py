@@ -156,7 +156,7 @@ def _get_hub_inline_payload(pk, data_list=None, **kwargs):
             '%s%s-DELETE' % (prefix, i): '',
             '%s%s-application' % (prefix, i): pk,
         }
-        inline_item = dict(_inline_tuple(i, k, v) for k, v in inline.items())
+        inline_item = dict(_inline_tuple(i, k, v) for k, v in list(inline.items()))
         inline_default.update(inline_item)
         default.update(inline_default)
     default.update(kwargs)

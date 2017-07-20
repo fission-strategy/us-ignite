@@ -26,7 +26,7 @@ def testbed_detail(request, slug):
 def get_testbed_query(data):
     """Transform cleaned data in Testbed."""
     query = {}
-    for key, value in data.items():
+    for key, value in list(data.items()):
         if key.startswith('passes_'):
             key = '%s__gte' % key
         if value:

@@ -1,5 +1,5 @@
 import bleach
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 import re
 
 ALLOWED_TAGS = [

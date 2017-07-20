@@ -46,7 +46,7 @@ class TestResourceDetailView(TestCase):
         response = views.resource_detail(request, 'foo')
         eq_(response.status_code, 200)
         eq_(response.template_name, 'resources/object_detail.html')
-        eq_(response.context_data.keys(), ['object', 'is_owner'])
+        eq_(list(response.context_data.keys()), ['object', 'is_owner'])
 
 
 class TestResourceListView(TestCase):

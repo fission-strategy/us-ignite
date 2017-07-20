@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from hashlib import md5
 
@@ -184,12 +184,12 @@ class ActionCluster(ApplicationBase):
         'served by this action cluster?')
     needs_partner = models.BooleanField(
         default=False, verbose_name="Looking for a partner?")
-    awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
+    awards = models.TextField(blank=True, help_text='Recognition or Awards')
     tags = TaggableManager(blank=True)
     position = GeopositionField(blank=True, editable=False)
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
-        help_text=u'If marked this element will be shown in the homepage.')
+        help_text='If marked this element will be shown in the homepage.')
     is_approved = models.BooleanField(default=False)
     # managers:
     objects = models.Manager()
@@ -280,7 +280,7 @@ class ActionClusterMembership(models.Model):
         unique_together = ('user', 'application')
 
     def __unicode__(self):
-        return (u'Membership: %s for %s'
+        return ('Membership: %s for %s'
                 % (self.actioncluster.name, self.user.email))
 
 
@@ -288,7 +288,7 @@ class ActionClusterURL(models.Model):
     application = models.ForeignKey('actionclusters.ActionCluster')
     name = models.CharField(max_length=255, blank=True)
     url = models.URLField(
-        max_length=500, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        max_length=500, verbose_name='URL', help_text=URL_HELP_TEXT)
 
     def __unicode__(self):
         return self.url
@@ -301,7 +301,7 @@ class ActionClusterMedia(models.Model):
         upload_to='actionclusters', max_length=500, blank=True,
         help_text=IMAGE_HELP_TEXT)
     url = models.URLField(
-        blank=True, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        blank=True, verbose_name='URL', help_text=URL_HELP_TEXT)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 

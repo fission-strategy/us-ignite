@@ -6,7 +6,7 @@
 # immediately.
 from us_ignite.settings.settings import *
 import dj_database_url
-import urlparse
+import urllib.parse
 
 
 DEBUG = True

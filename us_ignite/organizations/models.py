@@ -21,7 +21,7 @@ class Organization(models.Model):
         (DRAFT, 'Draft'),
         (REMOVED, 'Removed'),
     )
-    name = models.CharField(max_length=250, verbose_name=u'Organization name')
+    name = models.CharField(max_length=250, verbose_name='Organization name')
     slug = models.SlugField(max_length=255)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     bio = models.TextField(blank=True)
@@ -34,11 +34,11 @@ class Organization(models.Model):
     website = models.URLField(
         max_length=500, blank=True, help_text=URL_HELP_TEXT)
     interest_ignite = models.TextField(
-        blank=True, help_text=u'Why are you here?')
+        blank=True, help_text='Why are you here?')
     interests = models.ManyToManyField('profiles.Interest', blank=True)
     interests_other = models.CharField(blank=True, max_length=255)
     resources_available = models.TextField(
-        blank=True, help_text=u'Please list what you have available to '
+        blank=True, help_text='Please list what you have available to '
         'offer to the community and what you are looking for')
     position = GeopositionField(blank=True)
     tags = TaggableManager(blank=True)
@@ -80,7 +80,7 @@ class OrganizationMember(models.Model):
         unique_together = ('user', 'organization')
 
     def __unicode__(self):
-        return u'%s membership of %s' % (self.organization, self.user)
+        return '%s membership of %s' % (self.organization, self.user)
 
 
 # # Search:

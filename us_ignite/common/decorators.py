@@ -32,7 +32,7 @@ def group_required(group_list):
         @functools.wraps(function)
         def wrapper(request, *args, **kwargs):
             # Transform the string in a list for querying:
-            if isinstance(group_list, basestring):
+            if isinstance(group_list, str):
                 name_list = [group_list]
             else:
                 name_list = group_list

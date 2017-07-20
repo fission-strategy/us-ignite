@@ -1,2 +1,2 @@
 def render_fields(fields):
-    return "\n".join([unicode(f) for f in fields if f])
+    return "\n".join([str(f) for f in fields if f])

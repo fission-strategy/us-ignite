@@ -1,4 +1,4 @@
-import urlparse
+import urllib.parse
 from django.http import HttpResponsePermanentRedirect, HttpResponseGone
 from django.conf import settings
 from django.contrib.redirects.models import Redirect
@@ -17,7 +17,7 @@ class URLRedirectMiddleware(object):
 
     def process_request(self, request):
         host = request.META.get('HTTP_HOST', '')
-        parsed_url = urlparse.urlparse(settings.SITE_URL)
+        parsed_url = urllib.parse.urlparse(settings.SITE_URL)
         if not settings.DEBUG and not host == parsed_url.netloc:
             new_url = settings.SITE_URL + request.path_info
             return HttpResponsePermanentRedirect(new_url)
@@ -37,7 +37,7 @@ class CustomRedirectFallbackMiddleware(RedirectFallbackMiddleware):
                     """
             parsed_url = None
             if "?" in lookup['old_path']:
-                parsed_url = urlparse.urlparse(lookup['old_path'])
+                parsed_url = urllib.parse.urlparse(lookup['old_path'])
                 # Now full path contains no query parameters
                 lookup['old_path'] = parsed_url.path
 

@@ -25,7 +25,7 @@ class TestRenderSnippetTemplateTag(TestCase):
             "{% load snippets_tags %}"
             "{% snippet 'featured' 'snippets/featured.html' %}"
         ).render(Context())
-        eq_(output, u'')
+        eq_(output, '')
 
     @raises(TemplateSyntaxError)
     @patch('us_ignite.snippets.models.Snippet.published.get')

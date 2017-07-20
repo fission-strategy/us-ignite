@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from hashlib import md5
 
@@ -77,11 +77,11 @@ class ApplicationBase(TimeStamped):
     DEPLOYED = 4
     COMMERCIALIZED = 5
     STAGE_CHOICES = (
-        (IDEA, u'Idea Complete'),
-        (PROTOTYPE, u'Prototype Complete'),
-        (DEVELOPMENT, u'In Development'),
-        (DEPLOYED, u'Deployed'),
-        (COMMERCIALIZED, u'Commercialized'),
+        (IDEA, 'Idea Complete'),
+        (PROTOTYPE, 'Prototype Complete'),
+        (DEVELOPMENT, 'In Development'),
+        (DEPLOYED, 'Deployed'),
+        (COMMERCIALIZED, 'Commercialized'),
     )
 
     name = models.CharField(max_length=255, verbose_name=(_("Application Name")))
@@ -210,7 +210,7 @@ class Application(ApplicationBase):
         'apps.Sector', blank=True, null=True,
         help_text=_("What is the primary public benefit priority area served by this application?")
     )
-    awards = models.TextField(blank=True, help_text=u'Recognition or Awards')
+    awards = models.TextField(blank=True, help_text='Recognition or Awards')
 
     programs = models.ManyToManyField('programs.Program', blank=True,
                                       related_name='program_list',
@@ -226,7 +226,7 @@ class Application(ApplicationBase):
 
     is_homepage = models.BooleanField(
         default=False, verbose_name='Show in the homepage?',
-        help_text=u'If marked this element will be shown in the homepage.')
+        help_text='If marked this element will be shown in the homepage.')
     # managers:
     objects = models.Manager()
     active = managers.ApplicationActiveManager()
@@ -261,7 +261,7 @@ class Application(ApplicationBase):
     def get_sector_url(self):
         if self.sector:
             return reverse('app_list_sector', args=[self.sector.slug])
-        return u''
+        return ''
 
     def get_export_url(self):
         return reverse('app_export', args=[self.slug])
@@ -313,7 +313,7 @@ class ApplicationMembership(models.Model):
         unique_together = ('user', 'application')
 
     def __unicode__(self):
-        return (u'Membership: %s for %s'
+        return ('Membership: %s for %s'
                 % (self.application.name, self.user.email))
 
 
@@ -321,7 +321,7 @@ class ApplicationURL(models.Model):
     application = models.ForeignKey('apps.Application')
     name = models.CharField(max_length=255, blank=True)
     url = models.URLField(
-        max_length=500, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        max_length=500, verbose_name='URL', help_text=URL_HELP_TEXT)
 
     def __unicode__(self):
         return self.url
@@ -335,7 +335,7 @@ class ApplicationMedia(models.Model):
     image = FileField(_("File"), max_length=255, format="Image",
         upload_to=upload_to("apps.ApplicationMedia.image", "galleries"), null=True, blank=True)
     url = models.URLField(
-        blank=True, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        blank=True, verbose_name='URL', help_text=URL_HELP_TEXT)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 
@@ -343,7 +343,7 @@ class ApplicationMedia(models.Model):
         ordering = ('created', )
 
     def __unicode__(self):
-        return u'Media: %s' % self.name
+        return 'Media: %s' % self.name
 
 
 
@@ -356,7 +356,7 @@ class ApplicationVersion(ApplicationBase):
     objects = managers.ApplicationVersionManager()
 
     def __unicode__(self):
-        return u'Version %s of application' % self.application
+        return 'Version %s of application' % self.application
 
     def get_absolute_url(self):
         return reverse(
@@ -409,4 +409,4 @@ class PageApplication(models.Model):
         ordering = ('order', )
 
     def __unicode__(self):
-        return u'%s for page %s' % (self.application, self.page)
+        return '%s for page %s' % (self.application, self.page)

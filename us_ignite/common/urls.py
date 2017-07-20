@@ -4,7 +4,7 @@ all the various Mezzanine apps, third-party apps like Grappelli and
 filebrowser.
 """
 
-from __future__ import unicode_literals
+
 from future.builtins import str
 
 from django.conf.urls import include, url

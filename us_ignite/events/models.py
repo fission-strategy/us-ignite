@@ -55,24 +55,24 @@ class Event(models.Model):
     DEFAULT = 1
     GLOBALCITIES = 2
     SECTION_CHOICES = (
-        (DEFAULT, u'Default'),
-        (GLOBALCITIES, u'Global City Teams'),
+        (DEFAULT, 'Default'),
+        (GLOBALCITIES, 'Global City Teams'),
     )
-    name = models.CharField(max_length=500, verbose_name=u'event name')
+    name = models.CharField(max_length=500, verbose_name='event name')
     slug = AutoUUIDField(unique=True, editable=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PUBLISHED)
     image = models.ImageField(
         upload_to="events", blank=True, help_text=IMAGE_HELP_TEXT)
-    description = models.TextField(verbose_name=u'short description')
-    start_datetime = models.DateTimeField(verbose_name=u'Start Date/Time')
+    description = models.TextField(verbose_name='short description')
+    start_datetime = models.DateTimeField(verbose_name='Start Date/Time')
     end_datetime = models.DateTimeField(
-        blank=True, null=True, verbose_name=u'End Date/Time')
+        blank=True, null=True, verbose_name='End Date/Time')
     timezone = models.CharField(
         max_length=30, choices=settings.US_TIMEZONES, default='US/Eastern')
     address = models.TextField()
     contact = models.ForeignKey(
         'organizations.Organization', blank=True, null=True,
-        on_delete=models.SET_NULL, verbose_name=u'Organization')
+        on_delete=models.SET_NULL, verbose_name='Organization')
     scope = models.IntegerField(choices=SCOPE_CHOICES, default=NATIONAL)
     audiences = models.ManyToManyField('events.Audience', blank=True)
     audience_other = models.CharField(blank=True, max_length=200)
@@ -81,14 +81,14 @@ class Event(models.Model):
     event_type = models.ForeignKey(
         'events.EventType', blank=True, null=True, on_delete=models.SET_NULL)
     section = models.IntegerField(
-        choices=SECTION_CHOICES, default=DEFAULT, help_text=u'Section where '
+        choices=SECTION_CHOICES, default=DEFAULT, help_text='Section where '
         'this event will be listed. Default is the main section.')
     tickets_url = models.URLField(
-        max_length=500, blank=True, verbose_name=u'Tickets URL',
+        max_length=500, blank=True, verbose_name='Tickets URL',
         help_text=URL_HELP_TEXT)
     tags = TaggableManager(blank=True)
     hubs = models.ManyToManyField(
-        'hubs.Hub', verbose_name=u'communities', blank=True)
+        'hubs.Hub', verbose_name='communities', blank=True)
     # actionclusters = models.ManyToManyField(
     #     'actionclusters.ActionCluster', verbose_name=u'communities', blank=True)
     position = GeopositionField(blank=True)
@@ -164,14 +164,14 @@ class Event(models.Model):
             if not start_date == end_date:
                 output += ['-', end_date]
         output += [self.start_datetime.strftime('%Y')]
-        return u' '.join(output)
+        return ' '.join(output)
 
 
 class EventURL(models.Model):
     event = models.ForeignKey('events.Event')
     name = models.CharField(max_length=200)
     url = models.URLField(
-        max_length=500, verbose_name=u'URL', help_text=URL_HELP_TEXT)
+        max_length=500, verbose_name='URL', help_text=URL_HELP_TEXT)
 
     def __unicode__(self):
         return self.name

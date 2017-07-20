@@ -6,8 +6,8 @@ from django.utils.http import urlencode
 
 from watson import search as watson
 
-from forms import SearchForm
-from filters import tag_search
+from .forms import SearchForm
+from .filters import tag_search
 
 from us_ignite.apps.models import Application, Sector, Feature
 from us_ignite.hubs.models import Hub

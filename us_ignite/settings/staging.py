@@ -6,7 +6,7 @@
 # immediately.
 from us_ignite.settings.settings import *
 import dj_database_url
-import urlparse
+import urllib.parse
 
 
 DEBUG = True
@@ -137,7 +137,7 @@ MEDIA_ROOT = ''
 DEFAULT_FILE_STORAGE = 'us_ignite.common.custom_storages.MediaStorage'
 
 THUMBNAIL_DEBUG = True
-redis_url = urlparse.urlparse(env('REDISTOGO_URL'))
+redis_url = urllib.parse.urlparse(env('REDISTOGO_URL'))
 
 CACHES = {
     'default': {

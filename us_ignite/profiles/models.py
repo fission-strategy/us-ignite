@@ -13,25 +13,25 @@ class User(AbstractUser):
     MODERATE_AVAILABILITY = 2
     HIGH_AVAILABILITY = 3
     AVAILABILITY_CHOICES = (
-        (NO_AVAILABILITY, u'I do not have any availability at this time'),
-        (LIMITED_AVAILABILITY, u'I have limited availability'),
-        (MODERATE_AVAILABILITY, u'I might be available'),
-        (HIGH_AVAILABILITY, u'Yes, I would love to join a project'),
+        (NO_AVAILABILITY, 'I do not have any availability at this time'),
+        (LIMITED_AVAILABILITY, 'I have limited availability'),
+        (MODERATE_AVAILABILITY, 'I might be available'),
+        (HIGH_AVAILABILITY, 'Yes, I would love to join a project'),
     )
     slug = AutoSlugField(
         unique=True, populate_from='username', editable=True,
-        help_text=u'Slug used for your profile. Recommended FirstName-LastName')
+        help_text='Slug used for your profile. Recommended FirstName-LastName')
     avatar = models.ImageField(
         upload_to="avatar", blank=True, max_length=500,
-        help_text=u'Select image to use as avatar. If an image is not '
+        help_text='Select image to use as avatar. If an image is not '
         'provided Gravatar will be used.')
     website = models.URLField(
         max_length=500, blank=True, help_text=URL_HELP_TEXT)
     quote = models.TextField(
-        blank=True, max_length=140, help_text=u'Short quote.')
+        blank=True, max_length=140, help_text='Short quote.')
     bio = models.TextField(blank=True)
     skills = models.TextField(
-        blank=True, help_text=u'What do you have to contribute? '
+        blank=True, help_text='What do you have to contribute? '
                               'Design skills? Programming languages? Subject matter expertise?'
                               ' Project management experience?')
     availability = models.IntegerField(
@@ -41,10 +41,10 @@ class User(AbstractUser):
 
     category = models.ForeignKey(
         'profiles.UserCategory', blank=True, null=True,
-        verbose_name=u'Category I associate the most with',
+        verbose_name='Category I associate the most with',
         related_name='provile_category')
     categories_other = models.ManyToManyField('profiles.UserCategory', blank=True,
-                                            verbose_name=u'Other categories I associate with',
+                                            verbose_name='Other categories I associate with',
                                             related_name='profile_category_other')
     is_public = models.BooleanField(default=False,
                                     help_text='By marking the profile as public it will be shown in search results.',
@@ -76,10 +76,10 @@ class User(AbstractUser):
         if self.first_name or self.last_name:
             name = self.first_name
             if self.first_name and self.last_name:
-                name += u' '
+                name += ' '
             name += self.last_name
             return name
-        return u''
+        return ''
 
     @property
     def full_name(self):
@@ -87,16 +87,16 @@ class User(AbstractUser):
 
     @property
     def display_name(self):
-        return self.name if self.name else u'US Ignite user'
+        return self.name if self.name else 'US Ignite user'
 
     @property
     def display_email(self):
-        return u'%s <%s>' % (self.display_name, self.email)
+        return '%s <%s>' % (self.display_name, self.email)
 
     def get_gravatar_url(self, size=276):
         """Determines gravatar icon url"""
         username = self.username
-        return u'//www.gravatar.com/avatar/%s?s=%s' % (username, size)
+        return '//www.gravatar.com/avatar/%s?s=%s' % (username, size)
 
     def is_owned_by(self):
         return self
@@ -117,10 +117,10 @@ class ProfileLink(models.Model):
     profile = models.ForeignKey('profiles.User')
     name = models.CharField(blank=True, max_length=255)
     url = models.URLField(
-        max_length=500, help_text=URL_HELP_TEXT, verbose_name=u'URL')
+        max_length=500, help_text=URL_HELP_TEXT, verbose_name='URL')
 
     def __unicode__(self):
-        return u'Profile link.'
+        return 'Profile link.'
 
     @models.permalink
     def get_absolute_url(self):

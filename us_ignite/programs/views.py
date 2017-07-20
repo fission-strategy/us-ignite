@@ -5,7 +5,7 @@ from us_ignite.news.models import NewsPost as BlogPost
 from us_ignite.hubs.models import Hub
 from us_ignite.apps.models import Application, TaggedFunder, TaggedCategory, Sector
 from us_ignite.testbeds.models import Testbed
-from models import Program, Link
+from .models import Program, Link
 
 
 def program_home(request, slug):

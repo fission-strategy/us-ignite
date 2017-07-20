@@ -14,5 +14,5 @@ class TestContactUser(TestCase):
         email = mail.outbox[0]
         ok_(email.subject)
         ok_(email.body)
-        ok_('Reply-To: reply@us-ignite.org\n' in unicode(email.message()))
+        ok_('Reply-To: reply@us-ignite.org\n' in str(email.message()))
         eq_(email.from_email, 'info@us-ignite.org')

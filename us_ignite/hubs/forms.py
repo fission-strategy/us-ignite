@@ -30,10 +30,10 @@ HubURLFormSet = inlineformset_factory(
 
 class HubAppMembershipForm(forms.Form):
     hubs = forms.ModelMultipleChoiceField(
-        label=u'Communities',
+        label='Communities',
         queryset=Hub.objects.filter(status=Hub.PUBLISHED),
         required=False, widget=forms.CheckboxSelectMultiple,
-        help_text=u'Is the Application Connected to a US Ignite '
+        help_text='Is the Application Connected to a US Ignite '
         'Community or Partner? (e.g. Funding, Development, Piloting, '
         'Testing, etc.)')
 

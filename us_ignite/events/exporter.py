@@ -29,4 +29,4 @@ def get_google_calendar_url(
         ('location', venue),
     )
     param_list = ['%s=%s' % (k, urlquote(v)) for k, v in data]
-    return u'%s?%s' % (URL, '&'.join(param_list))
+    return '%s?%s' % (URL, '&'.join(param_list))

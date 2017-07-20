@@ -16,7 +16,7 @@ def location_list(request):
 def _get_content(name, website):
     if not website:
         return name
-    return u'<div><h2><a href="%s">%s</a></h2></div>' % (website, name)
+    return '<div><h2><a href="%s">%s</a></h2></div>' % (website, name)
 
 
 def _get_location_data(location):

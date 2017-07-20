@@ -1,7 +1,7 @@
 import logging
 
 import requests
-from StringIO import StringIO
+from io import StringIO
 
 from django.core import files
 from django.core.files.base import ContentFile

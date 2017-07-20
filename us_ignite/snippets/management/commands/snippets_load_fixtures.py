@@ -57,5 +57,5 @@ class Command(BaseCommand):
                 'status': Snippet.PUBLISHED,
             })
             Snippet.objects.create(**data)
-            print u'Importing %s' % data['slug']
-        print "Done!"
+            print('Importing %s' % data['slug'])
+        print("Done!")

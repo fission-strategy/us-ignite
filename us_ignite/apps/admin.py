@@ -1,6 +1,6 @@
 from django.contrib import admin
 from copy import deepcopy
-from models import *
+from .models import *
 # from us_ignite.actionclusters.models import ActionCluster
 # from us_ignite.actionclusters.admin import ActionClusterAdmin
 
