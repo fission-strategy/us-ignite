@@ -475,7 +475,7 @@ CACHES = {
 }
 
 THUMBNAIL_DEBUG = True
-THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 
 THUMBNAIL_PRESERVE_FORMAT=True
 
