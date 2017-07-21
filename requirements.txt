@@ -41,3 +41,4 @@ dj_database_url==0.4.2
 redis==2.10.5
 gunicorn==19.6
 boto == 2.46.1
+django-redis==4.8.0
