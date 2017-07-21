@@ -181,3 +181,7 @@ MAILCHIMP_SGC_LIST = env('MAILCHIMP_SGC_LIST')
 # COMPRESS_ENABLED = True
 # Heroku does not have a filesystem, used to deploy the assets to S3:
 # COMPRESS_STORAGE = 'us_ignite.common.storage.CachedS3BotoStorage'
+
+THUMBNAIL_REDIS_HOST = redis_url.hostname
+THUMBNAIL_REDIS_PORT = redis_url.port
+THUMBNAIL_REDIS_PASSWORD = redis_url.password
