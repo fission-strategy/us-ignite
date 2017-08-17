@@ -95,7 +95,7 @@ def search_apps(request):
     app_terminalogy = None
     if form.is_valid():
         extra_params = {}
-
+        extra_params.update({'status': Application.PUBLISHED})
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
         if form.cleaned_data['community'] != '':
@@ -145,7 +145,7 @@ def search_hubs(request):
     page_no = pagination.get_page_no(request.GET)
     if form.is_valid():
         extra_params = {}
-
+        extra_params.update({'status': Hub.PUBLISHED})
         if 'feature' in form.cleaned_data and form.cleaned_data['feature'] != '':
             extra_params.update({'features__slug__in': [form.cleaned_data['feature'], ]}, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
