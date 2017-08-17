@@ -107,7 +107,7 @@ def search_apps(request):
             object_list = watson.filter(Application.objects.filter(**extra_params),
                                         form.cleaned_data['q'])
         else:
-            object_list = Application.objects.filter(status=Application.PUBLISHED, **extra_params)
+            object_list = Application.objects.filter(**extra_params)
 
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
@@ -154,7 +154,7 @@ def search_hubs(request):
             object_list = watson.filter(Hub.objects.filter(**extra_params),
                                         form.cleaned_data['q'])
         else:
-            object_list = Hub.objects.filter(status=Application.PUBLISHED, **extra_params)
+            object_list = Hub.objects.filter(**extra_params)
 
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
