@@ -95,7 +95,7 @@ def search_apps(request):
     app_terminalogy = None
     if form.is_valid():
         extra_params = {}
-        extra_params.update({'status': Application.PUBLISHED})
+        extra_params.update({'status': Application.PUBLISHED, 'searchable': True})
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
         if form.cleaned_data['community'] != '':

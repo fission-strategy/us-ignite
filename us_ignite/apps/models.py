@@ -130,6 +130,7 @@ class ApplicationBase(TimeStamped):
                                      help_text=_("Does this application belong to any specific program?"))
     hub = models.ForeignKey('hubs.Hub', blank=True, null=True,
                             help_text=_("Does this application belong to a hub?"))
+    searchable = models.BooleanField(default=True)
 
 
     class Meta:
