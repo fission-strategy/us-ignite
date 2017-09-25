@@ -95,7 +95,7 @@ def search_apps(request):
     app_terminalogy = None
     if form.is_valid():
         extra_params = {}
-
+        extra_params.update({'status': Application.PUBLISHED, 'searchable': True})
         if form.cleaned_data['sector'] != '':
             extra_params.update({'sector__slug': form.cleaned_data['sector'], }, )
         if form.cleaned_data['community'] != '':
@@ -107,7 +107,7 @@ def search_apps(request):
             object_list = watson.filter(Application.objects.filter(**extra_params),
                                         form.cleaned_data['q'])
         else:
-            object_list = Application.objects.filter(status=Application.PUBLISHED, **extra_params)
+            object_list = Application.objects.filter(**extra_params)
 
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
@@ -145,7 +145,7 @@ def search_hubs(request):
     page_no = pagination.get_page_no(request.GET)
     if form.is_valid():
         extra_params = {}
-
+        extra_params.update({'status': Hub.PUBLISHED})
         if 'feature' in form.cleaned_data and form.cleaned_data['feature'] != '':
             extra_params.update({'features__slug__in': [form.cleaned_data['feature'], ]}, )
         if 'program' in form.cleaned_data and form.cleaned_data['program'] != '':
@@ -154,7 +154,7 @@ def search_hubs(request):
             object_list = watson.filter(Hub.objects.filter(**extra_params),
                                         form.cleaned_data['q'])
         else:
-            object_list = Hub.objects.filter(status=Application.PUBLISHED, **extra_params)
+            object_list = Hub.objects.filter(**extra_params)
 
         if form.cleaned_data['order'] == 'asc':
             object_list = object_list.order_by('created')
