@@ -63,7 +63,7 @@
                 {% for program in program_list %}
                 <article>
                     <figure class="bg-a">
-                        
+
                         <picture>
                             <!-- no need to load that image on mobile -->
                             <source media="(min-width: 1025px)" srcset="{{ STATIC_URL }}img/featured-a-bg-a.jpg?280x180" />
@@ -77,17 +77,18 @@
                     </a>
                 </article>
                 {% endfor %}
-               
+
             </div>
         </div>
 
         <div class="featured-b">
             <h3 class="hxa">Latest News</h3>
             <div class="cards">
-                {% for news in news_list %}        
-    
+                {% for news in news_list %}
+
                 <article>
                     <figure class="bg-a">
+
                         <picture>
                             <!-- no need to load that image on mobile -->
                             <source media="(min-width: 1025px)" srcset="{{ STATIC_URL }}img/featured-a-bg-a.jpg?280x180" />
@@ -137,7 +138,7 @@
                                 <li data-lat="{{ hub.position.latitude }}" data-lon="{{ hub.position.longitude }}" data-name="{{ hub.name }}" data-website="{{ hub.website }}"></li>
                                  {% endfor %}
                             </ul>
-                           
+
                         </p>
                     </form>
                 </div>
@@ -160,7 +161,7 @@
                     <p>{{ app.summary|truncatewords_html:28 }}</p>
                 </a>
             </article>
-        
+
             {% endfor %}
             </div>
         </div>
@@ -178,7 +179,7 @@
                     </li>
 
                     {% endfor %}
-                 
+
                 </ul>
             </div>
         </div>

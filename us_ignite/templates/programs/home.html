@@ -45,6 +45,7 @@
 			</div>
             {% endif %}
 
+            {%  if program.name != 'US Ignite Forum' %}
 			<h3 class="hx-a"><span>Featured {{ program.application_terminology }}{{ program|length|pluralize }}</span></h3>
 
 			{% for sector_key, sector_val in app_list.items %}
@@ -103,6 +104,7 @@
 			{% endfor %}
 
 			<p class="$mYb"><a href="{% url "app_list" %}" class="button-a block">See All {{ program.application_terminology }}{{ program|length|pluralize }}<span class="arrow-a"></span></a></p>
+            {%  endif %}
             {% if funding_agent_list %}
 			<h3 class="hx-a v2@small"><span>Funding Agents</span></h3>
 

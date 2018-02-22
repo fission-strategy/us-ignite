@@ -32,4 +32,5 @@ def program_home(request, slug):
         'funder_count': TaggedFunder.objects.count(),
         'testbed_count': Testbed.objects.filter(status=Testbed.PUBLISHED, programs__in=[program, ]).count(),
     }
+
     return TemplateResponse(request, 'programs/home.html', context)
