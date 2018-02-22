@@ -8,8 +8,9 @@ from us_ignite.testbeds.models import Testbed
 from models import Program, Link
 
 
+
 def program_home(request, slug):
-    program = Program.objects.get(slug=slug)
+    program = Program.objects.get(slug=slug.lower())
     sector_list = Sector.objects.all()
     app_list = {}
     for sector in sector_list:
