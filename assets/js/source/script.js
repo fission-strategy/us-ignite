@@ -5,6 +5,7 @@
 			this.initNotifications();
 			this.initCommunityMapSearch();
 			this.initAppSearch();
+			this.initGAEvents();
 		},
 		// Display flash notifications
 		initNotifications: function () {
@@ -196,6 +197,33 @@
 			{
 				$('#app-search-form').find("[name='order']").val("desc");
 			}
+
+		},
+		initGAEvents: function() {
+			if (!ga)
+				return;
+
+			$('.track-overview').on('click', function(e) {
+				e.preventDefault();
+				ga('send', 'event', 'Resource', 'Download', 'US Ignite Forum Overview PDF');
+
+				var url = $(this).attr('href');
+				setTimeout(function () {
+					//var win = window.open(url, '_blank');
+  					//win.focus();
+				}, 5);
+			});
+
+			$('.track-playbook, [data-name="US Ignite Forum Playbook"]').on('click', function(e) {
+				e.preventDefault();
+				ga('send', 'event', 'Resource', 'Download', 'US Ignite Playbook PDF');
+
+				var url = $(this).attr('href');
+				setTimeout(function () {
+					//var win = window.open(url, '_blank');
+  					//win.focus();
+				}, 5);
+			});
 
 		}
 	}

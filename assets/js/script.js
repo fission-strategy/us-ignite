@@ -575,6 +575,7 @@ new function(settings) {
 			this.initNotifications();
 			this.initCommunityMapSearch();
 			this.initAppSearch();
+			this.initGAEvents();
 		},
 		// Display flash notifications
 		initNotifications: function () {
@@ -751,15 +752,12 @@ new function(settings) {
 
 			var q = $.query.get('q');
 			var sector = $.query.get('sector');
-			var community = $.query.get('community');
 			var order = $.query.get('order');
 			
 			if (typeof q == "string")
 				$('#app-search-form').find("[name='q']").val(q);
 			if (typeof sector == "string")
 				$('#app-search-form').find("[name='sector']").val(sector).removeClass("placeholder");
-            if (typeof community == "string")
-				$('#app-search-form').find("[name='community']").val(community).removeClass("placeholder");
 			if ($.trim(order) != "")
 			{
 
@@ -769,6 +767,33 @@ new function(settings) {
 			{
 				$('#app-search-form').find("[name='order']").val("desc");
 			}
+
+		},
+		initGAEvents: function() {
+			if (!ga)
+				return;
+
+			$('.track-overview').on('click', function(e) {
+				e.preventDefault();
+				ga('send', 'event', 'Resource', 'Download', 'US Ignite Forum Overview PDF');
+
+				var url = $(this).attr('href');
+				setTimeout(function () {
+					//var win = window.open(url, '_blank');
+  					//win.focus();
+				}, 5);
+			});
+
+			$('.track-playbook, [data-name="US Ignite Forum Playbook"]').on('click', function(e) {
+				e.preventDefault();
+				ga('send', 'event', 'Resource', 'Download', 'US Ignite Playbook PDF');
+
+				var url = $(this).attr('href');
+				setTimeout(function () {
+					//var win = window.open(url, '_blank');
+  					//win.focus();
+				}, 5);
+			});
 
 		}
 	}

@@ -155,7 +155,7 @@
 				<h4 class="hx">Links &amp; Resources</h4>
 				<ul class="lx-a">
                 {% for link in link_list %}
-                    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+                    <li><a href="{{ link.url }}" data-name="{{ link.name }}">{{ link.name }}</a></li>
                 {% endfor %}
 				</ul>
 				<p class="action"><a href="./" class="button-a text">See More <span class="arrow-a"></span></a></p>
