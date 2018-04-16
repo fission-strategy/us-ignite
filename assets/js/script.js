@@ -779,8 +779,8 @@ new function(settings) {
 
 				var url = $(this).attr('href');
 				setTimeout(function () {
-					//var win = window.open(url, '_blank');
-  					//win.focus();
+					var win = window.open(url, '_blank');
+  					win.focus();
 				}, 5);
 			});
 
@@ -790,8 +790,8 @@ new function(settings) {
 
 				var url = $(this).attr('href');
 				setTimeout(function () {
-					//var win = window.open(url, '_blank');
-  					//win.focus();
+					var win = window.open(url, '_blank');
+  					win.focus();
 				}, 5);
 			});
 

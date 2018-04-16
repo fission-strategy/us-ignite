@@ -209,8 +209,8 @@
 
 				var url = $(this).attr('href');
 				setTimeout(function () {
-					//var win = window.open(url, '_blank');
-  					//win.focus();
+					var win = window.open(url, '_blank');
+  					win.focus();
 				}, 5);
 			});
 
@@ -220,8 +220,8 @@
 
 				var url = $(this).attr('href');
 				setTimeout(function () {
-					//var win = window.open(url, '_blank');
-  					//win.focus();
+					var win = window.open(url, '_blank');
+  					win.focus();
 				}, 5);
 			});
 
