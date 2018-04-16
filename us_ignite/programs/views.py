@@ -8,8 +8,9 @@ from us_ignite.testbeds.models import Testbed
 from models import Program, Link
 
 
+
 def program_home(request, slug):
-    program = Program.objects.get(slug=slug)
+    program = Program.objects.get(slug=slug.lower())
     sector_list = Sector.objects.all()
     app_list = {}
     for sector in sector_list:
@@ -32,4 +33,5 @@ def program_home(request, slug):
         'funder_count': TaggedFunder.objects.count(),
         'testbed_count': Testbed.objects.filter(status=Testbed.PUBLISHED, programs__in=[program, ]).count(),
     }
+
     return TemplateResponse(request, 'programs/home.html', context)
